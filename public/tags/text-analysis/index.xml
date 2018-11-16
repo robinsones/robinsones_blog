@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Text Analysis on Hooked on Data</title>
+    <link>/tags/text-analysis/</link>
+    <description>Recent content in Text Analysis on Hooked on Data</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 30 Sep 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/text-analysis/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Topic Modeling the New York Times and Trump</title>
+      <link>/2016/09/topic-modeling-the-new-york-times-and-trump/</link>
+      <pubDate>Fri, 30 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/2016/09/topic-modeling-the-new-york-times-and-trump/</guid>
+      <description>Trump’s Presidential Campaign and the Media When Donald Trump first entered the Republican presidential primary on June 16, 2015, no media outlet seemed to take him seriously as a contender. He is a highly unusual candidate, and some in the media have admitted that they, and the media more generally, don’t know how to cover him, both in the primary and now in the general election. Trump himself has criticized the media’s coverage of him:</description>
+    </item>
+    
+  </channel>
+</rss>
