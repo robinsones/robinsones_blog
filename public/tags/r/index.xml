@@ -13,10 +13,10 @@
     
     <item>
       <title>The Lesser Known Stars of the Tidyverse</title>
-      <link>/2018/11/the-lesser-known-stars-of-the-tidyverse/</link>
+      <link>/the-lesser-known-stars-of-the-tidyverse/</link>
       <pubDate>Fri, 16 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/11/the-lesser-known-stars-of-the-tidyverse/</guid>
+      <guid>/the-lesser-known-stars-of-the-tidyverse/</guid>
       <description>In early 2018, I gave a few conference talks on “The Lesser Known Stars of the Tidyverse.” I focused on some packages and functions that aren’t as well known as the core parts of ggplot2 and dplyr but are very helpful in exploratory analysis. I walked through an example analysis of Kaggle’s 2017 State of Data Science and Machine Learning Survey to show how I would use these functions in an exploratory analysis.</description>
     </item>
     

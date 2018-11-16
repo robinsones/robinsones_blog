@@ -13,29 +13,29 @@
     
     <item>
       <title>The Lesser Known Stars of the Tidyverse</title>
-      <link>/2018/11/the-lesser-known-stars-of-the-tidyverse/</link>
+      <link>/the-lesser-known-stars-of-the-tidyverse/</link>
       <pubDate>Fri, 16 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/11/the-lesser-known-stars-of-the-tidyverse/</guid>
+      <guid>/the-lesser-known-stars-of-the-tidyverse/</guid>
       <description>In early 2018, I gave a few conference talks on “The Lesser Known Stars of the Tidyverse.” I focused on some packages and functions that aren’t as well known as the core parts of ggplot2 and dplyr but are very helpful in exploratory analysis. I walked through an example analysis of Kaggle’s 2017 State of Data Science and Machine Learning Survey to show how I would use these functions in an exploratory analysis.</description>
     </item>
     
     <item>
       <title>From Social Scientist to Data Scientist</title>
-      <link>/2018/07/from-social-scientist-to-data-scientist/</link>
+      <link>/from-social-scientist-to-data-scientist/</link>
       <pubDate>Thu, 05 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/07/from-social-scientist-to-data-scientist/</guid>
+      <guid>/from-social-scientist-to-data-scientist/</guid>
       <description>I learned a lot in my two years at INSEAD getting a master’s in Organizational Behavior. Many of the skills and knowledge I gained there will be beneficial as a data scientist, from defining a problem to carrying out a thoughtful analysis to communicating to a range of audiences. But one skill I wasn’t developing was working in an industry-level coding environment.
 This hit home one day this spring. In one of my classes, we had been writing code in STATA.</description>
     </item>
     
     <item>
       <title>Topic Modeling the New York Times and Trump</title>
-      <link>/2016/09/topic-modeling-the-new-york-times-and-trump/</link>
+      <link>/topic-modeling-the-new-york-times-and-trump/</link>
       <pubDate>Fri, 30 Sep 2016 00:00:00 +0000</pubDate>
       
-      <guid>/2016/09/topic-modeling-the-new-york-times-and-trump/</guid>
+      <guid>/topic-modeling-the-new-york-times-and-trump/</guid>
       <description>When Donald Trump first entered the Republican presidential primary on June 16, 2015, no media outlet seemed to take him seriously as a contender. He is a highly unusual candidate, and some in the media have admitted that they, and the media more generally, don’t know how to cover him, both in the primary and now in the general election. Trump himself has criticized the media’s coverage of him:</description>
     </item>
     
