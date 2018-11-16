@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.51 with theme Tranquilpeak 0.4.3-SNAPSHOT">
+<meta name="author" content="Emily Robinson">
+<meta name="keywords" content="">
+<meta name="description" content="Data Science blog by Emily Robinson">
+
+
+<meta property="og:description" content="Data Science blog by Emily Robinson">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Online Experimentation">
+<meta name="twitter:title" content="Online Experimentation">
+<meta property="og:url" content="/tags/online-experimentation/">
+<meta property="twitter:url" content="/tags/online-experimentation/">
+<meta property="og:site_name" content="Hooked on Data">
+<meta property="og:description" content="Data Science blog by Emily Robinson">
+<meta name="twitter:description" content="Data Science blog by Emily Robinson">
+<meta property="og:locale" content="en-us">
+
+
+<meta name="twitter:card" content="summary">
+
+  <meta name="twitter:site" content="@robinson_es">
+
+
+  <meta name="twitter:creator" content="@robinson_es">
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://avatars.githubusercontent.com/robinsones">
+  <meta property="twitter:image" content="https://avatars.githubusercontent.com/robinsones">
+
+
+    <title>Online Experimentation</title>
+
+    <link rel="icon" href="/favicon.png">
+    
+      <link rel="alternate" type="application/rss+xml" title="RSS" href="/tags/online-experimentation/index.xml">
+    
+
+    
+
+    <link rel="canonical" href="/tags/online-experimentation/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="2">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/">Hooked on Data</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="/page/about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://avatars.githubusercontent.com/robinsones" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="2">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="/page/about">
+          <img class="sidebar-profile-picture" src="https://avatars.githubusercontent.com/robinsones" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Emily Robinson</h4>
+        
+          <h5 class="sidebar-profile-bio">Date Scientist at DataCamp</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/page/about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/robinsones/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">Linkedin</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/robinsones">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/page/speaking">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">Speaking</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+        
+
+      
+      <div id="main" data-behavior="2"
+        class="
+               hasCoverMetaIn
+               ">
+        
+          <section class="postShorten-group main-content-wrap">
+            
+            
+              
+  
+    
+      
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="/guidelines-for-ab-testing/">
+          Guidelines for A/B Testing
+        </a>
+      </h1>
+      
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2018-08-07T00:00:00Z">
+        
+  August 7, 2018
+
+      </time>
+    
+    
+  </div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      
+        When I was working at Etsy, I benefited from a very robust A/B testing system. Etsy had been doing A/B testing for more than 6 years. By the time I left, Etsy’s in-house experimentation system, called Catapult, had more than 5 data engineers working on it full-time. Every morning, I was greeted with a homepage that listed all the experiments that Etsy had run in the prior four years. When you clicked on one, you got a summary of what the experiment was testing (usually written by the product manager).
+      
+      <p>
+        <a href="/guidelines-for-ab-testing/" class="postShorten-excerpt_link link">Continue reading</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
+            
+            
+
+          </section>
+        
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2018 Emily Robinson. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://avatars.githubusercontent.com/robinsones" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Emily Robinson</h4>
+    
+      <div id="about-card-bio">Date Scientist at DataCamp</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Data Scientist
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        New York
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Search" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center">no post found</div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/the-lesser-known-stars-of-the-tidyverse/">
+                <h3 class="media-heading">The Lesser Known Stars of the Tidyverse</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">In early 2018, I gave a few conference talks on “The Lesser Known Stars of the Tidyverse.” I focused on some packages and functions that aren’t as well known as the core parts of ggplot2 and dplyr but are very helpful in exploratory analysis. I walked through an example analysis of Kaggle’s 2017 State of Data Science and Machine Learning Survey to show how I would use these functions in an exploratory analysis.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/guidelines-for-ab-testing/">
+                <h3 class="media-heading">Guidelines for A/B Testing</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">When I was working at Etsy, I benefited from a very robust A/B testing system. Etsy had been doing A/B testing for more than 6 years. By the time I left, Etsy’s in-house experimentation system, called Catapult, had more than 5 data engineers working on it full-time. Every morning, I was greeted with a homepage that listed all the experiments that Etsy had run in the prior four years. When you clicked on one, you got a summary of what the experiment was testing (usually written by the product manager).</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/red-flags-in-data-science-interviews/">
+                <h3 class="media-heading">Red Flags in Data Science Interviews</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jul 7, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">This post was co-written with Jonathan Nolis, Principal at Nolis, LLC. Check out the rest of his blog posts, including ones on prioritizing data science work, hiring data scientists, and what to do when your data science project isn’t working.
+When interviewing for any position, you should be evaluating the company just as much as they are evaluating you. While you can research the company beforehand on glassdoor and similar sites, interviews are the best place to get a deeper understanding of the company and ask important questions.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/advice-for-applying-to-data-science-jobs/">
+                <h3 class="media-heading">Advice for Applying to Data Science Jobs</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Following Dave Robinson’s sage tweet to write a blog post when you’ve given the same advice three times, this post is a collection of my thoughts and recommendations for people interested in applying to data science jobs in the US. Many of these principles also apply to tech jobs in general.
+A disclaimer: I have never worked as a recruiter or career coach. This knowledge comes from mainly from my study of Organizational Behavior (including negotiations and women in tech) in graduate school and my own career.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/the-importance-of-sponsorship/">
+                <h3 class="media-heading">The Importance of Sponsorship</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Feb 2, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">In my last post, I discussed the importance of building your network and some strategies for effectively reaching out. I closed with emphasizing how helpful your peers or people one step ahead of you can be. But there’s a specific area where people with more resources, status, or experience can help you: sponsorship.
+What is sponsorship? When people discuss what they’re seeking from a more senior person in their field, they usually talk about “mentorship.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/building-your-data-science-network-finding-community/">
+                <h3 class="media-heading">Building Your Data Science Network: Finding Community</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jan 1, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">So you’ve heard you’re supposed to network. That’s the key in getting a job or establishing a reputation in your broader field, right? And it’s true that the importance of having a good network is supported by a lot of social sciences research. But if the thought of networking makes you cringe, you’re not alone. Many people equate networking to sending out millions of unsolicited Linkedin requests with no message, handing out 20 business cards at a meetup once a week, or sending emails to prominent data scientists with the subject line “Can I pick your brain?</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/building-your-data-science-network-reaching-out/">
+                <h3 class="media-heading">Building your Data Science Network: Reaching Out</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jan 1, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">In part one of this post, I covered how to start becoming involved in the data science community and meet people in general. But what if you read a really cool post by someone and want to follow up with them? This post offers some thoughts on how you can most effectively reach out to specific people.
+Two important caveats to start, both inspired by other posts on similar topics.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/making-r-code-faster-a-case-study/">
+                <h3 class="media-heading">Making R Code Faster: A Case Study</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">About two months ago I put a call out to Rstats twitter:
+#rstats twitter - who loves helping to make (short) code run as fast as possible? Playing w/ foreach, doparallel, data.table but know little — Emily Robinson (@robinson_es) October 4, 2017   I had a working, short script that took 3 1/2 minutes to run. While this may be fine if you only need to run it once, I needed to run it hundreds of time for simulations.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/managing-business-challenges-in-data-science/">
+                <h3 class="media-heading">Managing Business Challenges in Data Science</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Sep 9, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">A few weeks ago, I wrote about my experience giving my first data science talk. If you’re interested, the full talk is available online, as well as the slides. In this post, I wanted to share some suggestions for managing business challenges that I didn’t have time to cover in my talk.
+Why Business Challenges? Why devote a whole post and half a talk to business challenges instead of, say, cutting edge deep learning papers or the shiny new language for handling Big DataTM?</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/giving-your-first-data-science-talk/">
+                <h3 class="media-heading">Giving Your First Data Science Talk</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">A few weeks ago, I gave my first ever data science talk. Jared Lander, organizer of the New York Statistical Open Programming meetup, had been asking me to speak, and after about six months at Etsy I thought I could share what I’d learned about A/B Testing and its challenges. If you’d like to watch it, you can view the recording here. The talk starts around 9:00 and ends at 41:30, with the rest being Q&amp;A (I tried to repeat the questions, so you should be able to follow that as well).</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero="no post found"
+         data-message-one="1 post found"
+         data-message-other="{n} posts found">
+         16 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('/images/cover.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+
+    
+  </body>
+</html>
+

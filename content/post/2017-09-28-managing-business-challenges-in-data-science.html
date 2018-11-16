@@ -1,0 +1,69 @@
+---
+title: Managing Business Challenges in Data Science
+author: Emily Robinson
+date: '2017-09-28'
+slug: managing-business-challenges-in-data-science
+categories: []
+tags: 
+  - Career
+---
+
+
+
+<p>A few weeks ago, I <a href="hookedondata.org/Giving-Your-First-Data-Science-Talk/">wrote about</a> my experience giving my first data science talk. If you’re interested, the full talk is available <a href="https://www.youtube.com/watch?v=SF-ryGgLOgQ">online</a>, as well as the <a href="https://github.com/robinsones/AB-Testing-Slides">slides</a>. In this post, I wanted to share some suggestions for managing business challenges that I didn’t have time to cover in my talk.</p>
+<div id="why-business-challenges" class="section level3">
+<h3>Why Business Challenges?</h3>
+<p>Why devote a whole post and half a talk to business challenges instead of, say, cutting edge deep learning papers or the shiny new language for handling Big Data<sup>TM</sup>?</p>
+<p>While basic technical skills are the table stakes for a data science career, the importance of non-technical skills in a data science career is often overlooked. I think Yonatan Zunger, a former senior Google engineer, covers this very well in the second section of this <a href="https://medium.com/@yonatanzunger/so-about-this-googlers-manifesto-1e3773ed1788">post</a>. While he’s talking about engineering, his points can be equally applied to data science:</p>
+<blockquote>
+<p>People who haven’t done engineering, or people who have done just the basics, sometimes think that what engineering looks like is sitting at your computer and hyper-optimizing an inner loop, or cleaning up a class API… Engineering is not the art of building devices; it’s the art of fixing problems… Essentially, engineering is all about cooperation, collaboration, and empathy for both your colleagues and your customers.</p>
+</blockquote>
+<p>At Etsy, each of the analysts works with a partner team, including marketing, seller services, retention and loyalty, and finance. What we help them with can vary a lot. I mainly help design and analyze experiments for search, while other analysts create dashboards in Looker, new tables to make data access easier, or models for estimating the lifetime value of a new customer. While we may be especially deeply embedded with partner teams, all data scientists and analysts (or their managers) will have to work with non-analysts<sup>1</sup> sometimes. While I still have a long way to go, I wanted to share some advice and techniques I’ve found helpful.</p>
+</div>
+<div id="strategies-for-managing-business-challenges" class="section level1">
+<h1>Strategies for Managing Business Challenges</h1>
+<p><strong>Don’t Feign Surprise</strong></p>
+<p>To be a successful partner, you need to make sure your team is comfortable asking you questions. One way to almost guarantee that they won’t be is to “feign surprise.”</p>
+<blockquote class="twitter-tweet" data-lang="en">
+<p lang="en" dir="ltr">
+“no feigning surprise” (from the wonderful <a href="https://twitter.com/recurse"><span class="citation">@recurse</span></a> manual: <a href="https://t.co/Zk7ZQZqSbL">https://t.co/Zk7ZQZqSbL</a>) <a href="https://t.co/ZPc07LlFle">pic.twitter.com/ZPc07LlFle</a>
+</p>
+— ⚡Julia Evans⚡ (<span class="citation">@b0rk</span>) <a href="https://twitter.com/b0rk/status/846864384731365376">March 28, 2017</a>
+</blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p>Many Etsy engineers come from the <a href="https://www.recurse.com">Recurse Center</a> (formerly known as Hacker School), a free six or twelve week self-directed retreat for programmers. The Recurse Center has a set of social rules (along with a code of conduct) to make the environment productive and supportive for everyone. One of those is no “feigning surprise” when people admit they don’t know something. As they <a href="https://www.recurse.com/manual#sub-sec-social-rules">put it</a>:</p>
+<blockquote>
+<p>Feigning surprise has absolutely no social or educational benefit: When people feign surprise, it’s usually to make them feel better about themselves and others feel worse. And even when that’s not the intention, it’s almost always the effect. As you’ve probably already guessed, this rule is tightly coupled to our belief in the importance of people feeling comfortable saying “I don’t know” and “I don’t understand.”</p>
+</blockquote>
+<p>You also shouldn’t make assumptions about what your audience knows. Even if you live p-values and confidence intervals day in and day out, they don’t. You should lean on the side of always defining terms, which will also help in the case people think they know what something means but they actually don’t (very common with p-values).</p>
+<p><strong>Develop empathy</strong></p>
+<p>The Microsoft experimentation platform team put it best <a href="http://notes.stephenholiday.com/Five-Puzzling-Outcomes.pdf">when they said</a>: “our job … is to tell our clients that their new baby is ugly.” As they discuss, while teams build new features or products because they believe they’ll be useful, most experiments testing those new features reveal they don’t have a positive impact. Teams are often emotionally invested in their new feature: they’ve spent a lot of time working on it, and it was often one of the team members who came up with the idea in the first place. There may also be financial investment if a company has tied bonuses or performance reviews to experiment success.</p>
+<p>Even though I knew this intellectually, it took me time to develop empathy, and it’s still something I’m working on. It can be frustrating when you have to correct misinterpretations of seemingly “positive” results from peeking or <a href="http://www.slate.com/articles/health_and_science/science/2013/07/statistics_and_psychology_multiple_comparisons_give_spurious_results.html">slicing data in every possible way</a>. It’s useful to remember to take a step back and see that you have the same overarching goal: for your team do well and thus help the company.</p>
+<p><strong>Invest in Education Efforts</strong></p>
+<p>Think about how you and your team can help non-analysts understand and make data-driven decisions. First, it will save you time. If an engineer knows they’ll need to record the listings that are eligible for a new badge in the variant <em>and</em> the control, so you can compare clickthrough rates, or the product manager knows how to use experimentcalculator.com and discovers their experiment would take 150 days to be appropriately powered, that’s one less question they’ll have to ask you. But second, many companies profess they want to have data-driven decision making. This doesn’t work if only the analysts can understand data, and so companies are investing in wider data education efforts:</p>
+<blockquote class="twitter-tweet" data-lang="en">
+<p lang="en" dir="ltr">
+Data University is our effort to help every person at Airbnb make data informed decisions - come read how! <a href="https://t.co/2HjZxnkjHK">https://t.co/2HjZxnkjHK</a>
+</p>
+— Airbnb Data (<span class="citation">@AirbnbData</span>) <a href="https://twitter.com/AirbnbData/status/867514655060615168?ref_src=twsrc%5Etfw">May 24, 2017</a>
+</blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p>At Etsy, we’ve been working on a multi-pronged approach to education. The data engineering team developed an experiment hub, where they’ve gathered documentation about our various tools. Evan D’Agostini, another analyst, and I wrote a general guide to experiments at Etsy, and also gave an “Edsy,” an internal talk, on it. I’m now experimenting with offering office hours for people to come with general questions about experimentation. Finally, we have a Slack channel dedicated to experiment questions, monitored not only by data analysts but also by experiment-savvy engineers.</p>
+<p><strong>Develop consistency among the Analyst Team</strong></p>
+<p>Working with partner teams becomes much easier if you have some consistent standards and practices within the analyst team. For examples, here are some differences that can cause problems:</p>
+<ul>
+<li>If your team thinks you’re stricter than other analysts in judging experiment results</li>
+<li>If analysts are calculating incremental revenue from experiment launches differently</li>
+<li>If one analyst says you have to run experiments for at least a week, even if you’re powered before then, while others say four days is fine</li>
+</ul>
+<p>Working to develop consistency is also a great opportunity to learn for each other. For example, some analysts may not be as familiar with the problems of peeking, which may be why they weren’t as strict on not doing so. That kind of information-sharing can also help make a smoother transition when a partner team has to change analysts.</p>
+<p><strong>Lay Out Hypotheses Before A/B Tests</strong></p>
+<p>Lay out hypotheses ahead of time, especially about whether you will launch on a neutral result (when it’s inconclusive whether your metric went up or down). People often think they don’t need to have specific hypotheses beyond “we’ll launch if it’s better,” because they think results will be really clear. But you’ll be surprised at the sheer combination of results that are possible (e.g. search clicks went down, but mean search purchase went up, and conversion is neutral, but add to cart is slightly down, etc.). Picking one or two key metrics for launch and a few other metrics for monitoring will also help you from having a multiple comparisons problem, where you’re <a href="https://en.wikipedia.org/wiki/Multiple_comparisons_problem">testing so many metrics one of them will be significant</a>, even if there really is no change.</p>
+</div>
+<div id="next-time" class="section level1">
+<h1>Next Time</h1>
+<p>In my next post, I’ll continue sharing what I’ve learned about business and statistical data science challenges from reading papers on A/B testing in industry. I’m also working with another Evan D’Agostini on a post for Etsy’s engineering blog, Code as Craft, on one of the statistical challenges I covered in my talk, developing a test for differences in Average Converting Browser Value between groups.</p>
+<ol style="list-style-type: decimal">
+<li>I’m using “non-analyst” as a catch-all phrase for anyone who isn’t in analytics (e.g. not a data scientist, business analyst, data analyst, etc.).</li>
+</ol>
+</div>

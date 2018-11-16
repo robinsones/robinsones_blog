@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.51 with theme Tranquilpeak 0.4.3-SNAPSHOT">
+<meta name="author" content="Emily Robinson">
+<meta name="keywords" content="">
+<meta name="description" content="This post was co-written with Jonathan Nolis, Principal at Nolis, LLC. Check out the rest of his blog posts, including ones on prioritizing data science work, hiring data scientists, and what to do when your data science project isn’t working.
+When interviewing for any position, you should be evaluating the company just as much as they are evaluating you. While you can research the company beforehand on glassdoor and similar sites, interviews are the best place to get a deeper understanding of the company and ask important questions.">
+
+
+<meta property="og:description" content="This post was co-written with Jonathan Nolis, Principal at Nolis, LLC. Check out the rest of his blog posts, including ones on prioritizing data science work, hiring data scientists, and what to do when your data science project isn’t working.
+When interviewing for any position, you should be evaluating the company just as much as they are evaluating you. While you can research the company beforehand on glassdoor and similar sites, interviews are the best place to get a deeper understanding of the company and ask important questions.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Red Flags in Data Science Interviews">
+<meta name="twitter:title" content="Red Flags in Data Science Interviews">
+<meta property="og:url" content="/red-flags-in-data-science-interviews/">
+<meta property="twitter:url" content="/red-flags-in-data-science-interviews/">
+<meta property="og:site_name" content="Hooked on Data">
+<meta property="og:description" content="This post was co-written with Jonathan Nolis, Principal at Nolis, LLC. Check out the rest of his blog posts, including ones on prioritizing data science work, hiring data scientists, and what to do when your data science project isn’t working.
+When interviewing for any position, you should be evaluating the company just as much as they are evaluating you. While you can research the company beforehand on glassdoor and similar sites, interviews are the best place to get a deeper understanding of the company and ask important questions.">
+<meta name="twitter:description" content="This post was co-written with Jonathan Nolis, Principal at Nolis, LLC. Check out the rest of his blog posts, including ones on prioritizing data science work, hiring data scientists, and what to do when your data science project isn’t working.
+When interviewing for any position, you should be evaluating the company just as much as they are evaluating you. While you can research the company beforehand on glassdoor and similar sites, interviews are the best place to get a deeper understanding of the company and ask important questions.">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2018-07-03T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2018-07-03T00:00:00">
+  
+  
+  
+  
+    
+      <meta property="article:tag" content="Career">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+  <meta name="twitter:site" content="@robinson_es">
+
+
+  <meta name="twitter:creator" content="@robinson_es">
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://avatars.githubusercontent.com/robinsones">
+  <meta property="twitter:image" content="https://avatars.githubusercontent.com/robinsones">
+
+
+    <title>Red Flags in Data Science Interviews</title>
+
+    <link rel="icon" href="/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="/red-flags-in-data-science-interviews/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/">Hooked on Data</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="/page/about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://avatars.githubusercontent.com/robinsones" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="/page/about">
+          <img class="sidebar-profile-picture" src="https://avatars.githubusercontent.com/robinsones" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Emily Robinson</h4>
+        
+          <h5 class="sidebar-profile-bio">Date Scientist at DataCamp</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/page/about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/robinsones/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">Linkedin</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/robinsones">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/page/speaking">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">Speaking</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Red Flags in Data Science Interviews
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2018-07-03T00:00:00Z">
+        
+  July 3, 2018
+
+      </time>
+    
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+
+<div class="figure">
+<img src="http://robinsones.github.io/images/red-flag-painting.jpg" />
+
+</div>
+<p><em>This post was co-written with <a href="https://jnolis.com/">Jonathan Nolis</a>, Principal at Nolis, LLC. Check out the rest of his blog posts, including ones on <a href="https://towardsdatascience.com/prioritizing-data-science-work-936b3765fd45">prioritizing data science work</a>, <a href="https://medium.com/@skyetetra/hiring-data-scientists-part-1-2813ba44be9b">hiring data scientists</a>, and what to do when your <a href="https://medium.com/@skyetetra/so-your-data-science-project-isnt-working-7bf57e3f12f1">data science project isn’t working</a>.</em></p>
+<p>When interviewing for any position, you should be evaluating the company just as much as they are evaluating you. While you can research the company beforehand on glassdoor and similar sites, interviews are the best place to get a deeper understanding of the company and ask important questions. Companies will never straight up tell you they are bad to work for, so you have to look for the signs yourself.</p>
+<p>Here is our list of 12 signs the company you are interviewing with for a data scientist job should be avoided (and the questions to ask during the interview). The first six mainly apply to companies that already have multiple data scientists or analysts. If you’re thinking of joining a company as their first data scientist, you’ll face a whole different set of challenges, including most likely doing a lot of data engineering work (see flag 1) and spreading a data science mindset. Someone has to do it, but we generally advise against it for your first data science role unless you come from an engineering background and want to do that work. If there’s just a data science leader and they’re building out a team, ask how they plan to handle the issues raised below, but keep in mind it’s always easier to promise an ideal system than implement one.</p>
+<div id="red-flags-on-how-the-data-science-team-runs" class="section level2">
+<h2>Red flags on how the data science team runs</h2>
+<ol style="list-style-type: decimal">
+<li><strong>No data engineering or infrastructure.</strong> Data science requires data to be easily available for analysis. If the company doesn’t have a well-maintained data infrastructure, you won’t have what you need to do your job. A data engineer is a person who prepares data for analysis, and if your company doesn’t have them you’ll have to do the work yourself. If you feel qualified to take on the role of a data engineer that may be okay, but otherwise you’ll be struggling to deliver anything of value. <em>Question to ask during the interview: what is your data infrastructure like and who maintains it? What format is the data typically in (Excel, a SQL database, csv)?</em></li>
+<li><strong>No peer review between data scientists.</strong> A strong data science team will have ways to ensure mistakes don’t slip through the cracks. These can include code reviews, practice presentations, and consistent check-ins with the team. If the team doesn’t consistently do these, mistakes won’t be found until the work is already delivered, which usually ends with someone getting reprimanded. <em>Question to ask: what steps does the team take for QA and peer review?</em></li>
+<li><strong>No standard set of languages on the team</strong>: Many data science teams take the approach of letting anyone on the team use any language they want. The idea is that if everyone uses their favorite languages work will be completed faster. There is a huge problem with this: when everyone uses separate languages, no one will be able to pass off work to anyone else. Every data science task will have a single person responsible for it, and if they quit, get sick, or just need help no one will be able to do so, creating a very stressful environment. It’s fine to use R, Python, or even dare we say SAS, but just have a consistent set of languages amongst the team. <em>Question to ask: what languages does your team use, and how do you decide whether to adopt a new one?</em></li>
+<li><strong>No understanding of the <a href="https://hackernoon.com/the-ai-hierarchy-of-needs-18f111fcc007">data hierarchy of needs</a></strong>: Similar to not having a data infrastructure, some companies get really excited about concepts like AI without having the foundation in place. Machine learning and AI require a company to have a high level of data science maturity, including understanding how to build models, their limitations, and how to deploy them. You might get blamed when their unrealistic expectations meet reality. <em>Question to ask: how does the company balance spending time on complex approaches like AI with foundational work like cleaning data, checking data quality, and adding logging?</em></li>
+<li><strong>No version control</strong>: Mature data science teams use git to keep track of changes to analyses and code. Other teams instead use methods like shared network folders, which don’t let you see when things changed, why they are changed, or previous versions. Occasionally teams don’t share code at all and work just lives on the data scientists individual laptops. Avoid these last groups like the plague. Not having methods of sharing code means the team can’t work together. <em>Question to ask: how to you share code amongst the team? Is all code shared or just some of it?</em></li>
+<li><strong>No clear delineation between people who run reports vs do analyses</strong>: The skillsets required to create and maintain reports, to build data science models, and to put machine learning models into production are all different. If the company doesn’t have a clear way of determining who does what work, you could start your job and end up doing work totally different than what you expected. You don’t want to walk in on your first day expecting to build a time-series forecast and find out your job is to refresh the monthly sales Excel spreadsheet. <em>Question to ask: how are reporting, analysis, and production-model building tasks split?</em></li>
+</ol>
+</div>
+<div id="red-flags-on-how-they-value-people" class="section level2">
+<h2>Red flags on how they value people</h2>
+<ol style="list-style-type: decimal">
+<li><strong>A totally non-structured interview process</strong>: A structured interview process means that each candidate gets the same set of questions and can be more equally compared. Not only does <a href="https://hbr.org/2016/04/how-to-take-the-bias-out-of-interviews">it decrease bias</a>, it also requires the team think through what’s important in the people they bring on. If the interview process is unstructured, with the interviewer seemingly asking questions off the top of their head, then it’s a strong sign they haven’t figured out what they want in a candidate and how to get it. If they don’t know what they want you are going to have trouble giving them what they want on the job. <em>Suggestion: see if they bring a set of questions to the interview, or ask the meta-question of how they chose what to ask you.</em></li>
+<li><strong>No time for your questions</strong>: Since interviews are also for you to find out about the company, you need to have time to do so. If there isn’t time for you to ask questions, the interviewer isn’t interested in making you feel comfortable and allowing you to assess your fit. <em>Suggestion: if you get to the interview and you didn’t have time to ask questions, make a note of it and ask the interviewer when would be a good time to ask them instead.</em></li>
+<li><strong>No coding required in the interview</strong>: While programming isn’t the most important skill for a data scientist, it is something you will have to do on the job. The coding part of the interview could be on-site or a take-home test, but it should definitely exist. If the interview process doesn’t include programming it could be for a few reasons: (1) The data science team is new so no one can run the interview. In this case, be aware you won’t have support on the job. (2) The team doesn’t have the time to create a programming interview. This is a sign they don’t value hiring. (3) They don’t program and use BI tools like Tableau and Excel for their work. (4) They trust your resume so much that they don’t need to test you. While flattering, this a sign that they are desperate to hire. <em>Suggestion: if the interview doesn’t include a programming component, ask them how do they tell which candidates have the technical skills for the job.</em></li>
+<li><strong>No plan for your first few months</strong>: Companies put job postings out for good reasons. If they aren’t able to clearly articulate exactly what you’ll be doing in the first few months, that reason is probably “we are totally overwhelmed with work and we are going to throw people at the problem until we can handle it.” That’s an extremely dangerous way to grow a team. What’s worse, this usually happens at the companies that don’t have onboarding processes for new hires. So these situations are extremely stressful for the whole team and that usually falls on you too. <em>Suggestion: ask if they have a clear project and on-boarding process for your start. If they don’t have an extremely precise answer for this, run.</em></li>
+<li><strong>No support for continuing education</strong>: Data science is a large and rapidly advancing field and if you don’t keep learning you’ll fall behind. Teams should have some way of helping people keep up, whether it’s by providing funding for online education or attending conferences, monthly meetings where you discuss industry blog posts, encouragement to attend meetups or get involved in open source, or a speaker series. This also shows they’re willing to invest in their people generally. <em>Suggestion: ask how they support the continued education of the team. Is there funding for conferences or workshops?</em></li>
+<li><strong>Inconsistent answers between interviewers about the role</strong>: Usually interviews have you talking to many people within the company, including your future manager, teammates, and business stakeholders. If they each tell you different things around the level of responsibility, type of work, what the role delivers, and hours you’ll have to work, they themselves probably don’t agree. If they can’t agree, especially on things related to what work you’ll end up doing, your job will end up being full of conflict. <em>Suggestion: keep track of what people say in different interviews. If you find an inconsistency, ask why.</em></li>
+</ol>
+<p>While these twelve flags may feel like a lot, companies tend to show none of them or most of them, with only few in the middle. By keeping an eye out of them you can avoid the problem of getting to a job you dislike. Good luck! If you want more data science thoughts and tips, check out our twitters <a href="https://twitter.com/robinson_es">robinson_es</a> and <a href="https://twitter.com/skyetetra">skyetetra</a> or our other blog posts on <a href="https://medium.com/@skyetetra/latest">Jonathan’s medium account</a> and <a href="http://hookedondata.org/">this blog</a>.</p>
+</div>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="/tags/career/">Career</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/guidelines-for-ab-testing/" data-tooltip="Guidelines for A/B Testing">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/advice-for-applying-to-data-science-jobs/" data-tooltip="Advice for Applying to Data Science Jobs">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/red-flags-in-data-science-interviews/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/red-flags-in-data-science-interviews/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2018 Emily Robinson. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/guidelines-for-ab-testing/" data-tooltip="Guidelines for A/B Testing">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/advice-for-applying-to-data-science-jobs/" data-tooltip="Advice for Applying to Data Science Jobs">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/red-flags-in-data-science-interviews/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/red-flags-in-data-science-interviews/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2Fred-flags-in-data-science-interviews%2F">
+          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2Fred-flags-in-data-science-interviews%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://avatars.githubusercontent.com/robinsones" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Emily Robinson</h4>
+    
+      <div id="about-card-bio">Date Scientist at DataCamp</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Data Scientist
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        New York
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Search" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center">no post found</div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/the-lesser-known-stars-of-the-tidyverse/">
+                <h3 class="media-heading">The Lesser Known Stars of the Tidyverse</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">In early 2018, I gave a few conference talks on “The Lesser Known Stars of the Tidyverse.” I focused on some packages and functions that aren’t as well known as the core parts of ggplot2 and dplyr but are very helpful in exploratory analysis. I walked through an example analysis of Kaggle’s 2017 State of Data Science and Machine Learning Survey to show how I would use these functions in an exploratory analysis.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/guidelines-for-ab-testing/">
+                <h3 class="media-heading">Guidelines for A/B Testing</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">When I was working at Etsy, I benefited from a very robust A/B testing system. Etsy had been doing A/B testing for more than 6 years. By the time I left, Etsy’s in-house experimentation system, called Catapult, had more than 5 data engineers working on it full-time. Every morning, I was greeted with a homepage that listed all the experiments that Etsy had run in the prior four years. When you clicked on one, you got a summary of what the experiment was testing (usually written by the product manager).</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/red-flags-in-data-science-interviews/">
+                <h3 class="media-heading">Red Flags in Data Science Interviews</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jul 7, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">This post was co-written with Jonathan Nolis, Principal at Nolis, LLC. Check out the rest of his blog posts, including ones on prioritizing data science work, hiring data scientists, and what to do when your data science project isn’t working.
+When interviewing for any position, you should be evaluating the company just as much as they are evaluating you. While you can research the company beforehand on glassdoor and similar sites, interviews are the best place to get a deeper understanding of the company and ask important questions.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/advice-for-applying-to-data-science-jobs/">
+                <h3 class="media-heading">Advice for Applying to Data Science Jobs</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Following Dave Robinson’s sage tweet to write a blog post when you’ve given the same advice three times, this post is a collection of my thoughts and recommendations for people interested in applying to data science jobs in the US. Many of these principles also apply to tech jobs in general.
+A disclaimer: I have never worked as a recruiter or career coach. This knowledge comes from mainly from my study of Organizational Behavior (including negotiations and women in tech) in graduate school and my own career.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/the-importance-of-sponsorship/">
+                <h3 class="media-heading">The Importance of Sponsorship</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Feb 2, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">In my last post, I discussed the importance of building your network and some strategies for effectively reaching out. I closed with emphasizing how helpful your peers or people one step ahead of you can be. But there’s a specific area where people with more resources, status, or experience can help you: sponsorship.
+What is sponsorship? When people discuss what they’re seeking from a more senior person in their field, they usually talk about “mentorship.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/building-your-data-science-network-finding-community/">
+                <h3 class="media-heading">Building Your Data Science Network: Finding Community</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jan 1, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">So you’ve heard you’re supposed to network. That’s the key in getting a job or establishing a reputation in your broader field, right? And it’s true that the importance of having a good network is supported by a lot of social sciences research. But if the thought of networking makes you cringe, you’re not alone. Many people equate networking to sending out millions of unsolicited Linkedin requests with no message, handing out 20 business cards at a meetup once a week, or sending emails to prominent data scientists with the subject line “Can I pick your brain?</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/building-your-data-science-network-reaching-out/">
+                <h3 class="media-heading">Building your Data Science Network: Reaching Out</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jan 1, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">In part one of this post, I covered how to start becoming involved in the data science community and meet people in general. But what if you read a really cool post by someone and want to follow up with them? This post offers some thoughts on how you can most effectively reach out to specific people.
+Two important caveats to start, both inspired by other posts on similar topics.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/making-r-code-faster-a-case-study/">
+                <h3 class="media-heading">Making R Code Faster: A Case Study</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">About two months ago I put a call out to Rstats twitter:
+#rstats twitter - who loves helping to make (short) code run as fast as possible? Playing w/ foreach, doparallel, data.table but know little — Emily Robinson (@robinson_es) October 4, 2017   I had a working, short script that took 3 1/2 minutes to run. While this may be fine if you only need to run it once, I needed to run it hundreds of time for simulations.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/managing-business-challenges-in-data-science/">
+                <h3 class="media-heading">Managing Business Challenges in Data Science</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Sep 9, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">A few weeks ago, I wrote about my experience giving my first data science talk. If you’re interested, the full talk is available online, as well as the slides. In this post, I wanted to share some suggestions for managing business challenges that I didn’t have time to cover in my talk.
+Why Business Challenges? Why devote a whole post and half a talk to business challenges instead of, say, cutting edge deep learning papers or the shiny new language for handling Big DataTM?</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/giving-your-first-data-science-talk/">
+                <h3 class="media-heading">Giving Your First Data Science Talk</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">A few weeks ago, I gave my first ever data science talk. Jared Lander, organizer of the New York Statistical Open Programming meetup, had been asking me to speak, and after about six months at Etsy I thought I could share what I’d learned about A/B Testing and its challenges. If you’d like to watch it, you can view the recording here. The talk starts around 9:00 and ends at 41:30, with the rest being Q&amp;A (I tried to repeat the questions, so you should be able to follow that as well).</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero="no post found"
+         data-message-one="1 post found"
+         data-message-other="{n} posts found">
+         16 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('/images/cover.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = '\/red-flags-in-data-science-interviews\/';
+          
+            this.page.identifier = '\/red-flags-in-data-science-interviews\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'hugo-tranquilpeak-theme';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.51 with theme Tranquilpeak 0.4.3-SNAPSHOT">
+<meta name="author" content="Emily Robinson">
+<meta name="keywords" content="">
+<meta name="description" content="A few weeks ago, I gave my first ever data science talk. Jared Lander, organizer of the New York Statistical Open Programming meetup, had been asking me to speak, and after about six months at Etsy I thought I could share what I’d learned about A/B Testing and its challenges. If you’d like to watch it, you can view the recording here. The talk starts around 9:00 and ends at 41:30, with the rest being Q&amp;A (I tried to repeat the questions, so you should be able to follow that as well).">
+
+
+<meta property="og:description" content="A few weeks ago, I gave my first ever data science talk. Jared Lander, organizer of the New York Statistical Open Programming meetup, had been asking me to speak, and after about six months at Etsy I thought I could share what I’d learned about A/B Testing and its challenges. If you’d like to watch it, you can view the recording here. The talk starts around 9:00 and ends at 41:30, with the rest being Q&amp;A (I tried to repeat the questions, so you should be able to follow that as well).">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Giving Your First Data Science Talk">
+<meta name="twitter:title" content="Giving Your First Data Science Talk">
+<meta property="og:url" content="/giving-your-first-data-science-talk/">
+<meta property="twitter:url" content="/giving-your-first-data-science-talk/">
+<meta property="og:site_name" content="Hooked on Data">
+<meta property="og:description" content="A few weeks ago, I gave my first ever data science talk. Jared Lander, organizer of the New York Statistical Open Programming meetup, had been asking me to speak, and after about six months at Etsy I thought I could share what I’d learned about A/B Testing and its challenges. If you’d like to watch it, you can view the recording here. The talk starts around 9:00 and ends at 41:30, with the rest being Q&amp;A (I tried to repeat the questions, so you should be able to follow that as well).">
+<meta name="twitter:description" content="A few weeks ago, I gave my first ever data science talk. Jared Lander, organizer of the New York Statistical Open Programming meetup, had been asking me to speak, and after about six months at Etsy I thought I could share what I’d learned about A/B Testing and its challenges. If you’d like to watch it, you can view the recording here. The talk starts around 9:00 and ends at 41:30, with the rest being Q&amp;A (I tried to repeat the questions, so you should be able to follow that as well).">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2017-08-14T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2017-08-14T00:00:00">
+  
+  
+  
+  
+    
+      <meta property="article:tag" content="Career">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+  <meta name="twitter:site" content="@robinson_es">
+
+
+  <meta name="twitter:creator" content="@robinson_es">
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://avatars.githubusercontent.com/robinsones">
+  <meta property="twitter:image" content="https://avatars.githubusercontent.com/robinsones">
+
+
+    <title>Giving Your First Data Science Talk</title>
+
+    <link rel="icon" href="/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="/giving-your-first-data-science-talk/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/">Hooked on Data</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="/page/about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://avatars.githubusercontent.com/robinsones" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="/page/about">
+          <img class="sidebar-profile-picture" src="https://avatars.githubusercontent.com/robinsones" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Emily Robinson</h4>
+        
+          <h5 class="sidebar-profile-bio">Date Scientist at DataCamp</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/page/about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/robinsones/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">Linkedin</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/robinsones">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/page/speaking">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">Speaking</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Giving Your First Data Science Talk
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2017-08-14T00:00:00Z">
+        
+  August 14, 2017
+
+      </time>
+    
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+
+<p>A few weeks ago, I gave my first ever data science talk. Jared Lander, organizer of the <a href="https://www.meetup.com/nyhackr/">New York Statistical Open Programming meetup</a>, had been asking me to speak, and after about six months at Etsy I thought I could share what I’d learned about A/B Testing and its challenges. If you’d like to watch it, you can view the recording <a href="https://www.youtube.com/watch?v=SF-ryGgLOgQ">here</a>. The talk starts around 9:00 and ends at 41:30, with the rest being Q&amp;A (I tried to repeat the questions, so you should be able to follow that as well).</p>
+<p>This is part one of a blog post series about the talk. This first post is targeted to those who are considering giving a meetup or conference talk. The next one will be covering what I went over in my talk, and the final one will be distilling more of what I’ve learned about A/B Testing from my time at Etsy and by reading papers.</p>
+<div id="why-do-a-talk" class="section level2">
+<h2>Why do a Talk?</h2>
+<p><em>Disclaimer</em></p>
+<p>I want to preface this section by acknowledging that it is more difficult for some people to give talks than others. I live in New York, a major tech city, but for those who live in places where the tech community is smaller, there may not be a meetup for you to speak at or a large audience that you can draw. That being said, there are more of us than you might think; Rladies has chapters in over <a href="https://rladies.org">40 cities</a> and you may be surprised when you look to see what your community can offer.</p>
+<p>Another major constraint is time. For those who have caregiving responsibilities or simply want to keep their work mainly limited to the office, doing a talk may not be feasible or appealing. While I think there are many benefits for yourself and others in doing public work, it should not become a requirement for a fulfilling data science career.</p>
+<blockquote class="twitter-tweet" data-lang="en">
+<p lang="en" dir="ltr">
+Because relying on public code massively discriminates in favour of those who have time to code outside of work?
+</p>
+— Hadley Wickham (<span class="citation">@hadleywickham</span>) <a href="https://twitter.com/hadleywickham/status/883295260079685634">July 7, 2017</a>
+</blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p><em>Giving Back</em></p>
+<p>On the other hand, if you’re considering giving a talk but think you don’t have anything to contribute, don’t underestimate yourself! You probably have more to offer than you think. The main reason an open source language can thrive is because of the community that contributes to it, usually without being paid. Certainly one way to give back is by contributing code, but you can also give talks or write blog posts. While I haven’t made or contributed code to a public package (yet!), I believe that this blog and recorded, free talks can help.</p>
+<p><em>Personal Benefits</em></p>
+<blockquote class="twitter-tweet" data-lang="en">
+<p lang="en" dir="ltr">
+Create things useful to other people. <a href="https://t.co/MgptvBTeOz">https://t.co/MgptvBTeOz</a>
+</p>
+— Chris Albon (<span class="citation">@chrisalbon</span>) <a href="https://twitter.com/chrisalbon/status/890066076511371264">July 26, 2017</a>
+</blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p>Giving a talk is a great way to build your network and raise your data science profile. While you can (and certainly should!) meet new people as an attendee, when you’re the speaker, people will probably come up to you after the talk to continue the discussion. And if your talk is recorded and publicly shared, you’ll have a public piece of work available.</p>
+</div>
+<div id="giving-a-talk" class="section level2">
+<h2>Giving a Talk</h2>
+<p><em>Target the you of six months (one year, five years) ago</em></p>
+<p>One of my favorite parts about working at Etsy is the womenby (women and non-binary) in tech group. We have a private slack channel, and the day after my talk, a senior engineer was asking for opinions on an upcoming talk. She wanted to frame the talk as a story about how they built a distributed streaming platform on docker and the mistakes they made, but she worried it would make her and her team look inexperienced and possibly stupid for not anticipating the difficulties.</p>
+<p>My advice was to think of yourself before taking on this project and ask if you would have found it useful then. I would bet most of the time the answer is yes, and that the audience is more similar to you six months ago than you after this experience.</p>
+<p><em>Don’t have text or idea heavy slides</em></p>
+<p>Having seen multiple paragraphs in size 10 font literally read off of a slide, I thought I was doing pretty well in the initial version of my talk. I had no slides with more than a few bullet points and in a few of them I had varied up the design. But on one these slides, even though there were only about 20 words in six nice little boxes, I was trying to cover six points in one go!</p>
+<p>While I had avoided visual overload, I hadn’t thought about the cognitive overload. To solve the issue with my slide, I switched to only cover three points and spread them out over about twelve slides. Although I ended up covering fewer points, no one’s going to remember everything about your talk. Focus on keeping your audience engaged so that they can absorb the points most relevant to them.</p>
+<p>I highly advise you to check out <a href="https://speakerdeck.com/mseckington/the-art-of-slide-design">this deck on slide design</a> for more tips and examples.</p>
+<p><em>Practice, practice, practice (and ask for feedback!)</em></p>
+<p>This sounds pretty basic, but it can be easy to procrastinate on preparing the talk and feel just reading over the slides is fine. Fortunately as an Etsy employee I had to submit my slides to our communication and legal teams ahead of time, so I was forced to make them early.</p>
+<p>Starting two weeks before my presentation, I practiced with five different people (a few of them multiple times). Try to get people with different backgrounds: I practiced with fellow and former Etsy analysts, but also with my non-technical (but presentation expert) sister-in-law. Their advice was very helpful in improving the slides and the talk, but I also found that simply giving the talk out loud helped me see where transitions or slides didn’t work.</p>
+<p><em>Rally your support team</em></p>
+<p>While I feel fairly comfortable with public speaking, I’d never done it to an audience this size or on data science. I was also shy about promoting my talk.</p>
+<p>This is where your supporters can come in to help. My manager advertised my talk at work, my brother tweeted about it, and the other NYC rladies organizers promoted it in our slack channel. Many of them also came to the talk (my brother almost straight off a flight from London!), so I had some friendly faces in the audience.</p>
+<p>And finally, if your nerves start overcoming you before your talk, just remember this classic and sage advice from one of my search engineering partners:</p>
+<blockquote class="twitter-tweet" data-lang="en">
+<p lang="en" dir="ltr">
+Best advice for reducing nerves before giving a data science talk: “just imagine that your audience uses p-values of .25 for significance”
+</p>
+— Emily Robinson (<span class="citation">@robinson_es</span>) <a href="https://twitter.com/robinson_es/status/890681844571811842">July 27, 2017</a>
+</blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="/tags/career/">Career</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/managing-business-challenges-in-data-science/" data-tooltip="Managing Business Challenges in Data Science">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/rstudio-conference-recap/" data-tooltip="RStudio Conference Recap">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/giving-your-first-data-science-talk/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/giving-your-first-data-science-talk/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2018 Emily Robinson. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/managing-business-challenges-in-data-science/" data-tooltip="Managing Business Challenges in Data Science">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/rstudio-conference-recap/" data-tooltip="RStudio Conference Recap">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/giving-your-first-data-science-talk/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/giving-your-first-data-science-talk/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2Fgiving-your-first-data-science-talk%2F">
+          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2Fgiving-your-first-data-science-talk%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://avatars.githubusercontent.com/robinsones" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Emily Robinson</h4>
+    
+      <div id="about-card-bio">Date Scientist at DataCamp</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Data Scientist
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        New York
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Search" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center">no post found</div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/the-lesser-known-stars-of-the-tidyverse/">
+                <h3 class="media-heading">The Lesser Known Stars of the Tidyverse</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">In early 2018, I gave a few conference talks on “The Lesser Known Stars of the Tidyverse.” I focused on some packages and functions that aren’t as well known as the core parts of ggplot2 and dplyr but are very helpful in exploratory analysis. I walked through an example analysis of Kaggle’s 2017 State of Data Science and Machine Learning Survey to show how I would use these functions in an exploratory analysis.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/guidelines-for-ab-testing/">
+                <h3 class="media-heading">Guidelines for A/B Testing</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">When I was working at Etsy, I benefited from a very robust A/B testing system. Etsy had been doing A/B testing for more than 6 years. By the time I left, Etsy’s in-house experimentation system, called Catapult, had more than 5 data engineers working on it full-time. Every morning, I was greeted with a homepage that listed all the experiments that Etsy had run in the prior four years. When you clicked on one, you got a summary of what the experiment was testing (usually written by the product manager).</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/red-flags-in-data-science-interviews/">
+                <h3 class="media-heading">Red Flags in Data Science Interviews</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jul 7, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">This post was co-written with Jonathan Nolis, Principal at Nolis, LLC. Check out the rest of his blog posts, including ones on prioritizing data science work, hiring data scientists, and what to do when your data science project isn’t working.
+When interviewing for any position, you should be evaluating the company just as much as they are evaluating you. While you can research the company beforehand on glassdoor and similar sites, interviews are the best place to get a deeper understanding of the company and ask important questions.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/advice-for-applying-to-data-science-jobs/">
+                <h3 class="media-heading">Advice for Applying to Data Science Jobs</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Following Dave Robinson’s sage tweet to write a blog post when you’ve given the same advice three times, this post is a collection of my thoughts and recommendations for people interested in applying to data science jobs in the US. Many of these principles also apply to tech jobs in general.
+A disclaimer: I have never worked as a recruiter or career coach. This knowledge comes from mainly from my study of Organizational Behavior (including negotiations and women in tech) in graduate school and my own career.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/the-importance-of-sponsorship/">
+                <h3 class="media-heading">The Importance of Sponsorship</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Feb 2, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">In my last post, I discussed the importance of building your network and some strategies for effectively reaching out. I closed with emphasizing how helpful your peers or people one step ahead of you can be. But there’s a specific area where people with more resources, status, or experience can help you: sponsorship.
+What is sponsorship? When people discuss what they’re seeking from a more senior person in their field, they usually talk about “mentorship.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/building-your-data-science-network-finding-community/">
+                <h3 class="media-heading">Building Your Data Science Network: Finding Community</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jan 1, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">So you’ve heard you’re supposed to network. That’s the key in getting a job or establishing a reputation in your broader field, right? And it’s true that the importance of having a good network is supported by a lot of social sciences research. But if the thought of networking makes you cringe, you’re not alone. Many people equate networking to sending out millions of unsolicited Linkedin requests with no message, handing out 20 business cards at a meetup once a week, or sending emails to prominent data scientists with the subject line “Can I pick your brain?</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/building-your-data-science-network-reaching-out/">
+                <h3 class="media-heading">Building your Data Science Network: Reaching Out</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jan 1, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">In part one of this post, I covered how to start becoming involved in the data science community and meet people in general. But what if you read a really cool post by someone and want to follow up with them? This post offers some thoughts on how you can most effectively reach out to specific people.
+Two important caveats to start, both inspired by other posts on similar topics.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/making-r-code-faster-a-case-study/">
+                <h3 class="media-heading">Making R Code Faster: A Case Study</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">About two months ago I put a call out to Rstats twitter:
+#rstats twitter - who loves helping to make (short) code run as fast as possible? Playing w/ foreach, doparallel, data.table but know little — Emily Robinson (@robinson_es) October 4, 2017   I had a working, short script that took 3 1/2 minutes to run. While this may be fine if you only need to run it once, I needed to run it hundreds of time for simulations.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/managing-business-challenges-in-data-science/">
+                <h3 class="media-heading">Managing Business Challenges in Data Science</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Sep 9, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">A few weeks ago, I wrote about my experience giving my first data science talk. If you’re interested, the full talk is available online, as well as the slides. In this post, I wanted to share some suggestions for managing business challenges that I didn’t have time to cover in my talk.
+Why Business Challenges? Why devote a whole post and half a talk to business challenges instead of, say, cutting edge deep learning papers or the shiny new language for handling Big DataTM?</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/giving-your-first-data-science-talk/">
+                <h3 class="media-heading">Giving Your First Data Science Talk</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">A few weeks ago, I gave my first ever data science talk. Jared Lander, organizer of the New York Statistical Open Programming meetup, had been asking me to speak, and after about six months at Etsy I thought I could share what I’d learned about A/B Testing and its challenges. If you’d like to watch it, you can view the recording here. The talk starts around 9:00 and ends at 41:30, with the rest being Q&amp;A (I tried to repeat the questions, so you should be able to follow that as well).</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero="no post found"
+         data-message-one="1 post found"
+         data-message-other="{n} posts found">
+         16 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('/images/cover.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = '\/giving-your-first-data-science-talk\/';
+          
+            this.page.identifier = '\/giving-your-first-data-science-talk\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'hugo-tranquilpeak-theme';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

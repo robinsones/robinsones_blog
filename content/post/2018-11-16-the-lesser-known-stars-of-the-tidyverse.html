@@ -95,60 +95,30 @@ multiple_choice_responses_base &lt;- multiple_choice_responses_base %&gt;%
 </div>
 <div id="initial-examination" class="section level2">
 <h2>Initial examination</h2>
-<p>Let’s see what we can glean from the column names themselves. I’ll only look at the first 50 since there are so many.</p>
+<p>Let’s see what we can glean from the column names themselves. I’ll only look at the first 20 since there are so many.</p>
 <pre class="r"><code>colnames(multiple_choice_responses) %&gt;%
-  head(50)</code></pre>
-<pre><code>##  [1] &quot;GenderSelect&quot;                           
-##  [2] &quot;Country&quot;                                
-##  [3] &quot;Age&quot;                                    
-##  [4] &quot;EmploymentStatus&quot;                       
-##  [5] &quot;StudentStatus&quot;                          
-##  [6] &quot;LearningDataScience&quot;                    
-##  [7] &quot;CodeWriter&quot;                             
-##  [8] &quot;CareerSwitcher&quot;                         
-##  [9] &quot;CurrentJobTitleSelect&quot;                  
-## [10] &quot;TitleFit&quot;                               
-## [11] &quot;CurrentEmployerType&quot;                    
-## [12] &quot;MLToolNextYearSelect&quot;                   
-## [13] &quot;MLMethodNextYearSelect&quot;                 
-## [14] &quot;LanguageRecommendationSelect&quot;           
-## [15] &quot;PublicDatasetsSelect&quot;                   
-## [16] &quot;LearningPlatformSelect&quot;                 
-## [17] &quot;LearningPlatformUsefulnessArxiv&quot;        
-## [18] &quot;LearningPlatformUsefulnessBlogs&quot;        
-## [19] &quot;LearningPlatformUsefulnessCollege&quot;      
-## [20] &quot;LearningPlatformUsefulnessCompany&quot;      
-## [21] &quot;LearningPlatformUsefulnessConferences&quot;  
-## [22] &quot;LearningPlatformUsefulnessFriends&quot;      
-## [23] &quot;LearningPlatformUsefulnessKaggle&quot;       
-## [24] &quot;LearningPlatformUsefulnessNewsletters&quot;  
-## [25] &quot;LearningPlatformUsefulnessCommunities&quot;  
-## [26] &quot;LearningPlatformUsefulnessDocumentation&quot;
-## [27] &quot;LearningPlatformUsefulnessCourses&quot;      
-## [28] &quot;LearningPlatformUsefulnessProjects&quot;     
-## [29] &quot;LearningPlatformUsefulnessPodcasts&quot;     
-## [30] &quot;LearningPlatformUsefulnessSO&quot;           
-## [31] &quot;LearningPlatformUsefulnessTextbook&quot;     
-## [32] &quot;LearningPlatformUsefulnessTradeBook&quot;    
-## [33] &quot;LearningPlatformUsefulnessTutoring&quot;     
-## [34] &quot;LearningPlatformUsefulnessYouTube&quot;      
-## [35] &quot;BlogsPodcastsNewslettersSelect&quot;         
-## [36] &quot;LearningDataScienceTime&quot;                
-## [37] &quot;JobSkillImportanceBigData&quot;              
-## [38] &quot;JobSkillImportanceDegree&quot;               
-## [39] &quot;JobSkillImportanceStats&quot;                
-## [40] &quot;JobSkillImportanceEnterpriseTools&quot;      
-## [41] &quot;JobSkillImportancePython&quot;               
-## [42] &quot;JobSkillImportanceR&quot;                    
-## [43] &quot;JobSkillImportanceSQL&quot;                  
-## [44] &quot;JobSkillImportanceKaggleRanking&quot;        
-## [45] &quot;JobSkillImportanceMOOC&quot;                 
-## [46] &quot;JobSkillImportanceVisualizations&quot;       
-## [47] &quot;JobSkillImportanceOtherSelect1&quot;         
-## [48] &quot;JobSkillImportanceOtherSelect2&quot;         
-## [49] &quot;JobSkillImportanceOtherSelect3&quot;         
-## [50] &quot;CoursePlatformSelect&quot;</code></pre>
-<p>We can see that there were categories of questions, like “Job Skill” and “Work Methods Frequency,” with each method or skill having its own column.</p>
+  head(20)</code></pre>
+<pre><code>##  [1] &quot;GenderSelect&quot;                     
+##  [2] &quot;Country&quot;                          
+##  [3] &quot;Age&quot;                              
+##  [4] &quot;EmploymentStatus&quot;                 
+##  [5] &quot;StudentStatus&quot;                    
+##  [6] &quot;LearningDataScience&quot;              
+##  [7] &quot;CodeWriter&quot;                       
+##  [8] &quot;CareerSwitcher&quot;                   
+##  [9] &quot;CurrentJobTitleSelect&quot;            
+## [10] &quot;TitleFit&quot;                         
+## [11] &quot;CurrentEmployerType&quot;              
+## [12] &quot;MLToolNextYearSelect&quot;             
+## [13] &quot;MLMethodNextYearSelect&quot;           
+## [14] &quot;LanguageRecommendationSelect&quot;     
+## [15] &quot;PublicDatasetsSelect&quot;             
+## [16] &quot;LearningPlatformSelect&quot;           
+## [17] &quot;LearningPlatformUsefulnessArxiv&quot;  
+## [18] &quot;LearningPlatformUsefulnessBlogs&quot;  
+## [19] &quot;LearningPlatformUsefulnessCollege&quot;
+## [20] &quot;LearningPlatformUsefulnessCompany&quot;</code></pre>
+<p>We can see that there were categories of questions, like “LearningPlatform,” with each platform having its own column.</p>
 <p>Now let’s take a look at our numeric columns with <a href="https://github.com/ropensci/skimr">skimr</a>. Skimr is a package from <a href="https://ropensci.org/">rOpenSci</a> that allows you to quickly view summaries of your data. We can use <code>select_if</code> to select only columns where a certain condition, in this case whether it’s a numeric column, is true.</p>
 <pre class="r"><code>multiple_choice_responses %&gt;%
   select_if(is.numeric) %&gt;%

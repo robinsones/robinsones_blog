@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.51 with theme Tranquilpeak 0.4.3-SNAPSHOT">
+<meta name="author" content="Emily Robinson">
+<meta name="keywords" content="">
+<meta name="description" content="The Bright Blue Horror Coming into Metis, I knew one of the hardest parts would be switching from R to Python. Beyond simply having much more experience in R, I had come to rely on Hadley Wickham’s fantastic set of R packages for data science. One of these is ggplot2, a data visualization package. While there is a version of ggplot2 for python, I decided to learn the main plotting system in Python, matplotlib.">
+
+
+<meta property="og:description" content="The Bright Blue Horror Coming into Metis, I knew one of the hardest parts would be switching from R to Python. Beyond simply having much more experience in R, I had come to rely on Hadley Wickham’s fantastic set of R packages for data science. One of these is ggplot2, a data visualization package. While there is a version of ggplot2 for python, I decided to learn the main plotting system in Python, matplotlib.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Better Plotting in Python with Seaborn">
+<meta name="twitter:title" content="Better Plotting in Python with Seaborn">
+<meta property="og:url" content="/better-plotting-in-python-with-seaborn/">
+<meta property="twitter:url" content="/better-plotting-in-python-with-seaborn/">
+<meta property="og:site_name" content="Hooked on Data">
+<meta property="og:description" content="The Bright Blue Horror Coming into Metis, I knew one of the hardest parts would be switching from R to Python. Beyond simply having much more experience in R, I had come to rely on Hadley Wickham’s fantastic set of R packages for data science. One of these is ggplot2, a data visualization package. While there is a version of ggplot2 for python, I decided to learn the main plotting system in Python, matplotlib.">
+<meta name="twitter:description" content="The Bright Blue Horror Coming into Metis, I knew one of the hardest parts would be switching from R to Python. Beyond simply having much more experience in R, I had come to rely on Hadley Wickham’s fantastic set of R packages for data science. One of these is ggplot2, a data visualization package. While there is a version of ggplot2 for python, I decided to learn the main plotting system in Python, matplotlib.">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2016-08-08T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2016-08-08T00:00:00">
+  
+  
+  
+  
+    
+      <meta property="article:tag" content="Python">
+    
+      <meta property="article:tag" content="Visualization">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+  <meta name="twitter:site" content="@robinson_es">
+
+
+  <meta name="twitter:creator" content="@robinson_es">
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://avatars.githubusercontent.com/robinsones">
+  <meta property="twitter:image" content="https://avatars.githubusercontent.com/robinsones">
+
+
+    <title>Better Plotting in Python with Seaborn</title>
+
+    <link rel="icon" href="/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="/better-plotting-in-python-with-seaborn/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/">Hooked on Data</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="/page/about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://avatars.githubusercontent.com/robinsones" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="/page/about">
+          <img class="sidebar-profile-picture" src="https://avatars.githubusercontent.com/robinsones" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Emily Robinson</h4>
+        
+          <h5 class="sidebar-profile-bio">Date Scientist at DataCamp</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/page/about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/robinsones/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">Linkedin</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/robinsones">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/page/speaking">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">Speaking</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Better Plotting in Python with Seaborn
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2016-08-08T00:00:00Z">
+        
+  August 8, 2016
+
+      </time>
+    
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+
+<div id="the-bright-blue-horror" class="section level2">
+<h2>The Bright Blue Horror</h2>
+<p>Coming into Metis, I knew one of the hardest parts would be switching from R to Python. Beyond simply having much more experience in R, I had come to rely on Hadley Wickham’s fantastic set of R packages for data science. One of these is ggplot2, a data visualization package. While there is a version of <a href="http://ggplot.yhathq.com">ggplot2 for python</a>, I decided to learn the main plotting system in Python, matplotlib. Then I actually created and saw my first matplotlib graph:</p>
+<div class="figure">
+<img src="http://robinsones.github.io/images/blog_post_ugly_plot.png" alt="center" />
+<p class="caption">center</p>
+</div>
+<p>I was <strong>horrified</strong>. I hated the color, the tick marks on all four sides of the plot, the white background. I promptly sent my brother the following texts:</p>
+<div class="figure">
+<img src="http://robinsones.github.io/images/Dave-test.png" />
+
+</div>
+<p>Fortunately, he wrote back quickly suggesting I try seaborn, and my boot camp experience was saved. Six weeks later, I’ve become known in my Metis cohort as a seaborn evangelist. On presentation days at Metis, not a plot goes by without me marking down if it has base matplotlib aesthetics. I then follow up with the presenters afterwards, asking them why they don’t use seaborn. Usually this is followed by, “Is it to make me sad?”</p>
+</div>
+<div id="advantages-of-seaborn-better-aesthetics-and-built-in-plots" class="section level2">
+<h2>Advantages of Seaborn: Better Aesthetics and Built-In Plots</h2>
+<p><a href="https://stanford.edu/~mwaskom/software/seaborn/">Seaborn</a> is a data visualization library in Python based on matplotlib. The seaborn website has some very helpful documentation, including a <a href="https://stanford.edu/~mwaskom/software/seaborn/tutorial.html">tutorial</a>. And like the rest of your programming questions, anything you can’t find on that website can generally be found on the Stack Overflow page that is your first google result.</p>
+<p>To get started with seaborn, you’re going to need to install it in the terminal with either <code>pip install seaborn</code> or <code>conda install seaborn</code>. Then simply include <code>import seaborn as sns</code> at the top of your python file.</p>
+<div id="nicer-default-aesthetics" class="section level3">
+<h3>Nicer Default Aesthetics</h3>
+<p>One of the biggest advantages of seaborn is that its default aesthetics are much more visually appealing than matplotlib. If I import seaborn at the top of my python file and re-run the same exact commands that generated this post’s earlier plot, I now get this:</p>
+<div class="figure">
+<img src="http://robinsones.github.io/images/blog_post_pretty_plot.png" />
+
+</div>
+<p>That’s right: you can run <strong>the exact same code</strong> you’ve already written and get prettier plots, no extra code or new syntax required. Recently I was horrified when a more senior data scientist, and much better Python programmer, presented with default matplotlib aesthetics. When I asked him why he didn’t use seaborn, he said “It’s on my list of things to learn, I just haven’t gotten around to it.” But this isn’t a valid excuse! All you need to do to start benefitting from seaborn is import it. Seaborn has much more to it besides these default aesthetics, but this feature already offers an exponential improvement.</p>
+</div>
+<div id="easily-customizable-aesthetics" class="section level3">
+<h3>Easily Customizable Aesthetics</h3>
+<p>If you want to change either the background or the colors of all your graphs, you can do so easily with two commands: <code>sns.set_style</code> and <code>sns.set_palette</code>.</p>
+<ul>
+<li><p><code>sns.set_style</code> takes one of five arguments: <code>white</code>, <code>dark</code>, <code>whitegrid</code>, <code>darkgrid</code>, and <code>ticks</code>. These are the five options for the background of your plot; the default one is darkgrid. Play around and see what you like best!</p></li>
+<li><code>sns.set_palette</code> will change the color palette. Use <code>sns.palplot</code> to print out a set of colors before you change your default colors to them. For example, try <code>sns.palplot(sns.light_palette(&quot;green&quot;))</code>. If you decide you like those colors, run <code>sns.set_palette(sns.light_palette(&quot;green&quot;))</code> to change your graphs. Check out an extensive set of possible color palettes <a href="https://stanford.edu/~mwaskom/software/seaborn/tutorial/color_palettes.html">here</a>. This page also gives a great tip on how you can divide color palettes into three different categories, and which one is appropriate for which type of data:</li>
+<li><p><strong>Qualitative color palettes</strong>, where you want to distinguish between distinct data that doesn’t have an ordering. These color palettes are just a variety of different colors.</p></li>
+</ul>
+<div class="figure">
+<img src="http://robinsones.github.io/images/qualitative_color_palette.png" />
+
+</div>
+<ul>
+<li><strong>Sequential color palettes</strong>, where your data range goes from relatively uninteresting or low values to relatively interesting or high values. These color palettes go from light to dark or dark to light in one color or similar colors.</li>
+</ul>
+<div class="figure">
+<img src="http://robinsones.github.io/images/sequential_color_palette.png" />
+
+</div>
+<ul>
+<li><strong>Diverging color palettes</strong>, where the interesting points are on either end and you want to under-emphasize the middle points. These color palettes are dark at the end and light in the middle, with a different color for each side.</li>
+</ul>
+<div class="figure">
+<img src="http://robinsones.github.io/images/divergent_color_palette.png" />
+
+</div>
+</div>
+<div id="statistically-minded-plots" class="section level3">
+<h3>Statistically-Minded Plots</h3>
+<p>The other big advantage of seaborn is that seaborn has some built-in plots that matplotlib does not. Most of these can eventually be replicated by hacking away at matplotlib, but they’re not built in and require much more code. <a href="https://stanford.edu/~mwaskom/software/seaborn/generated/seaborn.FacetGrid.html">Facet plots</a> and <a href="https://stanford.edu/~mwaskom/software/seaborn/generated/seaborn.regplot.html">regression plots</a> are just two examples of those that take much longer to create with matplotlib; the regression plot does a regression line, confidence interval, and a scatter plot, all with one short function: <code>sns.regplot(x=&quot;total_bill&quot;, y=&quot;tip&quot;, data=tips)</code>!</p>
+<p>Making plots in seaborn also generally matches your intuition for what the syntax would be. For example, to make a barchart with confidence intervals, you can run the following code (having loaded the tips dataset with <code>tips = sns.load_dataset(&quot;tips&quot;)</code>):</p>
+<pre><code>barplot = sns.barplot(x = &quot;day&quot;, y = &quot;total_bill&quot;, data = tips, order = [&quot;Thur&quot;, &quot;Fri&quot;, &quot;Sat&quot;, &quot;Sun&quot;])
+barplot.set(xlabel = &quot;Day&quot;, ylabel = &quot;Average Total Bill&quot;, title = &quot;Total Bill by Day&quot;)</code></pre>
+<div class="figure">
+<img src="http://robinsones.github.io/images/pretty_bar_chart.png" />
+
+</div>
+<p>Meanwhile, in matplotlib you actually have to create a new dataset with your means (and standard deviations if you want confidence intervals). Matplotlib also won’t accept categorical variables as the variable for the x-axis, so you have to first make the bar chart with numbers as the x-axis, then change the tick-marks on the x-axis back to your original categories. You also have to write three lines instead of one for changing the x-label, y-label, and title. Here’s the code for making the graph in matplotlib, which doesn’t even include re-ordering the x-axis or the confidence intervals:</p>
+<pre><code>total_bill_by_day = tips.groupby(&quot;day&quot;).mean()
+ax = plt.bar([1, 2, 3, 4], total_bill_by_day[&quot;total_bill&quot;], align = &quot;center&quot;)
+plt.xticks([1, 2, 3, 4], total_bill_by_day.index)
+plt.xlabel(&quot;Day&quot;)
+plt.ylabel(&quot;Average Total Bill&quot;)
+plt.title(&quot;Total Bill by Day&quot;)</code></pre>
+<div class="figure">
+<img src="http://robinsones.github.io/images/ugly_bar_chart.png" />
+
+</div>
+<p>This is far from an unusual case. While seaborn certainly does not have its own plots for everything, it has a lot of the ones you’d typically use for exploratory purposes.</p>
+</div>
+</div>
+<div id="final-verdict" class="section level2">
+<h2>Final Verdict</h2>
+<p>I come from a family tradition of caring too much about plotting frameworks. Earlier this year, my brother <a href="http://varianceexplained.org">David Robinson</a>, a data scientist at Stack Overflow, became part of a flare-up in a long-running debate on ggplot2 versus base R graphics.</p>
+<p>In February, JHU professor <a href="http://jtleek.com">Jeff Leek</a> wrote a blog post entitled <a href="http://simplystatistics.org/2016/02/11/why-i-dont-use-ggplot2/">“Why I don’t use ggplot2”</a>. The post wasn’t even out two days before David followed up with a post of his own on <a href="http://varianceexplained.org/r/why-I-use-ggplot2/">why he uses ggplot2</a>. Soon others <a href="https://flowingdata.com/2016/03/22/comparing-ggplot2-and-r-base-graphics/">joined</a> the <a href="https://twitter.com/bencasselman/status/712405057388601344">fray</a>. While it settled down after a month, the battle still simmers under the surface:</p>
+<div class="figure">
+<img src="http://robinsones.github.io/images/joker_pic.png" />
+
+</div>
+<p>I bring this up not only to illustrate some family resemblance, but also to set up a contrast to the seaborn/matplotlib decision. While Base R graphics and ggplot2 require completely different syntax, seaborn is <em>based on</em> matplotlib, and so starting to use seaborn is as easy as importing it.</p>
+<p>I think every python programmer can benefit from using seaborn for visualizations. The advantage of matplotlib is that you can do essentially anything you want with it by building a plot piece-by-piece. You certainly can make <a href="http://www.randalolson.com/2014/06/28/how-to-make-beautiful-data-visualizations-in-python-with-matplotlib/">beautiful, professional plots</a> in matplotlib. Seaborn doesn’t take away any of that, but rather adds some nice default aesthetics and built-in plots that complement and sometimes replace the complicated matplotlib code you may already be writing.</p>
+<p>As someone who started off using seaborn right away and has been using it for less than two months, I’m far from an expert on seaborn or matplotlib. But I hoped this post would be helpful for new Python users or reluctant seaborn adapters for the great advantages I see in Seaborn.</p>
+</div>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="/tags/python/">Python</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/visualization/">Visualization</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/topic-modeling-the-new-york-times-and-trump/" data-tooltip="Topic Modeling the New York Times and Trump">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/creating-my-first-r-package-part-1/" data-tooltip="Creating My First R Package Part 1">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/better-plotting-in-python-with-seaborn/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/better-plotting-in-python-with-seaborn/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2018 Emily Robinson. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/topic-modeling-the-new-york-times-and-trump/" data-tooltip="Topic Modeling the New York Times and Trump">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/creating-my-first-r-package-part-1/" data-tooltip="Creating My First R Package Part 1">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/better-plotting-in-python-with-seaborn/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/better-plotting-in-python-with-seaborn/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2Fbetter-plotting-in-python-with-seaborn%2F">
+          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2Fbetter-plotting-in-python-with-seaborn%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://avatars.githubusercontent.com/robinsones" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Emily Robinson</h4>
+    
+      <div id="about-card-bio">Date Scientist at DataCamp</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Data Scientist
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        New York
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Search" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center">no post found</div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/the-lesser-known-stars-of-the-tidyverse/">
+                <h3 class="media-heading">The Lesser Known Stars of the Tidyverse</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">In early 2018, I gave a few conference talks on “The Lesser Known Stars of the Tidyverse.” I focused on some packages and functions that aren’t as well known as the core parts of ggplot2 and dplyr but are very helpful in exploratory analysis. I walked through an example analysis of Kaggle’s 2017 State of Data Science and Machine Learning Survey to show how I would use these functions in an exploratory analysis.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/guidelines-for-ab-testing/">
+                <h3 class="media-heading">Guidelines for A/B Testing</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">When I was working at Etsy, I benefited from a very robust A/B testing system. Etsy had been doing A/B testing for more than 6 years. By the time I left, Etsy’s in-house experimentation system, called Catapult, had more than 5 data engineers working on it full-time. Every morning, I was greeted with a homepage that listed all the experiments that Etsy had run in the prior four years. When you clicked on one, you got a summary of what the experiment was testing (usually written by the product manager).</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/red-flags-in-data-science-interviews/">
+                <h3 class="media-heading">Red Flags in Data Science Interviews</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jul 7, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">This post was co-written with Jonathan Nolis, Principal at Nolis, LLC. Check out the rest of his blog posts, including ones on prioritizing data science work, hiring data scientists, and what to do when your data science project isn’t working.
+When interviewing for any position, you should be evaluating the company just as much as they are evaluating you. While you can research the company beforehand on glassdoor and similar sites, interviews are the best place to get a deeper understanding of the company and ask important questions.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/advice-for-applying-to-data-science-jobs/">
+                <h3 class="media-heading">Advice for Applying to Data Science Jobs</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Following Dave Robinson’s sage tweet to write a blog post when you’ve given the same advice three times, this post is a collection of my thoughts and recommendations for people interested in applying to data science jobs in the US. Many of these principles also apply to tech jobs in general.
+A disclaimer: I have never worked as a recruiter or career coach. This knowledge comes from mainly from my study of Organizational Behavior (including negotiations and women in tech) in graduate school and my own career.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/the-importance-of-sponsorship/">
+                <h3 class="media-heading">The Importance of Sponsorship</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Feb 2, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">In my last post, I discussed the importance of building your network and some strategies for effectively reaching out. I closed with emphasizing how helpful your peers or people one step ahead of you can be. But there’s a specific area where people with more resources, status, or experience can help you: sponsorship.
+What is sponsorship? When people discuss what they’re seeking from a more senior person in their field, they usually talk about “mentorship.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/building-your-data-science-network-finding-community/">
+                <h3 class="media-heading">Building Your Data Science Network: Finding Community</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jan 1, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">So you’ve heard you’re supposed to network. That’s the key in getting a job or establishing a reputation in your broader field, right? And it’s true that the importance of having a good network is supported by a lot of social sciences research. But if the thought of networking makes you cringe, you’re not alone. Many people equate networking to sending out millions of unsolicited Linkedin requests with no message, handing out 20 business cards at a meetup once a week, or sending emails to prominent data scientists with the subject line “Can I pick your brain?</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/building-your-data-science-network-reaching-out/">
+                <h3 class="media-heading">Building your Data Science Network: Reaching Out</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jan 1, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">In part one of this post, I covered how to start becoming involved in the data science community and meet people in general. But what if you read a really cool post by someone and want to follow up with them? This post offers some thoughts on how you can most effectively reach out to specific people.
+Two important caveats to start, both inspired by other posts on similar topics.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/making-r-code-faster-a-case-study/">
+                <h3 class="media-heading">Making R Code Faster: A Case Study</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">About two months ago I put a call out to Rstats twitter:
+#rstats twitter - who loves helping to make (short) code run as fast as possible? Playing w/ foreach, doparallel, data.table but know little — Emily Robinson (@robinson_es) October 4, 2017   I had a working, short script that took 3 1/2 minutes to run. While this may be fine if you only need to run it once, I needed to run it hundreds of time for simulations.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/managing-business-challenges-in-data-science/">
+                <h3 class="media-heading">Managing Business Challenges in Data Science</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Sep 9, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">A few weeks ago, I wrote about my experience giving my first data science talk. If you’re interested, the full talk is available online, as well as the slides. In this post, I wanted to share some suggestions for managing business challenges that I didn’t have time to cover in my talk.
+Why Business Challenges? Why devote a whole post and half a talk to business challenges instead of, say, cutting edge deep learning papers or the shiny new language for handling Big DataTM?</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/giving-your-first-data-science-talk/">
+                <h3 class="media-heading">Giving Your First Data Science Talk</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">A few weeks ago, I gave my first ever data science talk. Jared Lander, organizer of the New York Statistical Open Programming meetup, had been asking me to speak, and after about six months at Etsy I thought I could share what I’d learned about A/B Testing and its challenges. If you’d like to watch it, you can view the recording here. The talk starts around 9:00 and ends at 41:30, with the rest being Q&amp;A (I tried to repeat the questions, so you should be able to follow that as well).</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero="no post found"
+         data-message-one="1 post found"
+         data-message-other="{n} posts found">
+         16 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('/images/cover.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = '\/better-plotting-in-python-with-seaborn\/';
+          
+            this.page.identifier = '\/better-plotting-in-python-with-seaborn\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'hugo-tranquilpeak-theme';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

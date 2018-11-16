@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pages on Hooked on Data</title>
+    <link>/page/</link>
+    <description>Recent content in Pages on Hooked on Data</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="/page/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>About</title>
+      <link>/page/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/page/about/</guid>
+      <description>I work at DataCamp as a Data Scientist on the growth team. Previously, I was a Data Analyst at Etsy working with their search team to design, implement, and analyze experiments on the ranking algorithm, UI changes, and new features. In summer 2016, I completed Metis&amp;rsquo;s three-month, full-time Data Science Bootcamp, where I did several data science projects, ranging from using random forests to predict successful projects on DonorsChoose.org to building an application in R Shiny that helps data science freelancers find their best-fit jobs.</description>
+    </item>
+    
+    <item>
+      <title>Speaking</title>
+      <link>/page/speaking/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/page/speaking/</guid>
+      <description>I regularly give talks on A/B Testing, working in R, joining the Data Science community, and more. If you&amp;rsquo;re interested in having me speak at your event, please contact me at emily[at]datacamp.com
+Upcoming Talks March 2019, CXL Live.
+Previous Talks Building an A/B Testing Analytics System November 2018, DC R Conference.
+October 2018, Nor&amp;rsquo;eastR Conference.
+10 Guidelines for A/B Testing October 2018, PyData NYC.
+Joining the Data Science Community May &amp;amp; July 2018, Metis Data Science Bootcamp.</description>
+    </item>
+    
+  </channel>
+</rss>

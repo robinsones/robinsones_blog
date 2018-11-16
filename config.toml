@@ -19,7 +19,7 @@ title = "Hooked on Data"
 theme = "hugo-tranquilpeak-theme"
 disqusShortname = "hugo-tranquilpeak-theme"
 # googleAnalytics = "UA-123-45"
-paginate = 7
+paginate = 5
 canonifyurls = true
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown", "_files$", "_cache$"]
 
@@ -34,14 +34,13 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown", "_files$", "_cache$"]
 
 [author]
   name = "Emily Robinson"
-  bio = "Super bio with markdown support **COOL**"
+  bio = "Date Scientist at DataCamp"
   job = "Data Scientist"
   location = "New York"
   # Your Gravatar email. Overwrite `author.picture` everywhere in the blog
-  gravatarEmail = "emily@datacamp.com"
   # Your profile picture
   # Overwritten by your gravatar image if `author.gravatarEmail` is filled
-  picture = "https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png"
+  picture = "https://avatars.githubusercontent.com/robinsones"
   # Your Twitter username without the @. E.g : thibaudlepretre
   twitter = "robinson_es"
 
@@ -54,28 +53,16 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown", "_files$", "_cache$"]
   url = "/"
 [[menu.main]]
   weight = 2
-  identifier = "categories"
-  name = "Categories"
-  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-bookmark\"></i>"
-  url = "/categories"
-[[menu.main]]
-  weight = 3
   identifier = "tags"
   name = "Tags"
   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-tags\"></i>"
   url = "/tags"
 [[menu.main]]
-  weight = 4
+  weight = 3
   identifier = "archives"
   name = "Archives"
   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-archive\"></i>"
   url = "/archives"
-[[menu.main]]
-  weight = 5
-  identifier = "about"
-  name = "About"
-  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-question\"></i>"
-  url = "/#about"
 
 [[menu.links]]
   weight = 1
@@ -83,13 +70,29 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown", "_files$", "_cache$"]
   name = "GitHub"
   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-github\"></i>"
   url = "https://github.com/robinsones"
-
-[[menu.misc]]
-  weight = 1
-  identifier = "rss"
-  name = "RSS"
+  
+[[menu.links]]
+  weight = 2
+  identifier = "speaking"
+  name = "Speaking"
   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-rss\"></i>"
-  url = "/index.xml"
+  url = "/page/speaking"
+  
+[[menu.main]]
+  weight = 3
+  identifier = "about"
+  name = "About"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-question\"></i>"
+  url = "/page/about"
+  
+[[menu.main]]
+  weight = 4
+  identifier = "linkedin"
+  name = "Linkedin"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-linkedin\"></i>"
+  url = "https://www.linkedin.com/in/robinsones/"
+
+
 
 [params]
   # Customize date format use to render blog post date, categories and other
@@ -127,7 +130,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown", "_files$", "_cache$"]
   #    large sidebar is swiped on all lower screens
   # 5: Display header bar on all screens and large sidebar is swiped on large screen
   # 6: Display header bar on all screens and medium sidebar is swiped
-  sidebarBehavior = 1
+  sidebarBehavior = 2
 
   # Your blog cover picture. I STRONGLY recommend you to use a CDN to speed up loading of pages.
   # There is many free CDN like Cloudinary or you can also use indirectly
@@ -190,19 +193,15 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown", "_files$", "_cache$"]
     icon = "fa-twitter"
     url = "https://twitter.com/intent/tweet?text=%s"
 
-  [[params.sharingOptions]]
-    name = "Google+"
-    icon = "fa-google-plus"
-    url = "https://plus.google.com/share?url=%s"
-
   [params.header.rightLink]
     class = ""
     icon = ""
-    url = "/#about"
+    url = "/page/about"
+
 
   # Customize link of author avatar in sidebar
-  # [params.sidebar.profile]
-  #   url = "/#about"
+   [params.sidebar.profile]
+     url = "/page/about"
 
   # Customize copyright value "© 2017 <CUSTOMIZATION>. All Rights Reserved"
   # [params.footer]

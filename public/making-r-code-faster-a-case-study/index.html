@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.51 with theme Tranquilpeak 0.4.3-SNAPSHOT">
+<meta name="author" content="Emily Robinson">
+<meta name="keywords" content="">
+<meta name="description" content="About two months ago I put a call out to Rstats twitter:
+#rstats twitter - who loves helping to make (short) code run as fast as possible? Playing w/ foreach, doparallel, data.table but know little — Emily Robinson (@robinson_es) October 4, 2017   I had a working, short script that took 3 1/2 minutes to run. While this may be fine if you only need to run it once, I needed to run it hundreds of time for simulations.">
+
+
+<meta property="og:description" content="About two months ago I put a call out to Rstats twitter:
+#rstats twitter - who loves helping to make (short) code run as fast as possible? Playing w/ foreach, doparallel, data.table but know little — Emily Robinson (@robinson_es) October 4, 2017   I had a working, short script that took 3 1/2 minutes to run. While this may be fine if you only need to run it once, I needed to run it hundreds of time for simulations.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Making R Code Faster: A Case Study">
+<meta name="twitter:title" content="Making R Code Faster: A Case Study">
+<meta property="og:url" content="/making-r-code-faster-a-case-study/">
+<meta property="twitter:url" content="/making-r-code-faster-a-case-study/">
+<meta property="og:site_name" content="Hooked on Data">
+<meta property="og:description" content="About two months ago I put a call out to Rstats twitter:
+#rstats twitter - who loves helping to make (short) code run as fast as possible? Playing w/ foreach, doparallel, data.table but know little — Emily Robinson (@robinson_es) October 4, 2017   I had a working, short script that took 3 1/2 minutes to run. While this may be fine if you only need to run it once, I needed to run it hundreds of time for simulations.">
+<meta name="twitter:description" content="About two months ago I put a call out to Rstats twitter:
+#rstats twitter - who loves helping to make (short) code run as fast as possible? Playing w/ foreach, doparallel, data.table but know little — Emily Robinson (@robinson_es) October 4, 2017   I had a working, short script that took 3 1/2 minutes to run. While this may be fine if you only need to run it once, I needed to run it hundreds of time for simulations.">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2017-11-30T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2017-11-30T00:00:00">
+  
+  
+  
+  
+    
+      <meta property="article:tag" content="R">
+    
+      <meta property="article:tag" content="Code">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+  <meta name="twitter:site" content="@robinson_es">
+
+
+  <meta name="twitter:creator" content="@robinson_es">
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://avatars.githubusercontent.com/robinsones">
+  <meta property="twitter:image" content="https://avatars.githubusercontent.com/robinsones">
+
+
+    <title>Making R Code Faster: A Case Study</title>
+
+    <link rel="icon" href="/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="/making-r-code-faster-a-case-study/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/">Hooked on Data</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="/page/about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://avatars.githubusercontent.com/robinsones" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="/page/about">
+          <img class="sidebar-profile-picture" src="https://avatars.githubusercontent.com/robinsones" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Emily Robinson</h4>
+        
+          <h5 class="sidebar-profile-bio">Date Scientist at DataCamp</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/page/about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/robinsones/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">Linkedin</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/robinsones">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/page/speaking">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">Speaking</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Making R Code Faster: A Case Study
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2017-11-30T00:00:00Z">
+        
+  November 30, 2017
+
+      </time>
+    
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+
+<p>About two months ago I put a call out to Rstats twitter:</p>
+<blockquote class="twitter-tweet" data-lang="en">
+<p lang="en" dir="ltr">
+<a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> twitter - who loves helping to make (short) code run as fast as possible? Playing w/ foreach, doparallel, data.table but know little
+</p>
+— Emily Robinson (<span class="citation">@robinson_es</span>) <a href="https://twitter.com/robinson_es/status/915632978524540928?ref_src=twsrc%5Etfw">October 4, 2017</a>
+</blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p>I had a working, short script that took 3 1/2 minutes to run. While this may be fine if you only need to run it once, I needed to run it hundreds of time for simulations. My first attempt to do so ended about four hours after I started the code, with 400 simulations left to go, and I knew I needed to get some help.</p>
+<p>This post documents the iterative process of improving the performance of the function, culminating in a runtime of <strong>.64 seconds for 10,000 iterations, a speed-up of more than 100,000x</strong>.</p>
+<div id="the-problem" class="section level2">
+<h2>The problem</h2>
+<p>At Etsy I work a lot on our A/B Testing system. When assigning browsers randomly to experimental groups, we do so based on their browser id (cookie) or device id for apps. But when we analyze our data, we can use two different methods: visit level (chunks of behavior) and browser level. For more details, see my talk on <a href="https://www.youtube.com/watch?v=SF-ryGgLOgQ&amp;feature=youtu.be">A/B Testing</a> (starting at 17:30).</p>
+<p>While we offer both, we analysts encourage everyone to favor browser metrics over visit metrics. One reason is that visits can come from the same browser or person, violating the independence assumption of the statistical tests we use. In theory, this should inflate our false positive rate, but we’d never actually tested this with our own browsers, and a theoretical concept was not always convincing to our partner teams.</p>
+<p>I therefore set out to simulate hundreds of null A/B Tests using our own data. I wanted to see if the percentage with p &lt; .05, our false positive rate, was actually around 5%, or if it was inflated, as we expected.</p>
+</div>
+<div id="asking-for-help" class="section level2">
+<h2>Asking for help</h2>
+<p>I am very fortunate to have a data scientist brother who will jump in to help out even when not directly asked. A lot of the code improvements following come from him.</p>
+<div class="figure">
+<img src="http://robinsones.github.io/images/Dave_optimization_tweet.png" alt="center" />
+<p class="caption">center</p>
+</div>
+<p>I’ve also gotten to know many other people in the R community through RLadies, conferences, and twitter, some of whom offered help as well. But even if you’re new to R and don’t know anyone, there are people who will jump in and help you too. RStudio recently launched a new <a href="https://community.rstudio.com/">community website</a> where you can ask quesitons ranging from a specific issue that you need to debug to <a href="https://community.rstudio.com/t/convince-me-to-start-using-r-markdown/1636">why you should use RMarkdown</a>. There’s also a <a href="https://medium.com/@kierisi/join-the-r-for-data-science-online-learning-community-842527222ab3">slack community</a>, organized by <a href="https://twitter.com/kierisi">Jesse Maegan</a>, that brings people wanting to learn R together with mentors to work through Garrett Grolemund and Hadley Wickham’s <a href="http://r4ds.had.co.nz/">R for Data Science</a> book. Jesse has been writing a great series of blog posts reflecting on some <a href="https://medium.com/@kierisi/latest">lessons from each week</a>, and she’ll also be doing another round.</p>
+<p>Part of why I wrote this post is I believe those who are privileged–whether by having a data science job, getting to go to conferences, or having a formal education in programming or statistics–should try to share that through public work. I hope some of the lessons learned can help others optimize their code performance when needed. The first three are helpful for any language and the final two for R especially.</p>
+</div>
+<div id="lessons-learned-on-performance" class="section level2">
+<h2>Lessons learned on performance</h2>
+<div id="you-may-not-need-big-data-tools" class="section level3">
+<h3>You may not need big data tools</h3>
+<p>In my tweet, I mentioned some packages I’d been trying, including foreach and doparallel, packages for parallel processing. Some folks replying also suggested sparklyr (which integrates spark and R) and Rcpp (which integrates R and C++). I thought I needed to use these because I was dealing with big data (for R) - 10+ million rows with some text columns!</p>
+<p>But even if the data you start with is large, you may be able to make it smaller by eliminating extra columns or summarizing the data. In the next section, you’ll see how I compressed my data into 3 numeric columns and fewer than a thousand rows.</p>
+</div>
+<div id="try-to-do-everything-grouping-and-counting-you-can-in-sql-and-eliminate-unnecessary-information" class="section level3">
+<h3>Try to do everything (grouping and counting) you can in SQL and eliminate unnecessary information</h3>
+<p>If you want to follow along, please run this R code to simulate a dataset (this is smaller than my dataset, so if you time the later code your times will not match mine):</p>
+<pre class="r"><code>initial_bis &lt;- sprintf(&quot;%s%s%s&quot;, stringi::stri_rand_strings(800000, 5, &#39;[A-Z]&#39;),
+      stringi::stri_rand_strings(800000, 4, &#39;[0-9]&#39;), 
+      stringi::stri_rand_strings(800000, 1, &#39;[A-Z]&#39;))
+bi &lt;- sample(initial_bis, size = 1000000, replace = TRUE)
+c &lt;- rbinom(1000000, 1, 0.2)
+vi &lt;- sprintf(&quot;%s%s%s&quot;, stringi::stri_rand_strings(1000000, 5, &#39;[A-Z]&#39;),
+      stringi::stri_rand_strings(1000000, 4, &#39;[0-9]&#39;), 
+      stringi::stri_rand_strings(1000000, 1, &#39;[A-Z]&#39;))
+      
+bi_name &lt;- &quot;browser_id&quot;
+c_name &lt;- &quot;converted&quot;
+vi_name &lt;- &quot;visit_id&quot;
+
+search_visits &lt;- data.frame(bi, c, vi)
+names(search_visits) &lt;- c(bi_name, c_name, vi_name)</code></pre>
+<p>Here was my original code that:</p>
+<ul>
+<li>Pulled a table down from SQL that had all the visits that had a search in the previous X days, including whether they converted or not, and their browser id.</li>
+</ul>
+<pre class="sql"><code>SELECT * FROM erobinson.simulate_fp_search</code></pre>
+<ul>
+<li>Randomly assigned on the <strong>browser level</strong> a label of 0 or 1.</li>
+</ul>
+<pre class="r"><code>library(data.table)
+library(dplyr) 
+
+N &lt;- nrow(distinct(search_visits, browser_id))
+
+browsers &lt;- search_visits %&gt;%
+  distinct(browser_id) %&gt;%
+  mutate(ab_variant = sample(c(0,1), N, replace = TRUE))
+
+browsers &lt;- as.data.table(browsers)
+browsers &lt;- setkey(browsers, browser_id)
+dat_w_labels &lt;- merge(search_visits, browsers, all.x=TRUE)
+dat_w_labels &lt;- dat_w_labels[, .(.N), by = .(ab_variant, converted)] %&gt;% 
+arrange(ab_variant)</code></pre>
+<ul>
+<li>Counted up the number of total visits and converting visits for each label.</li>
+</ul>
+<pre class="r"><code>failures &lt;- dat_w_labels %&gt;%
+  filter(converted == 0) %&gt;% 
+  pull(N)
+
+successes &lt;-  dat_w_labels %&gt;%
+  filter(converted == 1) %&gt;% 
+  pull(N)</code></pre>
+<ul>
+<li>Ran a prop test comparing the two groups.</li>
+</ul>
+<pre class="r"><code>res &lt;- prop.test(successes, failures + successes)</code></pre>
+<p>The table I started with was over 10 million rows, and I was doing many operations: 1. Getting the number of distinct browser ids 2. Making a new table that had every browser id and their label 3. Merging the new table with the original search visits table 4. Grouping that new table by whether the visit converted or not and its label, counting the number of each type 5. Extracting the number of conversions and non-conversions 6. Doing a prop test</p>
+<p>The last three steps are fast, but the first three are very long. This isn’t even including the initial 5 minutes (!) it takes to load the sql table in the first place. We’re able to refactor and make it faster by realizing a few things: 1. We don’t need the big text columns visit id and browser id 2. In SQL, we can group by browser id so each row has 1) the number of visits for a browser and 2) the number of visits that converted for that browser. With that, we’ll have a smaller table of only two numeric columns. 3. We can then label each row with 0 or 1 randomly, assigning treatment on the browser level. 4. Next, we sum up the total visits column and the converted column, grouping by label. 5. Finally, we run a prop.test</p>
+<p>Here’s what the sql new code looks like:</p>
+<pre class="sql"><code>SELECT count(*) as total_visits, sum(converted) as converted 
+FROM erobinson.simulate_fp_search
+GROUP BY browser_id </code></pre>
+<p>Again, to follow along, here’s that sql code in R:</p>
+<pre class="r"><code>library(dplyr)
+
+search_visits &lt;- search_visits %&gt;% 
+  group_by(browser_id) %&gt;%
+  mutate(total_visits = n(), converted = sum(converted)) %&gt;%
+  select(total_visits, converted)</code></pre>
+<p>I then created my simulation function and ran it 1000 times.</p>
+<pre class="r"><code>library(dplyr)
+
+simulate_p_value_visits &lt;- function() {
+  results &lt;- search_visits %&gt;%
+    # group_by here is really a mutate and group_by
+    group_by(label = sample(c(0,1), n(), replace = TRUE)) %&gt;%
+    summarize(total_visits = sum(total_visits), converted = sum(converted)) 
+  
+  prop.test(results$converted, results$total_visits)$p.value
+}
+
+simulate_p_values_visit_result &lt;- replicate(1000, simulate_p_value_visits())
+
+false_positive_rate &lt;- sum(simulate_p_values_visit_result &lt; .05)/
+length(simulate_p_values_visit_result)*100  </code></pre>
+<p>While switching the dplyr to data.table could probably speed it up even more, right now we’re down to about 14 minutes runtime for a 1000 iterations.</p>
+</div>
+<div id="eliminate-redundancy" class="section level3">
+<h3>Eliminate redundancy</h3>
+<p>But we can then recognize that our table currently has a lot of redudancy: we have many browsers that have 1 visit and 0 conversions, 2 visits and 0 conversions, etc.</p>
+<p>Therefore, we can make our code faster by: - Transforming our table so each row is a unique combination of visits &amp; conversions, with a column that is the number of browsers with that combination. We can do this in SQL and output the table as “count of counts”.</p>
+<div class="figure">
+<img src="http://robinsones.github.io/images/performance_post_visualization.png" />
+
+</div>
+<pre class="sql"><code>with counts as (
+  SELECT count(*) as total_visits, sum(converted) as converted 
+  FROM erobinson.simulate_fp_search
+  GROUP BY browser_id
+)
+  SELECT count(*) as n, total_visits, converted
+  FROM counts
+  GROUP BY total_visits, converted</code></pre>
+<p>To follow along, run the R code to create <code>count_of_counts</code>.</p>
+<pre class="r"><code>count_of_counts &lt;- search_visits %&gt;%
+  count(total_visits, converted)</code></pre>
+<ul>
+<li>Using the binomial distribution to simulate splitting browsers into A and B groups.</li>
+</ul>
+<p>Because the <a href="https://en.wikipedia.org/wiki/Bernoulli_distribution">bernoulli distribution</a> is just a special case of the <a href="https://en.wikipedia.org/wiki/Binomial_distribution">binomial distribution</a> where n = 1, we’re doing the <em>same</em> process as before, but we do many fewer computations!</p>
+<ul>
+<li>As before, summarizing the number of visits and conversions in each group and apply our proportion test.</li>
+</ul>
+<pre class="r"><code>library(dplyr) 
+
+simulate_p_value &lt;- function() {
+  # put about half (with binomial sampling) in each group
+  result &lt;- count_of_counts %&gt;%
+    mutate(A = rbinom(n(), n, .5),
+           B = n - A) %&gt;%
+    summarize(total_A = sum(total_visits * A),
+              total_B = sum(total_visits * B),
+              converted_A = sum(converted * A),
+              converted_B = sum(converted * B))
+
+  prop.test(c(result$converted_A, result$converted_B), 
+  c(result$total_A, result$total_B))$p.value
+}
+
+sim_pvals &lt;- replicate(1000, simulate_p_value())
+
+false_positive_rate &lt;- sum(sim_pvals &lt; .05)/length(sim_pvals)*100  </code></pre>
+</div>
+<div id="vectorize" class="section level3">
+<h3>Vectorize</h3>
+<p>While the previous code is pretty fast, we can get it even faster by vectorizing the prop test. If you’re not familiar with vectorization in R and why it’s faster, check out Noam Ross’s <a href="http://www.noamross.net/blog/2014/4/16/vectorization-in-r--why.html">excellent blog post</a>.</p>
+<p>Here is the new code using a vectorized proportion test (courtsey of David Robinson’s <a href="https://github.com/dgrtwo/splittestr">splittestr package</a>).</p>
+<pre class="r"><code>library(devtools)
+install_github(&quot;dgrtwo/splittestr&quot;)
+library(splittestr)
+library(dplyr)
+library(tidyr)
+
+simulated_pvals &lt;- count_of_counts %&gt;%
+  crossing(trial = 1:1000) %&gt;%
+  mutate(A = rbinom(n(), n, .5), B = n - A) %&gt;%
+  group_by(trial) %&gt;%
+  summarize(total_A = sum(total_visits * A),
+            total_B = sum(total_visits * B),
+            converted_A = sum(converted * A),
+            converted_B = sum(converted * B)) %&gt;%
+  mutate(pvalue = vectorized_prop_test(converted_A, total_A - converted_A, 
+  converted_B, total_B - converted_B)$p.value)
+  
+false_positive_rate &lt;- sum(simulated_pvals$pvalue &lt; .05)/
+length(simulated_pvals$pvalue)*100  </code></pre>
+<p>Crossing is the tidyr version of mutate: it creates a tibble from all the combinations of the supplied vectors. In this case, that means we’ll have a 1000x the number of rows in “count of counts.” For each trial, we’ll simulate putting half of the browsers in A and half in B. Then we can get the total number of visits and converted visits for each trial and use our vectorized prop test to create a new variable that is the p-value.</p>
+</div>
+<div id="use-matrix-operations" class="section level3">
+<h3>Use matrix operations</h3>
+<p>But wait, there’s more! The issue with the previous version is memory: we’re creating that intermediate product that has hundreds of thousands of rows. Instead, we can use matrix operations, which are faster and less memory-taxing than R. We don’t get to use tidyverse code, but sometimes sacrifices must be made.</p>
+<p>Here, we first create two matrixes, A and B. Each column represents one simulation, and each row a unique combination of visits and conversion (e.g. one row is for browsers with 1 visit and 0 conversions, another for 2 visits and 1 conversion, etc). We’ve used the binomial distribution again to simulate splitting n, the number of browsers with a certain combination of visits and conversions, into A and B.</p>
+<pre class="r"><code>A &lt;- replicate(1000, rbinom(nrow(count_of_counts), count_of_counts$n, .5))
+B &lt;- count_of_counts$n - A</code></pre>
+<p>We create four vectors of length 1000, one entry for each simulation. Two are for the total number of visits in A or B and two are for the the number of converted visits in A or B. For example, if the first entry in A and B represents the number of browsers with 5 visits and 1 conversions in A and B, respectively, we just multiply each of those by 5 to get the number of visits and by 1 to get the number of conversions. So if it was 2 in A and 3 in B, that means A had 10 visits and 2 conversion while B had 15 visits and 3 conversions. We do this for every row and then add up the column to get the total number of visits and total number of conversions for that simulation in A and in B. This operation is repeated for all 1000 columns (simulations).</p>
+<pre class="r"><code>total_A &lt;- colSums(A * count_of_counts$total)
+total_B &lt;- colSums(B * count_of_counts$total)
+converted_A &lt;- colSums(A * count_of_counts$converted)
+converted_B &lt;- colSums(B * count_of_counts$converted)</code></pre>
+<p>Our last step is to use the vectorized prop test to get a 1000 p-values and then calculate what percentage of them are less than .05.</p>
+<pre class="r"><code>library(devtools)
+install_github(&quot;dgrtwo/splittestr&quot;)
+library(splittestr)
+
+pvals &lt;- vectorized_prop_test(converted_A, total_A - converted_A,
+                              converted_B, total_B - converted_B)
+                              
+false_positive_rate &lt;- sum(pvals &lt; .05)/length(pvals)*100                         </code></pre>
+</div>
+<div id="final-tally" class="section level3">
+<h3>Final Tally</h3>
+<p>Here’s the final comparison of performance (calculated using the great <a href="http://collectivemedia.github.io/tictoc/">tictoc package</a>):</p>
+<table>
+<colgroup>
+<col width="18%" />
+<col width="17%" />
+<col width="18%" />
+<col width="22%" />
+<col width="23%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Attempt</th>
+<th>SQL table runtime</th>
+<th>1 iteration runtime</th>
+<th>1000 iterations runtime</th>
+<th>10000 iterations runtime</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Original</td>
+<td>5+ minutes</td>
+<td>215 seconds</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Second Version</td>
+<td>23 seconds</td>
+<td>.5 seconds</td>
+<td>839 seconds</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Summarized Version</td>
+<td>.7 seconds</td>
+<td>.03 seconds</td>
+<td>9.2 seconds</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Vectorized Version</td>
+<td>.7 seconds</td>
+<td></td>
+<td>.39 seconds</td>
+<td>7.9 seconds</td>
+</tr>
+<tr class="odd">
+<td>Matrix Version</td>
+<td>.7 seconds</td>
+<td></td>
+<td>.11 seconds</td>
+<td>.64 seconds</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
+<blockquote class="twitter-tweet" data-lang="en">
+<p lang="en" dir="ltr">
+One rule of thumb for maximizing <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> performance is that the way you'd do something once is rarely the best way to do it 1000X
+</p>
+— David Robinson (<span class="citation">@drob</span>) <a href="https://twitter.com/drob/status/915987148515377152?ref_src=twsrc%5Etfw">October 5, 2017</a>
+</blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p>At RStudio::Conf 2017, Hadley Wickham <a href="https://robinsones.github.io/RStudio-Conference-Tips-and-Tricks/">discussed</a> how the bottleneck in writing code is usually thinking speed, not computational speed. Therefore, he advised that you shouldn’t prematurely worry about optimizing for performance but rather about making sure your code is clear. In this case, though, the point was to run the same code hundreds of times, so I needed to start worrying about performance. Through the process, I learned a lot about how R works “under the hood” and how to conceptualize problems a different way.</p>
+<p>Next time, I’ll be returning soon to the topic of A/B Testing, sharing what I’ve learned from reading industry papers.</p>
+</div>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="/tags/r/">R</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/code/">Code</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/building-your-data-science-network-reaching-out/" data-tooltip="Building your Data Science Network: Reaching Out">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/managing-business-challenges-in-data-science/" data-tooltip="Managing Business Challenges in Data Science">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/making-r-code-faster-a-case-study/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/making-r-code-faster-a-case-study/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2018 Emily Robinson. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/building-your-data-science-network-reaching-out/" data-tooltip="Building your Data Science Network: Reaching Out">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/managing-business-challenges-in-data-science/" data-tooltip="Managing Business Challenges in Data Science">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/making-r-code-faster-a-case-study/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/making-r-code-faster-a-case-study/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2Fmaking-r-code-faster-a-case-study%2F">
+          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2Fmaking-r-code-faster-a-case-study%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://avatars.githubusercontent.com/robinsones" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Emily Robinson</h4>
+    
+      <div id="about-card-bio">Date Scientist at DataCamp</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Data Scientist
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        New York
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Search" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center">no post found</div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/the-lesser-known-stars-of-the-tidyverse/">
+                <h3 class="media-heading">The Lesser Known Stars of the Tidyverse</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">In early 2018, I gave a few conference talks on “The Lesser Known Stars of the Tidyverse.” I focused on some packages and functions that aren’t as well known as the core parts of ggplot2 and dplyr but are very helpful in exploratory analysis. I walked through an example analysis of Kaggle’s 2017 State of Data Science and Machine Learning Survey to show how I would use these functions in an exploratory analysis.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/guidelines-for-ab-testing/">
+                <h3 class="media-heading">Guidelines for A/B Testing</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">When I was working at Etsy, I benefited from a very robust A/B testing system. Etsy had been doing A/B testing for more than 6 years. By the time I left, Etsy’s in-house experimentation system, called Catapult, had more than 5 data engineers working on it full-time. Every morning, I was greeted with a homepage that listed all the experiments that Etsy had run in the prior four years. When you clicked on one, you got a summary of what the experiment was testing (usually written by the product manager).</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/red-flags-in-data-science-interviews/">
+                <h3 class="media-heading">Red Flags in Data Science Interviews</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jul 7, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">This post was co-written with Jonathan Nolis, Principal at Nolis, LLC. Check out the rest of his blog posts, including ones on prioritizing data science work, hiring data scientists, and what to do when your data science project isn’t working.
+When interviewing for any position, you should be evaluating the company just as much as they are evaluating you. While you can research the company beforehand on glassdoor and similar sites, interviews are the best place to get a deeper understanding of the company and ask important questions.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/advice-for-applying-to-data-science-jobs/">
+                <h3 class="media-heading">Advice for Applying to Data Science Jobs</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Following Dave Robinson’s sage tweet to write a blog post when you’ve given the same advice three times, this post is a collection of my thoughts and recommendations for people interested in applying to data science jobs in the US. Many of these principles also apply to tech jobs in general.
+A disclaimer: I have never worked as a recruiter or career coach. This knowledge comes from mainly from my study of Organizational Behavior (including negotiations and women in tech) in graduate school and my own career.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/the-importance-of-sponsorship/">
+                <h3 class="media-heading">The Importance of Sponsorship</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Feb 2, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">In my last post, I discussed the importance of building your network and some strategies for effectively reaching out. I closed with emphasizing how helpful your peers or people one step ahead of you can be. But there’s a specific area where people with more resources, status, or experience can help you: sponsorship.
+What is sponsorship? When people discuss what they’re seeking from a more senior person in their field, they usually talk about “mentorship.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/building-your-data-science-network-finding-community/">
+                <h3 class="media-heading">Building Your Data Science Network: Finding Community</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jan 1, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">So you’ve heard you’re supposed to network. That’s the key in getting a job or establishing a reputation in your broader field, right? And it’s true that the importance of having a good network is supported by a lot of social sciences research. But if the thought of networking makes you cringe, you’re not alone. Many people equate networking to sending out millions of unsolicited Linkedin requests with no message, handing out 20 business cards at a meetup once a week, or sending emails to prominent data scientists with the subject line “Can I pick your brain?</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/building-your-data-science-network-reaching-out/">
+                <h3 class="media-heading">Building your Data Science Network: Reaching Out</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jan 1, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">In part one of this post, I covered how to start becoming involved in the data science community and meet people in general. But what if you read a really cool post by someone and want to follow up with them? This post offers some thoughts on how you can most effectively reach out to specific people.
+Two important caveats to start, both inspired by other posts on similar topics.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/making-r-code-faster-a-case-study/">
+                <h3 class="media-heading">Making R Code Faster: A Case Study</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">About two months ago I put a call out to Rstats twitter:
+#rstats twitter - who loves helping to make (short) code run as fast as possible? Playing w/ foreach, doparallel, data.table but know little — Emily Robinson (@robinson_es) October 4, 2017   I had a working, short script that took 3 1/2 minutes to run. While this may be fine if you only need to run it once, I needed to run it hundreds of time for simulations.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/managing-business-challenges-in-data-science/">
+                <h3 class="media-heading">Managing Business Challenges in Data Science</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Sep 9, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">A few weeks ago, I wrote about my experience giving my first data science talk. If you’re interested, the full talk is available online, as well as the slides. In this post, I wanted to share some suggestions for managing business challenges that I didn’t have time to cover in my talk.
+Why Business Challenges? Why devote a whole post and half a talk to business challenges instead of, say, cutting edge deep learning papers or the shiny new language for handling Big DataTM?</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/giving-your-first-data-science-talk/">
+                <h3 class="media-heading">Giving Your First Data Science Talk</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">A few weeks ago, I gave my first ever data science talk. Jared Lander, organizer of the New York Statistical Open Programming meetup, had been asking me to speak, and after about six months at Etsy I thought I could share what I’d learned about A/B Testing and its challenges. If you’d like to watch it, you can view the recording here. The talk starts around 9:00 and ends at 41:30, with the rest being Q&amp;A (I tried to repeat the questions, so you should be able to follow that as well).</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero="no post found"
+         data-message-one="1 post found"
+         data-message-other="{n} posts found">
+         16 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('/images/cover.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = '\/making-r-code-faster-a-case-study\/';
+          
+            this.page.identifier = '\/making-r-code-faster-a-case-study\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'hugo-tranquilpeak-theme';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

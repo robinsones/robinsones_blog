@@ -107,14 +107,14 @@ Error-free!
 
 ## Initial examination 
 
-Let's see what we can glean from the column names themselves. I'll only look at the first 50 since there are so many. 
+Let's see what we can glean from the column names themselves. I'll only look at the first 20 since there are so many. 
 
 ```{r}
 colnames(multiple_choice_responses) %>%
-  head(50)
+  head(20)
 ```
 
-We can see that there were categories of questions, like "Job Skill" and "Work Methods Frequency," with each method or skill having its own column.
+We can see that there were categories of questions, like "LearningPlatform," with each platform having its own column.
 
 Now let's take a look at our numeric columns with [skimr](https://github.com/ropensci/skimr). Skimr is a package from [rOpenSci](https://ropensci.org/) that allows you to quickly view summaries of your data. We  can use `select_if`  to select only columns where a certain condition, in this case whether it's a numeric column, is true.  
 
