@@ -11,15 +11,12 @@ tags:
 
 
 
-<div id="trumps-presidential-campaign-and-the-media" class="section level2">
-<h2>Trump’s Presidential Campaign and the Media</h2>
 <p>When Donald Trump first entered the Republican presidential primary on June 16, 2015, no <a href="http://fivethirtyeight.com/datalab/why-donald-trump-isnt-a-real-candidate-in-one-chart/">media outlet</a> seemed to take him <a href="http://www.nytimes.com/2015/06/17/us/politics/donald-trump-runs-for-president-this-time-for-real-he-says.html?_r=0">seriously</a> as a contender. He is a highly unusual candidate, and some in the media have admitted that they, and the media more generally, don’t know how to cover him, both in the <a href="http://mashable.com/2015/12/02/the-media-just-doesnt-know-what-to-do-with-donald-trump/#RpvubaWmO8q3">primary</a> and now in the <a href="https://thedianerehmshow.org/shows/2016-08-11/challenges-for-the-media-in-covering-donald-trump">general election</a>. Trump himself has criticized the media’s coverage of him:</p>
 <div class="figure">
 <img src="http://robinsones.github.io/images/Trump_media_tweet.png" alt="center" />
 <p class="caption">center</p>
 </div>
 <p>I was interested in quantitatively examining how the media has covered Trump from the start of his campaign until now. For my initial exploration, I focused on extracting the topics of the New York Times’ articles covering Trump. You can find all of my code and my presentation to Metis on <a href="https://github.com/robinsones/NYTimes-and-Trump">my github repo</a>.</p>
-</div>
 <div id="creating-the-dataset" class="section level2">
 <h2>Creating the dataset</h2>
 <p>The Times has a pretty <a href="https://developer.nytimes.com">user-friendly API</a>. You simply need to request an API key and then you can get started gathering articles. I collected all the articles about Donald Trump between the start of his campaign (June 16, 2015) until now, but I then faced the main limitation of the Times API: it doesn’t return the full-text of the articles. For this, I turned to the <a href="https://github.com/codelucas/newspaper">newspaper package for Python</a>. The newspaper package takes a url and then returns information about the article, including the authors and full text. The package also includes some natural language processing and can give you a summary and keywords list for each article.</p>

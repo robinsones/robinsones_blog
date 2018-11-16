@@ -1,7 +1,7 @@
 ---
 title: From Social Scientist to Data Scientist
 author: Emily Robinson
-date: '2018-11-16'
+date: '2018-07-05'
 slug: from-social-scientist-to-data-scientist
 categories: []
 tags: []
