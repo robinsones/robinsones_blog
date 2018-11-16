@@ -12,7 +12,7 @@
 # For developpers, if you modify this theme, put your images in `source/images` folder and
 # use grunt task `build` to synchronize assets
 
-baseURL = "https://example.org/"
+baseURL = "https://fervent-montalcini-8e92cf.netlify.com/"
 languageCode = "en-us"
 defaultContentLanguage = "en-us"
 title = "Hooked on Data"
