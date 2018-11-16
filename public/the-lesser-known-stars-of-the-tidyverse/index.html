@@ -250,7 +250,7 @@
 <pre class="r"><code># for one column
 sum(is.na(multiple_choice_responses_base$Country))</code></pre>
 <pre><code>## [1] 0</code></pre>
-<p>To do this for every column, we can use <code>:map_df</code> from the package <code>purrr</code>, which applies the given function over the whole dataset, column by column, and returns a dataframe with the same column names and one row representing the number of NAs in each column. If you’re used to the <code>apply</code> family of functions, <code>purrr</code> offers the same capabilities in a more consistent way. The <code>_df</code> part of the function represents what we want back (a dataframe); using <code>map</code> would get us a list.</p>
+<p>To do this for every column, we can use <code>map_df</code> from the package <code>purrr</code>, which applies the given function over the whole dataset, column by column, and returns a dataframe with the same column names and one row representing the number of NAs in each column. If you’re used to the <code>apply</code> family of functions, <code>purrr</code> offers the same capabilities in a more consistent way. The <code>_df</code> part of the function represents what we want back (a dataframe); using <code>map</code> would get us a list.</p>
 <p>To avoid printing out all 228 column names, let’s select just a few columns. <code>select</code> can take numbers, representing the position of the columns, as well as column names, so we can enter <code>1:5</code> to get the first five columns.</p>
 <pre class="r"><code># for every column 
 multiple_choice_responses_base %&gt;%
