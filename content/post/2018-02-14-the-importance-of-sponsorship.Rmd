@@ -8,7 +8,7 @@ tags:
   - Career
 ---
 
-In my [last post](hookedondata.org/Building-Your-Data-Science-Network-Reaching-Out/), I discussed the importance of building your network and some strategies for effectively reaching out. I closed with emphasizing how helpful your peers or people one step ahead of you can be. But there's a specific area where people with more resources, status, or experience can help you: sponsorship. 
+In my [last post](https://hookedondata.org/Building-Your-Data-Science-Network-Reaching-Out/), I discussed the importance of building your network and some strategies for effectively reaching out. I closed with emphasizing how helpful your peers or people one step ahead of you can be. But there's a specific area where people with more resources, status, or experience can help you: sponsorship. 
 
 ## What is sponsorship? 
 

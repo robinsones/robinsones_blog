@@ -8,7 +8,7 @@ tags:
   - Career
 ---
 
-A few weeks ago, I [wrote about](hookedondata.org/Giving-Your-First-Data-Science-Talk/) my experience giving my first data science talk. If you're interested, the full talk is available [online](https://www.youtube.com/watch?v=SF-ryGgLOgQ), as well as the [slides](https://github.com/robinsones/AB-Testing-Slides). In this post, I wanted to share some suggestions for managing business challenges that I didn't have time to cover in my talk.
+A few weeks ago, I [wrote about](https://hookedondata.org/Giving-Your-First-Data-Science-Talk/) my experience giving my first data science talk. If you're interested, the full talk is available [online](https://www.youtube.com/watch?v=SF-ryGgLOgQ), as well as the [slides](https://github.com/robinsones/AB-Testing-Slides). In this post, I wanted to share some suggestions for managing business challenges that I didn't have time to cover in my talk.
 
 ### Why Business Challenges? 
 
