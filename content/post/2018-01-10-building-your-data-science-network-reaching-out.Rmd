@@ -8,7 +8,7 @@ tags:
   - Career
 ---
 
-In [part one](hookedondata.org/Building-Your-Data-Science-Network-Finding-Community/) of this post, I covered how to start becoming involved in the data science community and meet people in general. But what if you read a really cool post by someone and want to follow up with them? This post offers some thoughts on how you can most effectively reach out to specific people. 
+In [part one](https://hookedondata.org/Building-Your-Data-Science-Network-Finding-Community/) of this post, I covered how to start becoming involved in the data science community and meet people in general. But what if you read a really cool post by someone and want to follow up with them? This post offers some thoughts on how you can most effectively reach out to specific people. 
 
 Two important caveats to start, both inspired by other posts on similar topics. First, to quote [Trey Causey](https://medium.com/@treycausey/do-you-have-time-for-a-quick-chat-c3f7e46de89d): "I am not without sin, and I'm also still figuring all this out." Second, for those of you who hate the very idea of networking and think your work should speak for yourself, I really like [Rachel Thomas'](http://www.fast.ai/2017/12/18/personal-brand/) take on this. She's writing about personal branding, but I think there's a lot of overlap there (as I discuss later): 
 
