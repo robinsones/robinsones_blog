@@ -122,11 +122,12 @@ The table I started with was over 10 million rows, and I was doing many operatio
 6. Doing a prop test
 
 The last three steps are fast, but the first three are very long. This isn't even including the initial 5 minutes (!) it takes to load the sql table in the first place. We're able to refactor and make it faster by realizing a few things: 
-1. We don't need the big text columns visit id and browser id
-2. In SQL, we can group by browser id so each row has 1) the number of visits for a browser and 2) the number of visits that converted for that browser. With that, we'll have a smaller table of only two numeric columns. 
-3. We can then label each row with 0 or 1 randomly, assigning treatment on the browser level. 
-4. Next, we sum up the total visits column and the converted column, grouping by label. 
-5. Finally, we run a prop.test
+
+  1. We don't need the big text columns visit id and browser id
+  2. In SQL, we can group by browser id so each row has 1) the number of visits for a browser and 2) the number of visits that converted for that browser. With that, we'll have a smaller table of only two numeric columns. 
+  3. We can then label each row with 0 or 1 randomly, assigning treatment on the browser level. 
+  4. Next, we sum up the total visits column and the converted column, grouping by label. 
+  5. Finally, we run a prop.test
 
 Here's what the sql new code looks like: 
 
@@ -200,7 +201,8 @@ count_of_counts <- search_visits %>%
 
 Because the [bernoulli distribution](https://en.wikipedia.org/wiki/Bernoulli_distribution) is just a special case of the [binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution) where n = 1, we're doing the *same* process as before, but we do many fewer computations!  
 
-- As before, summarizing the number of visits and conversions in each group and apply our proportion test.
+
+  - As before, summarizing the number of visits and conversions in each group and apply our proportion test.
 
 ``` r
 library(dplyr) 
