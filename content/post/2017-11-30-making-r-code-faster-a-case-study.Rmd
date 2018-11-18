@@ -32,7 +32,7 @@ I therefore set out to simulate hundreds of null A/B Tests using our own data. I
 
 I am very fortunate to have a data scientist brother who will jump in to help out even when not directly asked. A lot of the code improvements following come from him.   
 
-![center](http://robinsones.github.io/images/Dave_optimization_tweet.png)
+![center](/img/Dave_optimization_tweet.png)
 
 I've also gotten to know many other people in the R community through RLadies, conferences, and twitter, some of whom offered help as well. But even if you're new to R and don't know anyone, there are people who will jump in and help you too. RStudio recently launched a new [community website](https://community.rstudio.com/) where you can ask quesitons ranging from a specific issue that you need to debug to [why you should use RMarkdown](https://community.rstudio.com/t/convince-me-to-start-using-r-markdown/1636). There's also a [slack community](https://medium.com/@kierisi/join-the-r-for-data-science-online-learning-community-842527222ab3), organized by [Jesse Maegan](https://twitter.com/kierisi), that brings people wanting to learn R together with mentors to work through Garrett Grolemund and Hadley Wickham's [R for Data Science](http://r4ds.had.co.nz/) book. Jesse has been writing a great series of blog posts reflecting on some [lessons from each week](https://medium.com/@kierisi/latest), and she'll also be doing another round.  
 
@@ -176,7 +176,7 @@ But we can then recognize that our table currently has a lot of redudancy: we ha
 Therefore, we can make our code faster by: 
 - Transforming our table so each row is a unique combination of visits & conversions, with a column that is the number of browsers with that combination. We can do this in SQL and output the table as "count of counts".
 
-![](http://robinsones.github.io/images/performance_post_visualization.png)
+![](/img/performance_post_visualization.png)
 
 ``` sql
 with counts as (
@@ -304,7 +304,7 @@ Here's the final comparison of performance (calculated using the great [tictoc p
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">One rule of thumb for maximizing <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> performance is that the way you&#39;d do something once is rarely the best way to do it 1000X</p>&mdash; David Robinson (@drob) <a href="https://twitter.com/drob/status/915987148515377152?ref_src=twsrc%5Etfw">October 5, 2017</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-At RStudio::Conf 2017, Hadley Wickham [discussed](https://robinsones.github.io/RStudio-Conference-Tips-and-Tricks/) how the bottleneck in writing code is usually thinking speed, not computational speed. Therefore, he advised that you shouldn't prematurely worry about optimizing for performance but rather about making sure your code is clear. In this case, though, the point was to run the same code hundreds of times, so I needed to start worrying about performance. Through the process, I learned a lot about how R works "under the hood" and how to conceptualize problems a different way. 
+At RStudio::Conf 2017, Hadley Wickham [discussed](hookedondata.org/RStudio-Conference-Tips-and-Tricks/) how the bottleneck in writing code is usually thinking speed, not computational speed. Therefore, he advised that you shouldn't prematurely worry about optimizing for performance but rather about making sure your code is clear. In this case, though, the point was to run the same code hundreds of times, so I needed to start worrying about performance. Through the process, I learned a lot about how R works "under the hood" and how to conceptualize problems a different way. 
 
 Next time, I'll be returning soon to the topic of A/B Testing, sharing what I've learned from reading industry papers. 
 

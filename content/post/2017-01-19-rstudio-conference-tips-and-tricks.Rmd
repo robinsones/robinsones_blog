@@ -18,7 +18,7 @@ This is the second part of my posts on the rstudio::conf. If you're interested i
 
 * **Listviewer**: One of the hardest parts about working with nested lists is trying to figure out what the heck is in them. The `jsonedit` function from listviewer allows you to see the layers of a list and even search through them. Here's what it looks like when I run it with got_chars, a list from Jenny Bryan's great [repurrrsive package](https://github.com/jennybc/repurrrsive):
 
-![Image of Listviewer](http://robinsones.github.io/images/Listviewer.png)
+![Image of Listviewer](/img/Listviewer.png)
 
 
 ## Writing Functions
@@ -70,7 +70,7 @@ options(warnPartialMatchArgs = TRUE, warnPartialMatchDollar = TRUE, warnPartialM
     - `y == "a" | y == "b" | y == "c"` is the same as `y %in% c("a", "b", “c”)`
 * Bob Rudis' five rules for using pipes. P.S. This was probably the most elaborate and fun slideshow. Definitely [check it out](https://github.com/hrbrmstr/rstudioconf2017#readme)!
 
-![Image of pipes](http://robinsones.github.io/images/Rules_of_pipe.png)
+![Image of pipes](/img/Rules_of_pipe.png)
 
 ## Other Conference Write-Ups
 * Sharon Machlis's [tips and takeaways](http://www.computerworld.com/article/3157004/data-analytics/best-tips-and-takeaways-from-rstudio-conference.html), which is in a bullet-point and short paragraph format. This is a great complement to this list, since hers are from the conference talks and most of mine are from the training days with Hadley

@@ -15,7 +15,7 @@ Building a network is not a numbers game, and it's not about looking to get the 
 <blockquote class="twitter-tweet" data-conversation="none" data-lang="en"><p lang="en" dir="ltr">This is just one example of how supportive and helpful I&#39;ve found the <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> community. The community is one of the main reasons I choose R (vs Python) and recommend it to DS beginners. So, thank you to everyone who makes it that way. Fin.</p>&mdash; Emily Robinson (@robinson_es) <a href="https://twitter.com/robinson_es/status/930815983996080128?ref_src=twsrc%5Etfw">November 15, 2017</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-So how do you become part of this community? I've written this two part post to try to share some strategies that have worked for me. This first part is focused on growing your community generally. If you'd like to learn about reaching out to specific people, check out the [second part](https://robinsones.github.io/Building-Your-Data-Science-Network-Reaching-Out/). 
+So how do you become part of this community? I've written this two part post to try to share some strategies that have worked for me. This first part is focused on growing your community generally. If you'd like to learn about reaching out to specific people, check out the [second part](hookedondata.org/Building-Your-Data-Science-Network-Reaching-Out/). 
 
 ### Attend Meetups
 

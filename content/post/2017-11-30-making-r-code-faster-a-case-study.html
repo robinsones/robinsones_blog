@@ -33,7 +33,7 @@ summary: About two months ago I put a call out to Rstats twitter. I had a workin
 <h2>Asking for help</h2>
 <p>I am very fortunate to have a data scientist brother who will jump in to help out even when not directly asked. A lot of the code improvements following come from him.</p>
 <div class="figure">
-<img src="http://robinsones.github.io/images/Dave_optimization_tweet.png" alt="center" />
+<img src="/img/Dave_optimization_tweet.png" alt="center" />
 <p class="caption">center</p>
 </div>
 <p>I’ve also gotten to know many other people in the R community through RLadies, conferences, and twitter, some of whom offered help as well. But even if you’re new to R and don’t know anyone, there are people who will jump in and help you too. RStudio recently launched a new <a href="https://community.rstudio.com/">community website</a> where you can ask quesitons ranging from a specific issue that you need to debug to <a href="https://community.rstudio.com/t/convince-me-to-start-using-r-markdown/1636">why you should use RMarkdown</a>. There’s also a <a href="https://medium.com/@kierisi/join-the-r-for-data-science-online-learning-community-842527222ab3">slack community</a>, organized by <a href="https://twitter.com/kierisi">Jesse Maegan</a>, that brings people wanting to learn R together with mentors to work through Garrett Grolemund and Hadley Wickham’s <a href="http://r4ds.had.co.nz/">R for Data Science</a> book. Jesse has been writing a great series of blog posts reflecting on some <a href="https://medium.com/@kierisi/latest">lessons from each week</a>, and she’ll also be doing another round.</p>
@@ -136,7 +136,7 @@ length(simulate_p_values_visit_result)*100  </code></pre>
 <p>But we can then recognize that our table currently has a lot of redudancy: we have many browsers that have 1 visit and 0 conversions, 2 visits and 0 conversions, etc.</p>
 <p>Therefore, we can make our code faster by: - Transforming our table so each row is a unique combination of visits &amp; conversions, with a column that is the number of browsers with that combination. We can do this in SQL and output the table as “count of counts”.</p>
 <div class="figure">
-<img src="http://robinsones.github.io/images/performance_post_visualization.png" />
+<img src="/img/performance_post_visualization.png" />
 
 </div>
 <pre class="sql"><code>with counts as (
@@ -292,6 +292,6 @@ One rule of thumb for maximizing <a href="https://twitter.com/hashtag/rstats?src
 — David Robinson (<span class="citation">@drob</span>) <a href="https://twitter.com/drob/status/915987148515377152?ref_src=twsrc%5Etfw">October 5, 2017</a>
 </blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-<p>At RStudio::Conf 2017, Hadley Wickham <a href="https://robinsones.github.io/RStudio-Conference-Tips-and-Tricks/">discussed</a> how the bottleneck in writing code is usually thinking speed, not computational speed. Therefore, he advised that you shouldn’t prematurely worry about optimizing for performance but rather about making sure your code is clear. In this case, though, the point was to run the same code hundreds of times, so I needed to start worrying about performance. Through the process, I learned a lot about how R works “under the hood” and how to conceptualize problems a different way.</p>
+<p>At RStudio::Conf 2017, Hadley Wickham <a href="hookedondata.org/RStudio-Conference-Tips-and-Tricks/">discussed</a> how the bottleneck in writing code is usually thinking speed, not computational speed. Therefore, he advised that you shouldn’t prematurely worry about optimizing for performance but rather about making sure your code is clear. In this case, though, the point was to run the same code hundreds of times, so I needed to start worrying about performance. Through the process, I learned a lot about how R works “under the hood” and how to conceptualize problems a different way.</p>
 <p>Next time, I’ll be returning soon to the topic of A/B Testing, sharing what I’ve learned from reading industry papers.</p>
 </div>

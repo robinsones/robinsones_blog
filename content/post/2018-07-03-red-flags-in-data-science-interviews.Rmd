@@ -9,7 +9,7 @@ tags:
 summary: When interviewing for any position, you should be evaluating the company just as much as they are evaluating you. While you can research the company beforehand on glassdoor and similar sites, interviews are the best place to get a deeper understanding of the company and ask important questions. Companies will never straight up tell you they are bad to work for, so you have to look for the signs yourself. 
 ---
 
-![](http://robinsones.github.io/images/red-flag-painting.jpg)
+![](/img/red-flag-painting.jpg)
 
 _This post was co-written with [Jonathan Nolis](https://jnolis.com/), Principal at Nolis, LLC. Check out the rest of his blog posts, including ones on [prioritizing data science work](https://towardsdatascience.com/prioritizing-data-science-work-936b3765fd45), [hiring data scientists](https://medium.com/@skyetetra/hiring-data-scientists-part-1-2813ba44be9b), and what to do when your [data science project isn't working](https://medium.com/@skyetetra/so-your-data-science-project-isnt-working-7bf57e3f12f1)._
 
