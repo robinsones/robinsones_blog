@@ -166,19 +166,19 @@ This hit home one day this spring. In one of my classes, we had been writing cod
     
     <item>
       <title>About</title>
-      <link>/page/about/</link>
+      <link>/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/page/about/</guid>
+      <guid>/about/</guid>
       <description>I work at DataCamp as a Data Scientist on the growth team. Previously, I was a Data Analyst at Etsy working with their search team to design, implement, and analyze experiments on the ranking algorithm, UI changes, and new features. In summer 2016, I completed Metis&amp;rsquo;s three-month, full-time Data Science Bootcamp, where I did several data science projects, ranging from using random forests to predict successful projects on DonorsChoose.org to building an application in R Shiny that helps data science freelancers find their best-fit jobs.</description>
     </item>
     
     <item>
       <title>Speaking</title>
-      <link>/page/speaking/</link>
+      <link>/speaking/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/page/speaking/</guid>
+      <guid>/speaking/</guid>
       <description>I regularly give talks on A/B Testing, working in R, joining the Data Science community, and more. If you&amp;rsquo;re interested in having me speak at your event, please contact me at emily[at]datacamp.com
 Upcoming Talks March 2019, CXL Live.
 Previous Talks Building an A/B Testing Analytics System November 2018, DC R Conference.

@@ -26,6 +26,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown", "_files$", "_cache$"]
 
 [permalinks]
   post = "/:slug/"
+  page = "/:slug/"
 
 [taxonomies]
   tag = "tags"
@@ -76,14 +77,14 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown", "_files$", "_cache$"]
   identifier = "speaking"
   name = "Speaking"
   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-rss\"></i>"
-  url = "/page/speaking"
+  url = "/speaking"
   
 [[menu.main]]
   weight = 3
   identifier = "about"
   name = "About"
   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-question\"></i>"
-  url = "/page/about"
+  url = "/about"
   
 [[menu.main]]
   weight = 4
