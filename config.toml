@@ -202,7 +202,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown", "_files$", "_cache$"]
 
   # Customize link of author avatar in sidebar
    [params.sidebar.profile]
-     url = "/page/about"
+     url = "/about"
 
   # Customize copyright value "© 2017 <CUSTOMIZATION>. All Rights Reserved"
   # [params.footer]
