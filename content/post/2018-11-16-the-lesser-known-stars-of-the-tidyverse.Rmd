@@ -37,15 +37,14 @@ Let's say we wanted to know the numbers of NAs in each column. We can use `is.na
 sum(is.na(multiple_choice_responses_base$Country))
 ```
 
-To do this for every column, we can use `map_df` from the package `purrr`, which applies the given function over the whole dataset, column by column, and returns a dataframe with the same column names and one row representing the number of NAs in each column. If you're used to the `apply` family of functions, `purrr` offers the same capabilities in a more consistent way. The `_df` part of the function represents what we want back (a dataframe); using `map` would get us a list. 
+To do this for a group of columns, say the first five, we can use `summarise_at` function. `summarise_at` takes three arguments: the dataset, which we pipe in, the set of columns we want to apply a function to, and a function to apply to each of the columns. It returns a dataframe with the same column names and one row with the result of our function. In our case, that will be the number of NAs in each column.
 
-To avoid printing out all 228 column names, let's select just a few columns. `select` can take numbers, representing the position of the columns, as well as column names, so we can enter `1:5` to get the first five columns.
+You can select the columns by position, as we'll do here with `1:5`, or by name. Note that if you do it by name, you need to put them within `vars()` (e.g. `vars(GenderSelect:StudentStatus)` or `vars(GenderSelect, Age)`). 
 
 ```{r}
-# for every column 
+# for five columns
 multiple_choice_responses_base %>%
-  select(1:5) %>%
-  map_df(~sum(is.na(.))) 
+  summarise_at(1:5, ~sum(is.na(.))) 
 ```
 
 Wow that's lucky! Four of them that don't have any NAs. But ... is this too good to be true? Let's look at the entries of one column.  
@@ -71,8 +70,7 @@ Now let's count the NAs again.
 
 ```{r}
 multiple_choice_responses_base %>%
-  map_df(~sum(is.na(.))) %>%
-  select(1:5)
+  summarise_at(1:5, ~sum(is.na(.))) 
 ```
 
 And it's fixed! 
@@ -124,9 +122,9 @@ multiple_choice_responses %>%
   skimr::skim()
 ```
 
-I love the histograms. We can quickly see from the histograms that people self teach a lot and spend a good amount of time building models and gathering data, compared to visualizing data or working in production.   
+I love the histograms. We can quickly see from them that people self teach a lot and spend a good amount of time building models and gathering data, compared to visualizing data or working in production.   
 
-Let's see how many distinct answers we have for each question. We can use `n_distinct()`, a shorter and faster version of `length(unique())`, and `map_df` once again to apply the function to every column. 
+Let's see how many distinct answers we have for each question. We can use `n_distinct()`, a shorter and faster version of `length(unique())`. We'll use `summarise_all`, which is the same as `summarise_at` except that you don't select a group of columns and so it applies to every one in the dataset.
 
 ```{r}
 multiple_choice_responses %>%

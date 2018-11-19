@@ -22,16 +22,13 @@ tags:
 <pre class="r"><code># for one column
 sum(is.na(multiple_choice_responses_base$Country))</code></pre>
 <pre><code>## [1] 0</code></pre>
-<p>To do this for every column, we can use <code>map_df</code> from the package <code>purrr</code>, which applies the given function over the whole dataset, column by column, and returns a dataframe with the same column names and one row representing the number of NAs in each column. If you’re used to the <code>apply</code> family of functions, <code>purrr</code> offers the same capabilities in a more consistent way. The <code>_df</code> part of the function represents what we want back (a dataframe); using <code>map</code> would get us a list.</p>
-<p>To avoid printing out all 228 column names, let’s select just a few columns. <code>select</code> can take numbers, representing the position of the columns, as well as column names, so we can enter <code>1:5</code> to get the first five columns.</p>
-<pre class="r"><code># for every column 
+<p>To do this for a group of columns, say the first five, we can use <code>summarise_at</code> function. <code>summarise_at</code> takes three arguments: the dataset, which we pipe in, the set of columns we want to apply a function to, and a function to apply to each of the columns. It returns a dataframe with the same column names and one row with the result of our function. In our case, that will be the number of NAs in each column.</p>
+<p>You can select the columns by position, as we’ll do here with <code>1:5</code>, or by name. Note that if you do it by name, you need to put them within <code>vars()</code> (e.g. <code>vars(GenderSelect:StudentStatus)</code> or <code>vars(GenderSelect, Age)</code>).</p>
+<pre class="r"><code># for five columns
 multiple_choice_responses_base %&gt;%
-  select(1:5) %&gt;%
-  map_df(~sum(is.na(.))) </code></pre>
-<pre><code>## # A tibble: 1 x 5
-##   GenderSelect Country   Age EmploymentStatus StudentStatus
-##          &lt;int&gt;   &lt;int&gt; &lt;int&gt;            &lt;int&gt;         &lt;int&gt;
-## 1            0       0   331                0             0</code></pre>
+  summarise_at(1:5, ~sum(is.na(.))) </code></pre>
+<pre><code>##   GenderSelect Country Age EmploymentStatus StudentStatus
+## 1            0       0 331                0             0</code></pre>
 <p>Wow that’s lucky! Four of them that don’t have any NAs. But … is this too good to be true? Let’s look at the entries of one column.</p>
 <pre class="r"><code>multiple_choice_responses_base %&gt;%
   count(StudentStatus) </code></pre>
@@ -51,12 +48,9 @@ multiple_choice_responses_base &lt;- multiple_choice_responses_base %&gt;%
   na_if(&quot;&quot;)</code></pre>
 <p>Now let’s count the NAs again.</p>
 <pre class="r"><code>multiple_choice_responses_base %&gt;%
-  map_df(~sum(is.na(.))) %&gt;%
-  select(1:5)</code></pre>
-<pre><code>## # A tibble: 1 x 5
-##   GenderSelect Country   Age EmploymentStatus StudentStatus
-##          &lt;int&gt;   &lt;int&gt; &lt;int&gt;            &lt;int&gt;         &lt;int&gt;
-## 1           95     121   331                0         15436</code></pre>
+  summarise_at(1:5, ~sum(is.na(.))) </code></pre>
+<pre><code>##   GenderSelect Country Age EmploymentStatus StudentStatus
+## 1           95     121 331                0         15436</code></pre>
 <p>And it’s fixed!</p>
 <p>How could we have avoided this all in the first place? By using <code>readr::read_csv</code> instead of <code>read.csv</code>.</p>
 <p>If you’re not familiar with <code>::</code>, it’s for explicitly setting what package you’re getting the function on the right from. This is helpful in three ways:</p>
@@ -127,7 +121,7 @@ multiple_choice_responses_base &lt;- multiple_choice_responses_base %&gt;%
 ##  n obs: 16716 
 ##  n variables: 13 
 ## 
-## ── Variable type:integer ───────────────────────────────
+## ── Variable type:integer ────────────────────────────────
 ##           variable missing complete     n  mean    sd p0 p25 p50 p75 p100
 ##                Age     331    16385 16716 32.37 10.47  0  25  30  37  100
 ##  TimeGatheringData    9186     7530 16716 36.14 21.65  0  20  35  50  100
@@ -137,7 +131,7 @@ multiple_choice_responses_base &lt;- multiple_choice_responses_base %&gt;%
 ##  ▅▅▅▇▂▂▁▁
 ##  ▇▁▁▁▁▁▁▁
 ## 
-## ── Variable type:numeric ───────────────────────────────
+## ── Variable type:numeric ────────────────────────────────
 ##                       variable missing complete     n  mean    sd p0 p25
 ##         LearningCategoryKaggle    3590    13126 16716  5.53 11.07  0   0
 ##  LearningCategoryOnlineCourses    3590    13126 16716 27.38 26.86  0   5
@@ -160,8 +154,8 @@ multiple_choice_responses_base &lt;- multiple_choice_responses_base %&gt;%
 ##   20  30  100 ▇▇▃▂▁▁▁▁
 ##   10  15  100 ▇▂▁▁▁▁▁▁
 ##   10  20  100 ▇▅▁▁▁▁▁▁</code></pre>
-<p>I love the histograms. We can quickly see from the histograms that people self teach a lot and spend a good amount of time building models and gathering data, compared to visualizing data or working in production.</p>
-<p>Let’s see how many distinct answers we have for each question. We can use <code>n_distinct()</code>, a shorter and faster version of <code>length(unique())</code>, and <code>map_df</code> once again to apply the function to every column.</p>
+<p>I love the histograms. We can quickly see from them that people self teach a lot and spend a good amount of time building models and gathering data, compared to visualizing data or working in production.</p>
+<p>Let’s see how many distinct answers we have for each question. We can use <code>n_distinct()</code>, a shorter and faster version of <code>length(unique())</code>. We’ll use <code>summarise_all</code>, which is the same as <code>summarise_at</code> except that you don’t select a group of columns and so it applies to every one in the dataset.</p>
 <pre class="r"><code>multiple_choice_responses %&gt;%
   summarise_all(n_distinct) %&gt;%
   select(1:10)</code></pre>
