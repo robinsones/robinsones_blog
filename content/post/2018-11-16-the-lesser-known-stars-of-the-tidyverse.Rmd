@@ -245,7 +245,8 @@ ggplot(perc_problem_work_challenge,
            y = fct_reorder(question, perc_problem))) + 
   geom_point() +
   scale_x_continuous(labels = scales::percent) + 
-  labs(y = "Work Challenge", x = "Percentage of people encountering challenge frequently")
+  labs(y = "Work Challenge", 
+       x = "Percentage of people encountering challenge frequently")
 ```
 
 Much better! You can now easily tell which work challenges are encountered most frequently. 
