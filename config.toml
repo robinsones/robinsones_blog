@@ -197,7 +197,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown", "_files$", "_cache$"]
   [params.header.rightLink]
     class = ""
     icon = ""
-    url = "/page/about"
+    url = "/about"
 
 
   # Customize link of author avatar in sidebar
