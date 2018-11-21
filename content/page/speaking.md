@@ -25,6 +25,8 @@ October 2018, [Nor'eastR Conference](https://noreastrconf.com/schedule/).
 
 ### 10 Guidelines for A/B Testing
 
+November 2018, DataCamp Webinars. [Recording](https://support.datacamp.com/hc/en-us/articles/360012283593-Nov-2018-Webinar-10-Guidelines-for-A-B-Testing), [Slides](https://docs.google.com/presentation/d/19_x0RJqz10ZPCC29IVkp6mDEJiitXglSgkdM4DAKW6Q/edit). 
+
 October 2018, [PyData NYC](https://pydata.org/nyc2018/). 
 
 ### Joining the Data Science Community
