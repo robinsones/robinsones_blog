@@ -13,6 +13,8 @@ I regularly give talks on A/B Testing, working in R, joining the Data Science co
 
 ## Upcoming Talks
 
+January 2019, [RStudio Conference](http://www.cvent.com/events/rstudio-conf-austin/event-summary-dd6d75526f3c4554b67c4de32aeffb47.aspx). 
+
 March 2019, [CXL Live](https://conversionxl.com/live/). 
 
 ## Previous Talks 
@@ -25,7 +27,7 @@ October 2018, [Nor'eastR Conference](https://noreastrconf.com/schedule/).
 
 ### 10 Guidelines for A/B Testing
 
-November 2018, DataCamp Webinars. [Recording](https://support.datacamp.com/hc/en-us/articles/360012283593-Nov-2018-Webinar-10-Guidelines-for-A-B-Testing), [Slides](https://docs.google.com/presentation/d/19_x0RJqz10ZPCC29IVkp6mDEJiitXglSgkdM4DAKW6Q/edit). 
+November 2018, DataCamp Webinar. [Recording](https://support.datacamp.com/hc/en-us/articles/360012283593-Nov-2018-Webinar-10-Guidelines-for-A-B-Testing), [Slides](https://docs.google.com/presentation/d/19_x0RJqz10ZPCC29IVkp6mDEJiitXglSgkdM4DAKW6Q/edit). 
 
 October 2018, [PyData NYC](https://pydata.org/nyc2018/). 
 
@@ -34,6 +36,8 @@ October 2018, [PyData NYC](https://pydata.org/nyc2018/).
 May & July 2018, Metis Data Science Bootcamp. [Slides](https://www.slideshare.net/secret/7pZVPaDTHMH8aP).
 
 ### The Lesser Known Stars of the Tidyverse
+
+December 2018, DataCamp Webinar. [Recording](https://www.youtube.com/watch?v=uG3igAGX7UE&t=632s).
 
 April 2018, New York R Conference. [Recording](https://www.youtube.com/watch?v=ax4LXQ5t38k), [Slides](https://www.slideshare.net/secret/sMVjYvcd7yh16z).
 
@@ -50,4 +54,3 @@ October 2017, West Point Academy. [Slides](https://github.com/robinsones/AB-Test
 September 2017, Demystifying Data Science by Metis. [Recording](https://www.youtube.com/watch?v=hlYFksjjgXg), [Slides](https://www.slideshare.net/secret/DBLR67WhEK2qWd).
 
 July 2017, New York Open Statistical Programming Meetup. [Recording](https://www.youtube.com/watch?v=SF-ryGgLOgQ), [Slides](https://github.com/robinsones/AB-Testing-Slides/blob/master/AB%20Testing%20in%20the%20Wild.pdf). 
-
