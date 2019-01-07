@@ -2,102 +2,102 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Hooked on Data</title>
-    <link>https://hookedondata.org/tags/</link>
+    <link>/tags/</link>
     <description>Recent content in Tags on Hooked on Data</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 07 Aug 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://hookedondata.org/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>A/B Testing</title>
-      <link>https://hookedondata.org/tags/a-b-testing/</link>
+      <link>/tags/a-b-testing/</link>
       <pubDate>Tue, 07 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/tags/a-b-testing/</guid>
+      <guid>/tags/a-b-testing/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Career</title>
-      <link>https://hookedondata.org/tags/career/</link>
+      <link>/tags/career/</link>
       <pubDate>Tue, 03 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/tags/career/</guid>
+      <guid>/tags/career/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Code</title>
-      <link>https://hookedondata.org/tags/code/</link>
-      <pubDate>Fri, 16 Nov 2018 00:00:00 +0000</pubDate>
+      <link>/tags/code/</link>
+      <pubDate>Mon, 07 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/tags/code/</guid>
+      <guid>/tags/code/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Conference</title>
-      <link>https://hookedondata.org/tags/conference/</link>
+      <link>/tags/conference/</link>
       <pubDate>Thu, 19 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/tags/conference/</guid>
+      <guid>/tags/conference/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Online Experimentation</title>
-      <link>https://hookedondata.org/tags/online-experimentation/</link>
+      <link>/tags/online-experimentation/</link>
       <pubDate>Tue, 07 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/tags/online-experimentation/</guid>
+      <guid>/tags/online-experimentation/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Python</title>
-      <link>https://hookedondata.org/tags/python/</link>
+      <link>/tags/python/</link>
       <pubDate>Mon, 08 Aug 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/tags/python/</guid>
+      <guid>/tags/python/</guid>
       <description></description>
     </item>
     
     <item>
       <title>R</title>
-      <link>https://hookedondata.org/tags/r/</link>
-      <pubDate>Fri, 16 Nov 2018 00:00:00 +0000</pubDate>
+      <link>/tags/r/</link>
+      <pubDate>Mon, 07 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/tags/r/</guid>
+      <guid>/tags/r/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Text Analysis</title>
-      <link>https://hookedondata.org/tags/text-analysis/</link>
+      <link>/tags/text-analysis/</link>
       <pubDate>Fri, 30 Sep 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/tags/text-analysis/</guid>
+      <guid>/tags/text-analysis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Tidyverse</title>
-      <link>https://hookedondata.org/tags/tidyverse/</link>
-      <pubDate>Fri, 16 Nov 2018 00:00:00 +0000</pubDate>
+      <link>/tags/tidyverse/</link>
+      <pubDate>Mon, 07 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/tags/tidyverse/</guid>
+      <guid>/tags/tidyverse/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Visualization</title>
-      <link>https://hookedondata.org/tags/visualization/</link>
+      <link>/tags/visualization/</link>
       <pubDate>Fri, 30 Sep 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/tags/visualization/</guid>
+      <guid>/tags/visualization/</guid>
       <description></description>
     </item>
     

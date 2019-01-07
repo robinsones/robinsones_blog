@@ -2,30 +2,40 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Code on Hooked on Data</title>
-    <link>https://hookedondata.org/tags/code/</link>
+    <link>/tags/code/</link>
     <description>Recent content in Code on Hooked on Data</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 16 Nov 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 07 Jan 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://hookedondata.org/tags/code/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/code/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Beyond map: some other purrr functions</title>
+      <link>/beyond-map-some-other-purrr-functions/</link>
+      <pubDate>Mon, 07 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/beyond-map-some-other-purrr-functions/</guid>
+      <description>I recently completed Colin Fay’s excellent Intermediate Functional Programming with purrr course (full disclosure: I work at DataCamp, where the course is hosted). Although I’ve used purrr before, there were a lot of functions that were either new to me or I hadn’t realized the first use of.
+purrr is a library for functional programming in R. If you’re familiar with purrr, it’s probably because of the map() function. If you’ve seen purrr but been scared off, I’m right there with you.</description>
+    </item>
+    
+    <item>
       <title>The Lesser Known Stars of the Tidyverse</title>
-      <link>https://hookedondata.org/the-lesser-known-stars-of-the-tidyverse/</link>
+      <link>/the-lesser-known-stars-of-the-tidyverse/</link>
       <pubDate>Fri, 16 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/the-lesser-known-stars-of-the-tidyverse/</guid>
+      <guid>/the-lesser-known-stars-of-the-tidyverse/</guid>
       <description>In early 2018, I gave a few conference talks on “The Lesser Known Stars of the Tidyverse.” I focused on some packages and functions that aren’t as well known as the core parts of ggplot2 and dplyr but are very helpful in exploratory analysis. I walked through an example analysis of Kaggle’s 2017 State of Data Science and Machine Learning Survey to show how I would use these functions in an exploratory analysis.</description>
     </item>
     
     <item>
       <title>Making R Code Faster: A Case Study</title>
-      <link>https://hookedondata.org/making-r-code-faster-a-case-study/</link>
+      <link>/making-r-code-faster-a-case-study/</link>
       <pubDate>Thu, 30 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/making-r-code-faster-a-case-study/</guid>
+      <guid>/making-r-code-faster-a-case-study/</guid>
       <description>About two months ago I put a call out to Rstats twitter:
 #rstats twitter - who loves helping to make (short) code run as fast as possible? Playing w/ foreach, doparallel, data.table but know little — Emily Robinson (@robinson_es) October 4, 2017   I had a working, short script that took 3 1/2 minutes to run. While this may be fine if you only need to run it once, I needed to run it hundreds of time for simulations.</description>
     </item>

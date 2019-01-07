@@ -8,35 +8,39 @@
 <meta name="generator" content="Hugo 0.51 with theme Tranquilpeak 0.4.3-SNAPSHOT">
 <meta name="author" content="Emily Robinson">
 <meta name="keywords" content="">
-<meta name="description" content="In my last post, I discussed the importance of building your network and some strategies for effectively reaching out. I closed with emphasizing how helpful your peers or people one step ahead of you can be. But there’s a specific area where people with more resources, status, or experience can help you: sponsorship.
-What is sponsorship? When people discuss what they’re seeking from a more senior person in their field, they usually talk about “mentorship.">
+<meta name="description" content="I recently completed Colin Fay’s excellent Intermediate Functional Programming with purrr course (full disclosure: I work at DataCamp, where the course is hosted). Although I’ve used purrr before, there were a lot of functions that were either new to me or I hadn’t realized the first use of.
+purrr is a library for functional programming in R. If you’re familiar with purrr, it’s probably because of the map() function. If you’ve seen purrr but been scared off, I’m right there with you.">
 
 
-<meta property="og:description" content="In my last post, I discussed the importance of building your network and some strategies for effectively reaching out. I closed with emphasizing how helpful your peers or people one step ahead of you can be. But there’s a specific area where people with more resources, status, or experience can help you: sponsorship.
-What is sponsorship? When people discuss what they’re seeking from a more senior person in their field, they usually talk about “mentorship.">
+<meta property="og:description" content="I recently completed Colin Fay’s excellent Intermediate Functional Programming with purrr course (full disclosure: I work at DataCamp, where the course is hosted). Although I’ve used purrr before, there were a lot of functions that were either new to me or I hadn’t realized the first use of.
+purrr is a library for functional programming in R. If you’re familiar with purrr, it’s probably because of the map() function. If you’ve seen purrr but been scared off, I’m right there with you.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="The Importance of Sponsorship">
-<meta name="twitter:title" content="The Importance of Sponsorship">
-<meta property="og:url" content="/the-importance-of-sponsorship/">
-<meta property="twitter:url" content="/the-importance-of-sponsorship/">
+<meta property="og:title" content="Beyond map: some other purrr functions">
+<meta name="twitter:title" content="Beyond map: some other purrr functions">
+<meta property="og:url" content="/beyond-map-some-other-purrr-functions/">
+<meta property="twitter:url" content="/beyond-map-some-other-purrr-functions/">
 <meta property="og:site_name" content="Hooked on Data">
-<meta property="og:description" content="In my last post, I discussed the importance of building your network and some strategies for effectively reaching out. I closed with emphasizing how helpful your peers or people one step ahead of you can be. But there’s a specific area where people with more resources, status, or experience can help you: sponsorship.
-What is sponsorship? When people discuss what they’re seeking from a more senior person in their field, they usually talk about “mentorship.">
-<meta name="twitter:description" content="In my last post, I discussed the importance of building your network and some strategies for effectively reaching out. I closed with emphasizing how helpful your peers or people one step ahead of you can be. But there’s a specific area where people with more resources, status, or experience can help you: sponsorship.
-What is sponsorship? When people discuss what they’re seeking from a more senior person in their field, they usually talk about “mentorship.">
+<meta property="og:description" content="I recently completed Colin Fay’s excellent Intermediate Functional Programming with purrr course (full disclosure: I work at DataCamp, where the course is hosted). Although I’ve used purrr before, there were a lot of functions that were either new to me or I hadn’t realized the first use of.
+purrr is a library for functional programming in R. If you’re familiar with purrr, it’s probably because of the map() function. If you’ve seen purrr but been scared off, I’m right there with you.">
+<meta name="twitter:description" content="I recently completed Colin Fay’s excellent Intermediate Functional Programming with purrr course (full disclosure: I work at DataCamp, where the course is hosted). Although I’ve used purrr before, there were a lot of functions that were either new to me or I hadn’t realized the first use of.
+purrr is a library for functional programming in R. If you’re familiar with purrr, it’s probably because of the map() function. If you’ve seen purrr but been scared off, I’m right there with you.">
 <meta property="og:locale" content="en-us">
 
   
-    <meta property="article:published_time" content="2018-02-14T00:00:00">
+    <meta property="article:published_time" content="2019-01-07T00:00:00">
   
   
-    <meta property="article:modified_time" content="2018-02-14T00:00:00">
+    <meta property="article:modified_time" content="2019-01-07T00:00:00">
   
   
   
   
     
-      <meta property="article:tag" content="Career">
+      <meta property="article:tag" content="R">
+    
+      <meta property="article:tag" content="Code">
+    
+      <meta property="article:tag" content="tidyverse">
     
   
 
@@ -61,14 +65,14 @@ What is sponsorship? When people discuss what they’re seeking from a more seni
   <meta property="twitter:image" content="https://avatars.githubusercontent.com/robinsones">
 
 
-    <title>The Importance of Sponsorship</title>
+    <title>Beyond map: some other purrr functions</title>
 
     <link rel="icon" href="/favicon.png">
     
 
     
 
-    <link rel="canonical" href="/the-importance-of-sponsorship/">
+    <link rel="canonical" href="/beyond-map-some-other-purrr-functions/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -231,15 +235,15 @@ if (!doNotTrack) {
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      The Importance of Sponsorship
+      Beyond map: some other purrr functions
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2018-02-14T00:00:00Z">
+      <time itemprop="datePublished" datetime="2019-01-07T00:00:00Z">
         
-  February 14, 2018
+  January 7, 2019
 
       </time>
     
@@ -253,83 +257,246 @@ if (!doNotTrack) {
               
 
 
-<p>In my <a href="https://hookedondata.org/Building-Your-Data-Science-Network-Reaching-Out/">last post</a>, I discussed the importance of building your network and some strategies for effectively reaching out. I closed with emphasizing how helpful your peers or people one step ahead of you can be. But there’s a specific area where people with more resources, status, or experience can help you: sponsorship.</p>
-<div id="what-is-sponsorship" class="section level2">
-<h2>What is sponsorship?</h2>
-<p>When people discuss what they’re seeking from a more senior person in their field, they usually talk about “mentorship.” Generally, mentoring involves offering advice, helping someone adjust to their new job, or giving feedback on their work. Sponsorship, on the other hand, is all about giving people opportunities, whether by funding them, advocating for their promotion, introducing them to important people, or making sure they get assigned to the types of challenging projects that can help them grow.</p>
-<p>A lot of articles about sponsorship and mentorship are about finding one at your company, and this is especially important if you work at a larger organization that you want to stay in for many years. Nowadays, however, people (especially in tech) often change companies every few years. The tech community has enough small subpockets that you can start building a positive reputation and sponsors in the larger field who will stay with you through multiple companies.</p>
-</div>
-<div id="how-do-you-find-a-sponsor" class="section level2">
-<h2>How do you find a sponsor?</h2>
-<p>Looking for a sponsor can be very awkward if you try to force it or really need one right now - desperation is rarely endearing. You want to build sponsorship relationships <a href="https://www.forbes.com/sites/theyec/2013/06/26/three-steps-to-build-a-powerful-network/#3eb3504e7976">before you need them</a>.</p>
-<p>I <a href="https://hookedondata.org/Building-Your-Data-Science-Network-Reaching-Out/">previously</a> discussed how offering value and building a mutually fulfilling relationship is the best way to network. This applies doubly to sponsorship. If someone sponsors you, they need to be confident you will do a good job, because you’re representing them. For example, if someone recommends you as a speaker for a conference and you never respond to the organizer or you give a clearly unprepared talk, that reflects poorly on the sponsor.</p>
-<p>So how can you show someone you’re up for the task? One of the best ways is to have public examples of your previous successful work. It doesn’t have to be evidence of you doing the exact same thing; otherwise, how could you ever get your first opportunity? <a href="https://mpopov.com/">Mikhil Popov</a> wrote a <a href="https://mpopov.com/blog/advice-for-grads-entering-industry-datasci">great post</a> on how to deal with this kind of Catch-22, specifically needing experience as a data scientist to get a job as a data scientist. He said that your experience doesn’t need to be at a job with the title “data scientist”; what experience really stands out is working on an end-to-end data project (gathering, cleaning, modeling, and visualizing). You can show you’ve done this by writing a <a href="http://varianceexplained.org/r/start-blog/">blog post</a> about how you wrangled real data and the cool analysis you did. Or if you’re interested in speaking at conferences, you can start with a lightning (short) talk at a local meetup and apply for conferences specifically for first-time speakers, such as <a href="https://www.deconstructconf.com/speak">Deconstruct</a>.</p>
-</div>
-<div id="how-can-you-be-a-sponsor" class="section level2">
-<h2>How can you be a sponsor?</h2>
-<p>The best way to thank those who have helped you is to “pay it forward.” When you start to get more influence and opportunities, it becomes your responsibility to help pull others up behind you. For example, if you’re a seasoned speaker, think about recommending others for opportunities, especially when you can’t go yourself, like Julia Evans recently did:</p>
-<blockquote class="twitter-tweet" data-lang="en">
-<p lang="en" dir="ltr">
-I get email about a lot of speaking opportunities. if you're looking to give more talks (especially if you're from a marginalized group), reply to this with a link to a video of a talk you're proud of!
-</p>
-— 🔎Julia Evans🔍 (<span class="citation">@b0rk</span>) <a href="https://twitter.com/b0rk/status/960884397644898305?ref_src=twsrc%5Etfw">February 6, 2018</a>
-</blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-<p>For more ideas, Caitlin Hudon has a great twitter thread:</p>
-<blockquote class="twitter-tweet" data-lang="en">
-<p lang="en" dir="ltr">
-Below are examples of “good guys in tech” and things they have done that have helped my career. I hope others can follow their example.
-</p>
-— Caitlin Hudon👩🏼 💻 (<span class="citation">@beeonaposy</span>) <a href="https://twitter.com/beeonaposy/status/895799250055024640?ref_src=twsrc%5Etfw">August 11, 2017</a>
-</blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-<p>Some examples she gives include colleagues praising her work in front of her boss, sharing their salary information with her, and promoting the work of women, including by doing something as seemingly small as tweeting about it. When Caitlin started RLadies Austin, she had men reaching out to offer their time, training materials, meeting spaces, and promotion of the meetup.</p>
-<p>Sponsorship is important for everyone, but some groups are disproportionality less likely to receive it. For example, research has found that women are <a href="https://hbr.org/2010/08/women-are-over-mentored-but-un">overmentored and undersponsored</a> and that men’s mentors are more likely to be senior. Mentorship is great, but often people <a href="http://larahogan.me/blog/what-sponsorship-looks-like/">need opportunity and visibility</a>, not more advice.</p>
-<p>If you’re a man and looking for more ways to be an ally to women and non-binary people, my colleagues at Etsy have written a <a href="https://codeascraft.com/2016/10/19/being-an-effective-ally-to-women-and-non-binary-people/">great guide</a>. It’s worthwhile to read the whole thing, but here’s an excerpt about some concrete things you can do<sup>1</sup>:</p>
+<p>I recently completed <a href="https://colinfay.me/">Colin Fay’s</a> excellent <a href="https://www.datacamp.com/courses/intermediate-functional-programming-with-purrr">Intermediate Functional Programming with purrr</a> course (full disclosure: I work at DataCamp, where the course is hosted). Although I’ve used <code>purrr</code> before, there were a lot of functions that were either new to me or I hadn’t realized the first use of.</p>
+<p><code>purrr</code> is a library for functional programming in R. If you’re familiar with <code>purrr</code>, it’s probably because of the <code>map()</code> function. If you’ve seen <code>purrr</code> but been scared off, I’m right there with you. It can definitely be intimidating - you’ll often see it used with nested lists or dataframes, like in this (modified) example from one of the last lessons in Jenny Bryan’s <code>purrr</code> tutorial:</p>
+<pre class="r"><code>library(dplyr)
+library(purrr)
+library(gapminder)
+library(tidyr)</code></pre>
+<pre class="r"><code>gapminder %&gt;%
+  group_by(country) %&gt;%
+  nest() %&gt;%  
+  mutate(fit = map(data, ~ lm(lifeExp ~ year, data = .x))) %&gt;%
+  mutate(rsq = map_dbl(fit, ~ summary(.x)[[&quot;r.squared&quot;]])) %&gt;%
+  arrange(rsq)</code></pre>
+<pre><code>## # A tibble: 142 x 4
+##    country          data              fit         rsq
+##    &lt;fct&gt;            &lt;list&gt;            &lt;list&gt;    &lt;dbl&gt;
+##  1 Rwanda           &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.0172
+##  2 Botswana         &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.0340
+##  3 Zimbabwe         &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.0562
+##  4 Zambia           &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.0598
+##  5 Swaziland        &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.0682
+##  6 Lesotho          &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.0849
+##  7 Cote d&#39;Ivoire    &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.283 
+##  8 South Africa     &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.312 
+##  9 Uganda           &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.342 
+## 10 Congo, Dem. Rep. &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.348 
+## # ... with 132 more rows</code></pre>
+<p>If you’ve generally worked with plain-old table data or vectors (like I have), you might have this reaction to that code:</p>
 <div class="figure">
-<img src="/img/ally_sponsorship.png" />
+<img src="https://media.giphy.com/media/a93jwI0wkWTQs/giphy.gif" />
 
 </div>
+<p>I am here to tell you: <code>purrr</code> can make your life easier even if you never write code like this. Certainly, knowing how to work with complicated nested lists and dataframes is very useful - it can simplify code you’ve written, and your data may arrive in that format (for example, JSON data is often represented as nested lists or dataframes in R). But even if all you ever work with is “simple” lists, dataframes, and vectors, you’ll be glad to know a bit of <code>purrr</code>.</p>
+<p>This post gives you a brief introduction to using <code>map()</code> on a vector and then goes through some <code>purrr</code> functions for creating functions and modifying lists/vectors. Most are covered in Colin’s course, though I added a few I found on the <a href="https://www.rstudio.com/resources/cheatsheets/#purrr"><code>purrr</code> cheatsheet</a>.</p>
+<div id="a-brief-introduction-to-map" class="section level2">
+<h2>A brief introduction to map</h2>
+<p><code>map()</code>, at its most basic, lets you take a list or vector and apply a function to each element. If you’ve been using R for a while, you might be familiar with apply functions, like <code>sapply()</code> and <code>lapply()</code>. <code>map()</code> does essentially the same thing, but offers several advantages, most importantly consistency (see the first Stack Overflow answer by Hadley Wickham <a href="https://stackoverflow.com/questions/45101045/why-use-purrrmap-instead-of-lapply">here</a> for more).</p>
+<p>Let’s look at an example: taking a list of four numbers and rounding each of them.</p>
+<pre class="r"><code>my_vector &lt;- c(1.0212, 2.483, 3.189, 4.5938)
+map(my_vector, round)</code></pre>
+<pre><code>## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] 2
+## 
+## [[3]]
+## [1] 3
+## 
+## [[4]]
+## [1] 5</code></pre>
+<p><code>map()</code> always returns a list, which is why you’ve got those double brackets. But you can return a dataframe or different types of vectors instead by using the appropriate <code>map_*()</code> function. In this case, let’s return a vector of type <code>double</code> instead:</p>
+<pre class="r"><code>map_dbl(my_vector, round)</code></pre>
+<pre><code>## [1] 1 2 3 5</code></pre>
+<p>Now, this is a bit of a silly example. Because <code>round()</code> is vectorized (it works not just on a single value but a vector of them), you could have just done this instead:</p>
+<pre class="r"><code>round(my_vector)</code></pre>
+<pre><code>## [1] 1 2 3 5</code></pre>
+<p>One note: this doesn’t work if your input is a list instead of a vector; in that case, you would need to use <code>map()</code>:</p>
+<pre class="r"><code>vec_as_list &lt;- list(my_vector)
+round(vec_as_list)</code></pre>
+<pre><code>## Error in round(vec_as_list): non-numeric argument to mathematical function</code></pre>
+<pre class="r"><code>map(vec_as_list, round)</code></pre>
+<pre><code>## [[1]]
+## [1] 1 2 3 5</code></pre>
+<p>That’s why you generally don’t need <code>map</code> when you’re working with a simple vector and a vectorized function. <code>map</code> shines where you either a) have a non-vectorized function or b) a more complicated data structure (including a list).</p>
+<p>But another advantage of <code>map</code> is you can make an “anonymous” function inside of it. It’s called anonymous because it has no name. The formula is a <code>~</code> followed by what you want to do to each element, with <code>.x</code> representing the element (<code>.</code> also works). We can make an anonymous function to add ten to each element of a our vector:</p>
+<pre class="r"><code>map_dbl(my_vector, ~ .x + 10)</code></pre>
+<pre><code>## [1] 11.0212 12.4830 13.1890 14.5938</code></pre>
+<p><code>map()</code> can get much (much) more complicated, with nested lists and multiple inputs and arguments, but even knowing this basic use case can help you! If you do want to dive in more, check out <a href="https://r4ds.had.co.nz/iteration.html#the-map-functions">chapter 21 of R for Data Science</a>, Jenny Bryan’s <a href="https://jennybc.github.io/purrr-tutorial/">purrr tutorials</a>, and Auriel Fournier’s (foundations of functional programming with purrr)[<a href="https://www.datacamp.com/courses/foundations-of-functional-programming-with-purrr" class="uri">https://www.datacamp.com/courses/foundations-of-functional-programming-with-purrr</a>] course and chapters 3 and 4 of <a href="https://www.datacamp.com/courses/writing-functions-in-r">Writing Functions in R</a> by Charlotte and Hadley Wickham on DataCamp.</p>
 </div>
-<div id="my-experience" class="section level2">
-<h2>My experience</h2>
-<p>My own career shows how sponsorship can be incredibly important. Some ways that I’ve been sponsored include: - getting my foot in the door for my <strong>first data science job</strong> because <strong>Hilary Parker</strong> introduced me to her former colleague at Etsy, who referred me. - attending my <strong>first data science conference</strong>, RStudio::conf 2017, thanks to a diversity scholarship from <strong>RStudio</strong> that allowed me to go to conference and training days for free and included a small travel budget. - giving my <strong>first data science talk</strong> because <strong>Jared Lander</strong> asked me when, not if, I wanted to speak at his meetup. He believed I could do it before I did and has been a very enthusiastic champion. The talk <a href="https://www.youtube.com/watch?v=SF-ryGgLOgQ">was recorded</a> and was seen by the Director of the Data Science Center at West Point, who invited me to give a talk there last September (it was awesome). - giving my <strong>first data science conference talk</strong> at Data Day Texas two weeks ago because <strong>Hilary Parker</strong> and other invited speakers recommended me.</p>
-<p>Actions that may not rise to the level of sponsorship can also make a big impact. Specifically, I want to thank <strong>Hadley Wickham</strong>, for encouraging me to submit my talk to RStudio::conf 2018:</p>
-<blockquote class="twitter-tweet" data-lang="en">
-<p lang="en" dir="ltr">
-You should submit it to rstudio::conf!
-</p>
-— Hadley Wickham (<span class="citation">@hadleywickham</span>) <a href="https://twitter.com/hadleywickham/status/900828594703880198?ref_src=twsrc%5Etfw">August 24, 2017</a>
-</blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-<p>And <strong>Jim Hester</strong> citing me as one of the contributors to the glue documentation.</p>
-<blockquote class="twitter-tweet" data-lang="en">
-<p lang="en" dir="ltr">
-Want to give a belated shoutout to <a href="https://twitter.com/jimhester_?ref_src=twsrc%5Etfw"><span class="citation">@jimhester_</span></a> and the tidyverse team for providing a really nice experience to a OS newbie:<br><br>A month ago, I was trying to use a new function in glue and getting an error it didn’t exist. Colleague was pinging me about same error. 1/
-</p>
-— Emily Robinson (<span class="citation">@robinson_es</span>) <a href="https://twitter.com/robinson_es/status/930814430362984448?ref_src=twsrc%5Etfw">November 15, 2017</a>
-</blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-<p>Finally, I am incredibly lucky to have my amazing brother <strong>Dave Robinson</strong>. He has been my most encouraging data science sponsor and is a tireless advocate for women in data science in general. His tweets on international women’s day got all of those mentioned a lot more followers:</p>
-<blockquote class="twitter-tweet" data-lang="en">
-<p lang="en" dir="ltr">
-Five amazing <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> data scientists to follow if you're not already:<a href="https://twitter.com/juliasilge?ref_src=twsrc%5Etfw"><span class="citation">@juliasilge</span></a> <a href="https://twitter.com/JennyBryan?ref_src=twsrc%5Etfw"><span class="citation">@JennyBryan</span></a> <a href="https://twitter.com/hspter?ref_src=twsrc%5Etfw"><span class="citation">@hspter</span></a> <a href="https://twitter.com/ma_salmon?ref_src=twsrc%5Etfw"><span class="citation">@ma_salmon</span></a> <a href="https://twitter.com/robinson_es?ref_src=twsrc%5Etfw"><span class="citation">@robinson_es</span></a> <a href="https://twitter.com/hashtag/IWD2017?src=hash&amp;ref_src=twsrc%5Etfw">#IWD2017</a> <a href="https://t.co/OWqi0PzyWM">pic.twitter.com/OWqi0PzyWM</a>
-</p>
-— David Robinson (<span class="citation">@drob</span>) <a href="https://twitter.com/drob/status/839564664321282048?ref_src=twsrc%5Etfw">March 8, 2017</a>
-</blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<div id="beyond-map" class="section level2">
+<h2>Beyond map</h2>
+<p>While <code>map*()</code> is great, it can still take a while to wrap your head around. But <code>purrr</code> offers dozens of useful functions that you can start using right away to streamline your workflow, even if you don’t use <code>map()</code>.</p>
+<div id="creating-new-functions" class="section level3">
+<h3>Creating new functions</h3>
+<div id="negate" class="section level4">
+<h4>negate</h4>
+<p><code>negate()</code> … negates a predicate function (aren’t the <code>purrr</code> function names done well?). For example, maybe you’ve used <code>%in%</code> before to check whether values were in a set:</p>
+<pre class="r"><code>my_vector %in% c(1.0212, 10)</code></pre>
+<pre><code>## [1]  TRUE FALSE FALSE FALSE</code></pre>
+<p>What if you wanted to know which ones were <strong>not in</strong> a list instead? You can use <code>negate()</code> to create a <code>%not_in%</code> function (note, because <code>%</code> is a special character, you need to surround both functions with back ticks):</p>
+<pre class="r"><code>`%not_in%` &lt;- negate(`%in%`)
+
+my_vector %not_in% c(1.0212, 10)</code></pre>
+<pre><code>## [1] FALSE  TRUE  TRUE  TRUE</code></pre>
 </div>
-<div id="next-time" class="section level2">
-<h2>Next Time</h2>
-<p>I’m learning to be cautious predicting what my next posts will be, but I do have a couple ideas I’m drafting, including an introduction to A/B Testing for data scientists and analysts and how to prioritize and respond to the many ad-hoc requests you can get as a data scientist partnering with business teams.</p>
-<blockquote class="twitter-tweet" data-lang="en">
-<p lang="en" dir="ltr">
-Can you please blog about this
-</p>
-— David Robinson (<span class="citation">@drob</span>) <a href="https://twitter.com/drob/status/963973448149106690?ref_src=twsrc%5Etfw">February 15, 2018</a>
-</blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-<p>[1] What if you’re reluctant to closely mentor women because you’re worried about being accused of sexual harassment or the appearance of impropriety? Read <a href="https://www.linkedin.com/pulse/men-afraid-mentor-women-heres-what-we-can-do-adam-grant/">this article</a> from Adam Grant. One key point is hold yourself accountable for parity: if you won’t go to dinner alone with a woman, don’t do it with a man. But much of sponsorship is usually done in a public situation and you can sponsor people without them being aware, such as by raising their name positively in management meetings.</p>
+<div id="partial" class="section level4">
+<h4>partial</h4>
+<p><code>partial()</code>, like <code>compose()</code> and <code>negate()</code>, let’s you make a new function. You probably have a couple functions where you almost always use an extra argument, like <code>mean()</code> with <code>na.rm = TRUE</code> or <code>round()</code> with <code>digits = 1</code>. You can use <code>partial()</code> to create a new function that where those are always specified!</p>
+<pre class="r"><code>mean(c(10, NA, 5, 7))</code></pre>
+<pre><code>## [1] NA</code></pre>
+<pre class="r"><code>mean(c(10, NA, 5, 7), na.rm = TRUE)</code></pre>
+<pre><code>## [1] 7.333333</code></pre>
+<pre class="r"><code>my_mean &lt;- partial(mean, na.rm = TRUE)
+my_mean(c(10, NA, 5, 7))</code></pre>
+<pre><code>## [1] 7.333333</code></pre>
+<pre class="r"><code>my_round &lt;- partial(round, digits = 1)
+my_round(10.484)</code></pre>
+<pre><code>## [1] 10.5</code></pre>
+</div>
+<div id="safely-and-possibly" class="section level4">
+<h4>safely and possibly</h4>
+<p>Lists are magical because you can have elements of different types, while a vector can only be one type. Look what happens here:</p>
+<pre class="r"><code>mixed_vector &lt;- c(&quot;happy&quot;, 2L, 4.39)
+mixed_vector</code></pre>
+<pre><code>## [1] &quot;happy&quot; &quot;2&quot;     &quot;4.39&quot;</code></pre>
+<pre class="r"><code>typeof(mixed_vector)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<p>I entered a character, an integer (that’s what the L is for), and a double, but they all ended up characters! Since <code>c()</code> creates a vector, not a list, it converts inputs if needed so that the they’re all the same type.</p>
+<p>On the other hand, type is preserved if you make a list:</p>
+<pre class="r"><code>mixed_list &lt;- list(&quot;happy&quot;, 2L, 4.39)
+mixed_list</code></pre>
+<pre><code>## [[1]]
+## [1] &quot;happy&quot;
+## 
+## [[2]]
+## [1] 2
+## 
+## [[3]]
+## [1] 4.39</code></pre>
+<p>While the type for <code>mixed_list</code> is a list, we see the types of its elements is as desired:</p>
+<pre class="r"><code>typeof(mixed_list[[2]])</code></pre>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<p>What if you’re not sure about the types of every element in your list, and you want to apply a function that needs the input to be of a certain type? For example, let’s say we wanted to add 10 to every element of a list where possible.</p>
+<pre class="r"><code>add_ten &lt;- function(n) {
+  n + 10
+}
+
+map(mixed_list, add_ten)</code></pre>
+<pre><code>## Error in n + 10: non-numeric argument to binary operator</code></pre>
+<p>We get an error since we’re trying to add 10 to “happy”, which isn’t numeric! This is where <code>safely()</code> and <code>possibly()</code> come in.</p>
+<p>If you’re not interested in what the error is, you should use <code>possibly()</code>. In addition to the function it’s wrapping around, you need to specify the argument <code>otherwise</code>: what you want to return if there is an error. Let’s take a look:</p>
+<pre class="r"><code>map(mixed_list, possibly(add_ten, otherwise = &quot;I&#39;m not numeric!&quot;))</code></pre>
+<pre><code>## [[1]]
+## [1] &quot;I&#39;m not numeric!&quot;
+## 
+## [[2]]
+## [1] 12
+## 
+## [[3]]
+## [1] 14.39</code></pre>
+<p>Side-note - I find the the double-brackets confusing. We’ve got them since our list isn’t named, let’s change that with <code>purrr's</code> <code>set_names()</code>, giving it the very creative names <code>a</code>, <code>b</code>, and <code>c</code>.</p>
+<pre class="r"><code>mixed_list &lt;- set_names(mixed_list, c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;))
+mixed_list</code></pre>
+<pre><code>## $a
+## [1] &quot;happy&quot;
+## 
+## $b
+## [1] 2
+## 
+## $c
+## [1] 4.39</code></pre>
+<p>On the other hand, sometimes you do want to know what the error is. If that’s the case, you can use <code>safely()</code> instead:</p>
+<pre class="r"><code>map(mixed_list, safely(add_ten))</code></pre>
+<pre><code>## $a
+## $a$result
+## NULL
+## 
+## $a$error
+## &lt;simpleError in n + 10: non-numeric argument to binary operator&gt;
+## 
+## 
+## $b
+## $b$result
+## [1] 12
+## 
+## $b$error
+## NULL
+## 
+## 
+## $c
+## $c$result
+## [1] 14.39
+## 
+## $c$error
+## NULL</code></pre>
+<p><code>safely</code> returns a list of lists. Each element from the original list has two entries: <code>result</code> (of the function) and <code>error</code>. One is always <code>NULL</code> - if there was an error, <code>result</code> is <code>NULL</code> and <code>error</code> is the error message. If you want to get back all the error or results, you can use another handy feature of <code>map</code>: if you give it a string, for each element of the list, it will return the element inside of it with that name.</p>
+<pre class="r"><code>safe_results &lt;- map(mixed_list, safely(add_ten))
+
+map(safe_results, &quot;result&quot;)</code></pre>
+<pre><code>## $a
+## NULL
+## 
+## $b
+## [1] 12
+## 
+## $c
+## [1] 14.39</code></pre>
+</div>
+<div id="compose" class="section level4">
+<h4>compose</h4>
+<p><code>compose()</code> lets you string together multiple functions. Let’s say you want to add_ten and then take the log of a vector of numbers. You could do either of these:</p>
+<pre class="r"><code>c(1, 20, 500) %&gt;%
+  add_ten() %&gt;%
+  log()</code></pre>
+<pre><code>## [1] 2.397895 3.401197 6.234411</code></pre>
+<pre class="r"><code>log(add_ten(c(1, 20, 500)))</code></pre>
+<pre><code>## [1] 2.397895 3.401197 6.234411</code></pre>
+<p>But you make a new function instead with <code>compose</code>. You give <code>compose</code> functions to execute in order from <em>right to left</em>.</p>
+<pre class="r"><code>add_ten_and_log &lt;- compose(log, add_ten)
+add_ten_and_log(c(1, 20, 500))</code></pre>
+<pre><code>## [1] 2.397895 3.401197 6.234411</code></pre>
+<p><code>compose</code> is great for simplifying your code if you’re going to use a sequence of functions again and again.</p>
+</div>
+</div>
+<div id="modifying-vectorslists" class="section level3">
+<h3>Modifying vectors/lists</h3>
+<div id="keep-and-discard" class="section level4">
+<h4>keep and discard</h4>
+<p><code>keep()</code> and <code>discard()</code> … keep and discard elements of a list or vector based on a <em>predicate function</em>. A predicate function is a function that returns <code>TRUE</code> or <code>FALSE</code>. For example, <code>is.factor()</code> is a predicate function, because it always returns <code>TRUE</code> or <code>FALSE</code>, while <code>round()</code> is not.</p>
+<p>For example, we can <code>keep()</code> all elements of our list that are less than 3 with the following code:</p>
+<pre class="r"><code>keep(my_list, ~ .x &lt; 3)</code></pre>
+<pre><code>## Error in map_lgl(.x, .p, ...): object &#39;my_list&#39; not found</code></pre>
+<p>Similarly, we could <code>discard()</code> all elements less than 3:</p>
+<pre class="r"><code>discard(my_list, ~ .x &lt; 3)</code></pre>
+<pre><code>## Error in map_lgl(.x, .p, ...): object &#39;my_list&#39; not found</code></pre>
+</div>
+<div id="map_if" class="section level4">
+<h4>map_if</h4>
+<p>Sometimes, you’ll want to only apply a function to certain elements of a list, like all the numeric ones. This is where <code>map_if()</code> comes in handy. Just like <code>mutate_if()</code>, <code>select_if()</code>, and <code>summarise_if()</code>, you add a condition and the function will only apply to those columns (or list elements) where the condition is met.</p>
+<p>You could use <code>safely()</code> or <code>possibly()</code>, but <code>map_if()</code> works if a) we know the condition we need the element to meet for the function to work and want to keep the original element if the condition isn’t met or b) not meeting the condition won’t result in an error, but we still don’t want to our apply our function to elements not meeting it.</p>
+<pre class="r"><code>map_if(mixed_list, is.numeric, add_ten)</code></pre>
+<pre><code>## $a
+## [1] &quot;happy&quot;
+## 
+## $b
+## [1] 12
+## 
+## $c
+## [1] 14.39</code></pre>
+</div>
+<div id="every" class="section level4">
+<h4>every</h4>
+<p>Sometimes you have a giant list and want to know whether each element meets a condition. For example, maybe if every element is numeric. You can use <code>every()</code>, which will check if every element of a list satisfies a predicate function:</p>
+<pre class="r"><code>every(mixed_list, is.numeric)</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+</div>
+</div>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
 </div>
 
               
@@ -343,7 +510,11 @@ Can you please blog about this
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">TAGGED IN</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="/tags/career/">Career</a>
+  <a class="tag tag--primary tag--small" href="/tags/r/">R</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/code/">Code</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/tidyverse/">tidyverse</a>
 
                   </div>
                 
@@ -356,7 +527,7 @@ Can you please blog about this
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="/advice-for-applying-to-data-science-jobs/" data-tooltip="Advice for Applying to Data Science Jobs">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -364,7 +535,7 @@ Can you please blog about this
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="/building-your-data-science-network-finding-community/" data-tooltip="Building Your Data Science Network: Finding Community">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/the-lesser-known-stars-of-the-tidyverse/" data-tooltip="The Lesser Known Stars of the Tidyverse">
               
                   <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                   <i class="fa fa-angle-right"></i>
@@ -382,13 +553,13 @@ Can you please blog about this
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/the-importance-of-sponsorship/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/beyond-map-some-other-purrr-functions/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/the-importance-of-sponsorship/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/beyond-map-some-other-purrr-functions/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -426,7 +597,7 @@ Can you please blog about this
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="/advice-for-applying-to-data-science-jobs/" data-tooltip="Advice for Applying to Data Science Jobs">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -434,7 +605,7 @@ Can you please blog about this
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="/building-your-data-science-network-finding-community/" data-tooltip="Building Your Data Science Network: Finding Community">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/the-lesser-known-stars-of-the-tidyverse/" data-tooltip="The Lesser Known Stars of the Tidyverse">
               
                   <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                   <i class="fa fa-angle-right"></i>
@@ -452,13 +623,13 @@ Can you please blog about this
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/the-importance-of-sponsorship/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/beyond-map-some-other-purrr-functions/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/the-importance-of-sponsorship/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/beyond-map-some-other-purrr-functions/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -482,13 +653,13 @@ Can you please blog about this
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2Fthe-importance-of-sponsorship%2F">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2Fbeyond-map-some-other-purrr-functions%2F">
           <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2Fthe-importance-of-sponsorship%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2Fbeyond-map-some-other-purrr-functions%2F">
           <i class="fa fa-twitter"></i><span>Share on Twitter</span>
         </a>
       </li>

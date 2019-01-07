@@ -1,0 +1,255 @@
+---
+title: 'Beyond map: some other purrr functions'
+author: Emily Robinson
+date: '2019-01-07'
+slug: beyond-map-some-other-purrr-functions
+categories: []
+tags:
+  - R
+  - Code
+  - tidyverse
+---
+
+
+
+<p>I recently completed <a href="https://colinfay.me/">Colin Fay’s</a> excellent <a href="https://www.datacamp.com/courses/intermediate-functional-programming-with-purrr">Intermediate Functional Programming with purrr</a> course (full disclosure: I work at DataCamp, where the course is hosted). Although I’ve used <code>purrr</code> before, there were a lot of functions that were either new to me or I hadn’t realized the first use of.</p>
+<p><code>purrr</code> is a library for functional programming in R. If you’re familiar with <code>purrr</code>, it’s probably because of the <code>map()</code> function. If you’ve seen <code>purrr</code> but been scared off, I’m right there with you. It can definitely be intimidating - you’ll often see it used with nested lists or dataframes, like in this (modified) example from one of the last lessons in Jenny Bryan’s <code>purrr</code> tutorial:</p>
+<pre class="r"><code>library(dplyr)
+library(purrr)
+library(gapminder)
+library(tidyr)</code></pre>
+<pre class="r"><code>gapminder %&gt;%
+  group_by(country) %&gt;%
+  nest() %&gt;%  
+  mutate(fit = map(data, ~ lm(lifeExp ~ year, data = .x))) %&gt;%
+  mutate(rsq = map_dbl(fit, ~ summary(.x)[[&quot;r.squared&quot;]])) %&gt;%
+  arrange(rsq)</code></pre>
+<pre><code>## # A tibble: 142 x 4
+##    country          data              fit         rsq
+##    &lt;fct&gt;            &lt;list&gt;            &lt;list&gt;    &lt;dbl&gt;
+##  1 Rwanda           &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.0172
+##  2 Botswana         &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.0340
+##  3 Zimbabwe         &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.0562
+##  4 Zambia           &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.0598
+##  5 Swaziland        &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.0682
+##  6 Lesotho          &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.0849
+##  7 Cote d&#39;Ivoire    &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.283 
+##  8 South Africa     &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.312 
+##  9 Uganda           &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.342 
+## 10 Congo, Dem. Rep. &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.348 
+## # ... with 132 more rows</code></pre>
+<p>If you’ve generally worked with plain-old table data or vectors (like I have), you might have this reaction to that code:</p>
+<div class="figure">
+<img src="https://media.giphy.com/media/a93jwI0wkWTQs/giphy.gif" />
+
+</div>
+<p>I am here to tell you: <code>purrr</code> can make your life easier even if you never write code like this. Certainly, knowing how to work with complicated nested lists and dataframes is very useful - it can simplify code you’ve written, and your data may arrive in that format (for example, JSON data is often represented as nested lists or dataframes in R). But even if all you ever work with is “simple” lists, dataframes, and vectors, you’ll be glad to know a bit of <code>purrr</code>.</p>
+<p>This post gives you a brief introduction to using <code>map()</code> on a vector and then goes through some <code>purrr</code> functions for creating functions and modifying lists/vectors. Most are covered in Colin’s course, though I added a few I found on the <a href="https://www.rstudio.com/resources/cheatsheets/#purrr"><code>purrr</code> cheatsheet</a>.</p>
+<div id="a-brief-introduction-to-map" class="section level2">
+<h2>A brief introduction to map</h2>
+<p><code>map()</code>, at its most basic, lets you take a list or vector and apply a function to each element. If you’ve been using R for a while, you might be familiar with apply functions, like <code>sapply()</code> and <code>lapply()</code>. <code>map()</code> does essentially the same thing, but offers several advantages, most importantly consistency (see the first Stack Overflow answer by Hadley Wickham <a href="https://stackoverflow.com/questions/45101045/why-use-purrrmap-instead-of-lapply">here</a> for more).</p>
+<p>Let’s look at an example: taking a list of four numbers and rounding each of them.</p>
+<pre class="r"><code>my_vector &lt;- c(1.0212, 2.483, 3.189, 4.5938)
+map(my_vector, round)</code></pre>
+<pre><code>## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] 2
+## 
+## [[3]]
+## [1] 3
+## 
+## [[4]]
+## [1] 5</code></pre>
+<p><code>map()</code> always returns a list, which is why you’ve got those double brackets. But you can return a dataframe or different types of vectors instead by using the appropriate <code>map_*()</code> function. In this case, let’s return a vector of type <code>double</code> instead:</p>
+<pre class="r"><code>map_dbl(my_vector, round)</code></pre>
+<pre><code>## [1] 1 2 3 5</code></pre>
+<p>Now, this is a bit of a silly example. Because <code>round()</code> is vectorized (it works not just on a single value but a vector of them), you could have just done this instead:</p>
+<pre class="r"><code>round(my_vector)</code></pre>
+<pre><code>## [1] 1 2 3 5</code></pre>
+<p>One note: this doesn’t work if your input is a list instead of a vector; in that case, you would need to use <code>map()</code>:</p>
+<pre class="r"><code>vec_as_list &lt;- list(my_vector)
+round(vec_as_list)</code></pre>
+<pre><code>## Error in round(vec_as_list): non-numeric argument to mathematical function</code></pre>
+<pre class="r"><code>map(vec_as_list, round)</code></pre>
+<pre><code>## [[1]]
+## [1] 1 2 3 5</code></pre>
+<p>That’s why you generally don’t need <code>map</code> when you’re working with a simple vector and a vectorized function. <code>map</code> shines where you either a) have a non-vectorized function or b) a more complicated data structure (including a list).</p>
+<p>But another advantage of <code>map</code> is you can make an “anonymous” function inside of it. It’s called anonymous because it has no name. The formula is a <code>~</code> followed by what you want to do to each element, with <code>.x</code> representing the element (<code>.</code> also works). We can make an anonymous function to add ten to each element of a our vector:</p>
+<pre class="r"><code>map_dbl(my_vector, ~ .x + 10)</code></pre>
+<pre><code>## [1] 11.0212 12.4830 13.1890 14.5938</code></pre>
+<p><code>map()</code> can get much (much) more complicated, with nested lists and multiple inputs and arguments, but even knowing this basic use case can help you! If you do want to dive in more, check out <a href="https://r4ds.had.co.nz/iteration.html#the-map-functions">chapter 21 of R for Data Science</a>, Jenny Bryan’s <a href="https://jennybc.github.io/purrr-tutorial/">purrr tutorials</a>, and Auriel Fournier’s (foundations of functional programming with purrr)[<a href="https://www.datacamp.com/courses/foundations-of-functional-programming-with-purrr" class="uri">https://www.datacamp.com/courses/foundations-of-functional-programming-with-purrr</a>] course and chapters 3 and 4 of <a href="https://www.datacamp.com/courses/writing-functions-in-r">Writing Functions in R</a> by Charlotte and Hadley Wickham on DataCamp.</p>
+</div>
+<div id="beyond-map" class="section level2">
+<h2>Beyond map</h2>
+<p>While <code>map*()</code> is great, it can still take a while to wrap your head around. But <code>purrr</code> offers dozens of useful functions that you can start using right away to streamline your workflow, even if you don’t use <code>map()</code>.</p>
+<div id="creating-new-functions" class="section level3">
+<h3>Creating new functions</h3>
+<div id="negate" class="section level4">
+<h4>negate</h4>
+<p><code>negate()</code> … negates a predicate function (aren’t the <code>purrr</code> function names done well?). For example, maybe you’ve used <code>%in%</code> before to check whether values were in a set:</p>
+<pre class="r"><code>my_vector %in% c(1.0212, 10)</code></pre>
+<pre><code>## [1]  TRUE FALSE FALSE FALSE</code></pre>
+<p>What if you wanted to know which ones were <strong>not in</strong> a list instead? You can use <code>negate()</code> to create a <code>%not_in%</code> function (note, because <code>%</code> is a special character, you need to surround both functions with back ticks):</p>
+<pre class="r"><code>`%not_in%` &lt;- negate(`%in%`)
+
+my_vector %not_in% c(1.0212, 10)</code></pre>
+<pre><code>## [1] FALSE  TRUE  TRUE  TRUE</code></pre>
+</div>
+<div id="partial" class="section level4">
+<h4>partial</h4>
+<p><code>partial()</code>, like <code>compose()</code> and <code>negate()</code>, let’s you make a new function. You probably have a couple functions where you almost always use an extra argument, like <code>mean()</code> with <code>na.rm = TRUE</code> or <code>round()</code> with <code>digits = 1</code>. You can use <code>partial()</code> to create a new function that where those are always specified!</p>
+<pre class="r"><code>mean(c(10, NA, 5, 7))</code></pre>
+<pre><code>## [1] NA</code></pre>
+<pre class="r"><code>mean(c(10, NA, 5, 7), na.rm = TRUE)</code></pre>
+<pre><code>## [1] 7.333333</code></pre>
+<pre class="r"><code>my_mean &lt;- partial(mean, na.rm = TRUE)
+my_mean(c(10, NA, 5, 7))</code></pre>
+<pre><code>## [1] 7.333333</code></pre>
+<pre class="r"><code>my_round &lt;- partial(round, digits = 1)
+my_round(10.484)</code></pre>
+<pre><code>## [1] 10.5</code></pre>
+</div>
+<div id="safely-and-possibly" class="section level4">
+<h4>safely and possibly</h4>
+<p>Lists are magical because you can have elements of different types, while a vector can only be one type. Look what happens here:</p>
+<pre class="r"><code>mixed_vector &lt;- c(&quot;happy&quot;, 2L, 4.39)
+mixed_vector</code></pre>
+<pre><code>## [1] &quot;happy&quot; &quot;2&quot;     &quot;4.39&quot;</code></pre>
+<pre class="r"><code>typeof(mixed_vector)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<p>I entered a character, an integer (that’s what the L is for), and a double, but they all ended up characters! Since <code>c()</code> creates a vector, not a list, it converts inputs if needed so that the they’re all the same type.</p>
+<p>On the other hand, type is preserved if you make a list:</p>
+<pre class="r"><code>mixed_list &lt;- list(&quot;happy&quot;, 2L, 4.39)
+mixed_list</code></pre>
+<pre><code>## [[1]]
+## [1] &quot;happy&quot;
+## 
+## [[2]]
+## [1] 2
+## 
+## [[3]]
+## [1] 4.39</code></pre>
+<p>While the type for <code>mixed_list</code> is a list, we see the types of its elements is as desired:</p>
+<pre class="r"><code>typeof(mixed_list[[2]])</code></pre>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<p>What if you’re not sure about the types of every element in your list, and you want to apply a function that needs the input to be of a certain type? For example, let’s say we wanted to add 10 to every element of a list where possible.</p>
+<pre class="r"><code>add_ten &lt;- function(n) {
+  n + 10
+}
+
+map(mixed_list, add_ten)</code></pre>
+<pre><code>## Error in n + 10: non-numeric argument to binary operator</code></pre>
+<p>We get an error since we’re trying to add 10 to “happy”, which isn’t numeric! This is where <code>safely()</code> and <code>possibly()</code> come in.</p>
+<p>If you’re not interested in what the error is, you should use <code>possibly()</code>. In addition to the function it’s wrapping around, you need to specify the argument <code>otherwise</code>: what you want to return if there is an error. Let’s take a look:</p>
+<pre class="r"><code>map(mixed_list, possibly(add_ten, otherwise = &quot;I&#39;m not numeric!&quot;))</code></pre>
+<pre><code>## [[1]]
+## [1] &quot;I&#39;m not numeric!&quot;
+## 
+## [[2]]
+## [1] 12
+## 
+## [[3]]
+## [1] 14.39</code></pre>
+<p>Side-note - I find the the double-brackets confusing. We’ve got them since our list isn’t named, let’s change that with <code>purrr's</code> <code>set_names()</code>, giving it the very creative names <code>a</code>, <code>b</code>, and <code>c</code>.</p>
+<pre class="r"><code>mixed_list &lt;- set_names(mixed_list, c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;))
+mixed_list</code></pre>
+<pre><code>## $a
+## [1] &quot;happy&quot;
+## 
+## $b
+## [1] 2
+## 
+## $c
+## [1] 4.39</code></pre>
+<p>On the other hand, sometimes you do want to know what the error is. If that’s the case, you can use <code>safely()</code> instead:</p>
+<pre class="r"><code>map(mixed_list, safely(add_ten))</code></pre>
+<pre><code>## $a
+## $a$result
+## NULL
+## 
+## $a$error
+## &lt;simpleError in n + 10: non-numeric argument to binary operator&gt;
+## 
+## 
+## $b
+## $b$result
+## [1] 12
+## 
+## $b$error
+## NULL
+## 
+## 
+## $c
+## $c$result
+## [1] 14.39
+## 
+## $c$error
+## NULL</code></pre>
+<p><code>safely</code> returns a list of lists. Each element from the original list has two entries: <code>result</code> (of the function) and <code>error</code>. One is always <code>NULL</code> - if there was an error, <code>result</code> is <code>NULL</code> and <code>error</code> is the error message. If you want to get back all the error or results, you can use another handy feature of <code>map</code>: if you give it a string, for each element of the list, it will return the element inside of it with that name.</p>
+<pre class="r"><code>safe_results &lt;- map(mixed_list, safely(add_ten))
+
+map(safe_results, &quot;result&quot;)</code></pre>
+<pre><code>## $a
+## NULL
+## 
+## $b
+## [1] 12
+## 
+## $c
+## [1] 14.39</code></pre>
+</div>
+<div id="compose" class="section level4">
+<h4>compose</h4>
+<p><code>compose()</code> lets you string together multiple functions. Let’s say you want to add_ten and then take the log of a vector of numbers. You could do either of these:</p>
+<pre class="r"><code>c(1, 20, 500) %&gt;%
+  add_ten() %&gt;%
+  log()</code></pre>
+<pre><code>## [1] 2.397895 3.401197 6.234411</code></pre>
+<pre class="r"><code>log(add_ten(c(1, 20, 500)))</code></pre>
+<pre><code>## [1] 2.397895 3.401197 6.234411</code></pre>
+<p>But you make a new function instead with <code>compose</code>. You give <code>compose</code> functions to execute in order from <em>right to left</em>.</p>
+<pre class="r"><code>add_ten_and_log &lt;- compose(log, add_ten)
+add_ten_and_log(c(1, 20, 500))</code></pre>
+<pre><code>## [1] 2.397895 3.401197 6.234411</code></pre>
+<p><code>compose</code> is great for simplifying your code if you’re going to use a sequence of functions again and again.</p>
+</div>
+</div>
+<div id="modifying-vectorslists" class="section level3">
+<h3>Modifying vectors/lists</h3>
+<div id="keep-and-discard" class="section level4">
+<h4>keep and discard</h4>
+<p><code>keep()</code> and <code>discard()</code> … keep and discard elements of a list or vector based on a <em>predicate function</em>. A predicate function is a function that returns <code>TRUE</code> or <code>FALSE</code>. For example, <code>is.factor()</code> is a predicate function, because it always returns <code>TRUE</code> or <code>FALSE</code>, while <code>round()</code> is not.</p>
+<p>For example, we can <code>keep()</code> all elements of our list that are less than 3 with the following code:</p>
+<pre class="r"><code>keep(my_list, ~ .x &lt; 3)</code></pre>
+<pre><code>## Error in map_lgl(.x, .p, ...): object &#39;my_list&#39; not found</code></pre>
+<p>Similarly, we could <code>discard()</code> all elements less than 3:</p>
+<pre class="r"><code>discard(my_list, ~ .x &lt; 3)</code></pre>
+<pre><code>## Error in map_lgl(.x, .p, ...): object &#39;my_list&#39; not found</code></pre>
+</div>
+<div id="map_if" class="section level4">
+<h4>map_if</h4>
+<p>Sometimes, you’ll want to only apply a function to certain elements of a list, like all the numeric ones. This is where <code>map_if()</code> comes in handy. Just like <code>mutate_if()</code>, <code>select_if()</code>, and <code>summarise_if()</code>, you add a condition and the function will only apply to those columns (or list elements) where the condition is met.</p>
+<p>You could use <code>safely()</code> or <code>possibly()</code>, but <code>map_if()</code> works if a) we know the condition we need the element to meet for the function to work and want to keep the original element if the condition isn’t met or b) not meeting the condition won’t result in an error, but we still don’t want to our apply our function to elements not meeting it.</p>
+<pre class="r"><code>map_if(mixed_list, is.numeric, add_ten)</code></pre>
+<pre><code>## $a
+## [1] &quot;happy&quot;
+## 
+## $b
+## [1] 12
+## 
+## $c
+## [1] 14.39</code></pre>
+</div>
+<div id="every" class="section level4">
+<h4>every</h4>
+<p>Sometimes you have a giant list and want to know whether each element meets a condition. For example, maybe if every element is numeric. You can use <code>every()</code>, which will check if every element of a list satisfies a predicate function:</p>
+<pre class="r"><code>every(mixed_list, is.numeric)</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+</div>
+</div>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
+</div>

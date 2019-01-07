@@ -3,182 +3,187 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://hookedondata.org/the-lesser-known-stars-of-the-tidyverse/</loc>
+    <loc>/beyond-map-some-other-purrr-functions/</loc>
+    <lastmod>2019-01-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/the-lesser-known-stars-of-the-tidyverse/</loc>
     <lastmod>2018-11-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://hookedondata.org/guidelines-for-ab-testing/</loc>
+    <loc>/guidelines-for-ab-testing/</loc>
     <lastmod>2018-08-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://hookedondata.org/red-flags-in-data-science-interviews/</loc>
+    <loc>/red-flags-in-data-science-interviews/</loc>
     <lastmod>2018-07-03T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://hookedondata.org/advice-for-applying-to-data-science-jobs/</loc>
+    <loc>/advice-for-applying-to-data-science-jobs/</loc>
     <lastmod>2018-05-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://hookedondata.org/the-importance-of-sponsorship/</loc>
+    <loc>/the-importance-of-sponsorship/</loc>
     <lastmod>2018-02-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://hookedondata.org/building-your-data-science-network-finding-community/</loc>
+    <loc>/building-your-data-science-network-finding-community/</loc>
     <lastmod>2018-01-10T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://hookedondata.org/building-your-data-science-network-reaching-out/</loc>
+    <loc>/building-your-data-science-network-reaching-out/</loc>
     <lastmod>2018-01-10T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://hookedondata.org/making-r-code-faster-a-case-study/</loc>
+    <loc>/making-r-code-faster-a-case-study/</loc>
     <lastmod>2017-11-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://hookedondata.org/managing-business-challenges-in-data-science/</loc>
+    <loc>/managing-business-challenges-in-data-science/</loc>
     <lastmod>2017-09-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://hookedondata.org/giving-your-first-data-science-talk/</loc>
+    <loc>/giving-your-first-data-science-talk/</loc>
     <lastmod>2017-08-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://hookedondata.org/rstudio-conference-recap/</loc>
+    <loc>/rstudio-conference-recap/</loc>
     <lastmod>2017-01-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://hookedondata.org/rstudio-conference-tips-and-tricks/</loc>
+    <loc>/rstudio-conference-tips-and-tricks/</loc>
     <lastmod>2017-01-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://hookedondata.org/topic-modeling-the-new-york-times-and-trump/</loc>
+    <loc>/topic-modeling-the-new-york-times-and-trump/</loc>
     <lastmod>2016-09-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://hookedondata.org/better-plotting-in-python-with-seaborn/</loc>
+    <loc>/better-plotting-in-python-with-seaborn/</loc>
     <lastmod>2016-08-08T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://hookedondata.org/creating-my-first-r-package-part-1/</loc>
+    <loc>/creating-my-first-r-package-part-1/</loc>
     <lastmod>2016-07-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://hookedondata.org/from-social-scientist-to-data-scientist/</loc>
+    <loc>/from-social-scientist-to-data-scientist/</loc>
     <lastmod>2016-07-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://hookedondata.org/tags/a-b-testing/</loc>
+    <loc>/tags/a-b-testing/</loc>
     <lastmod>2018-08-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hookedondata.org/about/</loc>
+    <loc>/about/</loc>
   </url>
   
   <url>
-    <loc>https://hookedondata.org/archives/</loc>
+    <loc>/archives/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hookedondata.org/tags/career/</loc>
+    <loc>/tags/career/</loc>
     <lastmod>2018-07-03T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hookedondata.org/categories/</loc>
+    <loc>/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hookedondata.org/tags/code/</loc>
-    <lastmod>2018-11-16T00:00:00+00:00</lastmod>
+    <loc>/tags/code/</loc>
+    <lastmod>2019-01-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hookedondata.org/tags/conference/</loc>
+    <loc>/tags/conference/</loc>
     <lastmod>2017-01-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hookedondata.org/</loc>
-    <lastmod>2018-11-16T00:00:00+00:00</lastmod>
+    <loc>/</loc>
+    <lastmod>2019-01-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hookedondata.org/tags/online-experimentation/</loc>
+    <loc>/tags/online-experimentation/</loc>
     <lastmod>2018-08-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hookedondata.org/page/</loc>
+    <loc>/page/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hookedondata.org/post/</loc>
-    <lastmod>2018-11-16T00:00:00+00:00</lastmod>
+    <loc>/post/</loc>
+    <lastmod>2019-01-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hookedondata.org/tags/python/</loc>
+    <loc>/tags/python/</loc>
     <lastmod>2016-08-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hookedondata.org/tags/r/</loc>
-    <lastmod>2018-11-16T00:00:00+00:00</lastmod>
+    <loc>/tags/r/</loc>
+    <lastmod>2019-01-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hookedondata.org/speaking/</loc>
+    <loc>/speaking/</loc>
   </url>
   
   <url>
-    <loc>https://hookedondata.org/tags/</loc>
+    <loc>/tags/</loc>
     <lastmod>2018-08-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hookedondata.org/tags/text-analysis/</loc>
+    <loc>/tags/text-analysis/</loc>
     <lastmod>2016-09-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hookedondata.org/tags/tidyverse/</loc>
-    <lastmod>2018-11-16T00:00:00+00:00</lastmod>
+    <loc>/tags/tidyverse/</loc>
+    <lastmod>2019-01-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hookedondata.org/tags/visualization/</loc>
+    <loc>/tags/visualization/</loc>
     <lastmod>2016-09-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
