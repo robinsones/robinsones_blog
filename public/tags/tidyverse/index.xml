@@ -12,11 +12,11 @@
     
     
     <item>
-      <title>Beyond map: some other purrr functions</title>
-      <link>/beyond-map-some-other-purrr-functions/</link>
+      <title>Going off the map: An overview of some other purrr functions</title>
+      <link>/going-off-the-map/</link>
       <pubDate>Mon, 07 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/beyond-map-some-other-purrr-functions/</guid>
+      <guid>/going-off-the-map/</guid>
       <description>I recently completed Colin Fay’s excellent DataCamp course, Intermediate Functional Programming with purrr (full disclosure: I work at DataCamp, but part of why I joined was that I was a big fan of the short, interactive course format). Although I’ve used purrr before, there were a lot of functions in this course that were either new to me or I hadn’t realized the full use of.
 If you’re familiar with purrr, it’s probably because of the map() function.</description>
     </item>

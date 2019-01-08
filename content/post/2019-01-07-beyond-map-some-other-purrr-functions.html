@@ -1,8 +1,8 @@
 ---
-title: 'Beyond map: some other purrr functions'
+title: 'Going off the map: An overview of some other purrr functions'
 author: Emily Robinson
 date: '2019-01-07'
-slug: beyond-map-some-other-purrr-functions
+slug: going-off-the-map
 categories: []
 tags:
   - R
@@ -202,8 +202,8 @@ add_ten_log_and_round_tenth(c(1, 20, 500))</code></pre>
 <pre><code>## [1] 2.4 3.4 6.2</code></pre>
 </div>
 </div>
-<div id="modifying-vectorslists" class="section level3">
-<h3>Modifying vectors/lists</h3>
+<div id="modifying-and-summarizing-vectorslists" class="section level3">
+<h3>Modifying and summarizing vectors/lists</h3>
 <div id="keep-and-discard" class="section level4">
 <h4>keep and discard</h4>
 <p><code>keep()</code> and <code>discard()</code> … keep and discard elements of a list or vector based on a <em>predicate function</em>. A predicate function is a function that returns <code>TRUE</code> or <code>FALSE</code>. For example, <code>is.factor()</code> is a predicate function, because it always returns <code>TRUE</code> or <code>FALSE</code>, while <code>round()</code> is not.</p>
@@ -227,6 +227,17 @@ add_ten_log_and_round_tenth(c(1, 20, 500))</code></pre>
 ## 
 ## $c
 ## [1] 14.39</code></pre>
+</div>
+<div id="every-and-some" class="section level4">
+<h4>every and some</h4>
+<p>Sometimes you have a giant list and want to know whether each element meets a condition. For example, maybe if every element is numeric. You can use <code>every()</code>, which will check if every element of a list satisfies a predicate function:</p>
+<pre class="r"><code>every(mixed_list, is.numeric)</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<p>Since “happy” is the first element of <code>mixed_list</code>, it doesn’t past the test.</p>
+<p>If we want to be less strict and just check if <strong>some</strong> of the elements satisfies a predicate function, we can use <code>some</code> instead:</p>
+<pre class="r"><code>some(mixed_list, is.numeric)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<p>In this case, since some elements of <code>mixed_list</code> were numeric, we got <code>TRUE</code>.</p>
 </div>
 </div>
 </div>

@@ -1,8 +1,8 @@
 ---
-title: 'Beyond map: some other purrr functions'
+title: 'Going off the map: An overview of some other purrr functions'
 author: Emily Robinson
 date: '2019-01-07'
-slug: beyond-map-some-other-purrr-functions
+slug: going-off-the-map
 categories: []
 tags:
   - R
@@ -216,7 +216,7 @@ add_ten_log_and_round_tenth(c(1, 20, 500))
 
 ```
 
-### Modifying vectors/lists
+### Modifying and summarizing vectors/lists
 
 #### keep and discard
 
@@ -243,6 +243,24 @@ You could use `safely()` or `possibly()`, but `map_if()` works if a) we know the
 ```{r}
 map_if(mixed_list, is.numeric, add_ten)
 ```
+
+#### every and some
+
+Sometimes you have a giant list and want to know whether each element meets a condition. For example, maybe if every element is numeric. You can use `every()`, which will check if every element of a list satisfies a predicate function: 
+
+```{r}
+every(mixed_list, is.numeric)
+``` 
+
+Since "happy" is the first element of `mixed_list`, it doesn't past the test. 
+
+If we want to be less strict and just check if **some** of the elements satisfies a predicate function, we can use `some` instead:
+
+```{r}
+some(mixed_list, is.numeric)
+``` 
+
+In this case, since some elements of `mixed_list` were numeric, we got `TRUE`. 
 
 ## Conclusion 
 
