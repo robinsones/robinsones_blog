@@ -42,7 +42,7 @@ But I am here to tell you: `purrr` can make your life easier even if you never w
 
 This post gives you a brief introduction to using `map()` on a vector and then goes through some `purrr` functions for creating functions and modifying lists/vectors. Most are covered in Colin's course, though I added a few I found on the [`purrr` cheatsheet](https://www.rstudio.com/resources/cheatsheets/#purrr). 
 
-## A brief introduction to map 
+## A brief introduction to map() 
 
 `map()` lets you take a list or vector and apply a function to each element. If you've been using R for a while, you might be familiar with the apply functions, including `sapply()` and `lapply()`. `map()` does essentially the same thing, but offers several advantages, most importantly consistency of output (see the first Stack Overflow answer by Hadley Wickham [here](https://stackoverflow.com/questions/45101045/why-use-purrrmap-instead-of-lapply) for more). 
 
@@ -67,13 +67,13 @@ map_dbl(my_vector, ~ .x + 10)
 
 `map()` can get much (much) more complicated, with nested lists and multiple inputs and arguments,  but even knowing this basic use case can help you! If you do want to dive in more, check out [chapter 21 of R for Data Science](https://r4ds.had.co.nz/iteration.html#the-map-functions), Jenny Bryan's [purrr tutorials](https://jennybc.github.io/purrr-tutorial/), Auriel Fournier's [Foundations of Functional Programming with purrr](https://www.datacamp.com/courses/foundations-of-functional-programming-with-purrr) course, and chapters 3 and 4 of [Writing Functions in R](https://www.datacamp.com/courses/writing-functions-in-r) by Charlotte and Hadley Wickham on DataCamp. 
 
-## Beyond map 
+## Beyond map()
 
 While `map*()` is great, it can still take a while to wrap your head around. But `purrr` offers dozens of useful functions that you can start using right away to streamline your workflow, even if you don't use `map()`. Let's check out a few. I'll separate them into two types: those that create new functions and those that modify a list/vector. 
 
 ### Creating new functions
 
-#### negate
+#### negate()
 
 `negate()` ... negates a predicate function (aren't the `purrr` function names done well?). For example, maybe you've used `%in%` before to check whether values were in a set: 
 
@@ -89,7 +89,7 @@ What if you wanted to know which ones were **not in** a list instead? You can us
 my_vector %not_in% c(1.0212, 10)
 ```
 
-#### partial 
+#### partial()
 
 You probably have a couple functions where you almost always use an extra argument, like `mean()` with `na.rm = TRUE` or `round()` with `digits = 1`. You can use `partial()` to create a new function where those are always specified!
 
@@ -111,7 +111,7 @@ my_round <- partial(round, digits = 1)
 my_round(10.484)
 ```
 
-#### safely and possibly 
+#### safely() and possibly()
 
 Lists are magical because you can have elements of different types, while a vector can only be one type. Look what happens here: 
 
@@ -183,9 +183,9 @@ map(safe_results, "result")
 
 Ah, no more list of lists. That was scary. I promise I won't do it again. 
 
-#### compose
+#### compose()
 
-`compose()` lets you string together multiple functions. Let's say you want to `add_ten`, take the log, and then round a vector of numbers. You could do either of these: 
+`compose()` lets you string together multiple functions. Let's say you want to `add_ten()`, take the log, and then round a vector of numbers. You could do either of these: 
 
 ```{r}
 c(1, 20, 500) %>%
@@ -198,27 +198,26 @@ c(1, 20, 500) %>%
 round(log(add_ten(c(1, 20, 500))))
 ```
 
-But you could also make a new function using `compose`. You give `compose` functions to execute in order from *right to left* (just like we have written above):  
+But you could also make a new function using `compose()`. You give `compose()` functions to execute in order from *right to left* (just like we have written above):  
 
 ```{r}
 add_ten_log_and_round <- compose(round, log, add_ten)
 add_ten_log_and_round(c(1, 20, 500))
 ```
 
-`compose` is great for simplifying your code if you're going to use a sequence of functions again and again. 
+`compose()` is great for simplifying your code if you're going to use a sequence of functions again and again. 
 
-What if we wanted to round to the nearest tenth instead? You can combine `compose` with `partial`!
+What if we wanted to round to the nearest tenth instead? You can combine `compose()` with `partial()`!
 
 ```{r}
 round_tenth <- partial(round, digits = 1)
 add_ten_log_and_round_tenth <- compose(round_tenth, log, add_ten)
 add_ten_log_and_round_tenth(c(1, 20, 500))
-
 ```
 
 ### Modifying and summarizing vectors/lists
 
-#### keep and discard
+#### keep() and discard()
 
 `keep()` and `discard()` ... keep and discard elements of a list or vector based on a *predicate function*. A predicate function is a function that returns `TRUE` or `FALSE`. For example, `is.factor()` is a predicate function, because it always returns `TRUE` or `FALSE`, while `round()` is not.  
 
@@ -234,7 +233,7 @@ Similarly, we could `discard()` all elements less than 3:
 discard(my_vector, ~ .x < 3)
 ```
 
-#### map_if
+#### map_if()
 
 Sometimes, you'll want to only apply a function to certain elements of a list, like all the numeric ones. This is where `map_if()` comes in handy. Just like `mutate_if()`, `select_if()`, and `summarise_if()`, you add a condition and the function will only apply to those columns (or list elements) where the condition is met. 
 
@@ -244,9 +243,9 @@ You could use `safely()` or `possibly()`, but `map_if()` works if a) we know the
 map_if(mixed_list, is.numeric, add_ten)
 ```
 
-#### every and some
+#### every() and some()
 
-There's some much to learn in the wonderful world of `purrr`! I'm a big believer in that just knowing something exists gets you 80% of the way there. Maybe you can't think of a use for `map_if` write now, but you'll run into a problem a few months down the line where it would be handy. You don't need to remember the exact syntax; all you need to know is what to Google for and that you don't need to spend 5 hours trying to find some other solution. 
+Sometimes you have a giant list and want to know whether each element meets a condition. For example, maybe if every element is numeric. You can use `every()`, which will check if every element of a list satisfies a predicate function: 
 
 ```{r}
 every(mixed_list, is.numeric)
@@ -254,7 +253,7 @@ every(mixed_list, is.numeric)
 
 Since "happy" is the first element of `mixed_list`, it doesn't past the test. 
 
-If we want to be less strict and just check if **some** of the elements satisfies a predicate function, we can use `some` instead:
+If we want to be less strict and just check if **some** of the elements satisfies a predicate function, we can use `some()` instead:
 
 ```{r}
 some(mixed_list, is.numeric)
@@ -264,23 +263,25 @@ In this case, since some elements of `mixed_list` were numeric, we got `TRUE`.
 
 ## Conclusion 
 
+There's so much to learn in the wonderful world of `purrr`! I'm a big believer in that just knowing something exists gets you a lot of the way there. Maybe you can't think of a use for `map_if()` right now, but you'll run into a problem a few months down the line where it would be handy. You don't need to remember the exact syntax; all you need to know is what to Google for and that you don't need to spend 5 hours trying to find some other solution. 
+
 [^example]: Now, this is a bit of a silly example. Because `round()` is vectorized (it works not just on a single value but a vector of them), you could have just done this instead:
 
     ```{r}
     round(my_vector)
     ```
 
-    It won't work though if your input is a list instead of a vector:
+    This won't work, however, if your input is a list instead of a vector:
 
     ```{r}
     vec_as_list <- list(my_vector)
     round(vec_as_list)
     ```
 
-    But `map()` will:
+    But `map()` still will:
     
     ```{r}
     map(vec_as_list, round)
     ```
 
-    You generally don't need `map` when you're working with a simple vector and a vectorized function. `map` shines where you either a) have a non-vectorized function or b) a more complicated data structure (including a list). 
+    Generally, you don't need `map` when you're working with a simple vector and a vectorized function. `map` shines where you either a) have a non-vectorized function or b) a more complicated data structure (including a list). 

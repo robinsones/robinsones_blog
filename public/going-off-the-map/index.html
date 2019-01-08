@@ -291,7 +291,7 @@ library(tidyr)</code></pre>
 <p>But I am here to tell you: <code>purrr</code> can make your life easier even if you never write code like this. Certainly, knowing how to work with complicated nested lists and dataframes is very useful - it can simplify code you’ve written, and your data may arrive in that format (for example, JSON data is often represented as nested lists or dataframes in R). But even if all you ever work with is “simple” lists, dataframes, and vectors, you’ll be glad to know a bit of <code>purrr</code>.</p>
 <p>This post gives you a brief introduction to using <code>map()</code> on a vector and then goes through some <code>purrr</code> functions for creating functions and modifying lists/vectors. Most are covered in Colin’s course, though I added a few I found on the <a href="https://www.rstudio.com/resources/cheatsheets/#purrr"><code>purrr</code> cheatsheet</a>.</p>
 <div id="a-brief-introduction-to-map" class="section level2">
-<h2>A brief introduction to map</h2>
+<h2>A brief introduction to map()</h2>
 <p><code>map()</code> lets you take a list or vector and apply a function to each element. If you’ve been using R for a while, you might be familiar with the apply functions, including <code>sapply()</code> and <code>lapply()</code>. <code>map()</code> does essentially the same thing, but offers several advantages, most importantly consistency of output (see the first Stack Overflow answer by Hadley Wickham <a href="https://stackoverflow.com/questions/45101045/why-use-purrrmap-instead-of-lapply">here</a> for more).</p>
 <p>Let’s look at an example, where we take a list of four numbers and round each of them.</p>
 <pre class="r"><code>my_vector &lt;- c(1.0212, 2.483, 3.189, 4.5938)
@@ -316,12 +316,12 @@ map(my_vector, round)</code></pre>
 <p><code>map()</code> can get much (much) more complicated, with nested lists and multiple inputs and arguments, but even knowing this basic use case can help you! If you do want to dive in more, check out <a href="https://r4ds.had.co.nz/iteration.html#the-map-functions">chapter 21 of R for Data Science</a>, Jenny Bryan’s <a href="https://jennybc.github.io/purrr-tutorial/">purrr tutorials</a>, Auriel Fournier’s <a href="https://www.datacamp.com/courses/foundations-of-functional-programming-with-purrr">Foundations of Functional Programming with purrr</a> course, and chapters 3 and 4 of <a href="https://www.datacamp.com/courses/writing-functions-in-r">Writing Functions in R</a> by Charlotte and Hadley Wickham on DataCamp.</p>
 </div>
 <div id="beyond-map" class="section level2">
-<h2>Beyond map</h2>
+<h2>Beyond map()</h2>
 <p>While <code>map*()</code> is great, it can still take a while to wrap your head around. But <code>purrr</code> offers dozens of useful functions that you can start using right away to streamline your workflow, even if you don’t use <code>map()</code>. Let’s check out a few. I’ll separate them into two types: those that create new functions and those that modify a list/vector.</p>
 <div id="creating-new-functions" class="section level3">
 <h3>Creating new functions</h3>
 <div id="negate" class="section level4">
-<h4>negate</h4>
+<h4>negate()</h4>
 <p><code>negate()</code> … negates a predicate function (aren’t the <code>purrr</code> function names done well?). For example, maybe you’ve used <code>%in%</code> before to check whether values were in a set:</p>
 <pre class="r"><code>my_vector %in% c(1.0212, 10)</code></pre>
 <pre><code>## [1]  TRUE FALSE FALSE FALSE</code></pre>
@@ -332,7 +332,7 @@ my_vector %not_in% c(1.0212, 10)</code></pre>
 <pre><code>## [1] FALSE  TRUE  TRUE  TRUE</code></pre>
 </div>
 <div id="partial" class="section level4">
-<h4>partial</h4>
+<h4>partial()</h4>
 <p>You probably have a couple functions where you almost always use an extra argument, like <code>mean()</code> with <code>na.rm = TRUE</code> or <code>round()</code> with <code>digits = 1</code>. You can use <code>partial()</code> to create a new function where those are always specified!</p>
 <pre class="r"><code>mean(c(10, NA, 5, 7))</code></pre>
 <pre><code>## [1] NA</code></pre>
@@ -346,7 +346,7 @@ my_round(10.484)</code></pre>
 <pre><code>## [1] 10.5</code></pre>
 </div>
 <div id="safely-and-possibly" class="section level4">
-<h4>safely and possibly</h4>
+<h4>safely() and possibly()</h4>
 <p>Lists are magical because you can have elements of different types, while a vector can only be one type. Look what happens here:</p>
 <pre class="r"><code>mixed_vector &lt;- c(&quot;happy&quot;, 2L, 4.39)
 mixed_vector</code></pre>
@@ -438,8 +438,8 @@ map(safe_results, &quot;result&quot;)</code></pre>
 <p>Ah, no more list of lists. That was scary. I promise I won’t do it again.</p>
 </div>
 <div id="compose" class="section level4">
-<h4>compose</h4>
-<p><code>compose()</code> lets you string together multiple functions. Let’s say you want to <code>add_ten</code>, take the log, and then round a vector of numbers. You could do either of these:</p>
+<h4>compose()</h4>
+<p><code>compose()</code> lets you string together multiple functions. Let’s say you want to <code>add_ten()</code>, take the log, and then round a vector of numbers. You could do either of these:</p>
 <pre class="r"><code>c(1, 20, 500) %&gt;%
   add_ten() %&gt;%
   log() %&gt;%
@@ -447,12 +447,12 @@ map(safe_results, &quot;result&quot;)</code></pre>
 <pre><code>## [1] 2 3 6</code></pre>
 <pre class="r"><code>round(log(add_ten(c(1, 20, 500))))</code></pre>
 <pre><code>## [1] 2 3 6</code></pre>
-<p>But you could also make a new function using <code>compose</code>. You give <code>compose</code> functions to execute in order from <em>right to left</em> (just like we have written above):</p>
+<p>But you could also make a new function using <code>compose()</code>. You give <code>compose()</code> functions to execute in order from <em>right to left</em> (just like we have written above):</p>
 <pre class="r"><code>add_ten_log_and_round &lt;- compose(round, log, add_ten)
 add_ten_log_and_round(c(1, 20, 500))</code></pre>
 <pre><code>## [1] 2 3 6</code></pre>
-<p><code>compose</code> is great for simplifying your code if you’re going to use a sequence of functions again and again.</p>
-<p>What if we wanted to round to the nearest tenth instead? You can combine <code>compose</code> with <code>partial</code>!</p>
+<p><code>compose()</code> is great for simplifying your code if you’re going to use a sequence of functions again and again.</p>
+<p>What if we wanted to round to the nearest tenth instead? You can combine <code>compose()</code> with <code>partial()</code>!</p>
 <pre class="r"><code>round_tenth &lt;- partial(round, digits = 1)
 add_ten_log_and_round_tenth &lt;- compose(round_tenth, log, add_ten)
 add_ten_log_and_round_tenth(c(1, 20, 500))</code></pre>
@@ -462,7 +462,7 @@ add_ten_log_and_round_tenth(c(1, 20, 500))</code></pre>
 <div id="modifying-and-summarizing-vectorslists" class="section level3">
 <h3>Modifying and summarizing vectors/lists</h3>
 <div id="keep-and-discard" class="section level4">
-<h4>keep and discard</h4>
+<h4>keep() and discard()</h4>
 <p><code>keep()</code> and <code>discard()</code> … keep and discard elements of a list or vector based on a <em>predicate function</em>. A predicate function is a function that returns <code>TRUE</code> or <code>FALSE</code>. For example, <code>is.factor()</code> is a predicate function, because it always returns <code>TRUE</code> or <code>FALSE</code>, while <code>round()</code> is not.</p>
 <p>For example, we can <code>keep()</code> all elements of our list that are less than 3 with the following code:</p>
 <pre class="r"><code>keep(my_vector, ~ .x &lt; 3)</code></pre>
@@ -472,7 +472,7 @@ add_ten_log_and_round_tenth(c(1, 20, 500))</code></pre>
 <pre><code>## [1] 3.1890 4.5938</code></pre>
 </div>
 <div id="map_if" class="section level4">
-<h4>map_if</h4>
+<h4>map_if()</h4>
 <p>Sometimes, you’ll want to only apply a function to certain elements of a list, like all the numeric ones. This is where <code>map_if()</code> comes in handy. Just like <code>mutate_if()</code>, <code>select_if()</code>, and <code>summarise_if()</code>, you add a condition and the function will only apply to those columns (or list elements) where the condition is met.</p>
 <p>You could use <code>safely()</code> or <code>possibly()</code>, but <code>map_if()</code> works if a) we know the condition we need the element to meet for the function to work and want to keep the original element if the condition isn’t met or b) not meeting the condition won’t result in an error, but we still don’t want to our apply our function to elements not meeting it.</p>
 <pre class="r"><code>map_if(mixed_list, is.numeric, add_ten)</code></pre>
@@ -486,12 +486,12 @@ add_ten_log_and_round_tenth(c(1, 20, 500))</code></pre>
 ## [1] 14.39</code></pre>
 </div>
 <div id="every-and-some" class="section level4">
-<h4>every and some</h4>
-<p>There’s some much to learn in the wonderful world of <code>purrr</code>! I’m a big believer in that just knowing something exists gets you 80% of the way there. Maybe you can’t think of a use for <code>map_if</code> write now, but you’ll run into a problem a few months down the line where it would be handy. You don’t need to remember the exact syntax; all you need to know is what to Google for and that you don’t need to spend 5 hours trying to find some other solution.</p>
+<h4>every() and some()</h4>
+<p>Sometimes you have a giant list and want to know whether each element meets a condition. For example, maybe if every element is numeric. You can use <code>every()</code>, which will check if every element of a list satisfies a predicate function:</p>
 <pre class="r"><code>every(mixed_list, is.numeric)</code></pre>
 <pre><code>## [1] FALSE</code></pre>
 <p>Since “happy” is the first element of <code>mixed_list</code>, it doesn’t past the test.</p>
-<p>If we want to be less strict and just check if <strong>some</strong> of the elements satisfies a predicate function, we can use <code>some</code> instead:</p>
+<p>If we want to be less strict and just check if <strong>some</strong> of the elements satisfies a predicate function, we can use <code>some()</code> instead:</p>
 <pre class="r"><code>some(mixed_list, is.numeric)</code></pre>
 <pre><code>## [1] TRUE</code></pre>
 <p>In this case, since some elements of <code>mixed_list</code> were numeric, we got <code>TRUE</code>.</p>
@@ -500,6 +500,7 @@ add_ten_log_and_round_tenth(c(1, 20, 500))</code></pre>
 </div>
 <div id="conclusion" class="section level2">
 <h2>Conclusion</h2>
+<p>There’s so much to learn in the wonderful world of <code>purrr</code>! I’m a big believer in that just knowing something exists gets you a lot of the way there. Maybe you can’t think of a use for <code>map_if()</code> right now, but you’ll run into a problem a few months down the line where it would be handy. You don’t need to remember the exact syntax; all you need to know is what to Google for and that you don’t need to spend 5 hours trying to find some other solution.</p>
 </div>
 <div class="footnotes">
 <hr />
@@ -507,15 +508,15 @@ add_ten_log_and_round_tenth(c(1, 20, 500))</code></pre>
 <li id="fn1"><p>Now, this is a bit of a silly example. Because <code>round()</code> is vectorized (it works not just on a single value but a vector of them), you could have just done this instead:</p>
 <pre class="r"><code>round(my_vector)</code></pre>
 <pre><code>## [1] 1 2 3 5</code></pre>
-<p>It won’t work though if your input is a list instead of a vector:</p>
+<p>This won’t work, however, if your input is a list instead of a vector:</p>
 <pre class="r"><code>vec_as_list &lt;- list(my_vector)
 round(vec_as_list)</code></pre>
 <pre><code>## Error in round(vec_as_list): non-numeric argument to mathematical function</code></pre>
-<p>But <code>map()</code> will:</p>
+<p>But <code>map()</code> still will:</p>
 <pre class="r"><code>map(vec_as_list, round)</code></pre>
 <pre><code>## [[1]]
 ## [1] 1 2 3 5</code></pre>
-<p>You generally don’t need <code>map</code> when you’re working with a simple vector and a vectorized function. <code>map</code> shines where you either a) have a non-vectorized function or b) a more complicated data structure (including a list).<a href="#fnref1">↩</a></p></li>
+<p>Generally, you don’t need <code>map</code> when you’re working with a simple vector and a vectorized function. <code>map</code> shines where you either a) have a non-vectorized function or b) a more complicated data structure (including a list).<a href="#fnref1">↩</a></p></li>
 </ol>
 </div>
 
