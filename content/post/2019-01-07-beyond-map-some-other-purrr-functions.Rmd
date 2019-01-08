@@ -246,7 +246,7 @@ map_if(mixed_list, is.numeric, add_ten)
 
 #### every and some
 
-Sometimes you have a giant list and want to know whether each element meets a condition. For example, maybe if every element is numeric. You can use `every()`, which will check if every element of a list satisfies a predicate function: 
+There's some much to learn in the wonderful world of `purrr`! I'm a big believer in that just knowing something exists gets you 80% of the way there. Maybe you can't think of a use for `map_if` write now, but you'll run into a problem a few months down the line where it would be handy. You don't need to remember the exact syntax; all you need to know is what to Google for and that you don't need to spend 5 hours trying to find some other solution. 
 
 ```{r}
 every(mixed_list, is.numeric)

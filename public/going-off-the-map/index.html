@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.53 with theme Tranquilpeak 0.4.3-SNAPSHOT">
+<meta name="generator" content="Hugo 0.51 with theme Tranquilpeak 0.4.3-SNAPSHOT">
 <meta name="author" content="Emily Robinson">
 <meta name="keywords" content="">
 <meta name="description" content="I recently completed Colin Fay’s excellent DataCamp course, Intermediate Functional Programming with purrr (full disclosure: I work at DataCamp, but part of why I joined was that I was a big fan of the short, interactive course format). Although I’ve used purrr before, there were a lot of functions in this course that were new to me.
@@ -261,16 +261,28 @@ if (!doNotTrack) {
 <p>If you’re familiar with <code>purrr</code>, it’s probably because of the <code>map()</code> functions. And if you’ve been a little bit intimidated, I’m right there with you. You’ll often see <code>purrr</code> used with nested lists or dataframes, like in this (modified) example from one of the last lessons in Jenny Bryan’s <code>purrr</code> tutorial:</p>
 <pre class="r"><code>library(dplyr)
 library(purrr)
-library(gapminder)</code></pre>
-<pre><code>## Error in library(gapminder): there is no package called &#39;gapminder&#39;</code></pre>
-<pre class="r"><code>library(tidyr)</code></pre>
+library(gapminder)
+library(tidyr)</code></pre>
 <pre class="r"><code>gapminder %&gt;%
   group_by(country) %&gt;%
   nest() %&gt;%  
   mutate(fit = map(data, ~ lm(lifeExp ~ year, data = .x))) %&gt;%
   mutate(rsq = map_dbl(fit, ~ summary(.x)[[&quot;r.squared&quot;]])) %&gt;%
   arrange(rsq)</code></pre>
-<pre><code>## Error in eval(lhs, parent, parent): object &#39;gapminder&#39; not found</code></pre>
+<pre><code>## # A tibble: 142 x 4
+##    country          data              fit         rsq
+##    &lt;fct&gt;            &lt;list&gt;            &lt;list&gt;    &lt;dbl&gt;
+##  1 Rwanda           &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.0172
+##  2 Botswana         &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.0340
+##  3 Zimbabwe         &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.0562
+##  4 Zambia           &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.0598
+##  5 Swaziland        &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.0682
+##  6 Lesotho          &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.0849
+##  7 Cote d&#39;Ivoire    &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.283 
+##  8 South Africa     &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.312 
+##  9 Uganda           &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.342 
+## 10 Congo, Dem. Rep. &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.348 
+## # ... with 132 more rows</code></pre>
 <p>If you’ve generally worked with plain-old table data or vectors (like I have), you might have this reaction to that code:</p>
 <div class="figure">
 <img src="https://media.giphy.com/media/a93jwI0wkWTQs/giphy.gif" />
@@ -475,7 +487,7 @@ add_ten_log_and_round_tenth(c(1, 20, 500))</code></pre>
 </div>
 <div id="every-and-some" class="section level4">
 <h4>every and some</h4>
-<p>Sometimes you have a giant list and want to know whether each element meets a condition. For example, maybe if every element is numeric. You can use <code>every()</code>, which will check if every element of a list satisfies a predicate function:</p>
+<p>There’s some much to learn in the wonderful world of <code>purrr</code>! I’m a big believer in that just knowing something exists gets you 80% of the way there. Maybe you can’t think of a use for <code>map_if</code> write now, but you’ll run into a problem a few months down the line where it would be handy. You don’t need to remember the exact syntax; all you need to know is what to Google for and that you don’t need to spend 5 hours trying to find some other solution.</p>
 <pre class="r"><code>every(mixed_list, is.numeric)</code></pre>
 <pre><code>## [1] FALSE</code></pre>
 <p>Since “happy” is the first element of <code>mixed_list</code>, it doesn’t past the test.</p>
