@@ -13,6 +13,32 @@ tags:
 
 
 <p>I recently completed <a href="https://colinfay.me/">Colin Fay’s</a> excellent DataCamp course, <a href="https://www.datacamp.com/courses/intermediate-functional-programming-with-purrr">Intermediate Functional Programming with purrr</a> (full disclosure: I work at DataCamp, but part of why I joined was that I was a big fan of the short, interactive course format). Although I’ve used <code>purrr</code> before, there were a lot of functions in this course that were new to me.</p>
+<p>This post gives you a brief overview off my journey with purrr and why I think it’s worthwhile learning. I introduce how to use <code>map()</code> on a vector and then go through some <code>purrr</code> functions for creating functions and modifying lists/vectors. Most are covered in Colin’s course, though I added a few I found on the <a href="https://www.rstudio.com/resources/cheatsheets/#purrr"><code>purrr</code> cheatsheet</a>.</p>
+<div id="jump-to" class="section level2">
+<h2>Jump to:</h2>
+<ol style="list-style-type: decimal">
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#a-brief-introduction-to-map">A brief introduction to map()</a></li>
+<li><a href="#beyond-map">Beyond map()</a>
+<ol style="list-style-type: decimal">
+<li><a href="#creating-new-functions">Creating new functions</a>
+<ol style="list-style-type: decimal">
+<li><a href="#negate">negate()</a></li>
+<li><a href="#partial">partial()</a></li>
+<li><a href="#safely-and-possibly">safely() and possibly()</a></li>
+<li><a href="#compose">compose()</a></li>
+</ol></li>
+<li><a href="#modifying-and-summarizing-vectors/lists">Modifying and summarizing vectors/lists</a>
+<ol style="list-style-type: decimal">
+<li><a href="#keep-and-discard">keep() and discard()</a></li>
+<li><a href="#map_if">map_if()</a></li>
+<li><a href="#every-and-some">every() and some()</a></li>
+</ol></li>
+</ol></li>
+</ol>
+</div>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
 <p>If you’re familiar with <code>purrr</code>, it’s probably because of the <code>map()</code> functions. And if you’ve been a little bit intimidated, I’m right there with you. You’ll often see <code>purrr</code> used with nested lists or dataframes, like in this (modified) example from one of the last lessons in Jenny Bryan’s <code>purrr</code> tutorial:</p>
 <pre class="r"><code>library(dplyr)
 library(purrr)
@@ -44,7 +70,7 @@ library(tidyr)</code></pre>
 
 </div>
 <p>But I am here to tell you: <code>purrr</code> can make your life easier even if you never write code like this. Certainly, knowing how to work with complicated nested lists and dataframes is very useful - it can simplify code you’ve written, and your data may arrive in that format (for example, JSON data is often represented as nested lists or dataframes in R). But even if all you ever work with is “simple” lists, dataframes, and vectors, you’ll be glad to know a bit of <code>purrr</code>.</p>
-<p>This post gives you a brief introduction to using <code>map()</code> on a vector and then goes through some <code>purrr</code> functions for creating functions and modifying lists/vectors. Most are covered in Colin’s course, though I added a few I found on the <a href="https://www.rstudio.com/resources/cheatsheets/#purrr"><code>purrr</code> cheatsheet</a>.</p>
+</div>
 <div id="a-brief-introduction-to-map" class="section level2">
 <h2>A brief introduction to map()</h2>
 <p><code>map()</code> lets you take a list or vector and apply a function to each element. If you’ve been using R for a while, you might be familiar with the apply functions, including <code>sapply()</code> and <code>lapply()</code>. <code>map()</code> does essentially the same thing, but offers several advantages, most importantly consistency of output (see the first Stack Overflow answer by Hadley Wickham <a href="https://stackoverflow.com/questions/45101045/why-use-purrrmap-instead-of-lapply">here</a> for more).</p>
@@ -256,6 +282,7 @@ add_ten_log_and_round_tenth(c(1, 20, 500))</code></pre>
 <div id="conclusion" class="section level2">
 <h2>Conclusion</h2>
 <p>There’s so much to learn in the wonderful world of <code>purrr</code>! I’m a big believer in that just knowing something exists gets you a lot of the way there. Maybe you can’t think of a use for <code>map_if()</code> right now, but you’ll run into a problem a few months down the line where it would be handy. You don’t need to remember the exact syntax; all you need to know is what to Google for and that you don’t need to spend 5 hours trying to find some other solution.</p>
+<p>One thing I didn’t show in this post was how all of these functions can fit together in an analysis. For that, I’ll recommend <a href="(https://www.datacamp.com/courses/intermediate-functional-programming-with-purrr)">Colin’s course</a> again. He also has a series of six blog posts illustrating different <code>purrr</code> functions, including some I didn’t cover here; <a href="https://colinfay.me/tags/#purrr">check them out</a>!</p>
 </div>
 <div class="footnotes">
 <hr />
