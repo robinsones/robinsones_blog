@@ -1,5 +1,5 @@
 ---
-title: 'Going off the map: An overview of some other purrr functions'
+title: 'Going Off the Map: An Overview of Some Other purrr Functions'
 author: Emily Robinson
 date: '2019-01-07'
 slug: going-off-the-map
