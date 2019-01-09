@@ -28,7 +28,8 @@ I recently completed [Colin Fay's](https://colinfay.me/) excellent DataCamp cour
         1. [negate()](#negate)
         2. [partial()](#partial)
         3. [safely() and possibly()](#safely-and-possibly)
-        4. [compose()](#compose)
+        4. [compact()](#compact)
+        5. [compose()](#compose)
 
 ## Introduction
 
@@ -240,7 +241,7 @@ In the previous example, we probably wouldn't be interested in the instances whe
 ```{r}
 mixed_list %>%
   map(safely_add_ten) %>%
-  map("result") %>%
+  map("error") %>%
   compact()
 ```
 

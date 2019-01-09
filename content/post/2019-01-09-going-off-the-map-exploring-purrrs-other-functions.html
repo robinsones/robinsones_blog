@@ -31,6 +31,7 @@ tags:
 <li><a href="#negate">negate()</a></li>
 <li><a href="#partial">partial()</a></li>
 <li><a href="#safely-and-possibly">safely() and possibly()</a></li>
+<li><a href="#compact">compact()</a></li>
 <li><a href="#compose">compose()</a></li>
 </ol></li>
 </ol></li>
@@ -243,13 +244,10 @@ mixed_list %&gt;%
 <p>In the previous example, we probably wouldn’t be interested in the instances where errors were <code>NULL</code>. We could use <code>discard(is.null)</code>, but <code>purrr</code> actually provides a function just for the purpose of getting rid of <code>NULL</code>s: <code>compact</code>.</p>
 <pre class="r"><code>mixed_list %&gt;%
   map(safely_add_ten) %&gt;%
-  map(&quot;result&quot;) %&gt;%
+  map(&quot;error&quot;) %&gt;%
   compact()</code></pre>
-<pre><code>## $b
-## [1] 12
-## 
-## $c
-## [1] 14.39</code></pre>
+<pre><code>## $a
+## &lt;simpleError in n + 10: non-numeric argument to binary operator&gt;</code></pre>
 </div>
 <div id="compose" class="section level4">
 <h4>compose()</h4>
