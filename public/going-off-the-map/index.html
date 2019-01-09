@@ -8,33 +8,35 @@
 <meta name="generator" content="Hugo 0.51 with theme Tranquilpeak 0.4.3-SNAPSHOT">
 <meta name="author" content="Emily Robinson">
 <meta name="keywords" content="">
-<meta name="description" content="When I was working at Etsy, I benefited from a very robust A/B testing system. Etsy had been doing A/B testing for more than 6 years. By the time I left, Etsy’s in-house experimentation system, called Catapult, had more than 5 data engineers working on it full-time. Every morning, I was greeted with a homepage that listed all the experiments that Etsy had run in the prior four years. When you clicked on one, you got a summary of what the experiment was testing (usually written by the product manager).">
+<meta name="description" content="I recently completed Colin Fay’s excellent DataCamp course, Intermediate Functional Programming with purrr (full disclosure: I work at DataCamp, but part of why I joined was that I was a big fan of the short, interactive course format). Although I’ve used the purrr package before, there were a lot of functions in this course that were new to me. I wrote this post to hopefully demystify purrr a bit for those who find it overwhelming and illustrate some of its lesser known functions.">
 
 
-<meta property="og:description" content="When I was working at Etsy, I benefited from a very robust A/B testing system. Etsy had been doing A/B testing for more than 6 years. By the time I left, Etsy’s in-house experimentation system, called Catapult, had more than 5 data engineers working on it full-time. Every morning, I was greeted with a homepage that listed all the experiments that Etsy had run in the prior four years. When you clicked on one, you got a summary of what the experiment was testing (usually written by the product manager).">
+<meta property="og:description" content="I recently completed Colin Fay’s excellent DataCamp course, Intermediate Functional Programming with purrr (full disclosure: I work at DataCamp, but part of why I joined was that I was a big fan of the short, interactive course format). Although I’ve used the purrr package before, there were a lot of functions in this course that were new to me. I wrote this post to hopefully demystify purrr a bit for those who find it overwhelming and illustrate some of its lesser known functions.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Guidelines for A/B Testing">
-<meta name="twitter:title" content="Guidelines for A/B Testing">
-<meta property="og:url" content="/guidelines-for-ab-testing/">
-<meta property="twitter:url" content="/guidelines-for-ab-testing/">
+<meta property="og:title" content="Going Off the Map: Exporing purrr&#39;s Other Functions">
+<meta name="twitter:title" content="Going Off the Map: Exporing purrr&#39;s Other Functions">
+<meta property="og:url" content="/going-off-the-map/">
+<meta property="twitter:url" content="/going-off-the-map/">
 <meta property="og:site_name" content="Hooked on Data">
-<meta property="og:description" content="When I was working at Etsy, I benefited from a very robust A/B testing system. Etsy had been doing A/B testing for more than 6 years. By the time I left, Etsy’s in-house experimentation system, called Catapult, had more than 5 data engineers working on it full-time. Every morning, I was greeted with a homepage that listed all the experiments that Etsy had run in the prior four years. When you clicked on one, you got a summary of what the experiment was testing (usually written by the product manager).">
-<meta name="twitter:description" content="When I was working at Etsy, I benefited from a very robust A/B testing system. Etsy had been doing A/B testing for more than 6 years. By the time I left, Etsy’s in-house experimentation system, called Catapult, had more than 5 data engineers working on it full-time. Every morning, I was greeted with a homepage that listed all the experiments that Etsy had run in the prior four years. When you clicked on one, you got a summary of what the experiment was testing (usually written by the product manager).">
+<meta property="og:description" content="I recently completed Colin Fay’s excellent DataCamp course, Intermediate Functional Programming with purrr (full disclosure: I work at DataCamp, but part of why I joined was that I was a big fan of the short, interactive course format). Although I’ve used the purrr package before, there were a lot of functions in this course that were new to me. I wrote this post to hopefully demystify purrr a bit for those who find it overwhelming and illustrate some of its lesser known functions.">
+<meta name="twitter:description" content="I recently completed Colin Fay’s excellent DataCamp course, Intermediate Functional Programming with purrr (full disclosure: I work at DataCamp, but part of why I joined was that I was a big fan of the short, interactive course format). Although I’ve used the purrr package before, there were a lot of functions in this course that were new to me. I wrote this post to hopefully demystify purrr a bit for those who find it overwhelming and illustrate some of its lesser known functions.">
 <meta property="og:locale" content="en-us">
 
   
-    <meta property="article:published_time" content="2018-08-07T00:00:00">
+    <meta property="article:published_time" content="2019-01-09T00:00:00">
   
   
-    <meta property="article:modified_time" content="2018-08-07T00:00:00">
+    <meta property="article:modified_time" content="2019-01-09T00:00:00">
   
   
   
   
     
-      <meta property="article:tag" content="A/B Testing">
+      <meta property="article:tag" content="R">
     
-      <meta property="article:tag" content="Online Experimentation">
+      <meta property="article:tag" content="Code">
+    
+      <meta property="article:tag" content="tidyverse">
     
   
 
@@ -59,14 +61,14 @@
   <meta property="twitter:image" content="https://avatars.githubusercontent.com/robinsones">
 
 
-    <title>Guidelines for A/B Testing</title>
+    <title>Going Off the Map: Exporing purrr&#39;s Other Functions</title>
 
     <link rel="icon" href="/favicon.png">
     
 
     
 
-    <link rel="canonical" href="/guidelines-for-ab-testing/">
+    <link rel="canonical" href="/going-off-the-map/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -229,15 +231,15 @@ if (!doNotTrack) {
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      Guidelines for A/B Testing
+      Going Off the Map: Exporing purrr&#39;s Other Functions
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2018-08-07T00:00:00Z">
+      <time itemprop="datePublished" datetime="2019-01-09T00:00:00Z">
         
-  August 7, 2018
+  January 9, 2019
 
       </time>
     
@@ -251,46 +253,293 @@ if (!doNotTrack) {
               
 
 
-<p>When I was working at Etsy, I benefited from a very robust A/B testing system. Etsy had been doing A/B testing for more than 6 years. By the time I left, Etsy’s in-house experimentation system, called Catapult, had more than 5 data engineers working on it full-time. Every morning, I was greeted with a homepage that listed all the experiments that Etsy had run in the prior four years. When you clicked on one, you got a summary of what the experiment was testing (usually written by the product manager). Numbers for all the key metrics, such as conversion rate and add to cart rate, were already calculated. You could easily add any event that happened on the site and get those rates calculated too. You got to see the % change from the control to treatment with its accompanying p-value and how many days until we had 80% power to detect a 1% change. We even had beautiful little confidence intervals that changed color based on whether they overlapped with zero!</p>
-<p>And yet sometimes I would spend a majority of my time working on experiments, even though I tried to never be working on more than 3 or 4 at once. How could that take so long when so much was already done for me? The concept of A/B Testing seems pretty simple. A classic example is you change the color of a button and measuring if the click-rate changes. Assuming your assignment of visitors and data collection is working, all you need to do is run a proportion test, right? And if you already have the proportion test calculated, why is a data scientist even needed? Maybe you need one if you want to do some fancy techniques like <a href="https://en.wikipedia.org/wiki/Multi-armed_bandit">multi-armed bandits</a>, but how can classic, frequentist A/B Testing be a challenge?</p>
-<p>Unfortunately, <a href="http://notes.stephenholiday.com/Five-Puzzling-Outcomes.pdf">“generating numbers is easy; generating numbers you should trust is hard!”</a> There’s many ways A/B Testing can go wrong, but most of them won’t be obvious.</p>
-<p>This post outlines some recommended best practices for A/B Testing. I’ve found that a lot of analysts and data scientists struggle with A/B testing, especially those not classically trained in statistics or who are trying to start their company’s A/B testing system. While A/B testing correctly isn’t easy, these 12 guidelines will help you guard against some common mistakes and set you up for success.</p>
-<div id="guidelines-for-ab-testing" class="section level2">
-<h2>12 Guidelines for A/B Testing</h2>
+<p>I recently completed <a href="https://colinfay.me/">Colin Fay’s</a> excellent DataCamp course, <a href="https://www.datacamp.com/courses/intermediate-functional-programming-with-purrr">Intermediate Functional Programming with purrr</a> (full disclosure: I work at DataCamp, but part of why I joined was that I was a big fan of the short, interactive course format). Although I’ve used the <code>purrr</code> package before, there were a lot of functions in this course that were new to me. I wrote this post to hopefully demystify <code>purrr</code> a bit for those who find it overwhelming and illustrate some of its lesser known functions. Most of these functions are covered in Colin’s course, though I added a few I found on the <a href="https://www.rstudio.com/resources/cheatsheets/#purrr"><code>purrr</code> cheatsheet</a>.</p>
+<div id="jump-to" class="section level2">
+<h2>Jump to:</h2>
 <ol style="list-style-type: decimal">
-<li><p><strong>Have one key metric for your experiment</strong>. You can (and should!) monitor multiple metrics to make sure you don’t accidentally tank them, but you should have one as a goal. Revenue is probably the <strong>wrong</strong> metric to pick. It is likely a very skewed distribution which makes traditional statistics tests behave poorly. See my discussion in <a href="https://www.youtube.com/watch?v=SF-ryGgLOgQ">my A/B testing talk</a> (around the 23-minute mark). I generally recommend proportion metrics. First, you often you care more about the number of people doing something than how much they do it. Second, you don’t have to deal with outliers and changing standard deviations.</p>
-<p>Why only one metric? Once you start testing many metrics, you end up with an increased false positive rate. While <a href="https://en.wikipedia.org/wiki/Bonferroni_correction">correction methods</a> can counteract this, they make each test more conservative. That means you become less likely to detect a difference in any given test. One metric also makes decision-making clearer. What would you do if you have three “equally important” metrics, and two go up a small amount while the other goes down a substantial amount?</p></li>
-<li><p><strong>Use that key metric do a power calculation</strong>. A common mistake in A/B testing is to run a test with such small traffic or base rate you’d need there to be a huge increase to be able to detect it within a week. To avoid this, run a power calculation first to determine how long it would take to detect an X% increase. You’ll need the current rate (if a proportion metric) or mean and standard deviation of your key metric, how many visitors you get daily, what type of change you’re aiming to get (1% increase? 5%?), the percentage of people you’ll be allocating to your new version (e.g. are you doing 50/50 or 75/25 split), desired level of power (usually 80%), and the significance threshold (usually 95% or 90%). If you’re doing a proportion metric, <a href="http://www.experimentcalculator.com/">experimentcalculator.com</a> is good for this.</p>
-<p>Two things will generally happen: 1) you’ll find that it will take a few days or weeks or 2) you’ll find that it will take 3 years, 5 months, and 23 days. If the latter happens, you may either have to go for a different metric with a higher baseline rate or decide you only care about bigger changes. For example, you can decide that it’s okay that you can’t detect a 5% increase clicks because only a 10% or greater increase is meaningful. If you want to learn more about power, check out Julia Silge’s <a href="https://juliasilge.com/blog/ab-testing/">excellent introductory post</a>. She even created a <a href="https://juliasilge.shinyapps.io/power-app/">shiny app</a> so you can calculate how your power level changes with your effect size and population.</p></li>
-<li><p><strong>Run your experiment for the length you’ve planned on</strong>. You should monitor it in the first few days to make sure nothing exploded, but plan on running it for the length you planned on in your power calculation. Don’t stop as soon as something is significant or you will get a lot of false positives. See the review section in Dave Robinson’s Bayesian A/B Testing <a href="http://varianceexplained.org/r/bayesian-ab-testing/">blog post</a>. Don’t be another p-hacking statistic:</p></li>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#a-brief-introduction-to-map">A brief introduction to map()</a></li>
+<li><a href="#beyond-map">Beyond map()</a>
+<ol style="list-style-type: decimal">
+<li><a href="#modifying-and-summarizing-vectors/lists">Modifying and summarizing vectors/lists</a>
+<ol style="list-style-type: decimal">
+<li><a href="#keep-and-discard">keep() and discard()</a></li>
+<li><a href="#map_if">map_if()</a></li>
+<li><a href="#every-and-some">every() and some()</a></li>
+</ol></li>
+<li><a href="#modifying-functions">Modifying functions</a>
+<ol style="list-style-type: decimal">
+<li><a href="#negate">negate()</a></li>
+<li><a href="#partial">partial()</a></li>
+<li><a href="#safely-and-possibly">safely() and possibly()</a></li>
+<li><a href="#compose">compose()</a></li>
+</ol></li>
+</ol></li>
 </ol>
-<blockquote class="twitter-tweet">
-<p lang="en" dir="ltr">
-When p-hacking is taken into account, 73% of A/B tests on Optimizely have no effect <a href="https://t.co/YNsx6IGBfk">https://t.co/YNsx6IGBfk</a> <a href="https://t.co/xeLnOal3ba">pic.twitter.com/xeLnOal3ba</a>
-</p>
-— Josh Kalla (<span class="citation">@j_kalla</span>) <a href="https://twitter.com/j_kalla/status/1019629420158447616?ref_src=twsrc%5Etfw">July 18, 2018</a>
-</blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-<ol start="4" style="list-style-type: decimal">
-<li><p><strong>Pay more attention to confidence intervals than p-values</strong>. They have a 1-1 relationship such that if the p-value is less than .05, the 95% confidence interval does not overlap with 0. But if the confidence interval is wide and very close to zero, you’ve got a lot less evidence of a change than if it’s tiny and far away.</p></li>
-<li><p><strong>Don’t run tons of variants</strong>. Say you want to redesign your homepage and your designers come up with six possibilities. How do you pick one? Well, that’s what A/B Testing is for, right? Wrong. You will lower your ability to detect a statistical effect, as each group will have fewer people in it. You’ll also raise the likelihood of a false positive if you simply test the control against each treatment group. As a rule of thumb, stick to only a treatment and control most of the time and don’t go more than four total groups (control and three variations).</p></li>
-<li><p><strong>Don’t try to look for differences for every possible segment.</strong> If your test doesn’t work overall, it can be tempting to hold out hope that it actually did, just not for everyone. Or even if your A/B tests did succeed, you may want to know if it was driven by a big change in one segment. Did we help US visitors? New visitors? Visitors on Saturday? Down that road lies the madness of false positives from multiple testing, also known as detecting differences in health <a href="https://pdfs.semanticscholar.org/d00a/678b0d09eaef4902c778821c52dc5ac53e58.pdf">based on astrological signs</a>. If you really think there will be a difference, either pre-specify your hypothesis or run separate tests (e.g. one for new visitors and one for returning).</p></li>
-<li><p><strong>Check that there’s not bucketing skew</strong>. Bucketing skew, also known as sample ratio mismatch, is where the split of people between your variants does not match what you planned. For example, maybe you wanted to split people between the control and treatment 50/50 but after a few days, you find 40% are in the treatment and 60% in the control. That’s a problem! If you have lots of users, even observing 49.9% in the control and 50.1% in the treatment can indicate a problem with your set-up. To check if you have an issue, run a <a href="https://www.medcalc.org/calc/test_one_proportion.php">proportion test</a> with the number of visitors in each group and check if your p-value is less than .05. If you do have bucketing skew, you have a bug. Unfortunately, it can be difficult to find it, but a good place to start is checking is if the skew differs based on web browser, country, or another visitor factor. Also check if your treatment is significantly slower; it may be that users with slow connections are dropping out before they get bucketed into the treatment. Finding the bug and rerunning the test is very important because generally users aren’t going missing at random. If you’re systematically dropping people who use internet explorer in the treatment, who also never buy your product, your conversion rate will look artificially better because the population in the control vs. treatment is different.</p></li>
-<li><p><strong>Don’t overcomplicate your methods</strong>. Maybe you have engineers who’ve read about <a href="http://stevehanov.ca/blog/index.php?id=132">multi-armed bandit testing</a>, stats nerds who want to use Bayesian methods, or product managers who want the key metric to be a complicated sequence of behaviors. If you’re just starting out A/B testing methods, focus on getting the basic, frequentist methods right. Even after a few years, it’s usually better to invest in experiment design and education rather than fancy statistical methods.</p></li>
-<li><p><strong>Be careful of launching things because they “don’t hurt”</strong>. There may actually be a negative change that’s too small to detect but could have a meaningful effect in the long-term. When deciding whether to launch on “neutral,” the first step is to look at your non-key metrics. If other metrics you care about have been impacted negatively, you’ll probably want to rollback. If not, this is where your product intuition and other data can come in. Is this a change users have been asking for? Does it set the foundation for future changes you want to make? In general, default to rolling it back. This is also where your power analysis comes in - whatever increase you had 80% power to detect, would you be okay if you launch and you actually had decrease of that same size? The smaller changes you were set to detect, the less risky launching on neutral is. You could also look into non-inferiority testing, which is designed to test that your treatment is not worse than the control by a pre-specified amount. While I haven’t used it before, this looks like a <a href="https://www.analytics-toolkit.com/pdf/Non-Inferiority_Designs_in_AB_Testing_2017.pdf">good resource</a>.</p></li>
-<li><p><strong>Have a data scientist/analyst involved in the whole process.</strong> As Sir R. A. Fisher once said, “to consult the statistician after an experiment is finished is often merely to ask [them] to conduct a post mortem examination. [They] can perhaps say what the experiment died of.” If a team tries to bring in a data scientist after they launched an experiment, they may find the data doesn’t exist to measure their key metric, the test is severely underpowered, or there’s a design flaw that means they can’t draw any conclusions.</p></li>
-<li><p><strong>Only include people in your analysis who could have been affected by the change</strong>. If you have users in your experiment whose experience could not have been impacted by your change, you’re adding noise and reducing your ability to detect an effect. For example, if you’re changing the layout of the search page, only add users to the experiment if they visit the search page. In a more complicated example (from this great <a href="https://onedrive.live.com/view.aspx?resid=8612090E610871E4!287400&amp;ithint=file%2cdocx&amp;app=Word&amp;authkey=!AOW7nw7IZ4STtgk">paper on triggering</a>), let’s say you want to experiment with changing the threshold for a free shipping offer (displayed only when they meet the criteria) from $35 to $25. You should only put users in the experiment who have cart sizes between $25 to $35 because those are the only people who would see something different in the treatment vs. control group. Relatedly, start tracking your metrics <strong>after</strong> the user sees the relevant page. Imagine you’re running an experiment on the search page, and someone visits your sites, buys something from the homepage, and <strong>then</strong> visits the search page, entering the experiment. You don’t want to count their earlier conversion, as it could not have been a result of your change.</p></li>
-<li><p><strong>Focus on smaller, incremental tests that change one thing at a time</strong>. It’s very tempting to launch big changes or a bundle of smaller changes in the hope that they result in big wins. But the problem is that you will often invest tons of effort up front only to find out your change doesn’t work. And when it doesn’t, it’s hard to figure out why - was it just one part that failed? Or was it an interaction of the changes? A better practice is to split them up into smaller tests.</p>
-<p>Dan McKinley, former principal engineer at Etsy, gives a great example of this problem in his presentation on <a href="http://mcfunley.com/design-for-continuous-experimentation">continuous experimentation</a>. His team spent weeks working on enabling infinite scroll for the search page. But when they ran the A/B test, they found it performed worse! Their first reaction was that it must be a bug, but while they did find some, the results remained unchanged. So they went back and tested the assumptions behind why they believed infinite scroll would be better. First, are more items actually better? When they changed just the number of items on the search page, they found there were more clicks, but the same number of purchases. Second, were faster results better? Nope, artificially slowing down the search page didn’t hurt anything. If they’d checked those first, they would not have invested in infinite scroll. They learned from this and changed to making a series of smaller design-develop-measure (with A/B tests) cycles culminating up to a big change.</p></li>
-</ol>
+</div>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p><code>purrr</code> is a package for functional programming in R. If you’re familiar with it, it’s probably because of the <code>map()*</code> functions. And if you’ve been a little bit intimidated by them, I’m right there with you. You’ll often see <code>purrr</code> used with nested lists or dataframes, like in this (modified) example from one of the last lessons in Jenny Bryan’s <code>purrr</code> tutorial:</p>
+<pre class="r"><code>library(dplyr)
+library(purrr)
+library(gapminder)
+library(tidyr)</code></pre>
+<pre class="r"><code>gapminder %&gt;%
+  group_by(country) %&gt;%
+  nest() %&gt;%  
+  mutate(fit = map(data, ~ lm(lifeExp ~ year, data = .x))) %&gt;%
+  mutate(rsq = map_dbl(fit, ~ summary(.x)[[&quot;r.squared&quot;]])) %&gt;%
+  arrange(rsq)</code></pre>
+<pre><code>## # A tibble: 142 x 4
+##    country          data              fit         rsq
+##    &lt;fct&gt;            &lt;list&gt;            &lt;list&gt;    &lt;dbl&gt;
+##  1 Rwanda           &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.0172
+##  2 Botswana         &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.0340
+##  3 Zimbabwe         &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.0562
+##  4 Zambia           &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.0598
+##  5 Swaziland        &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.0682
+##  6 Lesotho          &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.0849
+##  7 Cote d&#39;Ivoire    &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.283 
+##  8 South Africa     &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.312 
+##  9 Uganda           &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.342 
+## 10 Congo, Dem. Rep. &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.348 
+## # ... with 132 more rows</code></pre>
+<p>If you’ve generally worked with plain-old table data or vectors (like I have), you might have this reaction to that code:</p>
 <div class="figure">
-<img src="https://user-images.githubusercontent.com/17410158/43725575-df8c8ca0-996a-11e8-8674-29f5ab634469.png" alt="image" />
-<p class="caption">image</p>
+<img src="https://media.giphy.com/media/a93jwI0wkWTQs/giphy.gif" />
+
 </div>
-<div id="next-time" class="section level3">
-<h3>Next Time</h3>
-<p>While I learned some of these guidelines in my statistics classes or experience at Etsy and DataCamp, others I picked up from the great set of A/B Testing resources available online. In a future post, I’ll share a list of some of my favorite papers, blog posts, and talks, with short summaries of what I took away and suggested audience level.</p>
+<p>But I am here to tell you: <code>purrr</code> can make your life easier even if you never write code like this. Certainly, knowing how to work with complicated nested lists and dataframes is very useful - it can simplify code you’ve written, and your data may arrive in that format (for example, JSON data is often represented as nested lists or dataframes in R). But even if all you ever work with is “simple” lists, dataframes, and vectors, you’ll be glad to know a bit of <code>purrr</code>.</p>
 </div>
+<div id="a-brief-introduction-to-map" class="section level2">
+<h2>A brief introduction to map()</h2>
+<p><code>map()</code> lets you take a list or vector and apply a function to each element. If you’ve been using R for a while, you might be familiar with the apply functions, including <code>sapply()</code> and <code>lapply()</code>. <code>map()</code> does essentially the same thing, but offers several advantages, most importantly consistency of output and helpers that let you write more concise code (see the first Stack Overflow answer by Hadley Wickham <a href="https://stackoverflow.com/questions/45101045/why-use-purrrmap-instead-of-lapply">here</a>).</p>
+<p>Let’s look at an example, where we take a list of four numbers and round each of them.</p>
+<pre class="r"><code>my_vector &lt;- c(1.0212, 2.483, 3.189, 4.5938)
+map(my_vector, round)</code></pre>
+<pre><code>## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] 2
+## 
+## [[3]]
+## [1] 3
+## 
+## [[4]]
+## [1] 5</code></pre>
+<p>The result is a list (hence the double brackets), which is always the case with <code>map()</code>. But you can return a dataframe or different types of vectors instead by using the appropriate <code>map_*()</code> function. In this case, let’s return a vector of type <code>double</code><a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>:</p>
+<pre class="r"><code>map_dbl(my_vector, round)</code></pre>
+<pre><code>## [1] 1 2 3 5</code></pre>
+<p>You can also use <code>map</code> with an “anonymous” function, a function that doesn’t have a name. The formula is a <code>~</code> followed by what you want to do to each element, with <code>.x</code> representing the element (<code>.</code> also works). We can make an anonymous function to add ten to each element of our vector:</p>
+<pre class="r"><code>map_dbl(my_vector, ~ .x + 10)</code></pre>
+<pre><code>## [1] 11.0212 12.4830 13.1890 14.5938</code></pre>
+<p><code>map()</code> can get much (much) more complicated, with nested lists and multiple inputs and arguments, but even knowing this basic use case can help you! If you do want to dive in more, check out <a href="https://r4ds.had.co.nz/iteration.html#the-map-functions">chapter 21 of R for Data Science</a>, Jenny Bryan’s <a href="https://jennybc.github.io/purrr-tutorial/">purrr tutorials</a>, Auriel Fournier’s <a href="https://www.datacamp.com/courses/foundations-of-functional-programming-with-purrr">Foundations of Functional Programming with purrr</a> course, and chapters 3 and 4 of <a href="https://www.datacamp.com/courses/writing-functions-in-r">Writing Functions in R</a> by Charlotte and Hadley Wickham on DataCamp.</p>
+</div>
+<div id="beyond-map" class="section level2">
+<h2>Beyond map()</h2>
+<p>While <code>map*()</code> is great, it can still take a while to wrap your head around. But <code>purrr</code> offers dozens of useful functions that you can start using right away to streamline your workflow, even if you don’t use <code>map()</code>. Let’s check out a few. I’ll separate them into two types: those that create new functions and those that modify a list/vector.</p>
+<div id="modifying-and-summarizing-vectorslists" class="section level3">
+<h3>Modifying and summarizing vectors/lists</h3>
+<div id="keep-and-discard" class="section level4">
+<h4>keep() and discard()</h4>
+<p><code>keep()</code> and <code>discard()</code> … keep and discard elements of a list or vector based on a <em>predicate function</em>. A predicate function is a function that returns <code>TRUE</code> or <code>FALSE</code>. So <code>is.factor()</code> is a predicate function, because it always returns <code>TRUE</code> or <code>FALSE</code>, while <code>round()</code> is not.</p>
+<p>For example, we can <code>keep()</code> all elements of our list that are less than 3 with the following code:</p>
+<pre class="r"><code>keep(my_vector, ~ .x &lt; 3)</code></pre>
+<pre><code>## [1] 1.0212 2.4830</code></pre>
+<p>Similarly, we could <code>discard()</code> all elements less than 3:</p>
+<pre class="r"><code>discard(my_vector, ~ .x &lt; 3)</code></pre>
+<pre><code>## [1] 3.1890 4.5938</code></pre>
+</div>
+<div id="map_if" class="section level4">
+<h4>map_if()</h4>
+<p>Sometimes, you’ll want to only apply a function to certain elements of a list, like all the numeric ones. This is where <code>map_if()</code> comes in handy. Just like <code>mutate_if()</code>, <code>select_if()</code>, and <code>summarise_if()</code>, you add a condition and the function will only apply to those columns (or list elements) where the condition is met.</p>
+<p>You could use <code>safely()</code> or <code>possibly()</code>, but <code>map_if()</code> works if a) we know the condition we need the element to meet for the function to work and want to keep the original element if the condition isn’t met or b) not meeting the condition won’t result in an error, but we still don’t want to our apply our function to elements not meeting it.</p>
+<pre class="r"><code>map_if(mixed_list, is.numeric, add_ten)</code></pre>
+<pre><code>## Error in map_lgl(.x, .p, ...): object &#39;mixed_list&#39; not found</code></pre>
+</div>
+<div id="every-and-some" class="section level4">
+<h4>every() and some()</h4>
+<p>Sometimes you have a giant list and want to know whether each element meets a condition, like being numeric. You can use <code>every()</code>, which will check if every element of a list satisfies a predicate function:</p>
+<pre class="r"><code>every(mixed_list, is.numeric)</code></pre>
+<pre><code>## Error in every(mixed_list, is.numeric): object &#39;mixed_list&#39; not found</code></pre>
+<p>Since “happy” is the first element of <code>mixed_list</code>, it doesn’t past the test.</p>
+<p>If we want to be less strict and just check if <strong>some</strong> of the elements satisfies a predicate function, we can use <code>some()</code> instead:</p>
+<pre class="r"><code>some(mixed_list, is.numeric)</code></pre>
+<pre><code>## Error in some(mixed_list, is.numeric): object &#39;mixed_list&#39; not found</code></pre>
+<p>In this case, since some elements of <code>mixed_list</code> were numeric, we got <code>TRUE</code>.</p>
+</div>
+</div>
+<div id="modifying-functions" class="section level3">
+<h3>Modifying functions</h3>
+<p><code>purrr</code> includes <strong>adverbs</strong> - functions that take a function and return a modified version (just as an adverb modifies a verb). Let’s check out a few!</p>
+<div id="negate" class="section level4">
+<h4>negate()</h4>
+<p><code>negate()</code> … negates a predicate function (aren’t the <code>purrr</code> function names done well?). For example, let’s say you want to check which elements of a list were not null. This is how you would do it with <code>map_lgl</code> (which returns a logical vector rather than a list):</p>
+<pre class="r"><code>lst &lt;- list(&quot;a&quot;, 3, 22, NULL, &quot;q&quot;, NULL)</code></pre>
+<pre class="r"><code>map_lgl(lst, ~ !is.null(.))</code></pre>
+<pre><code>## [1]  TRUE  TRUE  TRUE FALSE  TRUE FALSE</code></pre>
+<p>This works, but it’s not super easy to read. Instead, we can make an <code>is_not_null()</code> function using <code>negate()</code>:</p>
+<pre class="r"><code>is_not_null &lt;- negate(is.null)
+
+map_lgl(lst, is_not_null)</code></pre>
+<pre><code>## [1]  TRUE  TRUE  TRUE FALSE  TRUE FALSE</code></pre>
+<p>Voila!</p>
+</div>
+<div id="partial" class="section level4">
+<h4>partial()</h4>
+<p>You probably have a couple functions where you almost always use an extra argument, like <code>mean()</code> with <code>na.rm = TRUE</code> or <code>round()</code> with <code>digits = 1</code>. You can use <code>partial()</code> to create a new function where those are always specified, saving you some repetitive typing!</p>
+<pre class="r"><code>mean(c(10, NA, 5, 7))</code></pre>
+<pre><code>## [1] NA</code></pre>
+<pre class="r"><code>mean(c(10, NA, 5, 7), na.rm = TRUE)</code></pre>
+<pre><code>## [1] 7.333333</code></pre>
+<pre class="r"><code>my_mean &lt;- partial(mean, na.rm = TRUE)
+
+my_mean(c(10, NA, 5, 7))</code></pre>
+<pre><code>## [1] 7.333333</code></pre>
+<pre class="r"><code>my_round &lt;- partial(round, digits = 1)
+
+my_round(10.484)</code></pre>
+<pre><code>## [1] 10.5</code></pre>
+</div>
+<div id="safely-and-possibly" class="section level4">
+<h4>safely() and possibly()</h4>
+<p>What if you’re not sure about the types of every element in your list, and you want to apply a function that needs the input to be of a certain type? For example, let’s say we wanted to add 10 to every element of a list where possible.</p>
+<pre class="r"><code>add_ten &lt;- function(n) {
+  n + 10
+}
+
+mixed_list &lt;- list(&quot;happy&quot;, 2L, 4.39)
+
+map(mixed_list, add_ten)</code></pre>
+<pre><code>## Error in n + 10: non-numeric argument to binary operator</code></pre>
+<p>We get an error since we’re trying to add 10 to “happy”, which isn’t numeric! This is where <code>safely()</code> and <code>possibly()</code> come in.</p>
+<p>If you’re not interested in what the error is, you should use <code>possibly()</code>. In addition to the function it’s wrapping around, you need to specify the argument <code>otherwise</code>, which is what you want to return if there is an error. Let’s take a look:</p>
+<pre class="r"><code>possibly_add_ten &lt;- possibly(add_ten, otherwise = &quot;I&#39;m not numeric!&quot;)
+
+map(mixed_list, possibly_add_ten)</code></pre>
+<pre><code>## [[1]]
+## [1] &quot;I&#39;m not numeric!&quot;
+## 
+## [[2]]
+## [1] 12
+## 
+## [[3]]
+## [1] 14.39</code></pre>
+<p>Side-note - I find the the double-brackets confusing. We’ve got them since our list isn’t named. Let’s set the name of each element with <code>purrr's</code> <code>set_names()</code>, giving our elements the very creative names <code>a</code>, <code>b</code>, and <code>c</code>.</p>
+<pre class="r"><code>mixed_list &lt;- set_names(mixed_list, c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;))
+
+mixed_list</code></pre>
+<pre><code>## $a
+## [1] &quot;happy&quot;
+## 
+## $b
+## [1] 2
+## 
+## $c
+## [1] 4.39</code></pre>
+<p>Well … mildly easier to read at least.</p>
+<p>On the other hand, sometimes you do want to know what the error is. If that’s the case, you can use <code>safely()</code> instead:</p>
+<pre class="r"><code>map(mixed_list, safely(add_ten))</code></pre>
+<pre><code>## $a
+## $a$result
+## NULL
+## 
+## $a$error
+## &lt;simpleError in n + 10: non-numeric argument to binary operator&gt;
+## 
+## 
+## $b
+## $b$result
+## [1] 12
+## 
+## $b$error
+## NULL
+## 
+## 
+## $c
+## $c$result
+## [1] 14.39
+## 
+## $c$error
+## NULL</code></pre>
+<p><code>safely</code> returns a list of lists. Each element from the original list has two entries: <code>result</code> and <code>error</code>. One is always <code>NULL</code> - if there was an error, <code>result</code> is <code>NULL</code> and <code>error</code> is the error message; if there wasn’t an error, the <code>result</code> is the result and <code>error</code> is <code>NULL</code>. If you want to get back all the errors or results, you can use another handy feature of <code>map()</code>. If you give <code>map()</code> a string as the second argument, for each element of the list, it will return the element inside of it with that name.</p>
+<pre class="r"><code>safely_add_ten &lt;- safely(add_ten)
+
+mixed_list %&gt;%
+  map(safely_add_ten) %&gt;%
+  map(&quot;error&quot;)</code></pre>
+<pre><code>## $a
+## &lt;simpleError in n + 10: non-numeric argument to binary operator&gt;
+## 
+## $b
+## NULL
+## 
+## $c
+## NULL</code></pre>
+<p>Ah, no more list of lists. That was scary. I promise I won’t do it again.</p>
+</div>
+<div id="compact" class="section level4">
+<h4>compact()</h4>
+<p>In the previous example, we probably wouldn’t be interested in the instances where errors were <code>NULL</code>. We could use <code>discard(is.null)</code>, but <code>purrr</code> actually provides a function just for the purpose of getting rid of <code>NULL</code>s: <code>compact</code>.</p>
+<pre class="r"><code>mixed_list %&gt;%
+  map(safely_add_ten) %&gt;%
+  map(&quot;result&quot;) %&gt;%
+  compact()</code></pre>
+<pre><code>## $b
+## [1] 12
+## 
+## $c
+## [1] 14.39</code></pre>
+</div>
+<div id="compose" class="section level4">
+<h4>compose()</h4>
+<p><code>compose()</code> lets you string together multiple functions. Let’s say you want to <code>add_ten()</code>, take the log, and then round a vector of numbers. You could do either of these:</p>
+<pre class="r"><code>c(1, 20, 500) %&gt;%
+  add_ten() %&gt;%
+  log() %&gt;%
+  round()</code></pre>
+<pre><code>## [1] 2 3 6</code></pre>
+<pre class="r"><code>round(log(add_ten(c(1, 20, 500))))</code></pre>
+<pre><code>## [1] 2 3 6</code></pre>
+<p>But you could also make a new function using <code>compose()</code>. You give <code>compose()</code> functions to execute in order from <em>right to left</em> (just like we have written above):</p>
+<pre class="r"><code>add_ten_log_and_round &lt;- compose(round, log, add_ten)
+
+add_ten_log_and_round(c(1, 20, 500))</code></pre>
+<pre><code>## [1] 2 3 6</code></pre>
+<p><code>compose()</code> is great for simplifying your code if you’re going to use a sequence of functions again and again.</p>
+<p>What if we wanted to round to the nearest tenth instead? You can combine <code>compose()</code> with <code>partial()</code>!</p>
+<pre class="r"><code>round_tenth &lt;- partial(round, digits = 1)
+
+add_ten_log_and_round_tenth &lt;- compose(round_tenth, log, add_ten)
+
+add_ten_log_and_round_tenth(c(1, 20, 500))</code></pre>
+<pre><code>## [1] 2.4 3.4 6.2</code></pre>
+</div>
+</div>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
+<p>There’s so much to learn in the wonderful world of <code>purrr</code>! I’m a big believer that just knowing something exists gets you a lot of the way there. Maybe you can’t think of a use for <code>partial()</code> right now, but you’ll run into a problem a few months down the line where it would be handy. You don’t need to remember the exact syntax; all you need to know is what to Google for and that you don’t need to spend hours trying to find some other solution or resign yourself to writing repetitive code.</p>
+<p>One thing I didn’t show in this post was how all of these functions can fit together in an analysis. For that, I’ll recommend <a href="(https://www.datacamp.com/courses/intermediate-functional-programming-with-purrr)">Colin’s course</a> again. He also has a series of six blog posts illustrating different <code>purrr</code> functions, including some I didn’t cover here; <a href="https://colinfay.me/tags/#purrr">check them out</a>!</p>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Now, this is a bit of a silly example. Because <code>round()</code> is vectorized (it works not just on a single value but a vector of them), you could have just done this instead:</p>
+<pre class="r"><code>round(my_vector)</code></pre>
+<pre><code>## [1] 1 2 3 5</code></pre>
+<p>This won’t work, however, if your input is a list instead of a vector:</p>
+<pre class="r"><code>vec_as_list &lt;- list(my_vector)
+
+round(vec_as_list)</code></pre>
+<pre><code>## Error in round(vec_as_list): non-numeric argument to mathematical function</code></pre>
+<p>But <code>map()</code> still will:</p>
+<pre class="r"><code>map(vec_as_list, round)</code></pre>
+<pre><code>## [[1]]
+## [1] 1 2 3 5</code></pre>
+<p>Generally, you don’t need <code>map</code> when you’re working with a simple vector and a vectorized function. <code>map</code> shines where you either a) have a non-vectorized function or b) a more complicated data structure (including a list).<a href="#fnref1">↩</a></p></li>
+</ol>
 </div>
 
               
@@ -304,9 +553,11 @@ When p-hacking is taken into account, 73% of A/B tests on Optimizely have no eff
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">TAGGED IN</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="/tags/a/b-testing/">A/B Testing</a>
+  <a class="tag tag--primary tag--small" href="/tags/r/">R</a>
 
-  <a class="tag tag--primary tag--small" href="/tags/online-experimentation/">Online Experimentation</a>
+  <a class="tag tag--primary tag--small" href="/tags/code/">Code</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/tidyverse/">tidyverse</a>
 
                   </div>
                 
@@ -319,7 +570,7 @@ When p-hacking is taken into account, 73% of A/B tests on Optimizely have no eff
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="/the-lesser-known-stars-of-the-tidyverse/" data-tooltip="The Lesser Known Stars of the Tidyverse">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -327,7 +578,7 @@ When p-hacking is taken into account, 73% of A/B tests on Optimizely have no eff
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="/red-flags-in-data-science-interviews/" data-tooltip="Red Flags in Data Science Interviews">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/the-lesser-known-stars-of-the-tidyverse/" data-tooltip="The Lesser Known Stars of the Tidyverse">
               
                   <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                   <i class="fa fa-angle-right"></i>
@@ -345,13 +596,13 @@ When p-hacking is taken into account, 73% of A/B tests on Optimizely have no eff
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/guidelines-for-ab-testing/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/going-off-the-map/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/guidelines-for-ab-testing/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/going-off-the-map/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -389,7 +640,7 @@ When p-hacking is taken into account, 73% of A/B tests on Optimizely have no eff
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="/the-lesser-known-stars-of-the-tidyverse/" data-tooltip="The Lesser Known Stars of the Tidyverse">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -397,7 +648,7 @@ When p-hacking is taken into account, 73% of A/B tests on Optimizely have no eff
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="/red-flags-in-data-science-interviews/" data-tooltip="Red Flags in Data Science Interviews">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/the-lesser-known-stars-of-the-tidyverse/" data-tooltip="The Lesser Known Stars of the Tidyverse">
               
                   <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                   <i class="fa fa-angle-right"></i>
@@ -415,13 +666,13 @@ When p-hacking is taken into account, 73% of A/B tests on Optimizely have no eff
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/guidelines-for-ab-testing/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/going-off-the-map/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/guidelines-for-ab-testing/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/going-off-the-map/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -445,13 +696,13 @@ When p-hacking is taken into account, 73% of A/B tests on Optimizely have no eff
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2Fguidelines-for-ab-testing%2F">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2Fgoing-off-the-map%2F">
           <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2Fguidelines-for-ab-testing%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2Fgoing-off-the-map%2F">
           <i class="fa fa-twitter"></i><span>Share on Twitter</span>
         </a>
       </li>

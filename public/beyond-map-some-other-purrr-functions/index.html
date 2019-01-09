@@ -5,31 +5,43 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Hugo 0.51 with theme Tranquilpeak 0.4.3-SNAPSHOT">
+<meta name="generator" content="Hugo 0.53 with theme Tranquilpeak 0.4.3-SNAPSHOT">
 <meta name="author" content="Emily Robinson">
 <meta name="keywords" content="">
-<meta name="description" content="This is the second part of my posts on the rstudio::conf. If you’re interested in more general thoughts on the conference and some personal notes, check out my other post. This post is to gather, as succintly and organized as possible, the practical and technical things I learned at the conference. While I did a whole training day on writing R Packages, I haven’t included most of what I’ve learned here.">
+<meta name="description" content="I recently completed Colin Fay’s excellent DataCamp course, Intermediate Functional Programming with purrr (full disclosure: I work at DataCamp, but part of why I joined was that I was a big fan of the short, interactive course format). Although I’ve used purrr before, there were a lot of functions in this course that were either new to me or I hadn’t realized the full use of.
+If you’re familiar with purrr, it’s probably because of the map() function.">
 
 
-<meta property="og:description" content="This is the second part of my posts on the rstudio::conf. If you’re interested in more general thoughts on the conference and some personal notes, check out my other post. This post is to gather, as succintly and organized as possible, the practical and technical things I learned at the conference. While I did a whole training day on writing R Packages, I haven’t included most of what I’ve learned here.">
+<meta property="og:description" content="I recently completed Colin Fay’s excellent DataCamp course, Intermediate Functional Programming with purrr (full disclosure: I work at DataCamp, but part of why I joined was that I was a big fan of the short, interactive course format). Although I’ve used purrr before, there were a lot of functions in this course that were either new to me or I hadn’t realized the full use of.
+If you’re familiar with purrr, it’s probably because of the map() function.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RStudio Conference: Tips and Tricks">
-<meta name="twitter:title" content="RStudio Conference: Tips and Tricks">
-<meta property="og:url" content="/rstudio-conference-tips-and-tricks/">
-<meta property="twitter:url" content="/rstudio-conference-tips-and-tricks/">
+<meta property="og:title" content="Beyond map: some other purrr functions">
+<meta name="twitter:title" content="Beyond map: some other purrr functions">
+<meta property="og:url" content="/beyond-map-some-other-purrr-functions/">
+<meta property="twitter:url" content="/beyond-map-some-other-purrr-functions/">
 <meta property="og:site_name" content="Hooked on Data">
-<meta property="og:description" content="This is the second part of my posts on the rstudio::conf. If you’re interested in more general thoughts on the conference and some personal notes, check out my other post. This post is to gather, as succintly and organized as possible, the practical and technical things I learned at the conference. While I did a whole training day on writing R Packages, I haven’t included most of what I’ve learned here.">
-<meta name="twitter:description" content="This is the second part of my posts on the rstudio::conf. If you’re interested in more general thoughts on the conference and some personal notes, check out my other post. This post is to gather, as succintly and organized as possible, the practical and technical things I learned at the conference. While I did a whole training day on writing R Packages, I haven’t included most of what I’ve learned here.">
+<meta property="og:description" content="I recently completed Colin Fay’s excellent DataCamp course, Intermediate Functional Programming with purrr (full disclosure: I work at DataCamp, but part of why I joined was that I was a big fan of the short, interactive course format). Although I’ve used purrr before, there were a lot of functions in this course that were either new to me or I hadn’t realized the full use of.
+If you’re familiar with purrr, it’s probably because of the map() function.">
+<meta name="twitter:description" content="I recently completed Colin Fay’s excellent DataCamp course, Intermediate Functional Programming with purrr (full disclosure: I work at DataCamp, but part of why I joined was that I was a big fan of the short, interactive course format). Although I’ve used purrr before, there were a lot of functions in this course that were either new to me or I hadn’t realized the full use of.
+If you’re familiar with purrr, it’s probably because of the map() function.">
 <meta property="og:locale" content="en-us">
 
   
-    <meta property="article:published_time" content="2017-01-19T00:00:00">
+    <meta property="article:published_time" content="2019-01-07T00:00:00">
   
   
-    <meta property="article:modified_time" content="2017-01-19T00:00:00">
+    <meta property="article:modified_time" content="2019-01-07T00:00:00">
   
   
   
+  
+    
+      <meta property="article:tag" content="R">
+    
+      <meta property="article:tag" content="Code">
+    
+      <meta property="article:tag" content="tidyverse">
+    
   
 
 
@@ -53,14 +65,14 @@
   <meta property="twitter:image" content="https://avatars.githubusercontent.com/robinsones">
 
 
-    <title>RStudio Conference: Tips and Tricks</title>
+    <title>Beyond map: some other purrr functions</title>
 
     <link rel="icon" href="/favicon.png">
     
 
     
 
-    <link rel="canonical" href="/rstudio-conference-tips-and-tricks/">
+    <link rel="canonical" href="/beyond-map-some-other-purrr-functions/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -223,15 +235,15 @@ if (!doNotTrack) {
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      RStudio Conference: Tips and Tricks
+      Beyond map: some other purrr functions
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2017-01-19T00:00:00Z">
+      <time itemprop="datePublished" datetime="2019-01-07T00:00:00Z">
         
-  January 19, 2017
+  January 7, 2019
 
       </time>
     
@@ -245,92 +257,244 @@ if (!doNotTrack) {
               
 
 
-<p>This is the second part of my posts on the rstudio::conf. If you’re interested in more general thoughts on the conference and some personal notes, check out my <a href="hookedondata.org/RStudio-Conference-Recap/">other post</a>. This post is to gather, as succintly and organized as possible, the practical and technical things I learned at the conference. While I did a whole training day on writing R Packages, I haven’t included most of what I’ve learned here. Instead, I’ll be integrating it into a future post on writing my first R package.</p>
-<div id="useful-packages-tools-and-functions" class="section level2">
-<h2>Useful Packages, Tools, and Functions</h2>
-<ul>
-<li><p><strong>Assertr’s verify function</strong>: The verify function is meant for use in a data analysis pipeline. It raises an error if the logical within the function is false and just returns the data if True. This is a great way to add some assumption checks in your data pipelines. For example, <code>mtcars %&gt;% verify(nrow(.) == 32) %&gt;% filter(cyl == 6)</code> simply returns the data frame of all cars with 6 cylinders, as expected, because <code>mtcars</code> does indeed have 32 rows. If, however, we had put the wrong number of rows in (e.g. <code>verify(nrow(.) == 24)</code>), we would have gotten no data, with this error instead: <code>Error in verify(., nrow(.) == 24) : verification failed! (1 failure)</code>.</p></li>
-<li><p><strong>Profvis</strong>: This is a tool to visualize how long each part of your code is taking to run. This is a great way to figure out how to speed up your code, as often your intuition of what is taking the most time does not match reality. To use it, all you have to do is wrap your code in the profvis function, like so: <code>profvis({ my_function })</code>. A new pane will then pop up in RStudio that shows how long each line takes to run and even what functions each calls. Learn more on the RStudio <a href="https://rstudio.github.io/profvis/">Profvis page</a>.</p></li>
-<li><p><strong>Abbreviating arguments</strong>: You can abbreviate arguments within functions. So instead of writing <code>mean(c(10, 5, NA), na.rm = TRUE</code>), you can simply right <code>mean(c(10, 5, NA), n = T)</code>. CAUTION: this can go wrong, especially in the case of using T and F as abbreviations for TRUE and FALSE. For example, if for some reason you (or an evil coworker) had put <code>T &lt;- F</code> before you run this code, now your output will be <code>NA</code>!</p></li>
-<li><p><strong>Listviewer</strong>: One of the hardest parts about working with nested lists is trying to figure out what the heck is in them. The <code>jsonedit</code> function from listviewer allows you to see the layers of a list and even search through them. Here’s what it looks like when I run it with got_chars, a list from Jenny Bryan’s great <a href="https://github.com/jennybc/repurrrsive">repurrrsive package</a>:</p></li>
-</ul>
+<p>I recently completed <a href="https://colinfay.me/">Colin Fay’s</a> excellent DataCamp course, <a href="https://www.datacamp.com/courses/intermediate-functional-programming-with-purrr">Intermediate Functional Programming with purrr</a> (full disclosure: I work at DataCamp, but part of why I joined was that I was a big fan of the short, interactive course format). Although I’ve used <code>purrr</code> before, there were a lot of functions in this course that were either new to me or I hadn’t realized the full use of.</p>
+<p>If you’re familiar with <code>purrr</code>, it’s probably because of the <code>map()</code> function. If you’ve seen <code>purrr</code> but been scared off, I’m right there with you. It can definitely be intimidating - you’ll often see it used with nested lists or dataframes, like in this (modified) example from one of the last lessons in Jenny Bryan’s <code>purrr</code> tutorial:</p>
+<pre class="r"><code>library(dplyr)
+library(purrr)
+library(gapminder)</code></pre>
+<pre><code>## Error in library(gapminder): there is no package called &#39;gapminder&#39;</code></pre>
+<pre class="r"><code>library(tidyr)</code></pre>
+<pre class="r"><code>gapminder %&gt;%
+  group_by(country) %&gt;%
+  nest() %&gt;%  
+  mutate(fit = map(data, ~ lm(lifeExp ~ year, data = .x))) %&gt;%
+  mutate(rsq = map_dbl(fit, ~ summary(.x)[[&quot;r.squared&quot;]])) %&gt;%
+  arrange(rsq)</code></pre>
+<pre><code>## Error in eval(lhs, parent, parent): object &#39;gapminder&#39; not found</code></pre>
+<p>If you’ve generally worked with plain-old table data or vectors (like I have), you might have this reaction to that code:</p>
 <div class="figure">
-<img src="/img/Listviewer.png" alt="Image of Listviewer" />
-<p class="caption">Image of Listviewer</p>
+<img src="https://media.giphy.com/media/a93jwI0wkWTQs/giphy.gif" />
+
+</div>
+<p>But I am here to tell you: <code>purrr</code> can make your life easier even if you never write code like this. Certainly, knowing how to work with complicated nested lists and dataframes is very useful - it can simplify code you’ve written, and your data may arrive in that format (for example, JSON data is often represented as nested lists or dataframes in R). But even if all you ever work with is “simple” lists, dataframes, and vectors, you’ll be glad to know a bit of <code>purrr</code>.</p>
+<p>This post gives you a brief introduction to using <code>map()</code> on a vector and then goes through some <code>purrr</code> functions for creating functions and modifying lists/vectors. Most are covered in Colin’s course, though I added a few I found on the <a href="https://www.rstudio.com/resources/cheatsheets/#purrr"><code>purrr</code> cheatsheet</a>.</p>
+<div id="a-brief-introduction-to-map" class="section level2">
+<h2>A brief introduction to map</h2>
+<p><code>map()</code> lets you take a list or vector and apply a function to each element. If you’ve been using R for a while, you might be familiar with the apply functions, including <code>sapply()</code> and <code>lapply()</code>. <code>map()</code> does essentially the same thing, but offers several advantages, most importantly consistency of output (see the first Stack Overflow answer by Hadley Wickham <a href="https://stackoverflow.com/questions/45101045/why-use-purrrmap-instead-of-lapply">here</a> for more).</p>
+<p>Let’s look at an example, where we take a list of four numbers and round each of them.</p>
+<pre class="r"><code>my_vector &lt;- c(1.0212, 2.483, 3.189, 4.5938)
+map(my_vector, round)</code></pre>
+<pre><code>## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] 2
+## 
+## [[3]]
+## [1] 3
+## 
+## [[4]]
+## [1] 5</code></pre>
+<p>The result is a list (hence the double brackets), which is always the case with <code>map()</code>. But you can return a dataframe or different types of vectors instead by using the appropriate <code>map_*()</code> function. In this case, let’s return a vector of type <code>double</code> instead<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>:</p>
+<pre class="r"><code>map_dbl(my_vector, round)</code></pre>
+<pre><code>## [1] 1 2 3 5</code></pre>
+<p>You can also use <code>map</code> with an “anonymous” function. It’s called anonymous because it has no name. The formula is a <code>~</code> followed by what you want to do to each element, with <code>.x</code> representing the element (<code>.</code> also works). We can make an anonymous function to add ten to each element of our vector:</p>
+<pre class="r"><code>map_dbl(my_vector, ~ .x + 10)</code></pre>
+<pre><code>## [1] 11.0212 12.4830 13.1890 14.5938</code></pre>
+<p><code>map()</code> can get much (much) more complicated, with nested lists and multiple inputs and arguments, but even knowing this basic use case can help you! If you do want to dive in more, check out <a href="https://r4ds.had.co.nz/iteration.html#the-map-functions">chapter 21 of R for Data Science</a>, Jenny Bryan’s <a href="https://jennybc.github.io/purrr-tutorial/">purrr tutorials</a>, Auriel Fournier’s <a href="https://www.datacamp.com/courses/foundations-of-functional-programming-with-purrr">Foundations of Functional Programming with purrr</a> course, and chapters 3 and 4 of <a href="https://www.datacamp.com/courses/writing-functions-in-r">Writing Functions in R</a> by Charlotte and Hadley Wickham on DataCamp.</p>
+</div>
+<div id="beyond-map" class="section level2">
+<h2>Beyond map</h2>
+<p>While <code>map*()</code> is great, it can still take a while to wrap your head around. But <code>purrr</code> offers dozens of useful functions that you can start using right away to streamline your workflow, even if you don’t use <code>map()</code>. Let’s check out a few. I’ll separate them into two types: those that create new functions and those that modify a list/vector.</p>
+<div id="creating-new-functions" class="section level3">
+<h3>Creating new functions</h3>
+<div id="negate" class="section level4">
+<h4>negate</h4>
+<p><code>negate()</code> … negates a predicate function (aren’t the <code>purrr</code> function names done well?). For example, maybe you’ve used <code>%in%</code> before to check whether values were in a set:</p>
+<pre class="r"><code>my_vector %in% c(1.0212, 10)</code></pre>
+<pre><code>## [1]  TRUE FALSE FALSE FALSE</code></pre>
+<p>What if you wanted to know which ones were <strong>not in</strong> a list instead? You can use <code>negate()</code> to create a <code>%not_in%</code> function (note, because <code>%</code> is a special character, you need to surround both functions with back ticks):</p>
+<pre class="r"><code>`%not_in%` &lt;- negate(`%in%`)
+
+my_vector %not_in% c(1.0212, 10)</code></pre>
+<pre><code>## [1] FALSE  TRUE  TRUE  TRUE</code></pre>
+</div>
+<div id="partial" class="section level4">
+<h4>partial</h4>
+<p>You probably have a couple functions where you almost always use an extra argument, like <code>mean()</code> with <code>na.rm = TRUE</code> or <code>round()</code> with <code>digits = 1</code>. You can use <code>partial()</code> to create a new function where those are always specified!</p>
+<pre class="r"><code>mean(c(10, NA, 5, 7))</code></pre>
+<pre><code>## [1] NA</code></pre>
+<pre class="r"><code>mean(c(10, NA, 5, 7), na.rm = TRUE)</code></pre>
+<pre><code>## [1] 7.333333</code></pre>
+<pre class="r"><code>my_mean &lt;- partial(mean, na.rm = TRUE)
+my_mean(c(10, NA, 5, 7))</code></pre>
+<pre><code>## [1] 7.333333</code></pre>
+<pre class="r"><code>my_round &lt;- partial(round, digits = 1)
+my_round(10.484)</code></pre>
+<pre><code>## [1] 10.5</code></pre>
+</div>
+<div id="safely-and-possibly" class="section level4">
+<h4>safely and possibly</h4>
+<p>Lists are magical because you can have elements of different types, while a vector can only be one type. Look what happens here:</p>
+<pre class="r"><code>mixed_vector &lt;- c(&quot;happy&quot;, 2L, 4.39)
+mixed_vector</code></pre>
+<pre><code>## [1] &quot;happy&quot; &quot;2&quot;     &quot;4.39&quot;</code></pre>
+<pre class="r"><code>typeof(mixed_vector)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<p>I entered a character, an integer (that’s what the L is for), and a double, but they all ended up characters! Since <code>c()</code> creates a vector, not a list, it converts inputs if needed so that the they’re all the same type.</p>
+<p>On the other hand, type is preserved if you make a list:</p>
+<pre class="r"><code>mixed_list &lt;- list(&quot;happy&quot;, 2L, 4.39)
+mixed_list</code></pre>
+<pre><code>## [[1]]
+## [1] &quot;happy&quot;
+## 
+## [[2]]
+## [1] 2
+## 
+## [[3]]
+## [1] 4.39</code></pre>
+<p>While the type for <code>mixed_list</code> is a list, we see the types of its elements is as desired:</p>
+<pre class="r"><code>typeof(mixed_list[[2]])</code></pre>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<p>What if you’re not sure about the types of every element in your list, and you want to apply a function that needs the input to be of a certain type? For example, let’s say we wanted to add 10 to every element of a list where possible.</p>
+<pre class="r"><code>add_ten &lt;- function(n) {
+  n + 10
+}
+
+map(mixed_list, add_ten)</code></pre>
+<pre><code>## Error in n + 10: non-numeric argument to binary operator</code></pre>
+<p>We get an error since we’re trying to add 10 to “happy”, which isn’t numeric! This is where <code>safely()</code> and <code>possibly()</code> come in.</p>
+<p>If you’re not interested in what the error is, you should use <code>possibly()</code>. In addition to the function it’s wrapping around, you need to specify the argument <code>otherwise</code>: what you want to return if there is an error. Let’s take a look:</p>
+<pre class="r"><code>possibly_add_ten &lt;- possibly(add_ten, otherwise = &quot;I&#39;m not numeric!&quot;)
+map(mixed_list, possibly_add_ten)</code></pre>
+<pre><code>## [[1]]
+## [1] &quot;I&#39;m not numeric!&quot;
+## 
+## [[2]]
+## [1] 12
+## 
+## [[3]]
+## [1] 14.39</code></pre>
+<p>Side-note - I find the the double-brackets confusing. We’ve got them since our list isn’t named. Let’s set the name of each element with <code>purrr's</code> <code>set_names()</code>, giving our elements the very creative names <code>a</code>, <code>b</code>, and <code>c</code>.</p>
+<pre class="r"><code>mixed_list &lt;- set_names(mixed_list, c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;))
+mixed_list</code></pre>
+<pre><code>## $a
+## [1] &quot;happy&quot;
+## 
+## $b
+## [1] 2
+## 
+## $c
+## [1] 4.39</code></pre>
+<p>Well … mildly easier to read at least.</p>
+<p>On the other hand, sometimes you do want to know what the error is. If that’s the case, you can use <code>safely()</code> instead:</p>
+<pre class="r"><code>map(mixed_list, safely(add_ten))</code></pre>
+<pre><code>## $a
+## $a$result
+## NULL
+## 
+## $a$error
+## &lt;simpleError in n + 10: non-numeric argument to binary operator&gt;
+## 
+## 
+## $b
+## $b$result
+## [1] 12
+## 
+## $b$error
+## NULL
+## 
+## 
+## $c
+## $c$result
+## [1] 14.39
+## 
+## $c$error
+## NULL</code></pre>
+<p><code>safely</code> returns a list of lists. Each element from the original list has two entries: <code>result</code> and <code>error</code>. One is always <code>NULL</code> - if there was an error, <code>result</code> is <code>NULL</code> and <code>error</code> is the error message; if there wasn’t an error, the <code>result</code> is the result and <code>error</code> is <code>NULL</code>. If you want to get back all the errors or results, you can use another handy feature of <code>map()</code>. If you give <code>map()</code> a string as the second argument, for each element of the list, it will return the element inside of it with that name.</p>
+<pre class="r"><code>safe_results &lt;- map(mixed_list, safely(add_ten))
+
+map(safe_results, &quot;result&quot;)</code></pre>
+<pre><code>## $a
+## NULL
+## 
+## $b
+## [1] 12
+## 
+## $c
+## [1] 14.39</code></pre>
+<p>Ah, no more list of lists. That was scary. I promise I won’t do it again.</p>
+</div>
+<div id="compose" class="section level4">
+<h4>compose</h4>
+<p><code>compose()</code> lets you string together multiple functions. Let’s say you want to <code>add_ten</code>, take the log, and then round a vector of numbers. You could do either of these:</p>
+<pre class="r"><code>c(1, 20, 500) %&gt;%
+  add_ten() %&gt;%
+  log() %&gt;%
+  round()</code></pre>
+<pre><code>## [1] 2 3 6</code></pre>
+<pre class="r"><code>round(log(add_ten(c(1, 20, 500))))</code></pre>
+<pre><code>## [1] 2 3 6</code></pre>
+<p>But you could also make a new function using <code>compose</code>. You give <code>compose</code> functions to execute in order from <em>right to left</em> (just like we have written above):</p>
+<pre class="r"><code>add_ten_log_and_round &lt;- compose(round, log, add_ten)
+add_ten_log_and_round(c(1, 20, 500))</code></pre>
+<pre><code>## [1] 2 3 6</code></pre>
+<p><code>compose</code> is great for simplifying your code if you’re going to use a sequence of functions again and again.</p>
+<p>What if we wanted to round to the nearest tenth instead? You can combine <code>compose</code> with <code>partial</code>!</p>
+<pre class="r"><code>round_tenth &lt;- partial(round, digits = 1)
+add_ten_log_and_round_tenth &lt;- compose(round_tenth, log, add_ten)
+add_ten_log_and_round_tenth(c(1, 20, 500))</code></pre>
+<pre><code>## [1] 2.4 3.4 6.2</code></pre>
 </div>
 </div>
-<div id="writing-functions" class="section level2">
-<h2>Writing Functions</h2>
-<ul>
-<li>When writing a function, the last thing you should do is start writing a function. You should always start by figuring out how to solve problems with specific x and y and then generalize.</li>
-<li>It’s better to do little steps and check after each one. That way you don’t go a long way, realize you did something wrong, and have to backtrack hours of work.<br />
-</li>
-<li>It’s time to write a function when you copy and paste three times. Copying and pasting too much is bad because it increases the possibility for error and clutters up your code.</li>
-<li>A function is “pure” if its output only depends on its input and it makes no changes to state of the world (such as resetting options).</li>
-<li>Try to make functions “purer” by having it do one thing. You can put the other things in a different function.</li>
-<li>Properties of a good function</li>
-<li>It does one thing (avoids side effects)</li>
-<li>The output is consistent, meaning it always returns the same type of object (e.g. dataframe, character vector, etc.)</li>
-<li>It fails fast</li>
-<li>It has a good name: not too long and makes it clear what the function does</li>
-<li>It works</li>
-<li>Your function should be understandable. This is about being correct in the future. Often what you want to do is going to change over time, and if you can’t understand how a function works, your chances of making a change correctly is smaller. If you try to make your function too clever, you’ll probably end up like this</li>
-</ul>
-<blockquote class="twitter-tweet" data-lang="en">
-<p lang="en" dir="ltr">
-.<a href="https://twitter.com/hadleywickham"><span class="citation">@hadleywickham</span></a> on clever programming solutions<br>Now: “My god I am a total coding genius” <br>3 months later: “I have no idea what this means”
-</p>
-— Emily Robinson (<span class="citation">@robinson_es</span>) <a href="https://twitter.com/robinson_es/status/819225758367449088">January 11, 2017</a>
-</blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-<ul>
-<li>Writing good error messages is really hard, because it relies on you having good mental model of someone else’s flawed mental model of your function.</li>
-<li>Only ever use return for special cases. If a function can return early, it should use an explicit return call. Otherwise return just adds verbosity for no real reason. You want to save return as a call out to mean this is special case.</li>
-<li>Don’t write functions that both compute something and then do something with it. For example, the <code>summary</code> function for a linear model both computes and prints the p-value</li>
-</ul>
+<div id="modifying-vectorslists" class="section level3">
+<h3>Modifying vectors/lists</h3>
+<div id="keep-and-discard" class="section level4">
+<h4>keep and discard</h4>
+<p><code>keep()</code> and <code>discard()</code> … keep and discard elements of a list or vector based on a <em>predicate function</em>. A predicate function is a function that returns <code>TRUE</code> or <code>FALSE</code>. For example, <code>is.factor()</code> is a predicate function, because it always returns <code>TRUE</code> or <code>FALSE</code>, while <code>round()</code> is not.</p>
+<p>For example, we can <code>keep()</code> all elements of our list that are less than 3 with the following code:</p>
+<pre class="r"><code>keep(my_vector, ~ .x &lt; 3)</code></pre>
+<pre><code>## [1] 1.0212 2.4830</code></pre>
+<p>Similarly, we could <code>discard()</code> all elements less than 3:</p>
+<pre class="r"><code>discard(my_vector, ~ .x &lt; 3)</code></pre>
+<pre><code>## [1] 3.1890 4.5938</code></pre>
 </div>
-<div id="keyboard-shortcuts" class="section level2">
-<h2>Keyboard Shortcuts</h2>
-<ul>
-<li>Hit tab after you start typing to get all functions that start with those letters. Cmd/Ctrl + up arrow instead gives you the commands you’ve typed</li>
-<li>Hold alt and drag your cursor to type on multiple lines</li>
-<li>Alt + shift + k for all keyboard shortcuts</li>
-<li>And you can <a href="https://support.rstudio.com/hc/en-us/articles/206382178-Customizing-Keyboard-Shortcuts">make your own keyboard shortcuts</a></li>
-</ul>
-</div>
-<div id="general-tips-and-tricks" class="section level2">
-<h2>General Tips and Tricks</h2>
-<ul>
-<li>Reading rcode broadly is useful, as it can help expand your R vocabulary.</li>
-<li>Hadley sets these options in R, to avoid the pitfalls of R’s “helpful” partial name matching</li>
-</ul>
-<pre><code>options(warnPartialMatchArgs = TRUE, warnPartialMatchDollar = TRUE, warnPartialMatchAttr = TRUE)</code></pre>
-<ul>
-<li>Most of the time the bottleneck is thinking speed, not computational speed</li>
-<li>Don’t proactively worry about performance of your code, but about whether it’s clear.</li>
-<li>Don’t try to read your code and think whether it will be fast or slow. Your intuition is terrible. Just run it! You can also use <code>profvis</code> to help.</li>
-<li>It’s very easy to make code faster by making it incorrect. One of the reasons to write tests!</li>
-<li>Restart R a few times a day and never restore or save your .RData. This will help the reproducibility of your code and also if your coworkers do something like redefine <code>+</code> (yes, you can do that in R).</li>
-<li>Don’t use comments to say what/how your code is doing, use it to describe why. Otherwise, you have to remember to change comments when you change your code. You really don’t want to end up with your code doing one thing and your comment saying you’re doing something else.</li>
-<li>You can be too verbose in your code because don’t have enough r vocabulary. For example:
-<ul>
-<li><code>if(x == TRUE)</code> is the same as <code>if(x)</code></li>
-<li><code>y == &quot;a&quot; | y == &quot;b&quot; | y == &quot;c&quot;</code> is the same as <code>y %in% c(&quot;a&quot;, &quot;b&quot;, “c”)</code></li>
-</ul></li>
-<li>Bob Rudis’ five rules for using pipes. P.S. This was probably the most elaborate and fun slideshow. Definitely <a href="https://github.com/hrbrmstr/rstudioconf2017#readme">check it out</a>!</li>
-</ul>
-<div class="figure">
-<img src="/img/Rules_of_pipe.png" alt="Image of pipes" />
-<p class="caption">Image of pipes</p>
+<div id="map_if" class="section level4">
+<h4>map_if</h4>
+<p>Sometimes, you’ll want to only apply a function to certain elements of a list, like all the numeric ones. This is where <code>map_if()</code> comes in handy. Just like <code>mutate_if()</code>, <code>select_if()</code>, and <code>summarise_if()</code>, you add a condition and the function will only apply to those columns (or list elements) where the condition is met.</p>
+<p>You could use <code>safely()</code> or <code>possibly()</code>, but <code>map_if()</code> works if a) we know the condition we need the element to meet for the function to work and want to keep the original element if the condition isn’t met or b) not meeting the condition won’t result in an error, but we still don’t want to our apply our function to elements not meeting it.</p>
+<pre class="r"><code>map_if(mixed_list, is.numeric, add_ten)</code></pre>
+<pre><code>## $a
+## [1] &quot;happy&quot;
+## 
+## $b
+## [1] 12
+## 
+## $c
+## [1] 14.39</code></pre>
 </div>
 </div>
-<div id="other-conference-write-ups" class="section level2">
-<h2>Other Conference Write-Ups</h2>
-<ul>
-<li>Sharon Machlis’s <a href="http://www.computerworld.com/article/3157004/data-analytics/best-tips-and-takeaways-from-rstudio-conference.html">tips and takeaways</a>, which is in a bullet-point and short paragraph format. This is a great complement to this list, since hers are from the conference talks and most of mine are from the training days with Hadley</li>
-<li>Stephen Turner’s <a href="http://www.gettinggeneticsdone.com/2017/01/rstudio-conference-2017-recap.html">recap</a>, with nice short summaries of some of the talks</li>
-<li>Simon Jackson’s <a href="https://drsimonj.svbtle.com/opinions-and-challenges-at-rstudio-conf">takeaways</a> from the conference, organized around the opinions and challenges about data science processes in the R community. This organizational schema was inspired by Hilary Parker’s great talk on <a href="http://www.slideshare.net/hilaryparker/opinionated-analysis-development">Opinionated Analysis Development</a></li>
-</ul>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
+<p>There’s some much to learn in the wonderful world of <code>purrr</code>! I’m a big believer in that just knowing something exists gets you 80% of the way there. Maybe you can’t think of a use for <code>map_if</code> write now, but you’ll run into a problem a few months down the line where it would be handy. You don’t need to remember the exact syntax; all you need to know is what to Google for and that you don’t need to spend 5 hours trying to find some other solution.</p>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Now, this is a bit of a silly example. Because <code>round()</code> is vectorized (it works not just on a single value but a vector of them), you could have just done this instead:</p>
+<pre class="r"><code>round(my_vector)</code></pre>
+<pre><code>## [1] 1 2 3 5</code></pre>
+<p>It won’t work though if your input is a list instead of a vector:</p>
+<pre class="r"><code>vec_as_list &lt;- list(my_vector)
+round(vec_as_list)</code></pre>
+<pre><code>## Error in round(vec_as_list): non-numeric argument to mathematical function</code></pre>
+<p>But <code>map()</code> will:</p>
+<pre class="r"><code>map(vec_as_list, round)</code></pre>
+<pre><code>## [[1]]
+## [1] 1 2 3 5</code></pre>
+<p>You generally don’t need <code>map</code> when you’re working with a simple vector and a vectorized function. <code>map</code> shines where you either a) have a non-vectorized function or b) a more complicated data structure (including a list).<a href="#fnref1">↩</a></p></li>
+</ol>
 </div>
 
               
@@ -338,6 +502,20 @@ if (!doNotTrack) {
           </div>
           <div id="post-footer" class="post-footer main-content-wrap">
             
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="/tags/r/">R</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/code/">Code</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/tidyverse/">tidyverse</a>
+
+                  </div>
+                
               
             
             <div class="post-actions-wrap">
@@ -347,7 +525,7 @@ if (!doNotTrack) {
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="/rstudio-conference-recap/" data-tooltip="RStudio Conference Recap">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -355,7 +533,7 @@ if (!doNotTrack) {
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="/topic-modeling-the-new-york-times-and-trump/" data-tooltip="Topic Modeling the New York Times and Trump">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/the-lesser-known-stars-of-the-tidyverse/" data-tooltip="The Lesser Known Stars of the Tidyverse">
               
                   <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                   <i class="fa fa-angle-right"></i>
@@ -373,13 +551,13 @@ if (!doNotTrack) {
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/rstudio-conference-tips-and-tricks/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/beyond-map-some-other-purrr-functions/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/rstudio-conference-tips-and-tricks/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/beyond-map-some-other-purrr-functions/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -417,7 +595,7 @@ if (!doNotTrack) {
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="/rstudio-conference-recap/" data-tooltip="RStudio Conference Recap">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -425,7 +603,7 @@ if (!doNotTrack) {
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="/topic-modeling-the-new-york-times-and-trump/" data-tooltip="Topic Modeling the New York Times and Trump">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/the-lesser-known-stars-of-the-tidyverse/" data-tooltip="The Lesser Known Stars of the Tidyverse">
               
                   <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                   <i class="fa fa-angle-right"></i>
@@ -443,13 +621,13 @@ if (!doNotTrack) {
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/rstudio-conference-tips-and-tricks/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/beyond-map-some-other-purrr-functions/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/rstudio-conference-tips-and-tricks/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/beyond-map-some-other-purrr-functions/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -473,13 +651,13 @@ if (!doNotTrack) {
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2Frstudio-conference-tips-and-tricks%2F">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2Fbeyond-map-some-other-purrr-functions%2F">
           <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2Frstudio-conference-tips-and-tricks%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2Fbeyond-map-some-other-purrr-functions%2F">
           <i class="fa fa-twitter"></i><span>Share on Twitter</span>
         </a>
       </li>
@@ -540,15 +718,16 @@ if (!doNotTrack) {
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="/going-off-the-map/">
-                <h3 class="media-heading">Going Off the Map: Exporing purrr&#39;s Other Functions</h3>
+              <a class="link-unstyled" href="/beyond-map-some-other-purrr-functions/">
+                <h3 class="media-heading">Beyond map: some other purrr functions</h3>
               </a>
               <span class="media-meta">
                 <span class="media-date text-small">
                   Jan 1, 2019
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">I recently completed Colin Fay’s excellent DataCamp course, Intermediate Functional Programming with purrr (full disclosure: I work at DataCamp, but part of why I joined was that I was a big fan of the short, interactive course format). Although I’ve used the purrr package before, there were a lot of functions in this course that were new to me. I wrote this post to hopefully demystify purrr a bit for those who find it overwhelming and illustrate some of its lesser known functions.</div>
+              <div class="media-content hide-xs font-merryweather">I recently completed Colin Fay’s excellent DataCamp course, Intermediate Functional Programming with purrr (full disclosure: I work at DataCamp, but part of why I joined was that I was a big fan of the short, interactive course format). Although I’ve used purrr before, there were a lot of functions in this course that were either new to me or I hadn’t realized the full use of.
+If you’re familiar with purrr, it’s probably because of the map() function.</div>
             </div>
             <div style="clear:both;"></div>
             <hr>
