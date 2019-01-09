@@ -14,9 +14,7 @@ tags:
 knitr::opts_chunk$set(error = TRUE)
 ```
 
-I recently completed [Colin Fay's](https://colinfay.me/) excellent DataCamp course, [Intermediate Functional Programming with purrr](https://www.datacamp.com/courses/intermediate-functional-programming-with-purrr) (full disclosure: I work at DataCamp, but part of why I joined was that I was a big fan of the short, interactive course format). Although I've used `purrr` before, there were a lot of functions in this course that were new to me. 
-
-This post gives you a brief overview off my journey with purrr and why I think it's worthwhile learning. I introduce how to use `map()` on a vector and then go through some `purrr` functions for creating functions and modifying lists/vectors. Most are covered in Colin's course, though I added a few I found on the [`purrr` cheatsheet](https://www.rstudio.com/resources/cheatsheets/#purrr). 
+I recently completed [Colin Fay's](https://colinfay.me/) excellent DataCamp course, [Intermediate Functional Programming with purrr](https://www.datacamp.com/courses/intermediate-functional-programming-with-purrr) (full disclosure: I work at DataCamp, but part of why I joined was that I was a big fan of the short, interactive course format). Although I've used the `purrr` package before, there were a lot of functions in this course that were new to me. I wrote this post to hopefully demystify `purrr` a bit for those who find it overwhelming and illustrate some of its lesser known functions. Most of these functions are covered in Colin's course, though I added a few I found on the [`purrr` cheatsheet](https://www.rstudio.com/resources/cheatsheets/#purrr).
 
 ## Jump to:
 1. [Introduction](#introduction)
@@ -34,7 +32,7 @@ This post gives you a brief overview off my journey with purrr and why I think i
 
 ## Introduction
 
-If you're familiar with `purrr`, it's probably because of the `map()` functions. And if you've been a little bit intimidated, I'm right there with you. You'll often see `purrr` used with nested lists or dataframes, like in this (modified) example from one of the last lessons in Jenny Bryan's `purrr` tutorial:
+`purrr` is a library for functional programming in R. If you're familiar with it, it's probably because of the `map()` functions. And if you've been a little bit intimidated by them, I'm right there with you. You'll often see `purrr` used with nested lists or dataframes, like in this (modified) example from one of the last lessons in Jenny Bryan's `purrr` tutorial:
 
 ```{r message = FALSE}
 library(dplyr)
@@ -60,7 +58,7 @@ But I am here to tell you: `purrr` can make your life easier even if you never w
 
 ## A brief introduction to map() 
 
-`map()` lets you take a list or vector and apply a function to each element. If you've been using R for a while, you might be familiar with the apply functions, including `sapply()` and `lapply()`. `map()` does essentially the same thing, but offers several advantages, most importantly consistency of output (see the first Stack Overflow answer by Hadley Wickham [here](https://stackoverflow.com/questions/45101045/why-use-purrrmap-instead-of-lapply) for more). 
+`map()` lets you take a list or vector and apply a function to each element. If you've been using R for a while, you might be familiar with the apply functions, including `sapply()` and `lapply()`. `map()` does essentially the same thing, but offers several advantages, most importantly consistency of output and helpers that let you write more concise code (see the first Stack Overflow answer by Hadley Wickham [here](https://stackoverflow.com/questions/45101045/why-use-purrrmap-instead-of-lapply)). 
 
 Let's look at an example, where we take a list of four numbers and round each of them. 
  
@@ -69,13 +67,13 @@ my_vector <- c(1.0212, 2.483, 3.189, 4.5938)
 map(my_vector, round)
 ```
 
-The result is a list (hence the double brackets), which is always the case with `map()`. But you can return a dataframe or different types of vectors instead by using the appropriate `map_*()` function. In this case, let's return a vector of type `double` instead[^example]: 
+The result is a list (hence the double brackets), which is always the case with `map()`. But you can return a dataframe or different types of vectors instead by using the appropriate `map_*()` function. In this case, let's return a vector of type `double`[^example]: 
 
 ```{r}
 map_dbl(my_vector, round)
 ```
 
-You can also use `map` with an "anonymous" function. It's called anonymous because it has no name. The formula is a `~` followed by what you want to do to each element, with `.x` representing the element (`.` also works). We can make an anonymous function to add ten to each element of our vector: 
+You can also use `map` with an "anonymous" function, a function that doesn't have a name. The formula is a `~` followed by what you want to do to each element, with `.x` representing the element (`.` also works). We can make an anonymous function to add ten to each element of our vector: 
 
 ```{r}
 map_dbl(my_vector, ~ .x + 10)
@@ -94,6 +92,10 @@ While `map*()` is great, it can still take a while to wrap your head around. But
 `negate()` ... negates a predicate function (aren't the `purrr` function names done well?). For example, maybe you've used `%in%` before to check whether values were in a set: 
 
 ```{r}
+my_vector
+```
+
+```{r}
 my_vector %in% c(1.0212, 10)
 ```
 
@@ -107,7 +109,7 @@ my_vector %not_in% c(1.0212, 10)
 
 #### partial()
 
-You probably have a couple functions where you almost always use an extra argument, like `mean()` with `na.rm = TRUE` or `round()` with `digits = 1`. You can use `partial()` to create a new function where those are always specified!
+You probably have a couple functions where you almost always use an extra argument, like `mean()` with `na.rm = TRUE` or `round()` with `digits = 1`. You can use `partial()` to create a new function where those are always specified, saving you some repetitive typing!
 
 ```{r}
 mean(c(10, NA, 5, 7))
@@ -167,7 +169,7 @@ map(mixed_list, add_ten)
 
 We get an error since we're trying to add 10 to "happy", which isn't numeric! This is where `safely()` and `possibly()` come in. 
 
-If you're not interested in what the error is, you should use `possibly()`. In addition to the function it's wrapping around, you need to specify the argument `otherwise`: what you want to return if there is an error. Let's take a look:
+If you're not interested in what the error is, you should use `possibly()`. In addition to the function it's wrapping around, you need to specify the argument `otherwise`, which is what you want to return if there is an error. Let's take a look:
 
 ```{r}
 possibly_add_ten <- possibly(add_ten, otherwise = "I'm not numeric!")
@@ -235,7 +237,7 @@ add_ten_log_and_round_tenth(c(1, 20, 500))
 
 #### keep() and discard()
 
-`keep()` and `discard()` ... keep and discard elements of a list or vector based on a *predicate function*. A predicate function is a function that returns `TRUE` or `FALSE`. For example, `is.factor()` is a predicate function, because it always returns `TRUE` or `FALSE`, while `round()` is not.  
+`keep()` and `discard()` ... keep and discard elements of a list or vector based on a *predicate function*. A predicate function is a function that returns `TRUE` or `FALSE`. So `is.factor()` is a predicate function, because it always returns `TRUE` or `FALSE`, while `round()` is not.  
 
 For example, we can `keep()` all elements of our list that are less than 3 with the following code: 
 
@@ -261,7 +263,7 @@ map_if(mixed_list, is.numeric, add_ten)
 
 #### every() and some()
 
-Sometimes you have a giant list and want to know whether each element meets a condition. For example, maybe if every element is numeric. You can use `every()`, which will check if every element of a list satisfies a predicate function: 
+Sometimes you have a giant list and want to know whether each element meets a condition, like being numeric. You can use `every()`, which will check if every element of a list satisfies a predicate function: 
 
 ```{r}
 every(mixed_list, is.numeric)
@@ -279,7 +281,7 @@ In this case, since some elements of `mixed_list` were numeric, we got `TRUE`.
 
 ## Conclusion 
 
-There's so much to learn in the wonderful world of `purrr`! I'm a big believer in that just knowing something exists gets you a lot of the way there. Maybe you can't think of a use for `map_if()` right now, but you'll run into a problem a few months down the line where it would be handy. You don't need to remember the exact syntax; all you need to know is what to Google for and that you don't need to spend 5 hours trying to find some other solution. 
+There's so much to learn in the wonderful world of `purrr`! I'm a big believer that just knowing something exists gets you a lot of the way there. Maybe you can't think of a use for `partial()` right now, but you'll run into a problem a few months down the line where it would be handy. You don't need to remember the exact syntax; all you need to know is what to Google for and that you don't need to spend hours trying to find some other solution or resign yourself to writing repetitive code. 
 
 One thing I didn't show in this post was how all of these functions can fit together in an analysis. For that, I'll recommend [Colin's course]((https://www.datacamp.com/courses/intermediate-functional-programming-with-purrr)) again. He also has a series of six blog posts illustrating different `purrr` functions, including some I didn't cover here; [check them out](https://colinfay.me/tags/#purrr)!
 
