@@ -171,11 +171,13 @@ mean(c(10, NA, 5, 7), na.rm = TRUE)
 
 ```{r}
 my_mean <- partial(mean, na.rm = TRUE)
+
 my_mean(c(10, NA, 5, 7))
 ```
 
 ```{r}
 my_round <- partial(round, digits = 1)
+
 my_round(10.484)
 ```
 
@@ -199,6 +201,7 @@ If you're not interested in what the error is, you should use `possibly()`. In a
 
 ```{r}
 possibly_add_ten <- possibly(add_ten, otherwise = "I'm not numeric!")
+
 map(mixed_list, possibly_add_ten)
 ```
 
@@ -206,6 +209,7 @@ Side-note - I find the the double-brackets confusing. We've got them since our l
 
 ```{r}
 mixed_list <- set_names(mixed_list, c("a", "b", "c"))
+
 mixed_list
 ```
 
@@ -259,6 +263,7 @@ But you could also make a new function using `compose()`. You give `compose()` f
 
 ```{r}
 add_ten_log_and_round <- compose(round, log, add_ten)
+
 add_ten_log_and_round(c(1, 20, 500))
 ```
 
@@ -268,7 +273,9 @@ What if we wanted to round to the nearest tenth instead? You can combine `compos
 
 ```{r}
 round_tenth <- partial(round, digits = 1)
+
 add_ten_log_and_round_tenth <- compose(round_tenth, log, add_ten)
+
 add_ten_log_and_round_tenth(c(1, 20, 500))
 ```
 
@@ -288,6 +295,7 @@ One thing I didn't show in this post was how all of these functions can fit toge
 
     ```{r}
     vec_as_list <- list(my_vector)
+    
     round(vec_as_list)
     ```
 

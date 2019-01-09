@@ -153,9 +153,11 @@ map_lgl(lst, is_not_null)</code></pre>
 <pre class="r"><code>mean(c(10, NA, 5, 7), na.rm = TRUE)</code></pre>
 <pre><code>## [1] 7.333333</code></pre>
 <pre class="r"><code>my_mean &lt;- partial(mean, na.rm = TRUE)
+
 my_mean(c(10, NA, 5, 7))</code></pre>
 <pre><code>## [1] 7.333333</code></pre>
 <pre class="r"><code>my_round &lt;- partial(round, digits = 1)
+
 my_round(10.484)</code></pre>
 <pre><code>## [1] 10.5</code></pre>
 </div>
@@ -173,6 +175,7 @@ map(mixed_list, add_ten)</code></pre>
 <p>We get an error since we’re trying to add 10 to “happy”, which isn’t numeric! This is where <code>safely()</code> and <code>possibly()</code> come in.</p>
 <p>If you’re not interested in what the error is, you should use <code>possibly()</code>. In addition to the function it’s wrapping around, you need to specify the argument <code>otherwise</code>, which is what you want to return if there is an error. Let’s take a look:</p>
 <pre class="r"><code>possibly_add_ten &lt;- possibly(add_ten, otherwise = &quot;I&#39;m not numeric!&quot;)
+
 map(mixed_list, possibly_add_ten)</code></pre>
 <pre><code>## [[1]]
 ## [1] &quot;I&#39;m not numeric!&quot;
@@ -184,6 +187,7 @@ map(mixed_list, possibly_add_ten)</code></pre>
 ## [1] 14.39</code></pre>
 <p>Side-note - I find the the double-brackets confusing. We’ve got them since our list isn’t named. Let’s set the name of each element with <code>purrr's</code> <code>set_names()</code>, giving our elements the very creative names <code>a</code>, <code>b</code>, and <code>c</code>.</p>
 <pre class="r"><code>mixed_list &lt;- set_names(mixed_list, c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;))
+
 mixed_list</code></pre>
 <pre><code>## $a
 ## [1] &quot;happy&quot;
@@ -259,12 +263,15 @@ mixed_list %&gt;%
 <pre><code>## [1] 2 3 6</code></pre>
 <p>But you could also make a new function using <code>compose()</code>. You give <code>compose()</code> functions to execute in order from <em>right to left</em> (just like we have written above):</p>
 <pre class="r"><code>add_ten_log_and_round &lt;- compose(round, log, add_ten)
+
 add_ten_log_and_round(c(1, 20, 500))</code></pre>
 <pre><code>## [1] 2 3 6</code></pre>
 <p><code>compose()</code> is great for simplifying your code if you’re going to use a sequence of functions again and again.</p>
 <p>What if we wanted to round to the nearest tenth instead? You can combine <code>compose()</code> with <code>partial()</code>!</p>
 <pre class="r"><code>round_tenth &lt;- partial(round, digits = 1)
+
 add_ten_log_and_round_tenth &lt;- compose(round_tenth, log, add_ten)
+
 add_ten_log_and_round_tenth(c(1, 20, 500))</code></pre>
 <pre><code>## [1] 2.4 3.4 6.2</code></pre>
 </div>
@@ -283,6 +290,7 @@ add_ten_log_and_round_tenth(c(1, 20, 500))</code></pre>
 <pre><code>## [1] 1 2 3 5</code></pre>
 <p>This won’t work, however, if your input is a list instead of a vector:</p>
 <pre class="r"><code>vec_as_list &lt;- list(my_vector)
+
 round(vec_as_list)</code></pre>
 <pre><code>## Error in round(vec_as_list): non-numeric argument to mathematical function</code></pre>
 <p>But <code>map()</code> still will:</p>
