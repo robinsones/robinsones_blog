@@ -65,6 +65,7 @@ Let's look at an example, where we take a list of four numbers and round each of
  
 ```{r}
 my_vector <- c(1.0212, 2.483, 3.189, 4.5938)
+
 map(my_vector, round)
 ```
 
@@ -93,7 +94,6 @@ While `map*()` is great, it can still take a while to wrap your head around. But
 `keep()` and `discard()` ... keep and discard elements of a list or vector based on a *predicate function*. A predicate function is a function that returns `TRUE` or `FALSE`. So `is.factor()` is a predicate function, because it always returns `TRUE` or `FALSE`, while `round()` is not.  
 
 For example, we can `keep()` all elements of our list that are less than 3 with the following code: 
-
 ```{r}
 keep(my_vector, ~ .x < 3)
 ```
@@ -106,13 +106,29 @@ discard(my_vector, ~ .x < 3)
 
 #### map_if()
 
-Sometimes, you'll want to only apply a function to certain elements of a list, like all the numeric ones. This is where `map_if()` comes in handy. Just like `mutate_if()`, `select_if()`, and `summarise_if()`, you add a condition and the function will only apply to those columns (or list elements) where the condition is met. 
+What if you're not sure about the types of every element in your list, and you want to apply a function that needs the input to be of a certain type? For example, let's say we wanted to add 10 to every element of a list.
 
-You could use `safely()` or `possibly()`, but `map_if()` works if a) we know the condition we need the element to meet for the function to work and want to keep the original element if the condition isn't met or b) not meeting the condition won't result in an error, but we still don't want to our apply our function to elements not meeting it. 
+```{r}
+mixed_list <- list("happy", 2L, 4.39)
+
+add_ten <- function(n) {
+  n + 10
+}
+```
+
+```{r}
+map(mixed_list, add_ten)
+```
+
+We get an error since we're trying to add 10 to "happy", which isn't numeric! 
+
+This is where `map_if()` comes in handy. Just like `mutate_if()`, `select_if()`, and `summarise_if()`, you add a condition and the function will only apply to those columns (or list elements) where the condition is met. Here, we know that condition is that the element needs to be numeric. Let's try again with `map_if()`:
 
 ```{r}
 map_if(mixed_list, is.numeric, add_ten)
 ```
+
+Alright! We see it skipped over "happy", preserving it as is, and added ten to the two numeric elements. 
 
 #### every() and some()
 
@@ -184,19 +200,7 @@ my_round(10.484)
 
 #### safely() and possibly()
 
-What if you're not sure about the types of every element in your list, and you want to apply a function that needs the input to be of a certain type? For example, let's say we wanted to add 10 to every element of a list where possible. 
-
-```{r}
-add_ten <- function(n) {
-  n + 10
-}
-
-mixed_list <- list("happy", 2L, 4.39)
-
-map(mixed_list, add_ten)
-```
-
-We get an error since we're trying to add 10 to "happy", which isn't numeric! This is where `safely()` and `possibly()` come in. 
+We saw earlier that `map_if()` could be used where we have a condition we want to be met before applying a function. In our case, we used it to avoid an error, but you could also use it to met a condition like the number being negative or greater than a threshold. But what if you don't know where errors could come from but want to handle them? This is where `safely()` and `possibly()` come in. 
 
 If you're not interested in what the error is, you should use `possibly()`. In addition to the function it's wrapping around, you need to specify the argument `otherwise`, which is what you want to return if there is an error. Let's take a look:
 

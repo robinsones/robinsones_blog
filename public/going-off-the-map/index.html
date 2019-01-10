@@ -317,6 +317,7 @@ library(tidyr)</code></pre>
 <p><code>map()</code> lets you take a list or vector and apply a function to each element. If you’ve been using R for a while, you might be familiar with the apply functions, including <code>sapply()</code> and <code>lapply()</code>. <code>map()</code> does essentially the same thing, but offers several advantages, most importantly consistency of output and helpers that let you write more concise code (see the first Stack Overflow answer by Hadley Wickham <a href="https://stackoverflow.com/questions/45101045/why-use-purrrmap-instead-of-lapply">here</a>).</p>
 <p>Let’s look at an example, where we take a list of four numbers and round each of them.</p>
 <pre class="r"><code>my_vector &lt;- c(1.0212, 2.483, 3.189, 4.5938)
+
 map(my_vector, round)</code></pre>
 <pre><code>## [[1]]
 ## [1] 1
@@ -354,20 +355,36 @@ map(my_vector, round)</code></pre>
 </div>
 <div id="map_if" class="section level4">
 <h4>map_if()</h4>
-<p>Sometimes, you’ll want to only apply a function to certain elements of a list, like all the numeric ones. This is where <code>map_if()</code> comes in handy. Just like <code>mutate_if()</code>, <code>select_if()</code>, and <code>summarise_if()</code>, you add a condition and the function will only apply to those columns (or list elements) where the condition is met.</p>
-<p>You could use <code>safely()</code> or <code>possibly()</code>, but <code>map_if()</code> works if a) we know the condition we need the element to meet for the function to work and want to keep the original element if the condition isn’t met or b) not meeting the condition won’t result in an error, but we still don’t want to our apply our function to elements not meeting it.</p>
+<p>What if you’re not sure about the types of every element in your list, and you want to apply a function that needs the input to be of a certain type? For example, let’s say we wanted to add 10 to every element of a list.</p>
+<pre class="r"><code>mixed_list &lt;- list(&quot;happy&quot;, 2L, 4.39)
+
+add_ten &lt;- function(n) {
+  n + 10
+}</code></pre>
+<pre class="r"><code>map(mixed_list, add_ten)</code></pre>
+<pre><code>## Error in n + 10: non-numeric argument to binary operator</code></pre>
+<p>We get an error since we’re trying to add 10 to “happy”, which isn’t numeric!</p>
+<p>This is where <code>map_if()</code> comes in handy. Just like <code>mutate_if()</code>, <code>select_if()</code>, and <code>summarise_if()</code>, you add a condition and the function will only apply to those columns (or list elements) where the condition is met. Here, we know that condition is that the element needs to be numeric. Let’s try again with <code>map_if()</code>:</p>
 <pre class="r"><code>map_if(mixed_list, is.numeric, add_ten)</code></pre>
-<pre><code>## Error in map_lgl(.x, .p, ...): object &#39;mixed_list&#39; not found</code></pre>
+<pre><code>## [[1]]
+## [1] &quot;happy&quot;
+## 
+## [[2]]
+## [1] 12
+## 
+## [[3]]
+## [1] 14.39</code></pre>
+<p>Alright! We see it skipped over “happy”, preserving it as is, and added ten to the two numeric elements.</p>
 </div>
 <div id="every-and-some" class="section level4">
 <h4>every() and some()</h4>
 <p>Sometimes you have a giant list and want to know whether each element meets a condition, like being numeric. You can use <code>every()</code>, which will check if every element of a list satisfies a predicate function:</p>
 <pre class="r"><code>every(mixed_list, is.numeric)</code></pre>
-<pre><code>## Error in every(mixed_list, is.numeric): object &#39;mixed_list&#39; not found</code></pre>
+<pre><code>## [1] FALSE</code></pre>
 <p>Since “happy” is the first element of <code>mixed_list</code>, it doesn’t past the test.</p>
 <p>If we want to be less strict and just check if <strong>some</strong> of the elements satisfies a predicate function, we can use <code>some()</code> instead:</p>
 <pre class="r"><code>some(mixed_list, is.numeric)</code></pre>
-<pre><code>## Error in some(mixed_list, is.numeric): object &#39;mixed_list&#39; not found</code></pre>
+<pre><code>## [1] TRUE</code></pre>
 <p>In this case, since some elements of <code>mixed_list</code> were numeric, we got <code>TRUE</code>.</p>
 </div>
 </div>
@@ -405,16 +422,7 @@ my_round(10.484)</code></pre>
 </div>
 <div id="safely-and-possibly" class="section level4">
 <h4>safely() and possibly()</h4>
-<p>What if you’re not sure about the types of every element in your list, and you want to apply a function that needs the input to be of a certain type? For example, let’s say we wanted to add 10 to every element of a list where possible.</p>
-<pre class="r"><code>add_ten &lt;- function(n) {
-  n + 10
-}
-
-mixed_list &lt;- list(&quot;happy&quot;, 2L, 4.39)
-
-map(mixed_list, add_ten)</code></pre>
-<pre><code>## Error in n + 10: non-numeric argument to binary operator</code></pre>
-<p>We get an error since we’re trying to add 10 to “happy”, which isn’t numeric! This is where <code>safely()</code> and <code>possibly()</code> come in.</p>
+<p>We saw earlier that <code>map_if()</code> could be used where we have a condition we want to be met before applying a function. In our case, we used it to avoid an error, but you could also use it to met a condition like the number being negative or greater than a threshold. But what if you don’t know where errors could come from but want to handle them? This is where <code>safely()</code> and <code>possibly()</code> come in.</p>
 <p>If you’re not interested in what the error is, you should use <code>possibly()</code>. In addition to the function it’s wrapping around, you need to specify the argument <code>otherwise</code>, which is what you want to return if there is an error. Let’s take a look:</p>
 <pre class="r"><code>possibly_add_ten &lt;- possibly(add_ten, otherwise = &quot;I&#39;m not numeric!&quot;)
 
