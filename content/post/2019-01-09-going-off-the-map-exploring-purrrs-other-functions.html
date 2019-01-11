@@ -152,7 +152,7 @@ add_ten &lt;- function(n) {
 <p><code>purrr</code> includes <strong>adverbs</strong> - functions that take a function and return a modified version (just as an adverb modifies a verb). Let’s check out a few!</p>
 <div id="negate" class="section level4">
 <h4>negate()</h4>
-<p><code>negate()</code> … negates a predicate function (aren’t the <code>purrr</code> function names done well?). For example, let’s say you want to check which elements of a list were not null. This is how you would do it with <code>map_lgl</code> (which returns a logical vector rather than a list):</p>
+<p><code>negate()</code> … negates a predicate function (aren’t the <code>purrr</code> function names great?). For example, let’s say you want to check which elements of a list were not null. This is how you would do it with <code>map_lgl</code> (which returns a logical vector rather than a list):</p>
 <pre class="r"><code>lst &lt;- list(&quot;a&quot;, 3, 22, NULL, &quot;q&quot;, NULL)</code></pre>
 <pre class="r"><code>map_lgl(lst, ~ !is.null(.))</code></pre>
 <pre><code>## [1]  TRUE  TRUE  TRUE FALSE  TRUE FALSE</code></pre>
@@ -231,7 +231,7 @@ mixed_list</code></pre>
 ## 
 ## $c$error
 ## NULL</code></pre>
-<p><code>safely</code> returns a list of lists. Each element from the original list has two entries: <code>result</code> and <code>error</code>. One is always <code>NULL</code> - if there was an error, <code>result</code> is <code>NULL</code> and <code>error</code> is the error message; if there wasn’t an error, the <code>result</code> is the result and <code>error</code> is <code>NULL</code>. If you want to get back all the errors or results, you can use another handy feature of <code>map()</code>. If you give <code>map()</code> a string as the second argument, for each element of the list, it will return the element inside of it with that name.</p>
+<p><code>safely()</code> returns a list of lists. Each element from the original list has two entries: <code>result</code> and <code>error</code>. One is always <code>NULL</code> - if there was an error, <code>result</code> is <code>NULL</code> and <code>error</code> is the error message; if there wasn’t an error, the <code>result</code> is the result and <code>error</code> is <code>NULL</code>. If you want to get back all the errors or results, you can use another handy feature of <code>map()</code>. If you give <code>map()</code> a string as the second argument, for each element of the list, it will return the element inside of it with that name.</p>
 <pre class="r"><code>safely_add_ten &lt;- safely(add_ten)
 
 mixed_list %&gt;%
@@ -249,7 +249,7 @@ mixed_list %&gt;%
 </div>
 <div id="compact" class="section level4">
 <h4>compact()</h4>
-<p>In the previous example, we probably wouldn’t be interested in the instances where errors were <code>NULL</code>. We could use <code>discard(is.null)</code>, but <code>purrr</code> actually provides a function just for the purpose of getting rid of <code>NULL</code>s: <code>compact</code>.</p>
+<p>In the previous example, we probably wouldn’t be interested in the instances where errors were <code>NULL</code>. We could use <code>discard(is.null)</code>, but <code>purrr</code> actually provides a function just for the purpose of getting rid of <code>NULL</code>s: <code>compact()</code>.</p>
 <pre class="r"><code>mixed_list %&gt;%
   map(safely_add_ten) %&gt;%
   map(&quot;error&quot;) %&gt;%

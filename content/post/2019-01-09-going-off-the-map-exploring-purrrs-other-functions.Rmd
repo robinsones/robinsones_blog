@@ -154,7 +154,7 @@ In this case, since some elements of `mixed_list` were numeric, we got `TRUE`.
 
 #### negate()
 
-`negate()` ... negates a predicate function (aren't the `purrr` function names done well?). For example, let's say you want to check which elements of a list were not null. This is how you would do it with `map_lgl` (which returns a logical vector rather than a list):
+`negate()` ... negates a predicate function (aren't the `purrr` function names great?). For example, let's say you want to check which elements of a list were not null. This is how you would do it with `map_lgl` (which returns a logical vector rather than a list):
 
 ```{r}
 lst <- list("a", 3, 22, NULL, "q", NULL)
@@ -226,7 +226,7 @@ On the other hand, sometimes you do want to know what the error is. If that's th
 map(mixed_list, safely(add_ten))
 ```
 
-`safely` returns a list of lists. Each element from the original list has two entries: `result` and `error`. One is always `NULL` - if there was an error, `result` is `NULL` and `error` is the error message; if there wasn't an error, the `result` is the result and `error` is `NULL`. If you want to get back all the errors or results, you can use another handy feature of `map()`. If you give `map()` a string as the second argument, for each element of the list, it will return the element inside of it with that name.  
+`safely()` returns a list of lists. Each element from the original list has two entries: `result` and `error`. One is always `NULL` - if there was an error, `result` is `NULL` and `error` is the error message; if there wasn't an error, the `result` is the result and `error` is `NULL`. If you want to get back all the errors or results, you can use another handy feature of `map()`. If you give `map()` a string as the second argument, for each element of the list, it will return the element inside of it with that name.  
 
 ```{r}
 safely_add_ten <- safely(add_ten)
@@ -240,7 +240,7 @@ Ah, no more list of lists. That was scary. I promise I won't do it again.
 
 #### compact()
 
-In the previous example, we probably wouldn't be interested in the instances where errors were `NULL`. We could use `discard(is.null)`, but `purrr` actually provides a function just for the purpose of getting rid of `NULL`s: `compact`. 
+In the previous example, we probably wouldn't be interested in the instances where errors were `NULL`. We could use `discard(is.null)`, but `purrr` actually provides a function just for the purpose of getting rid of `NULL`s: `compact()`. 
 
 ```{r}
 mixed_list %>%
