@@ -9,7 +9,7 @@ showActions:    false
 #thumbnailImage: //example.com/image.jpg
 ---
 
-I work at DataCamp as a Data Scientist on the growth team. Previously, I was a Data Analyst at Etsy working with their search team to design, implement, and analyze experiments on the ranking algorithm, UI changes, and new features. I regularly give talks on A/B testing and R programming at conferences and meetups; if you're interested in having me speak at your event, please email at emily[at]datacamp.com. You can see a list of all my past talks, including links to recordings where available, [here](hookedondata.org/speaking).
+I work at DataCamp as a Data Scientist on the growth team. Previously, I was a Data Analyst at Etsy working with their search team to design, implement, and analyze experiments on the ranking algorithm, UI changes, and new features. I regularly give talks on A/B testing and R programming at conferences and meetups; if you're interested in having me speak at your event, please email at emily[at]datacamp.com. You can see a list of all my past talks, including links to recordings where available, [here](https://hookedondata.org/speaking/).
 
 I hold a Master's degree in Management (specialization in Organizational Behavior) from INSEAD. I also earned my bachelor's degree from Rice University in Decision Sciences, an interdisciplinary major I designed that focused on understanding how people behave and make decisions. 
 
