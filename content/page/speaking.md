@@ -13,13 +13,13 @@ I regularly give talks on A/B Testing, working in R, joining the Data Science co
 
 ## Upcoming Talks
 
-January 2019, [RStudio Conference](http://www.cvent.com/events/rstudio-conf-austin/event-summary-dd6d75526f3c4554b67c4de32aeffb47.aspx). 
-
 March 2019, [CXL Live](https://conversionxl.com/live/). 
 
 ## Previous Talks 
 
 ### Building an A/B Testing Analytics System
+
+January 2019, RStudio Conference. [Slides](https://www.slideshare.net/secret/Ba52FYuH2FoWE). 
 
 November 2018, [DC R Conference](https://www.rstats.ai/speakers/). 
 
