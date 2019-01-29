@@ -114,12 +114,13 @@ res <- prop.test(successes, failures + successes)
 ```
 
 The table I started with was over 10 million rows, and I was doing many operations:
-1. Getting the number of distinct browser ids
-2. Making a new table that had every browser id and their label
-3. Merging the new table with the original search visits table
-4. Grouping that new table by whether the visit converted or not and its label, counting the number of each type
-5. Extracting the number of conversions and non-conversions 
-6. Doing a prop test
+
+  1. Getting the number of distinct browser ids
+  2. Making a new table that had every browser id and their label
+  3. Merging the new table with the original search visits table
+  4. Grouping that new table by whether the visit converted or not and its label, counting the number of each type
+  5. Extracting the number of conversions and non-conversions 
+  6. Doing a prop test
 
 The last three steps are fast, but the first three are very long. This isn't even including the initial 5 minutes (!) it takes to load the sql table in the first place. We're able to refactor and make it faster by realizing a few things: 
 

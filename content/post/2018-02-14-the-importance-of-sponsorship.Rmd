@@ -41,17 +41,16 @@ Some examples she gives include colleagues praising her work in front of her bos
 
 Sponsorship is important for everyone, but some groups are disproportionality less likely to receive it. For example, research has found that women are [overmentored and undersponsored](https://hbr.org/2010/08/women-are-over-mentored-but-un) and that men's mentors are more likely to be senior. Mentorship is great, but often people [need opportunity and visibility](http://larahogan.me/blog/what-sponsorship-looks-like/), not more advice. 
 
-If you're a man and looking for more ways to be an ally to women and non-binary people, my colleagues at Etsy have written a [great guide](https://codeascraft.com/2016/10/19/being-an-effective-ally-to-women-and-non-binary-people/). It's worthwhile to read the whole thing, but here's an excerpt about some concrete things you can do<sup>1</sup>: 
-
+If you're a man and looking for more ways to be an ally to women and non-binary people, my colleagues at Etsy have written a [great guide](https://codeascraft.com/2016/10/19/being-an-effective-ally-to-women-and-non-binary-people/). It's worthwhile to read the whole thing, but here's an excerpt about some concrete things you can do[^example]:
 ![](/img/ally_sponsorship.png)
 
-## My experience
-
+## My experience 
 My own career shows how sponsorship can be incredibly important. Some ways that I've been sponsored include: 
-- getting my foot in the door for my **first data science job** because **Hilary Parker** introduced me to her former colleague at Etsy, who referred me. 
-- attending my **first data science conference**, RStudio::conf 2017, thanks to a diversity scholarship from **RStudio** that allowed me to go to conference and training days for free and included a small travel budget. 
-- giving my **first data science talk** because **Jared Lander** asked me when, not if, I wanted to speak at his meetup. He believed I could do it before I did and has been a very enthusiastic champion. The talk [was recorded](https://www.youtube.com/watch?v=SF-ryGgLOgQ) and was seen by the Director of the Data Science Center at West Point, who invited me to give a talk there last September (it was awesome). 
-- giving my **first data science conference talk** at Data Day Texas two weeks ago because **Hilary Parker** and other invited speakers recommended me.  
+
+- Getting my foot in the door for my **first data science job** because **Hilary Parker** introduced me to her former colleague at Etsy, who referred me. 
+- Attending my **first data science conference**, RStudio::conf 2017, thanks to a diversity scholarship from **RStudio** that allowed me to go to conference and training days for free and included a small travel budget. 
+- Giving my **first data science talk** because **Jared Lander** asked me when, not if, I wanted to speak at his meetup. He believed I could do it before I did and has been a very enthusiastic champion. The talk [was recorded](https://www.youtube.com/watch?v=SF-ryGgLOgQ) and was seen by the Director of the Data Science Center at West Point, who invited me to give a talk there last September (it was awesome). 
+- Giving my **first data science conference talk** at Data Day Texas two weeks ago because **Hilary Parker** and other invited speakers recommended me.  
 
 Actions that may not rise to the level of sponsorship can also make a big impact. Specifically, I want to thank **Hadley Wickham**, for encouraging me to submit my talk to RStudio::conf 2018: 
 
@@ -75,4 +74,4 @@ I'm learning to be cautious predicting what my next posts will be, but I do have
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Can you please blog about this</p>&mdash; David Robinson (@drob) <a href="https://twitter.com/drob/status/963973448149106690?ref_src=twsrc%5Etfw">February 15, 2018</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-[1] What if you're reluctant to closely mentor women because you're worried about being accused of sexual harassment or the appearance of impropriety? Read [this article](https://www.linkedin.com/pulse/men-afraid-mentor-women-heres-what-we-can-do-adam-grant/) from Adam Grant. One key point is hold yourself accountable for parity: if you won't go to dinner alone with a woman, don't do it with a man. But much of sponsorship is usually done in a public situation and you can sponsor people without them being aware, such as by raising their name positively in management meetings. 
+[^example]: What if you're reluctant to closely mentor women because you're worried about being accused of sexual harassment or the appearance of impropriety? Read [this article](https://www.linkedin.com/pulse/men-afraid-mentor-women-heres-what-we-can-do-adam-grant/) from Adam Grant. One key point is hold yourself accountable for parity: if you won't go to dinner alone with a woman, don't do it with a man. But much of sponsorship is usually done in a public situation and you can sponsor people without them being aware, such as by raising their name positively in management meetings. 

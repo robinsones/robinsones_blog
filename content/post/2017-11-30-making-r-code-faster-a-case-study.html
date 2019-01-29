@@ -100,7 +100,15 @@ successes &lt;-  dat_w_labels %&gt;%
 <li>Ran a prop test comparing the two groups.</li>
 </ul>
 <pre class="r"><code>res &lt;- prop.test(successes, failures + successes)</code></pre>
-<p>The table I started with was over 10 million rows, and I was doing many operations: 1. Getting the number of distinct browser ids 2. Making a new table that had every browser id and their label 3. Merging the new table with the original search visits table 4. Grouping that new table by whether the visit converted or not and its label, counting the number of each type 5. Extracting the number of conversions and non-conversions 6. Doing a prop test</p>
+<p>The table I started with was over 10 million rows, and I was doing many operations:</p>
+<ol style="list-style-type: decimal">
+<li>Getting the number of distinct browser ids</li>
+<li>Making a new table that had every browser id and their label</li>
+<li>Merging the new table with the original search visits table</li>
+<li>Grouping that new table by whether the visit converted or not and its label, counting the number of each type</li>
+<li>Extracting the number of conversions and non-conversions</li>
+<li>Doing a prop test</li>
+</ol>
 <p>The last three steps are fast, but the first three are very long. This isn’t even including the initial 5 minutes (!) it takes to load the sql table in the first place. We’re able to refactor and make it faster by realizing a few things:</p>
 <ol style="list-style-type: decimal">
 <li>We don’t need the big text columns visit id and browser id</li>
