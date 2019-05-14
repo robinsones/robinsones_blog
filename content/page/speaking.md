@@ -13,9 +13,17 @@ I regularly give talks on A/B Testing, working in R, joining the Data Science co
 
 ## Upcoming Talks
 
-March 2019, [CXL Live](https://conversionxl.com/live/). 
+June 2019, [Data Matters](https://skillsmatter.com/meetups/11783-keynote-evening-with-emily-robinson) in London.
 
 ## Previous Talks 
+
+### Everything You Wanted to Know About Making R Packages but Were Afraid to Ask
+
+May 2019, New York R Conference. [Slides](https://www.slideshare.net/EmilyRobinson52/everything-you-wanted-to-know-about-making-an-r-package-but-were-afraid-to-ask)
+
+### 6 Guidelines for A/B Testing
+
+March 2019, CXL Live. [Slides](https://www.slideshare.net/EmilyRobinson52/6-guidelines-for-ab-testing-145531526). 
 
 ### Building an A/B Testing Analytics System
 
