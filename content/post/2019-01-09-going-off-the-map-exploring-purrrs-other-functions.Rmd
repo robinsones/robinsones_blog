@@ -200,7 +200,7 @@ my_round(10.484)
 
 #### safely() and possibly()
 
-We saw earlier that `map_if()` could be used where we have a condition we want to be met before applying a function. In our case, we used it to avoid an error, but you could also use it to met a condition like the number being negative or greater than a threshold. But what if you don't know where errors could come from but want to handle them? This is where `safely()` and `possibly()` come in. 
+We saw earlier that `map_if()` could be used where we have a condition we want to be met before applying a function. In our case, we used it to avoid an error, but you could also use it to meet a condition like the number being negative or greater than a threshold. But what if you don't know where errors could come from but want to handle them? This is where `safely()` and `possibly()` come in. 
 
 If you're not interested in what the error is, you should use `possibly()`. In addition to the function it's wrapping around, you need to specify the argument `otherwise`, which is what you want to return if there is an error. Let's take a look:
 
