@@ -13,6 +13,8 @@ I regularly give talks on A/B Testing, working in R, joining the Data Science co
 
 ## Upcoming Talks
 
+July 2019, [Demystifying Data Science](https://www.thisismetis.com/demystifying-data-science), an online conference by Metis. 
+
 June 2019, [Data Matters](https://skillsmatter.com/meetups/11783-keynote-evening-with-emily-robinson) in London.
 
 June 2019, Keynote at Microsoft internal One Analyst conference in Seattle. 
