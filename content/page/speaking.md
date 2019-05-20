@@ -15,6 +15,8 @@ I regularly give talks on A/B Testing, working in R, joining the Data Science co
 
 June 2019, [Data Matters](https://skillsmatter.com/meetups/11783-keynote-evening-with-emily-robinson) in London.
 
+June 2019, Keynote at Microsoft internal One Analyst conference in Seattle. 
+
 ## Previous Talks 
 
 ### Everything You Wanted to Know About Making R Packages but Were Afraid to Ask
