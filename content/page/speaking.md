@@ -13,11 +13,11 @@ I regularly give talks on A/B Testing, working in R, joining the Data Science co
 
 ## Upcoming Talks
 
-July 2019, [Demystifying Data Science](https://www.thisismetis.com/demystifying-data-science), an online conference by Metis. 
-
 June 2019, [Data Matters](https://skillsmatter.com/meetups/11783-keynote-evening-with-emily-robinson) in London.
 
 June 2019, Keynote at Microsoft internal One Analyst conference in Seattle. 
+
+July 2019, [Demystifying Data Science](https://www.thisismetis.com/demystifying-data-science), an online conference by Metis. 
 
 ## Previous Talks 
 
@@ -43,6 +43,8 @@ November 2018, DataCamp Webinar. [Recording](https://support.datacamp.com/hc/en-
 
 October 2018, [PyData NYC](https://pydata.org/nyc2018/). 
 
+October 2018, [Taiwanese Data Professionals](https://www.meetup.com/Taiwanese-Data-Professionals/events/vdgkdqyxnbjc/).
+
 ### Joining the Data Science Community
 
 May & July 2018, Metis Data Science Bootcamp. [Slides](https://www.slideshare.net/secret/7pZVPaDTHMH8aP).
@@ -66,3 +68,9 @@ October 2017, West Point Academy. [Slides](https://github.com/robinsones/AB-Test
 September 2017, Demystifying Data Science by Metis. [Recording](https://www.youtube.com/watch?v=hlYFksjjgXg), [Slides](https://www.slideshare.net/secret/DBLR67WhEK2qWd).
 
 July 2017, New York Open Statistical Programming Meetup. [Recording](https://www.youtube.com/watch?v=SF-ryGgLOgQ), [Slides](https://github.com/robinsones/AB-Testing-Slides/blob/master/AB%20Testing%20in%20the%20Wild.pdf). 
+
+### Previous Panels
+
+March 2019, [Women in Data Science, Career Paths in Data Science](https://events.sap.com/us/widsnyc2019/en/agendas).
+
+January 2018, [PyData, DataFramed Podcast Launch](https://www.meetup.com/PyDataNYC/events/246701729/). 
