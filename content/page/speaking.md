@@ -23,17 +23,17 @@ July 2019, [Demystifying Data Science](https://www.thisismetis.com/demystifying-
 
 ### Everything You Wanted to Know About Making R Packages but Were Afraid to Ask
 
-May 2019, New York R Conference. [Slides](https://www.slideshare.net/EmilyRobinson52/everything-you-wanted-to-know-about-making-an-r-package-but-were-afraid-to-ask)
+May 2019, New York R Conference. [Slides](https://www.slideshare.net/EmilyRobinson52/everything-you-wanted-to-know-about-making-an-r-package-but-were-afraid-to-ask).
 
 ### 6 Guidelines for A/B Testing
 
-March 2019, CXL Live. [Slides](https://www.slideshare.net/EmilyRobinson52/6-guidelines-for-ab-testing-145531526). 
+March 2019, CXL Live. [Slides](https://www.slideshare.net/EmilyRobinson52/6-guidelines-for-ab-testing-145531526), [Recording](https://conversionxl.com/institute/media/guidelines-for-ab-testing/) - you will need to [sign-up here](https://conversionxl.com/institute/checkout/) for free.
 
 ### Building an A/B Testing Analytics System
 
-January 2019, RStudio Conference. [Slides](https://www.slideshare.net/secret/Ba52FYuH2FoWE). 
+January 2019, RStudio Conference. [Slides](https://www.slideshare.net/secret/Ba52FYuH2FoWE), [Recording](https://resources.rstudio.com/rstudio-conf-2019/building-an-ab-testing-analytics-system-with-r-and-shiny). 
 
-November 2018, [DC R Conference](https://www.rstats.ai/speakers/). 
+November 2018, [DC R Conference](https://www.rstats.ai/speakers/).
 
 October 2018, [Nor'eastR Conference](https://noreastrconf.com/schedule/). 
 
