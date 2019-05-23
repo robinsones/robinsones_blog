@@ -47,7 +47,7 @@ October 2018, [Taiwanese Data Professionals](https://www.meetup.com/Taiwanese-Da
 
 ### Joining the Data Science Community
 
-May & July 2018, Metis Data Science Bootcamp. [Slides](https://www.slideshare.net/secret/7pZVPaDTHMH8aP).
+May & July 2018, Metis Data Science Bootcamp.
 
 ### The Lesser Known Stars of the Tidyverse
 
@@ -69,7 +69,7 @@ September 2017, Demystifying Data Science by Metis. [Recording](https://www.yout
 
 July 2017, New York Open Statistical Programming Meetup. [Recording](https://www.youtube.com/watch?v=SF-ryGgLOgQ), [Slides](https://github.com/robinsones/AB-Testing-Slides/blob/master/AB%20Testing%20in%20the%20Wild.pdf). 
 
-### Previous Panels
+## Previous Panels
 
 March 2019, [Women in Data Science, Career Paths in Data Science](https://events.sap.com/us/widsnyc2019/en/agendas).
 
