@@ -55,9 +55,9 @@ December 2018, DataCamp Webinar. [Recording](https://www.youtube.com/watch?v=uG3
 
 April 2018, New York R Conference. [Recording](https://www.youtube.com/watch?v=ax4LXQ5t38k), [Slides](https://www.slideshare.net/secret/sMVjYvcd7yh16z).
 
-April 2018, Women in Analytics, Facebook. The Lesser Known Stars of the Tidyverse. [Slides](https://www.slideshare.net/secret/AcaLNF6VSwtkrT), [Code](https://github.com/robinsones/wia_talk/blob/master/wia_talk.Rmd). 
+April 2018, Women in Analytics Conference, Facebook. [Slides](https://www.slideshare.net/secret/AcaLNF6VSwtkrT), [Code](https://github.com/robinsones/wia_talk/blob/master/wia_talk.Rmd). 
 
-February 2018, RStudio Conferece. [Recording](https://www.rstudio.com/resources/videos/the-lesser-known-stars-of-the-tidyverse/), [Slides](https://www.slideshare.net/EmilyRobinson52/the-lesser-known-stars-of-the-tidyverse). 
+February 2018, RStudio Conference. [Recording](https://www.rstudio.com/resources/videos/the-lesser-known-stars-of-the-tidyverse/), [Slides](https://www.slideshare.net/EmilyRobinson52/the-lesser-known-stars-of-the-tidyverse). 
 
 January 2018, Data Day Texas Conference. [Slides](https://github.com/robinsones/Data-Day-Talk/blob/master/Data_day_presentation.pdf), [Code](https://github.com/robinsones/Data-Day-Talk/blob/master/data_day_script_accompanying.md). 
 
@@ -65,7 +65,7 @@ January 2018, Data Day Texas Conference. [Slides](https://github.com/robinsones/
 
 October 2017, West Point Academy. [Slides](https://github.com/robinsones/AB-Testing-Slides/blob/master/AB%20Testing%20in%20the%20Wild.pdf).
 
-September 2017, Demystifying Data Science by Metis. [Recording](https://www.youtube.com/watch?v=hlYFksjjgXg), [Slides](https://www.slideshare.net/secret/DBLR67WhEK2qWd).
+September 2017, Demystifying Data Science Conference by Metis. [Recording](https://www.youtube.com/watch?v=hlYFksjjgXg), [Slides](https://www.slideshare.net/secret/DBLR67WhEK2qWd).
 
 July 2017, New York Open Statistical Programming Meetup. [Recording](https://www.youtube.com/watch?v=SF-ryGgLOgQ), [Slides](https://github.com/robinsones/AB-Testing-Slides/blob/master/AB%20Testing%20in%20the%20Wild.pdf). 
 
