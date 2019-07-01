@@ -13,17 +13,17 @@ I regularly give talks on A/B Testing, working in R, joining the Data Science co
 
 ## Upcoming Talks
 
-June 2019, [Data Matters](https://skillsmatter.com/meetups/11783-keynote-evening-with-emily-robinson) in London.
-
-June 2019, Keynote at Microsoft internal One Analyst conference in Seattle. 
-
 July 2019, [Demystifying Data Science](https://www.thisismetis.com/demystifying-data-science), an online conference by Metis. 
 
 ## Previous Talks 
 
+### Creating a Strong Data Science Portfolio
+
+June 2019, [Data Matters](https://skillsmatter.com/meetups/11783-keynote-evening-with-emily-robinson) in London. [Recording](https://skillsmatter.com/skillscasts/13056-creating-a-strong-data-science-portfolio), [Slides](bit.ly/erdatamatters).
+
 ### Everything You Wanted to Know About Making R Packages but Were Afraid to Ask
 
-May 2019, New York R Conference. [Slides](https://www.slideshare.net/EmilyRobinson52/everything-you-wanted-to-know-about-making-an-r-package-but-were-afraid-to-ask).
+May 2019, New York R Conference. [Recording](https://www.youtube.com/embed/33BzunEXEIE),  [Slides](https://www.slideshare.net/EmilyRobinson52/everything-you-wanted-to-know-about-making-an-r-package-but-were-afraid-to-ask).
 
 ### 6 Guidelines for A/B Testing
 
@@ -38,6 +38,8 @@ November 2018, [DC R Conference](https://www.rstats.ai/speakers/).
 October 2018, [Nor'eastR Conference](https://noreastrconf.com/schedule/). 
 
 ### 10 Guidelines for A/B Testing
+
+June 2019, Keynote at Microsoft internal One Analyst conference in Seattle. 
 
 November 2018, DataCamp Webinar. [Recording](https://support.datacamp.com/hc/en-us/articles/360012283593-Nov-2018-Webinar-10-Guidelines-for-A-B-Testing), [Slides](https://docs.google.com/presentation/d/19_x0RJqz10ZPCC29IVkp6mDEJiitXglSgkdM4DAKW6Q/edit). 
 
