@@ -9,7 +9,7 @@ tags:
   - text analysis
 ---
 
-When Donald Trump first entered the Republican presidential primary on June 16, 2015, no [media outlet](http://fivethirtyeight.com/datalab/why-donald-trump-isnt-a-real-candidate-in-one-chart/) seemed to take him [seriously](http://www.nytimes.com/2015/06/17/us/politics/donald-trump-runs-for-president-this-time-for-real-he-says.html?_r=0) as a contender. He is a highly unusual candidate, and some in the media have admitted that they, and the media more generally, don't know how to cover him, both in the [primary](http://mashable.com/2015/12/02/the-media-just-doesnt-know-what-to-do-with-donald-trump/#RpvubaWmO8q3) and now in the [general election](https://thedianerehmshow.org/shows/2016-08-11/challenges-for-the-media-in-covering-donald-trump). Trump himself has criticized the media’s coverage of him:
+When Donald Trump first entered the Republican presidential primary on June 16, 2015, no [media outlet](https://fivethirtyeight.com/datalab/why-donald-trump-isnt-a-real-candidate-in-one-chart/) seemed to take him [seriously](https://www.nytimes.com/2015/06/17/us/politics/donald-trump-runs-for-president-this-time-for-real-he-says.html?_r=0) as a contender. He is a highly unusual candidate, and some in the media have admitted that they, and the media more generally, don't know how to cover him, both in the [primary](https://mashable.com/2015/12/02/the-media-just-doesnt-know-what-to-do-with-donald-trump/#RpvubaWmO8q3) and now in the [general election](https://thedianerehmshow.org/shows/2016-08-11/challenges-for-the-media-in-covering-donald-trump). Trump himself has criticized the media’s coverage of him:
 
 ![center](/img/Trump_media_tweet.png)
 
@@ -38,7 +38,7 @@ Topic #16:
 khan khizr khans mccain ghazala captain family muslim son humayun iraq sacrifice sen killed soldier army parents gold star capt
 ```
 
-Seeing words like "khan," "son," "soldier," and "muslim," this topic appears to be about [Donald Trump's confrontations](http://www.nytimes.com/2016/08/01/us/politics/khizr-khan-ghazala-donald-trump-muslim-soldier.html) with Khizr and Ghazala Khan, the parents of a Muslim American soldier killed in Iraq who criticized Donald Trump at the DNC. Therefore, I decided to call it the "Khan Family" topic.  
+Seeing words like "khan," "son," "soldier," and "muslim," this topic appears to be about [Donald Trump's confrontations](https://www.nytimes.com/2016/08/01/us/politics/khizr-khan-ghazala-donald-trump-muslim-soldier.html) with Khizr and Ghazala Khan, the parents of a Muslim American soldier killed in Iraq who criticized Donald Trump at the DNC. Therefore, I decided to call it the "Khan Family" topic.  
 
 One issue I ran into in naming topics was that there were multiple topics that I would consider to be about fundamentally the same thing. For example, look at these topics: 
 
@@ -75,7 +75,7 @@ Take a look at the following graph. Notice anything strange about it?
 
 Take a look at the Khan family topic in May and June 2016. The points are non-zero, meaning there were articles about that topic in those months. But this was before the incident even happened! 
 
-I took a closer look at these articles and found they were about [Donald Trump and Sadiq Khan](http://www.nytimes.com/2016/05/11/world/europe/sadiq-khan-london-donald-trump.html), London's newly elected Muslim mayor. The problem was that while certainly all top words in the topic, such as "sacrifice" or "star," weren't in these articles, a few of the most unique ones (khan, muslim) were. In fact, if I was to assign a topic to this article, that topic would still be the best fit. 
+I took a closer look at these articles and found they were about [Donald Trump and Sadiq Khan](https://www.nytimes.com/2016/05/11/world/europe/sadiq-khan-london-donald-trump.html), London's newly elected Muslim mayor. The problem was that while certainly all top words in the topic, such as "sacrifice" or "star," weren't in these articles, a few of the most unique ones (khan, muslim) were. In fact, if I was to assign a topic to this article, that topic would still be the best fit. 
 
 Normally it's not "impossible" for a topic to be present in a document and so you can't see these types of limitations. But this is a good illustration of the limitations of interpreting a topic.
 
@@ -87,7 +87,7 @@ Instead, I'm only able to conclude with some general impressions I gained from t
 
 ## Next Time
 
-One of the benefits of attending Metis is that the last three weeks of Metis are devoted to working on a project entirely of your own choosing. You can check out some of the projects [here](http://varianceexplained.org/career/metis-students/); they range from an application that uses computer vision to read wine labels to predicting the length of an NFL runningback's career. While our previous projects are presented just to the other Metis students and the instructors, we present our final projects on a "Career Day" to about 25 employers. 
+One of the benefits of attending Metis is that the last three weeks of Metis are devoted to working on a project entirely of your own choosing. You can check out some of the projects [here](https://varianceexplained.org/career/metis-students/); they range from an application that uses computer vision to read wine labels to predicting the length of an NFL runningback's career. While our previous projects are presented just to the other Metis students and the instructors, we present our final projects on a "Career Day" to about 25 employers. 
 
 For my final project, I created an application that helps data science freelancers find the freelance jobs that best fit their preferences and skills. You can check out the application [here](https://robinsones.shinyapps.io/Job_Shiny_App/). All of my code for the [project](https://github.com/robinsones/Data-Science-Freelancers) and the [application](https://github.com/robinsones/Freelancer-Shiny-App) is on github. My next blog post will document how my project evolved and some of the exploratory work I did before creating the application. 
 
