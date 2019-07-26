@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.51 with theme Tranquilpeak 0.4.3-SNAPSHOT">
+<meta name="author" content="Emily Robinson">
+<meta name="keywords" content="">
+<meta name="description" content="Have you ever had a “first this then that” question? For example, maybe you’re an e-commerce business and you want all the times people clicked on an item and then added it to their cart within 2 days, or the last page they visited before registering. Or you work with pharmaceutical data and need to know what drugs people took before drug x and which drugs they took afterward and when.">
+
+
+<meta property="og:description" content="Have you ever had a “first this then that” question? For example, maybe you’re an e-commerce business and you want all the times people clicked on an item and then added it to their cart within 2 days, or the last page they visited before registering. Or you work with pharmaceutical data and need to know what drugs people took before drug x and which drugs they took afterward and when.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Introducing the funneljoin package">
+<meta name="twitter:title" content="Introducing the funneljoin package">
+<meta property="og:url" content="/introducing-the-funneljoin-package/">
+<meta property="twitter:url" content="/introducing-the-funneljoin-package/">
+<meta property="og:site_name" content="Hooked on Data">
+<meta property="og:description" content="Have you ever had a “first this then that” question? For example, maybe you’re an e-commerce business and you want all the times people clicked on an item and then added it to their cart within 2 days, or the last page they visited before registering. Or you work with pharmaceutical data and need to know what drugs people took before drug x and which drugs they took afterward and when.">
+<meta name="twitter:description" content="Have you ever had a “first this then that” question? For example, maybe you’re an e-commerce business and you want all the times people clicked on an item and then added it to their cart within 2 days, or the last page they visited before registering. Or you work with pharmaceutical data and need to know what drugs people took before drug x and which drugs they took afterward and when.">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2019-07-26T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2019-07-26T00:00:00">
+  
+  
+  
+  
+    
+      <meta property="article:tag" content="R">
+    
+      <meta property="article:tag" content="Code">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+  <meta name="twitter:site" content="@robinson_es">
+
+
+  <meta name="twitter:creator" content="@robinson_es">
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://avatars.githubusercontent.com/robinsones">
+  <meta property="twitter:image" content="https://avatars.githubusercontent.com/robinsones">
+
+
+    <title>Introducing the funneljoin package</title>
+
+    <link rel="icon" href="/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="/introducing-the-funneljoin-package/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-80069806-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/">Hooked on Data</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="/about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://avatars.githubusercontent.com/robinsones" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="/about">
+          <img class="sidebar-profile-picture" src="https://avatars.githubusercontent.com/robinsones" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Emily Robinson</h4>
+        
+          <h5 class="sidebar-profile-bio">Date Scientist at DataCamp</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/robinsones/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">Linkedin</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/robinsones">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/speaking">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">Speaking</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Introducing the funneljoin package
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-07-26T00:00:00Z">
+        
+  July 26, 2019
+
+      </time>
+    
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+
+<p>Have you ever had a “first this then that” question? For example, maybe you’re an e-commerce business and you want all the times people clicked on an item and then added it to their cart within 2 days, or the last page they visited before registering. Or <a href="https://twitter.com/scottishnp/status/1154657704578695168?s=20">you work with pharmaceutical data</a> and need to know what drugs people took before drug x and which drugs they took afterward and when. Or you tag fish and need to know where they went and if they eventually migrated upstream.</p>
+<p>To solve these types of problem, I created the package funneljoin with <a href="https://twitter.com/drob">David Robinson</a> and <a href="https://www.linkedin.com/in/awbaker1/">Anthony Baker</a> in July 2018 and I’ve continued to maintain and iterate on it since. The goal of funneljoin is to make it easy to analyze behavior funnels with the <code>after_join()</code>, <code>funnel_start()</code>, and <code>funnel_step()</code> functions. If you work with data where you have events with their time and associated user, you probably have a problem funneljoin can help with.</p>
+<p>In this post, I’ll use <code>after_join()</code> to analyze data about all Stack Overflow questions and answers (including their other tags) with the tag R up to September 24th, 2017. The data was downloaded from Kaggle <a href="https://www.kaggle.com/stackoverflow/rquestions/downloads/rquestions.zip/3">here</a>. The next post in this series will look at the <code>funnel_start()</code> and <code>funnel_step()</code> functions, which we’ll use when all of the events or behavior are in one table.</p>
+<div id="set-up" class="section level2">
+<h2>Set-up</h2>
+<p><code>funneljoin</code> is not yet on CRAN, so you’ll need to use <code>devtools</code> to install it from GitHub. I’ll also use Ciarán Tobin’s package <code>ggthemr</code> to set my ggplot2 theme; check out the palettes available on the <a href="https://github.com/cttobin/ggthemr">GitHub page</a>.</p>
+<pre class="r"><code># devtools::install_github(&quot;robinsones/funneljoin&quot;)
+library(funneljoin)</code></pre>
+<pre class="r"><code># devtools::install_github(&#39;cttobin/ggthemr&#39;)
+library(ggthemr)</code></pre>
+<pre><code>## Loading required package: ggplot2</code></pre>
+<pre class="r"><code>ggthemr(&#39;fresh&#39;)</code></pre>
+<pre><code>## Warning: New theme missing the following elements: axis.ticks.length.x,
+## axis.ticks.length.x.top, axis.ticks.length.x.bottom, axis.ticks.length.y,
+## axis.ticks.length.y.left, axis.ticks.length.y.right, panel.grid, plot.tag,
+## plot.tag.position</code></pre>
+<pre class="r"><code>library(knitr)
+opts_chunk$set(message = FALSE)
+library(tidyverse)</code></pre>
+<pre><code>## ── Attaching packages ───────── tidyverse 1.2.1 ──</code></pre>
+<pre><code>## ✔ tibble  2.1.1       ✔ purrr   0.3.2  
+## ✔ tidyr   0.8.3       ✔ dplyr   0.8.0.1
+## ✔ readr   1.3.1       ✔ stringr 1.4.0  
+## ✔ tibble  2.1.1       ✔ forcats 0.4.0</code></pre>
+<pre><code>## ── Conflicts ──────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter()                       masks stats::filter()
+## ✖ dplyr::lag()                          masks stats::lag()
+## ✖ .GlobalEnv::scale_color_continuous()  masks ggplot2::scale_color_continuous()
+## ✖ .GlobalEnv::scale_color_discrete()    masks ggplot2::scale_color_discrete()
+## ✖ .GlobalEnv::scale_color_gradient()    masks ggplot2::scale_color_gradient()
+## ✖ .GlobalEnv::scale_colour_continuous() masks ggplot2::scale_colour_continuous()
+## ✖ .GlobalEnv::scale_colour_discrete()   masks ggplot2::scale_colour_discrete()
+## ✖ .GlobalEnv::scale_colour_gradient()   masks ggplot2::scale_colour_gradient()
+## ✖ .GlobalEnv::scale_fill_continuous()   masks ggplot2::scale_fill_continuous()
+## ✖ .GlobalEnv::scale_fill_discrete()     masks ggplot2::scale_fill_discrete()
+## ✖ .GlobalEnv::scale_fill_gradient()     masks ggplot2::scale_fill_gradient()</code></pre>
+<pre class="r"><code>answers &lt;- read_csv(&quot;Answers.csv&quot;)</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   Id = col_double(),
+##   OwnerUserId = col_double(),
+##   CreationDate = col_datetime(format = &quot;&quot;),
+##   ParentId = col_double(),
+##   Score = col_double(),
+##   IsAcceptedAnswer = col_logical(),
+##   Body = col_character()
+## )</code></pre>
+<pre class="r"><code>questions &lt;- read_csv(&quot;Questions.csv&quot;)</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   Id = col_double(),
+##   OwnerUserId = col_double(),
+##   CreationDate = col_datetime(format = &quot;&quot;),
+##   Score = col_double(),
+##   Title = col_character(),
+##   Body = col_character()
+## )</code></pre>
+<p>Let’s take a quick look at the questions and answers dataset.</p>
+<pre class="r"><code>questions</code></pre>
+<pre><code>## # A tibble: 189,930 x 6
+##        Id OwnerUserId CreationDate        Score Title         Body         
+##     &lt;dbl&gt;       &lt;dbl&gt; &lt;dttm&gt;              &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;        
+##  1  77434       14008 2008-09-16 21:40:29   171 How to acces… &quot;&lt;p&gt;Suppose …
+##  2  79709          NA 2008-09-17 03:39:16     3 Worse sin: s… &quot;&lt;p&gt;I have a…
+##  3  95007       15842 2008-09-18 17:59:19    56 Explain the … &quot;&lt;p&gt;I&#39;ve bee…
+##  4 103312          NA 2008-09-19 16:09:26     4 How to test … &quot;&lt;p&gt;How can …
+##  5 255697     1941213 2008-11-01 15:48:30     4 Is there an … &quot;&lt;p&gt;I&#39;m look…
+##  6 359438        2173 2008-12-11 14:02:06     4 Optimization… &quot;&lt;p&gt;Does any…
+##  7 439526       37751 2009-01-13 15:58:48    23 Thinking in … &quot;&lt;p&gt;I know t…
+##  8 445059       37751 2009-01-14 23:09:02    12 Vectorize my… &quot;&lt;p&gt;So earli…
+##  9 467110       11301 2009-01-21 21:33:13     5 Is R a compi… &quot;&lt;p&gt;I can&#39;t …
+## 10 476726         277 2009-01-24 21:56:23    10 Filtering da… &quot;&lt;p&gt;I have a…
+## # … with 189,920 more rows</code></pre>
+<pre class="r"><code>answers </code></pre>
+<pre><code>## # A tibble: 250,788 x 7
+##       Id OwnerUserId CreationDate        ParentId Score IsAcceptedAnswer
+##    &lt;dbl&gt;       &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt; &lt;dbl&gt; &lt;lgl&gt;           
+##  1 79741        3259 2008-09-17 03:43:22    79709    -1 FALSE           
+##  2 79768        6043 2008-09-17 03:48:29    79709     9 FALSE           
+##  3 79779        8002 2008-09-17 03:49:36    79709     0 FALSE           
+##  4 79788          NA 2008-09-17 03:51:30    79709     4 FALSE           
+##  5 79827       14257 2008-09-17 03:58:26    79709     1 FALSE           
+##  6 79893       14928 2008-09-17 04:11:08    79709     6 FALSE           
+##  7 83162       15842 2008-09-17 13:27:17    77434    70 FALSE           
+##  8 83222        1428 2008-09-17 13:32:45    77434   236 FALSE           
+##  9 86804          NA 2008-09-17 19:39:37    79709     1 FALSE           
+## 10 95598        1179 2008-09-18 18:49:09    95007     5 FALSE           
+## # … with 250,778 more rows, and 1 more variable: Body &lt;chr&gt;</code></pre>
+<p>Before I dive into the analysis, I’m going to use the janitor’s package <code>clean_names()</code> function to convert the column names to snake case and <code>%&lt;&gt;%</code> to modify the datasets. I’ll also get rid of the rows where user id is missing.</p>
+<pre class="r"><code>library(magrittr)
+
+questions %&lt;&gt;%
+  janitor::clean_names() %&gt;%
+  filter(!is.na(owner_user_id))
+
+answers %&lt;&gt;%
+  janitor::clean_names() %&gt;%
+  filter(!is.na(owner_user_id))</code></pre>
+</div>
+<div id="after_join" class="section level2">
+<h2>after_join()</h2>
+<p>Let’s start with a relatively simple question - how many people who ask a question later answer one? To look at this, we’ll need to link the questions with the answers table using the OwnerUserId and their CreationDate. We will use funneljoin’s <code>after_join</code> function.</p>
+<pre class="r"><code>after_join(questions, 
+           answers,
+           by_time = &quot;creation_date&quot;,
+           by_user = &quot;owner_user_id&quot;,
+           type = &quot;first-firstafter&quot;,
+           mode = &quot;left&quot;)</code></pre>
+<pre><code>## # A tibble: 60,335 x 12
+##      id.x owner_user_id creation_date.x     score.x title body.x    id.y
+##     &lt;dbl&gt;         &lt;dbl&gt; &lt;dttm&gt;                &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    &lt;dbl&gt;
+##  1  77434         14008 2008-09-16 21:40:29     171 How … &quot;&lt;p&gt;S…      NA
+##  2  95007         15842 2008-09-18 17:59:19      56 Expl… &quot;&lt;p&gt;I… 4249121
+##  3 255697       1941213 2008-11-01 15:48:30       4 Is t… &quot;&lt;p&gt;I…      NA
+##  4 359438          2173 2008-12-11 14:02:06       4 Opti… &quot;&lt;p&gt;D…      NA
+##  5 439526         37751 2009-01-13 15:58:48      23 Thin… &quot;&lt;p&gt;I…  440066
+##  6 467110         11301 2009-01-21 21:33:13       5 Is R… &quot;&lt;p&gt;I…      NA
+##  7 476726           277 2009-01-24 21:56:23      10 Filt… &quot;&lt;p&gt;I… 4727309
+##  8 495744         12677 2009-01-30 14:48:19       2 Oper… &quot;&lt;p&gt;I… 2203628
+##  9 498932           445 2009-01-31 14:50:28       3 What… &quot;&lt;p&gt;I…  511763
+## 10 520810         63372 2009-02-06 15:49:48      20 Does… &quot;&lt;p&gt;A…      NA
+## # … with 60,325 more rows, and 5 more variables: creation_date.y &lt;dttm&gt;,
+## #   parent_id &lt;dbl&gt;, score.y &lt;dbl&gt;, is_accepted_answer &lt;lgl&gt;, body.y &lt;chr&gt;</code></pre>
+<p>The first two arguments are the tables we’re joining, with the first table being the events that happen first. We then specify what the time and user id columns are and the mode of the join (e.g. left, inner, anti).</p>
+<p>The power of <code>after_join()</code> comes in its <code>type</code> argument, which allows you to switch between types of funnels easily. In this case, we wanted only the first question someone asked and then wanted to know the first answer they gave afterward. For any <code>type</code> of <code>after_join()</code> though, the timestamps of the second table (in this case answers) will always be after the timestamp of the first table for each user.</p>
+<p>Because we wanted to keep all users even if they never answered a question later, we do a left join, specified with <code>mode = &quot;left&quot;</code>.</p>
+<p>To answer our original question, let’s get a count by what percent of rows don’t have an <code>id.y</code>, meaning they never answered a question after asking one. We’ll use the funneljoin’s <code>summarize_conversions()</code> function, where you specify what column indicates whether someone “converted” (in this case answered a question) and returns the total number of users (<code>nb_users</code>), the number of conversions (<code>nb_conversions</code>), and the percent converted (<code>pct_converted</code>).</p>
+<pre class="r"><code>after_join(questions, 
+                answers,
+                by_time = &quot;creation_date&quot;,
+                by_user = &quot;owner_user_id&quot;,
+                type = &quot;first-firstafter&quot;,
+                mode = &quot;left&quot;) %&gt;%
+  summarize_conversions(converted = id.y)</code></pre>
+<pre><code>## # A tibble: 1 x 3
+##   nb_users nb_conversions pct_converted
+##      &lt;int&gt;          &lt;int&gt;         &lt;dbl&gt;
+## 1    60335          13688         0.227</code></pre>
+<p>We see that of the approximately 60,000 users that asked an R question, 22.7% percent later went on to answer one.</p>
+<p>How long does it take for people to answer their first question? We can add <code>gap_col = TRUE</code> to <code>after_join()</code> to add a column, <code>.gap</code>, which is the gap between events (in seconds). We’ll also switch from from using the argument <code>mode</code> to specify the type of join to changing to a wrapper function, <code>after_left_join()</code>.</p>
+<pre class="r"><code>questions %&gt;%
+  after_left_join(answers,
+                  by_time = &quot;creation_date&quot;,
+                  by_user = &quot;owner_user_id&quot;,
+                  type = &quot;first-firstafter&quot;,
+                  gap_col = TRUE) %&gt;%
+  mutate(gap_hours = .gap  / 3600) %&gt;%
+  ggplot(aes(x = gap_hours)) + 
+  geom_histogram() + 
+  scale_x_log10(breaks = c(1, 24, 24 * 7, 24 * 7 * 30), 
+                     labels = c(&quot;1 hour&quot;, &quot;1 day&quot;, &quot;1 week&quot;, &quot;1 month&quot;)) + 
+  labs(x = &quot;&quot;,
+       y = &quot;Number of users&quot;,
+       title = &quot;What&#39;s the gap between someone&#39;s first StackOverflow question and their first answer?&quot;,
+       subtitle = &quot;Only for questions tagged with R&quot;) </code></pre>
+<pre><code>## Warning: Transformation introduced infinite values in continuous x-axis</code></pre>
+<pre><code>## Warning: Removed 46703 rows containing non-finite values (stat_bin).</code></pre>
+<p><img src="/post/2019-07-25-introducing-the-funneljoin-package_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>We can get an idea from this graph what percentage of people who ask a question answer one within a week, or we could filter our data to get an exact answer. To make it even easier though, we can use the <code>max_gap</code> argument in <code>after_join()</code> to specify that someone needs to have answered a question within a week from their data to be joined. <code>max_gap</code> takes either a <code>difftime</code> or an integer reprsenting the gap in seconds and will filter so that the time between events is less than or equal to that <code>max_gap</code>.</p>
+<pre class="r"><code>after_join(questions, 
+           answers,
+           by_time = &quot;creation_date&quot;,
+           by_user = &quot;owner_user_id&quot;,
+           type = &quot;first-firstafter&quot;,
+           mode = &quot;left&quot;,
+           max_gap = as.difftime(1, units = &quot;weeks&quot;)) %&gt;%
+  summarize_conversions(converted = id.y)</code></pre>
+<pre><code>## # A tibble: 1 x 3
+##   nb_users nb_conversions pct_converted
+##      &lt;int&gt;          &lt;int&gt;         &lt;dbl&gt;
+## 1    60335           5349        0.0887</code></pre>
+<p>Now we see that only 8.9% answer an R question within a week of asking their first one.</p>
+<p>We might be curious if the likelihood of answering a question later varies by the score of the question they asked. Before doing summarize_conversions, we can group by the score. There are some scores that only appear once (e.g. one person got a score of -18), so we’ll filter for only scores where there were more than 100 questions that got that score.</p>
+<pre class="r"><code>after_join(questions, 
+           answers,
+           by_time = &quot;creation_date&quot;,
+           by_user = &quot;owner_user_id&quot;,
+           type = &quot;first-firstafter&quot;,
+           mode = &quot;left&quot;) %&gt;%
+  group_by(score.x) %&gt;%
+  summarize_conversions(converted = id.y) %&gt;%
+  filter(nb_users &gt; 100) %&gt;%
+  ggplot(aes(x = score.x, y = pct_converted)) + 
+  geom_line() + 
+  geom_point(aes(size = nb_users)) + 
+  scale_y_continuous(labels = scales::percent) + 
+  labs(y = &quot;% who later answer a question&quot;,
+      x = &quot;Score on a user&#39;s first question&quot;,
+      title = &quot;The higher someone&#39;s score on their first question, the more likely they are to answer a question later&quot;,
+      subtitle = &quot;Only for questions tagged with R&quot;,
+      size = &quot;Number of users&quot;) + 
+  expand_limits(y = 0)</code></pre>
+<p><img src="/post/2019-07-25-introducing-the-funneljoin-package_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>Most people’s first questions have a score between -1 and 4, but for those who manage to score higher, they’re more likely to answer a question later. As always, you have to be careful of any claims of causality: it’s likely be those who are asking higher scored questions are better at R and thus have the knowledge to later provide answers.</p>
+<p>We’ve been looking so far at people’s answers after they’ve asked a question. But are there people who answer a question before they ever ask one? We can examine this with a <code>after_right_join</code> (to keep everyone who asks a question) to see what percent have answered one before. A <code>first-first</code> filters each table to the first instance of a user (e.g. their first answer and their first question) and then will only keep answers if it happened before the question.</p>
+<pre class="r"><code>answers %&gt;%
+  after_join(questions,
+           by_time = &quot;creation_date&quot;,
+           by_user = &quot;owner_user_id&quot;,
+           type = &quot;first-first&quot;,
+           mode = &quot;right&quot;) %&gt;%
+  summarize_conversions(id.x)</code></pre>
+<pre><code>## # A tibble: 1 x 3
+##   nb_users nb_conversions pct_converted
+##      &lt;int&gt;          &lt;int&gt;         &lt;dbl&gt;
+## 1    60335           2795        0.0463</code></pre>
+<p>Yes, 4.63% of people have answered a question before they asked their first one.</p>
+<p>To answer our original question, we used a <code>first-firstafter</code> type join, which means we’ve only been getting one row per user. For people who answer questions after asking one, let’s find out how many they answer. We’ll switch our query to an <code>after_inner_join</code> with a type <code>first-any</code>. Each user will only have one question, their first, as we used a <code>first-Y</code> type. But it has one row per answer they gave afterwards as we used a <code>X-any</code> type.</p>
+<pre class="r"><code>questions %&gt;%
+  after_inner_join(answers,
+           by_time = &quot;creation_date&quot;,
+           by_user = &quot;owner_user_id&quot;,
+           type = &quot;first-any&quot;) %&gt;%
+  count(owner_user_id) %&gt;%
+  ggplot(aes(n)) + 
+  geom_histogram() + 
+  scale_x_log10() + 
+  labs(x = &quot;Number of answers&quot;,
+       y = &quot;Number of users&quot;,
+       title = &quot;How many questions do people answer after asking their first one?&quot;,
+       subtitle = &quot;Only for questions tagged with R on StackOverflow&quot;)</code></pre>
+<p><img src="/post/2019-07-25-introducing-the-funneljoin-package_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>Not surprisingly, we see people mostly answer only 1 or 2 questions, with a long-tail of power users answering 100+ questions.</p>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
+<p>Some of the power of <code>funneljoin</code> comes from making it possible to code things you didn’t know how to before. But a lot of it comes from bringing things from “possible but time-consuming/annoying” to “easy.” When you’re doing exploratory analysis, you want to be able to quickly iterate between ideas: switching from the first thing someone added to their cart after searching for an item, to everything they added, to only things they added within a week.</p>
+<p>In the next post, I’ll be sharing <code>funneljoin</code>’s other main functions: <code>funnel_start()</code> and <code>funnel_step()</code>. In the meantime, if you find any bugs or have a feature request or question, please create an issue on <a href="https://github.com/robinsones/funneljoin">GitHub</a> or get in touch on <a href="https://twitter.com/robinson_es">Twitter</a>!</p>
+</div>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="/tags/r/">R</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/code/">Code</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/going-off-the-map/" data-tooltip="Going Off the Map: Exploring purrr&#39;s Other Functions">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/introducing-the-funneljoin-package/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/introducing-the-funneljoin-package/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 Emily Robinson. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/going-off-the-map/" data-tooltip="Going Off the Map: Exploring purrr&#39;s Other Functions">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/introducing-the-funneljoin-package/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/introducing-the-funneljoin-package/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2Fintroducing-the-funneljoin-package%2F">
+          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2Fintroducing-the-funneljoin-package%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://avatars.githubusercontent.com/robinsones" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Emily Robinson</h4>
+    
+      <div id="about-card-bio">Date Scientist at DataCamp</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Data Scientist
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        New York
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Search" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center">no post found</div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/introducing-the-funneljoin-package/">
+                <h3 class="media-heading">Introducing the funneljoin package</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jul 7, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Have you ever had a “first this then that” question? For example, maybe you’re an e-commerce business and you want all the times people clicked on an item and then added it to their cart within 2 days, or the last page they visited before registering. Or you work with pharmaceutical data and need to know what drugs people took before drug x and which drugs they took afterward and when.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/going-off-the-map/">
+                <h3 class="media-heading">Going Off the Map: Exploring purrr&#39;s Other Functions</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jan 1, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">I recently completed Colin Fay’s excellent DataCamp course, Intermediate Functional Programming with purrr (full disclosure: I work at DataCamp, but part of why I joined was that I was a big fan of the short, interactive course format). Although I’ve used the purrr package before, there were a lot of functions in this course that were new to me. I wrote this post to hopefully demystify purrr a bit for those who find it overwhelming and illustrate some of its lesser known functions.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/the-lesser-known-stars-of-the-tidyverse/">
+                <h3 class="media-heading">The Lesser Known Stars of the Tidyverse</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">In early 2018, I gave a few conference talks on “The Lesser Known Stars of the Tidyverse.” I focused on some packages and functions that aren’t as well known as the core parts of ggplot2 and dplyr but are very helpful in exploratory analysis. I walked through an example analysis of Kaggle’s 2017 State of Data Science and Machine Learning Survey to show how I would use these functions in an exploratory analysis.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/guidelines-for-ab-testing/">
+                <h3 class="media-heading">Guidelines for A/B Testing</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">When I was working at Etsy, I benefited from a very robust A/B testing system. Etsy had been doing A/B testing for more than 6 years. By the time I left, Etsy’s in-house experimentation system, called Catapult, had more than 5 data engineers working on it full-time. Every morning, I was greeted with a homepage that listed all the experiments that Etsy had run in the prior four years. When you clicked on one, you got a summary of what the experiment was testing (usually written by the product manager).</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/red-flags-in-data-science-interviews/">
+                <h3 class="media-heading">Red Flags in Data Science Interviews</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jul 7, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">This post was co-written with Jacqueline Nolis, Principal at Nolis, LLC. Check out the rest of her blog posts, including ones on prioritizing data science work, hiring data scientists, and what to do when your data science project isn’t working.
+When interviewing for any position, you should be evaluating the company just as much as they are evaluating you. While you can research the company beforehand on glassdoor and similar sites, interviews are the best place to get a deeper understanding of the company and ask important questions.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/advice-for-applying-to-data-science-jobs/">
+                <h3 class="media-heading">Advice for Applying to Data Science Jobs</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Following Dave Robinson’s sage tweet to write a blog post when you’ve given the same advice three times, this post is a collection of my thoughts and recommendations for people interested in applying to data science jobs in the US. Many of these principles also apply to tech jobs in general.
+A disclaimer: I have never worked as a recruiter or career coach. This knowledge comes from mainly from my study of Organizational Behavior (including negotiations and women in tech) in graduate school and my own career.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/the-importance-of-sponsorship/">
+                <h3 class="media-heading">The Importance of Sponsorship</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Feb 2, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">In my last post, I discussed the importance of building your network and some strategies for effectively reaching out. I closed with emphasizing how helpful your peers or people one step ahead of you can be. But there’s a specific area where people with more resources, status, or experience can help you: sponsorship.
+What is sponsorship? When people discuss what they’re seeking from a more senior person in their field, they usually talk about “mentorship.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/building-your-data-science-network-finding-community/">
+                <h3 class="media-heading">Building Your Data Science Network: Finding Community</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jan 1, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">So you’ve heard you’re supposed to network. That’s the key in getting a job or establishing a reputation in your broader field, right? And it’s true that the importance of having a good network is supported by a lot of social sciences research. But if the thought of networking makes you cringe, you’re not alone. Many people equate networking to sending out millions of unsolicited Linkedin requests with no message, handing out 20 business cards at a meetup once a week, or sending emails to prominent data scientists with the subject line “Can I pick your brain?</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/building-your-data-science-network-reaching-out/">
+                <h3 class="media-heading">Building your Data Science Network: Reaching Out</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jan 1, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">In the other part of this post, I covered how to start becoming involved in the data science community and meet people in general. But what if you read a really cool post by someone and want to follow up with them? This post offers some thoughts on how you can most effectively reach out to specific people.
+Two important caveats to start, both inspired by other posts on similar topics.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/making-r-code-faster-a-case-study/">
+                <h3 class="media-heading">Making R Code Faster: A Case Study</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">About two months ago I put a call out to Rstats twitter:
+#rstats twitter - who loves helping to make (short) code run as fast as possible? Playing w/ foreach, doparallel, data.table but know little — Emily Robinson (@robinson_es) October 4, 2017   I had a working, short script that took 3 1/2 minutes to run. While this may be fine if you only need to run it once, I needed to run it hundreds of time for simulations.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero="no post found"
+         data-message-one="1 post found"
+         data-message-other="{n} posts found">
+         18 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('/images/cover.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+
