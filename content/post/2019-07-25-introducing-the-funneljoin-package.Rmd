@@ -9,13 +9,25 @@ tags:
   - Code
 ---
 
-Have you ever had a "first this then that" question? For example, maybe you're an e-commerce business and you want all the times people clicked on an item and then added it to their cart within 2 days, or the last page they visited before registering. Or [you work with pharmaceutical data](https://twitter.com/scottishnp/status/1154657704578695168?s=20) and need to know what drugs people took before drug x and which drugs they took afterward and when. Or you tag fish and need to know where they went and if they eventually migrated upstream. 
+Have you ever had a "first this then that" question? For example, maybe you're an e-commerce business and you want all the times people clicked on an item and then added it to their cart within 2 days, or the last page they visited before registering. Or [you work with pharmaceutical data](https://twitter.com/scottishnp/status/1154657704578695168?s=20) and need to know what drugs people took before drug x and which drugs they took afterward and when. Or you [tag fish](https://twitter.com/Voovarb/status/1154445792125394945?s=20) and need to know where they went and if they eventually migrated upstream. 
 
 To solve these types of problem, I created the package funneljoin with [David Robinson](https://twitter.com/drob) and [Anthony Baker](https://www.linkedin.com/in/awbaker1/) in July 2018 and I've continued to maintain and iterate on it since. The goal of funneljoin is to make it easy to analyze behavior funnels with the `after_join()`,  `funnel_start()`, and `funnel_step()` functions. If you work with data where you have events with their time and associated user, you probably have a problem funneljoin can help with. 
 
 In this post, I'll use `after_join()` to analyze data about all Stack Overflow questions and answers (including their other tags) with the tag R up to September 24th, 2017. The data was downloaded from Kaggle [here](https://www.kaggle.com/stackoverflow/rquestions/downloads/rquestions.zip/3). The next post in this series will look at the `funnel_start()` and `funnel_step()` functions, which we'll use when all of the events or behavior are in one table. 
 
 ## Set-up
+
+```{r}
+library(knitr)
+opts_chunk$set(message = FALSE, warning = FALSE)
+```
+
+```{r}
+library(tidyverse)
+
+answers <- read_csv("Answers.csv")
+questions <- read_csv("Questions.csv")
+```
 
 `funneljoin` is not yet on CRAN, so you'll need to use `devtools` to install it from GitHub. I'll also use Ciarán Tobin's package `ggthemr` to set my ggplot2 theme; check out the palettes available on the [GitHub page](https://github.com/cttobin/ggthemr).
 
@@ -28,15 +40,6 @@ library(funneljoin)
 # devtools::install_github('cttobin/ggthemr')
 library(ggthemr)
 ggthemr('fresh')
-```
-
-```{r}
-library(knitr)
-opts_chunk$set(message = FALSE)
-library(tidyverse)
-
-answers <- read_csv("Answers.csv")
-questions <- read_csv("Questions.csv")
 ```
 
 Let's take a quick look at the questions and answers dataset. 
@@ -65,20 +68,30 @@ answers %<>%
 
 ## after_join() 
 
-Let's start with a relatively simple question - how many people who ask a question later answer one? To look at this, we'll need to link the questions with the answers table using the OwnerUserId and their CreationDate. We will use funneljoin's `after_join` function.
+Let's start with a relatively simple question - how many people who ask a question later answer one? To look at this, we'll need to link the questions with the answers table using `owner_user_id` and `creation_date` using funneljoin's `after_join` function.
 
 ```{r}
 after_join(questions, 
            answers,
            by_time = "creation_date",
            by_user = "owner_user_id",
-           type = "first-firstafter",
-           mode = "left")
+           mode = "left",
+           type = "first-firstafter")
 ```
 
 The first two arguments are the tables we're joining, with the first table being the events that happen first. We then specify what the time and user id columns are and the mode of the join (e.g. left, inner, anti). 
 
-The power of `after_join()` comes in its `type` argument, which allows you to switch between types of funnels easily. In this case, we wanted only the first question someone asked and then wanted to know the first answer they gave afterward. For any `type` of `after_join()` though, the timestamps of the second table (in this case answers) will always be after the timestamp of the first table for each user.
+The power of `after_join()` comes in its `type` argument, which allows you to switch between types of funnels easily. In this case, we wanted only the first question someone asked and then wanted to know the first answer they gave afterward. For any `type` of `after_join()` though, the timestamps of the second table (in this case answers) will always be after the timestamp of the first table for each user - we can see their are no rows where `creation_date.y` (the time of the answer) is before `creation_date.x` (the time of the question):
+
+```{r}
+after_join(questions, 
+           answers,
+           by_time = "creation_date",
+           by_user = "owner_user_id",
+           mode = "left",
+           type = "first-firstafter") %>%
+  filter(creation_date.y < creation_date.x)
+```
 
 Because we wanted to keep all users even if they never answered a question later, we do a left join, specified with `mode = "left"`. 
 

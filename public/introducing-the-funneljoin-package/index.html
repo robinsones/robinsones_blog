@@ -251,63 +251,23 @@ if (!doNotTrack) {
               
 
 
-<p>Have you ever had a “first this then that” question? For example, maybe you’re an e-commerce business and you want all the times people clicked on an item and then added it to their cart within 2 days, or the last page they visited before registering. Or <a href="https://twitter.com/scottishnp/status/1154657704578695168?s=20">you work with pharmaceutical data</a> and need to know what drugs people took before drug x and which drugs they took afterward and when. Or you tag fish and need to know where they went and if they eventually migrated upstream.</p>
+<p>Have you ever had a “first this then that” question? For example, maybe you’re an e-commerce business and you want all the times people clicked on an item and then added it to their cart within 2 days, or the last page they visited before registering. Or <a href="https://twitter.com/scottishnp/status/1154657704578695168?s=20">you work with pharmaceutical data</a> and need to know what drugs people took before drug x and which drugs they took afterward and when. Or you <a href="https://twitter.com/Voovarb/status/1154445792125394945?s=20">tag fish</a> and need to know where they went and if they eventually migrated upstream.</p>
 <p>To solve these types of problem, I created the package funneljoin with <a href="https://twitter.com/drob">David Robinson</a> and <a href="https://www.linkedin.com/in/awbaker1/">Anthony Baker</a> in July 2018 and I’ve continued to maintain and iterate on it since. The goal of funneljoin is to make it easy to analyze behavior funnels with the <code>after_join()</code>, <code>funnel_start()</code>, and <code>funnel_step()</code> functions. If you work with data where you have events with their time and associated user, you probably have a problem funneljoin can help with.</p>
 <p>In this post, I’ll use <code>after_join()</code> to analyze data about all Stack Overflow questions and answers (including their other tags) with the tag R up to September 24th, 2017. The data was downloaded from Kaggle <a href="https://www.kaggle.com/stackoverflow/rquestions/downloads/rquestions.zip/3">here</a>. The next post in this series will look at the <code>funnel_start()</code> and <code>funnel_step()</code> functions, which we’ll use when all of the events or behavior are in one table.</p>
 <div id="set-up" class="section level2">
 <h2>Set-up</h2>
+<pre class="r"><code>library(knitr)
+opts_chunk$set(message = FALSE, warning = FALSE)</code></pre>
+<pre class="r"><code>library(tidyverse)
+
+answers &lt;- read_csv(&quot;Answers.csv&quot;)
+questions &lt;- read_csv(&quot;Questions.csv&quot;)</code></pre>
 <p><code>funneljoin</code> is not yet on CRAN, so you’ll need to use <code>devtools</code> to install it from GitHub. I’ll also use Ciarán Tobin’s package <code>ggthemr</code> to set my ggplot2 theme; check out the palettes available on the <a href="https://github.com/cttobin/ggthemr">GitHub page</a>.</p>
 <pre class="r"><code># devtools::install_github(&quot;robinsones/funneljoin&quot;)
 library(funneljoin)</code></pre>
 <pre class="r"><code># devtools::install_github(&#39;cttobin/ggthemr&#39;)
-library(ggthemr)</code></pre>
-<pre><code>## Loading required package: ggplot2</code></pre>
-<pre class="r"><code>ggthemr(&#39;fresh&#39;)</code></pre>
-<pre><code>## Warning: New theme missing the following elements: axis.ticks.length.x,
-## axis.ticks.length.x.top, axis.ticks.length.x.bottom, axis.ticks.length.y,
-## axis.ticks.length.y.left, axis.ticks.length.y.right, panel.grid, plot.tag,
-## plot.tag.position</code></pre>
-<pre class="r"><code>library(knitr)
-opts_chunk$set(message = FALSE)
-library(tidyverse)</code></pre>
-<pre><code>## ── Attaching packages ───────── tidyverse 1.2.1 ──</code></pre>
-<pre><code>## ✔ tibble  2.1.1       ✔ purrr   0.3.2  
-## ✔ tidyr   0.8.3       ✔ dplyr   0.8.0.1
-## ✔ readr   1.3.1       ✔ stringr 1.4.0  
-## ✔ tibble  2.1.1       ✔ forcats 0.4.0</code></pre>
-<pre><code>## ── Conflicts ──────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter()                       masks stats::filter()
-## ✖ dplyr::lag()                          masks stats::lag()
-## ✖ .GlobalEnv::scale_color_continuous()  masks ggplot2::scale_color_continuous()
-## ✖ .GlobalEnv::scale_color_discrete()    masks ggplot2::scale_color_discrete()
-## ✖ .GlobalEnv::scale_color_gradient()    masks ggplot2::scale_color_gradient()
-## ✖ .GlobalEnv::scale_colour_continuous() masks ggplot2::scale_colour_continuous()
-## ✖ .GlobalEnv::scale_colour_discrete()   masks ggplot2::scale_colour_discrete()
-## ✖ .GlobalEnv::scale_colour_gradient()   masks ggplot2::scale_colour_gradient()
-## ✖ .GlobalEnv::scale_fill_continuous()   masks ggplot2::scale_fill_continuous()
-## ✖ .GlobalEnv::scale_fill_discrete()     masks ggplot2::scale_fill_discrete()
-## ✖ .GlobalEnv::scale_fill_gradient()     masks ggplot2::scale_fill_gradient()</code></pre>
-<pre class="r"><code>answers &lt;- read_csv(&quot;Answers.csv&quot;)</code></pre>
-<pre><code>## Parsed with column specification:
-## cols(
-##   Id = col_double(),
-##   OwnerUserId = col_double(),
-##   CreationDate = col_datetime(format = &quot;&quot;),
-##   ParentId = col_double(),
-##   Score = col_double(),
-##   IsAcceptedAnswer = col_logical(),
-##   Body = col_character()
-## )</code></pre>
-<pre class="r"><code>questions &lt;- read_csv(&quot;Questions.csv&quot;)</code></pre>
-<pre><code>## Parsed with column specification:
-## cols(
-##   Id = col_double(),
-##   OwnerUserId = col_double(),
-##   CreationDate = col_datetime(format = &quot;&quot;),
-##   Score = col_double(),
-##   Title = col_character(),
-##   Body = col_character()
-## )</code></pre>
+library(ggthemr)
+ggthemr(&#39;fresh&#39;)</code></pre>
 <p>Let’s take a quick look at the questions and answers dataset.</p>
 <pre class="r"><code>questions</code></pre>
 <pre><code>## # A tibble: 189,930 x 6
@@ -352,13 +312,13 @@ answers %&lt;&gt;%
 </div>
 <div id="after_join" class="section level2">
 <h2>after_join()</h2>
-<p>Let’s start with a relatively simple question - how many people who ask a question later answer one? To look at this, we’ll need to link the questions with the answers table using the OwnerUserId and their CreationDate. We will use funneljoin’s <code>after_join</code> function.</p>
+<p>Let’s start with a relatively simple question - how many people who ask a question later answer one? To look at this, we’ll need to link the questions with the answers table using <code>owner_user_id</code> and <code>creation_date</code> using funneljoin’s <code>after_join</code> function.</p>
 <pre class="r"><code>after_join(questions, 
            answers,
            by_time = &quot;creation_date&quot;,
            by_user = &quot;owner_user_id&quot;,
-           type = &quot;first-firstafter&quot;,
-           mode = &quot;left&quot;)</code></pre>
+           mode = &quot;left&quot;,
+           type = &quot;first-firstafter&quot;)</code></pre>
 <pre><code>## # A tibble: 60,335 x 12
 ##      id.x owner_user_id creation_date.x     score.x title body.x    id.y
 ##     &lt;dbl&gt;         &lt;dbl&gt; &lt;dttm&gt;                &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    &lt;dbl&gt;
@@ -375,7 +335,19 @@ answers %&lt;&gt;%
 ## # … with 60,325 more rows, and 5 more variables: creation_date.y &lt;dttm&gt;,
 ## #   parent_id &lt;dbl&gt;, score.y &lt;dbl&gt;, is_accepted_answer &lt;lgl&gt;, body.y &lt;chr&gt;</code></pre>
 <p>The first two arguments are the tables we’re joining, with the first table being the events that happen first. We then specify what the time and user id columns are and the mode of the join (e.g. left, inner, anti).</p>
-<p>The power of <code>after_join()</code> comes in its <code>type</code> argument, which allows you to switch between types of funnels easily. In this case, we wanted only the first question someone asked and then wanted to know the first answer they gave afterward. For any <code>type</code> of <code>after_join()</code> though, the timestamps of the second table (in this case answers) will always be after the timestamp of the first table for each user.</p>
+<p>The power of <code>after_join()</code> comes in its <code>type</code> argument, which allows you to switch between types of funnels easily. In this case, we wanted only the first question someone asked and then wanted to know the first answer they gave afterward. For any <code>type</code> of <code>after_join()</code> though, the timestamps of the second table (in this case answers) will always be after the timestamp of the first table for each user - we can see their are no rows where <code>creation_date.y</code> (the time of the answer) is before <code>creation_date.x</code> (the time of the question):</p>
+<pre class="r"><code>after_join(questions, 
+           answers,
+           by_time = &quot;creation_date&quot;,
+           by_user = &quot;owner_user_id&quot;,
+           mode = &quot;left&quot;,
+           type = &quot;first-firstafter&quot;) %&gt;%
+  filter(creation_date.y &lt; creation_date.x)</code></pre>
+<pre><code>## # A tibble: 0 x 12
+## # … with 12 variables: id.x &lt;dbl&gt;, owner_user_id &lt;dbl&gt;,
+## #   creation_date.x &lt;dttm&gt;, score.x &lt;dbl&gt;, title &lt;chr&gt;, body.x &lt;chr&gt;,
+## #   id.y &lt;dbl&gt;, creation_date.y &lt;dttm&gt;, parent_id &lt;dbl&gt;, score.y &lt;dbl&gt;,
+## #   is_accepted_answer &lt;lgl&gt;, body.y &lt;chr&gt;</code></pre>
 <p>Because we wanted to keep all users even if they never answered a question later, we do a left join, specified with <code>mode = &quot;left&quot;</code>.</p>
 <p>To answer our original question, let’s get a count by what percent of rows don’t have an <code>id.y</code>, meaning they never answered a question after asking one. We’ll use the funneljoin’s <code>summarize_conversions()</code> function, where you specify what column indicates whether someone “converted” (in this case answered a question) and returns the total number of users (<code>nb_users</code>), the number of conversions (<code>nb_conversions</code>), and the percent converted (<code>pct_converted</code>).</p>
 <pre class="r"><code>after_join(questions, 
@@ -406,9 +378,7 @@ answers %&lt;&gt;%
        y = &quot;Number of users&quot;,
        title = &quot;What&#39;s the gap between someone&#39;s first StackOverflow question and their first answer?&quot;,
        subtitle = &quot;Only for questions tagged with R&quot;) </code></pre>
-<pre><code>## Warning: Transformation introduced infinite values in continuous x-axis</code></pre>
-<pre><code>## Warning: Removed 46703 rows containing non-finite values (stat_bin).</code></pre>
-<p><img src="/post/2019-07-25-introducing-the-funneljoin-package_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="/post/2019-07-25-introducing-the-funneljoin-package_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <p>We can get an idea from this graph what percentage of people who ask a question answer one within a week, or we could filter our data to get an exact answer. To make it even easier though, we can use the <code>max_gap</code> argument in <code>after_join()</code> to specify that someone needs to have answered a question within a week from their data to be joined. <code>max_gap</code> takes either a <code>difftime</code> or an integer reprsenting the gap in seconds and will filter so that the time between events is less than or equal to that <code>max_gap</code>.</p>
 <pre class="r"><code>after_join(questions, 
            answers,
@@ -443,7 +413,7 @@ answers %&lt;&gt;%
       subtitle = &quot;Only for questions tagged with R&quot;,
       size = &quot;Number of users&quot;) + 
   expand_limits(y = 0)</code></pre>
-<p><img src="/post/2019-07-25-introducing-the-funneljoin-package_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="/post/2019-07-25-introducing-the-funneljoin-package_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>Most people’s first questions have a score between -1 and 4, but for those who manage to score higher, they’re more likely to answer a question later. As always, you have to be careful of any claims of causality: it’s likely be those who are asking higher scored questions are better at R and thus have the knowledge to later provide answers.</p>
 <p>We’ve been looking so far at people’s answers after they’ve asked a question. But are there people who answer a question before they ever ask one? We can examine this with a <code>after_right_join</code> (to keep everyone who asks a question) to see what percent have answered one before. A <code>first-first</code> filters each table to the first instance of a user (e.g. their first answer and their first question) and then will only keep answers if it happened before the question.</p>
 <pre class="r"><code>answers %&gt;%
@@ -472,7 +442,7 @@ answers %&lt;&gt;%
        y = &quot;Number of users&quot;,
        title = &quot;How many questions do people answer after asking their first one?&quot;,
        subtitle = &quot;Only for questions tagged with R on StackOverflow&quot;)</code></pre>
-<p><img src="/post/2019-07-25-introducing-the-funneljoin-package_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="/post/2019-07-25-introducing-the-funneljoin-package_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <p>Not surprisingly, we see people mostly answer only 1 or 2 questions, with a long-tail of power users answering 100+ questions.</p>
 </div>
 <div id="conclusion" class="section level2">
