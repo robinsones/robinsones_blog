@@ -1,7 +1,7 @@
 ---
 title: "Introducing the funneljoin package"
 author: "Emily Robinson"
-date: '2019-07-31'
+date: '2019-08-01'
 slug: introducing-the-funneljoin-package
 tags:
 - R
