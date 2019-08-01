@@ -19,7 +19,7 @@ July 2019, [Demystifying Data Science](https://www.thisismetis.com/demystifying-
 
 ### Creating a Strong Data Science Portfolio
 
-June 2019, [Data Matters](https://skillsmatter.com/meetups/11783-keynote-evening-with-emily-robinson) in London. [Recording](https://skillsmatter.com/skillscasts/13056-creating-a-strong-data-science-portfolio), [Slides](bit.ly/erdatamatters).
+June 2019, [Data Matters](https://skillsmatter.com/meetups/11783-keynote-evening-with-emily-robinson) in London. [Recording](https://skillsmatter.com/skillscasts/13056-creating-a-strong-data-science-portfolio), [Slides](https://speakerdeck.com/robinsones/build-a-strong-data-science-portfolio).
 
 ### Everything You Wanted to Know About Making R Packages but Were Afraid to Ask
 
