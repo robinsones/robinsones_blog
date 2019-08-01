@@ -9,7 +9,7 @@ showActions:    false
 #thumbnailImage: //example.com/image.jpg
 ---
 
-I regularly give talks on A/B Testing, working in R, joining the Data Science community, and more. If you're interested in having me speak at your event, please contact me at emily[at]datacamp.com
+I regularly give talks on A/B Testing, working in R, data science career advice, and more. I've given talks across the country and internationally, to audiences ranging from 25 people to 800. If you're interested in having me speak at your event, please contact me at robinson.es[at]gmail.com
 
 ## Upcoming Talks
 
