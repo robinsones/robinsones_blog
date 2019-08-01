@@ -13,9 +13,15 @@ I regularly give talks on A/B Testing, working in R, joining the Data Science co
 
 ## Upcoming Talks
 
-July 2019, [Demystifying Data Science](https://www.thisismetis.com/demystifying-data-science), an online conference by Metis. 
+November 2019, DC R conference. 
 
 ## Previous Talks 
+
+### Joining the Data Science Community
+
+July 2019, [Demystifying Data Science](https://www.thisismetis.com/demystifying-data-science), an online conference by Metis. 
+
+May & July 2018, Metis Data Science Bootcamp.
 
 ### Creating a Strong Data Science Portfolio
 
@@ -46,10 +52,6 @@ November 2018, DataCamp Webinar. [Recording](https://support.datacamp.com/hc/en-
 October 2018, [PyData NYC](https://pydata.org/nyc2018/). 
 
 October 2018, [Taiwanese Data Professionals](https://www.meetup.com/Taiwanese-Data-Professionals/events/vdgkdqyxnbjc/).
-
-### Joining the Data Science Community
-
-May & July 2018, Metis Data Science Bootcamp.
 
 ### The Lesser Known Stars of the Tidyverse
 
