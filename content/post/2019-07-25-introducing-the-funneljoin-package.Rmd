@@ -1,0 +1,211 @@
+---
+title: Introducing the funneljoin package
+author: Emily Robinson
+date: '2019-07-26'
+slug: introducing-the-funneljoin-package
+categories: []
+tags:
+  - R
+  - Code
+---
+
+Have you ever had a "first this then that" question? For example, maybe you're an e-commerce business and you want all the times people clicked on an item and then added it to their cart within 2 days, or the last page they visited before registering. Or [you work with pharmaceutical data](https://twitter.com/scottishnp/status/1154657704578695168?s=20) and need to know what drugs people took before drug x and which drugs they took afterward and when. Or you [tag fish](https://twitter.com/Voovarb/status/1154445792125394945?s=20) and need to know where they went and if they eventually migrated upstream. 
+
+To solve these types of problem, I created the package funneljoin with [David Robinson](https://twitter.com/drob) and [Anthony Baker](https://www.linkedin.com/in/awbaker1/) in July 2018 and I've continued to maintain and iterate on it since. The goal of funneljoin is to make it easy to analyze behavior funnels with the `after_join()`,  `funnel_start()`, and `funnel_step()` functions. If you work with data where you have events with their time and associated user, you probably have a problem funneljoin can help with. 
+
+In this post, I'll use `after_join()` to analyze data about all Stack Overflow questions and answers (including their other tags) with the tag R up to September 24th, 2017. The data was downloaded from Kaggle [here](https://www.kaggle.com/stackoverflow/rquestions/downloads/rquestions.zip/3). The next post in this series will look at the `funnel_start()` and `funnel_step()` functions, which we'll use when all of the events or behavior are in one table. 
+
+## Set-up
+
+```{r}
+library(knitr)
+opts_chunk$set(message = FALSE, warning = FALSE)
+```
+
+```{r}
+library(tidyverse)
+
+answers <- read_csv("Answers.csv")
+questions <- read_csv("Questions.csv")
+```
+
+`funneljoin` is not yet on CRAN, so you'll need to use `devtools` to install it from GitHub. I'll also use Ciarán Tobin's package `ggthemr` to set my ggplot2 theme; check out the palettes available on the [GitHub page](https://github.com/cttobin/ggthemr).
+
+```{r}
+# devtools::install_github("robinsones/funneljoin")
+library(funneljoin)
+```
+
+```{r}
+# devtools::install_github('cttobin/ggthemr')
+library(ggthemr)
+ggthemr('fresh')
+```
+
+Let's take a quick look at the questions and answers dataset. 
+
+```{r}
+questions
+```
+
+```{r}
+answers 
+```
+
+Before I dive into the analysis, I'm going to use the janitor's package `clean_names()` function to convert the column names to snake case and `%<>%` to modify the datasets. I'll also get rid of the rows where user id is missing. 
+
+```{r}
+library(magrittr)
+
+questions %<>%
+  janitor::clean_names() %>%
+  filter(!is.na(owner_user_id))
+
+answers %<>%
+  janitor::clean_names() %>%
+  filter(!is.na(owner_user_id))
+```
+
+## after_join() 
+
+Let's start with a relatively simple question - how many people who ask a question later answer one? To look at this, we'll need to link the questions with the answers table using `owner_user_id` and `creation_date` using funneljoin's `after_join` function.
+
+```{r}
+after_join(questions, 
+           answers,
+           by_time = "creation_date",
+           by_user = "owner_user_id",
+           mode = "left",
+           type = "first-firstafter")
+```
+
+The first two arguments are the tables we're joining, with the first table being the events that happen first. We then specify what the time and user id columns are and the mode of the join (e.g. left, inner, anti). 
+
+The power of `after_join()` comes in its `type` argument, which allows you to switch between types of funnels easily. In this case, we wanted only the first question someone asked and then wanted to know the first answer they gave afterward. For any `type` of `after_join()` though, the timestamps of the second table (in this case answers) will always be after the timestamp of the first table for each user - we can see their are no rows where `creation_date.y` (the time of the answer) is before `creation_date.x` (the time of the question):
+
+```{r}
+after_join(questions, 
+           answers,
+           by_time = "creation_date",
+           by_user = "owner_user_id",
+           mode = "left",
+           type = "first-firstafter") %>%
+  filter(creation_date.y < creation_date.x)
+```
+
+Because we wanted to keep all users even if they never answered a question later, we do a left join, specified with `mode = "left"`. 
+
+To answer our original question, let's get a count by what percent of rows don't have an `id.y`, meaning they never answered a question after asking one. We'll use the funneljoin's `summarize_conversions()` function, where you specify what column indicates whether someone "converted" (in this case answered a question) and returns the total number of users (`nb_users`), the number of conversions (`nb_conversions`), and the percent converted (`pct_converted`). 
+
+```{r}
+after_join(questions, 
+                answers,
+                by_time = "creation_date",
+                by_user = "owner_user_id",
+                type = "first-firstafter",
+                mode = "left") %>%
+  summarize_conversions(converted = id.y)
+```
+
+We see that of the approximately 60,000 users that asked an R question, 22.7% percent later went on to answer one. 
+
+How long does it take for people to answer their first question? We can add `gap_col = TRUE` to `after_join()` to add a column, `.gap`, which is the gap between events (in seconds). We'll also switch from from using the argument `mode` to specify the type of join to changing to a wrapper function, `after_left_join()`. 
+
+```{r}
+questions %>%
+  after_left_join(answers,
+                  by_time = "creation_date",
+                  by_user = "owner_user_id",
+                  type = "first-firstafter",
+                  gap_col = TRUE) %>%
+  mutate(gap_hours = .gap  / 3600) %>%
+  ggplot(aes(x = gap_hours)) + 
+  geom_histogram() + 
+  scale_x_log10(breaks = c(1, 24, 24 * 7, 24 * 7 * 30), 
+                     labels = c("1 hour", "1 day", "1 week", "1 month")) + 
+  labs(x = "",
+       y = "Number of users",
+       title = "What's the gap between someone's first StackOverflow question and their first answer?",
+       subtitle = "Only for questions tagged with R") 
+```
+
+We can get an idea from this graph what percentage of people who ask a question answer one within a week, or we could filter our data to get an exact answer. To make it even easier though, we can use the `max_gap` argument in `after_join()` to specify that someone needs to have answered a question within a week from their data to be joined. `max_gap` takes either a `difftime` or an integer reprsenting the gap in seconds and will filter so that the time between events is less than or equal to that `max_gap`. 
+
+```{r}
+after_join(questions, 
+           answers,
+           by_time = "creation_date",
+           by_user = "owner_user_id",
+           type = "first-firstafter",
+           mode = "left",
+           max_gap = as.difftime(1, units = "weeks")) %>%
+  summarize_conversions(converted = id.y)
+```
+
+Now we see that only 8.9% answer an R question within a week of asking their first one. 
+
+We might be curious if the likelihood of answering a question later varies by the score of the question they asked. Before doing summarize_conversions, we can group by the score. There are some scores that only appear once (e.g. one person got a score of -18), so we'll filter for only scores where there were more than 100 questions that got that score. 
+
+```{r}
+after_join(questions, 
+           answers,
+           by_time = "creation_date",
+           by_user = "owner_user_id",
+           type = "first-firstafter",
+           mode = "left") %>%
+  group_by(score.x) %>%
+  summarize_conversions(converted = id.y) %>%
+  filter(nb_users > 100) %>%
+  ggplot(aes(x = score.x, y = pct_converted)) + 
+  geom_line() + 
+  geom_point(aes(size = nb_users)) + 
+  scale_y_continuous(labels = scales::percent) + 
+  labs(y = "% who later answer a question",
+      x = "Score on a user's first question",
+      title = "The higher someone's score on their first question, the more likely they are to answer a question later",
+      subtitle = "Only for questions tagged with R",
+      size = "Number of users") + 
+  expand_limits(y = 0)
+```
+
+Most people's first questions have a score between -1 and 4, but for those who manage to score higher, they're more likely to answer a question later. As always, you have to be careful of any claims of causality: it's likely be those who are asking higher scored questions are better at R and thus have the knowledge to later provide answers. 
+
+We've been looking so far at people's answers after they've asked a question. But are there people who answer a question before they ever ask one? We can examine this with a `after_right_join` (to keep everyone who asks a question) to see what percent have answered one before. A `first-first` filters each table to the first instance of a user (e.g. their first answer and their first question) and then will only keep answers if it happened before the question.
+
+```{r}
+answers %>%
+  after_join(questions,
+           by_time = "creation_date",
+           by_user = "owner_user_id",
+           type = "first-first",
+           mode = "right") %>%
+  summarize_conversions(id.x)
+```
+
+Yes, 4.63% of people have answered a question before they asked their first one. 
+
+To answer our original question, we used a `first-firstafter` type join, which means we've only been getting one row per user. For people who answer questions after asking one, let's find out how many they answer. We'll switch our query to an `after_inner_join` with a type `first-any`. Each user will only have one question, their first, as we used a `first-Y` type. But it has one row per answer they gave afterwards as we used a `X-any` type. 
+
+```{r}
+questions %>%
+  after_inner_join(answers,
+           by_time = "creation_date",
+           by_user = "owner_user_id",
+           type = "first-any") %>%
+  count(owner_user_id) %>%
+  ggplot(aes(n)) + 
+  geom_histogram() + 
+  scale_x_log10() + 
+  labs(x = "Number of answers",
+       y = "Number of users",
+       title = "How many questions do people answer after asking their first one?",
+       subtitle = "Only for questions tagged with R on StackOverflow")
+```
+
+Not surprisingly, we see people mostly answer only 1 or 2 questions, with a long-tail of power users answering 100+ questions. 
+
+## Conclusion 
+
+Some of the power of `funneljoin` comes from making it possible to code things you didn't know how to before. But a lot of it comes from bringing things from "possible but time-consuming/annoying" to "easy." When you're doing exploratory analysis, you want to be able to quickly iterate between ideas: switching from the first thing someone added to their cart after searching for an item, to everything they added, to only things they added within a week. 
+
+In the next post, I'll be sharing `funneljoin`'s other main functions: `funnel_start()` and `funnel_step()`. In the meantime, if you find any bugs or have a feature request or question, please create an issue on [GitHub](https://github.com/robinsones/funneljoin) or get in touch on [Twitter](https://twitter.com/robinson_es)!

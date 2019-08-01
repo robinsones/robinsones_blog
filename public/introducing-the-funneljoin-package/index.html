@@ -8,37 +8,33 @@
 <meta name="generator" content="Hugo 0.51 with theme Tranquilpeak 0.4.3-SNAPSHOT">
 <meta name="author" content="Emily Robinson">
 <meta name="keywords" content="">
-<meta name="description" content="Last week I spent four amazing days in Orlando at the first ever rstudio::conf. I learned a ton, met some really cool people, connected with several I hadn’t seen in a while, and came out feeling ready to take on the world.
-I’ve divided my summary of the conference into two parts. This first one shares my personal experience and some more general learnings, while the other one has quick, bullet-pointed lists on writing functions, packages, tools, and functions I learned, and general tips and tricks.">
+<meta name="description" content="Have you ever had a “first this then that” question? For example, maybe you’re an e-commerce business and you want all the times people clicked on an item and then added it to their cart within 2 days, or the last page they visited before registering. Or you work with pharmaceutical data and need to know what drugs people took before drug x and which drugs they took afterward and when.">
 
 
-<meta property="og:description" content="Last week I spent four amazing days in Orlando at the first ever rstudio::conf. I learned a ton, met some really cool people, connected with several I hadn’t seen in a while, and came out feeling ready to take on the world.
-I’ve divided my summary of the conference into two parts. This first one shares my personal experience and some more general learnings, while the other one has quick, bullet-pointed lists on writing functions, packages, tools, and functions I learned, and general tips and tricks.">
+<meta property="og:description" content="Have you ever had a “first this then that” question? For example, maybe you’re an e-commerce business and you want all the times people clicked on an item and then added it to their cart within 2 days, or the last page they visited before registering. Or you work with pharmaceutical data and need to know what drugs people took before drug x and which drugs they took afterward and when.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RStudio Conference Recap">
-<meta name="twitter:title" content="RStudio Conference Recap">
-<meta property="og:url" content="/rstudio-conference-recap/">
-<meta property="twitter:url" content="/rstudio-conference-recap/">
+<meta property="og:title" content="Introducing the funneljoin package">
+<meta name="twitter:title" content="Introducing the funneljoin package">
+<meta property="og:url" content="/introducing-the-funneljoin-package/">
+<meta property="twitter:url" content="/introducing-the-funneljoin-package/">
 <meta property="og:site_name" content="Hooked on Data">
-<meta property="og:description" content="Last week I spent four amazing days in Orlando at the first ever rstudio::conf. I learned a ton, met some really cool people, connected with several I hadn’t seen in a while, and came out feeling ready to take on the world.
-I’ve divided my summary of the conference into two parts. This first one shares my personal experience and some more general learnings, while the other one has quick, bullet-pointed lists on writing functions, packages, tools, and functions I learned, and general tips and tricks.">
-<meta name="twitter:description" content="Last week I spent four amazing days in Orlando at the first ever rstudio::conf. I learned a ton, met some really cool people, connected with several I hadn’t seen in a while, and came out feeling ready to take on the world.
-I’ve divided my summary of the conference into two parts. This first one shares my personal experience and some more general learnings, while the other one has quick, bullet-pointed lists on writing functions, packages, tools, and functions I learned, and general tips and tricks.">
+<meta property="og:description" content="Have you ever had a “first this then that” question? For example, maybe you’re an e-commerce business and you want all the times people clicked on an item and then added it to their cart within 2 days, or the last page they visited before registering. Or you work with pharmaceutical data and need to know what drugs people took before drug x and which drugs they took afterward and when.">
+<meta name="twitter:description" content="Have you ever had a “first this then that” question? For example, maybe you’re an e-commerce business and you want all the times people clicked on an item and then added it to their cart within 2 days, or the last page they visited before registering. Or you work with pharmaceutical data and need to know what drugs people took before drug x and which drugs they took afterward and when.">
 <meta property="og:locale" content="en-us">
 
   
-    <meta property="article:published_time" content="2017-01-19T00:00:00">
+    <meta property="article:published_time" content="2019-07-26T00:00:00">
   
   
-    <meta property="article:modified_time" content="2017-01-19T00:00:00">
+    <meta property="article:modified_time" content="2019-07-26T00:00:00">
   
   
   
   
-    
-      <meta property="article:tag" content="Conference">
     
       <meta property="article:tag" content="R">
+    
+      <meta property="article:tag" content="Code">
     
   
 
@@ -63,14 +59,14 @@ I’ve divided my summary of the conference into two parts. This first one share
   <meta property="twitter:image" content="https://avatars.githubusercontent.com/robinsones">
 
 
-    <title>RStudio Conference Recap</title>
+    <title>Introducing the funneljoin package</title>
 
     <link rel="icon" href="/favicon.png">
     
 
     
 
-    <link rel="canonical" href="/rstudio-conference-recap/">
+    <link rel="canonical" href="/introducing-the-funneljoin-package/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -233,15 +229,15 @@ if (!doNotTrack) {
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      RStudio Conference Recap
+      Introducing the funneljoin package
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2017-01-19T00:00:00Z">
+      <time itemprop="datePublished" datetime="2019-07-26T00:00:00Z">
         
-  January 19, 2017
+  July 26, 2019
 
       </time>
     
@@ -255,69 +251,204 @@ if (!doNotTrack) {
               
 
 
-<p>Last week I spent four amazing days in Orlando at the first ever <a href="https://www.rstudio.com/conference/">rstudio::conf</a>. I learned a ton, met some really cool people, connected with several I hadn’t seen in a while, and came out feeling ready to take on the world.</p>
-<p>I’ve divided my summary of the conference into two parts. This first one shares my personal experience and some more general learnings, while the <a href="https://hookedondata.org/RStudio-Conference-Tips-and-Tricks/">other one</a> has quick, bullet-pointed lists on writing functions, packages, tools, and functions I learned, and general tips and tricks. I also learned a lot about writing packages on the second day of Hadley’s Master R Developer workshop, which will be included in a future post on writing my first package.</p>
-<p>You can find most of the slides from the conference <a href="https://github.com/kbroman/RStudioConf2017Slides">here</a>, organized by Karl Broman (who was greatly missed), and videos of all the talks <a href="https://www.rstudio.com/resources/webinars/#rstudioconf">here</a>.</p>
-<div id="diversity-and-inclusion-in-r" class="section level2">
-<h2>Diversity and Inclusion in R</h2>
-<p>First, I want to thank RStudio for providing the diversity scholarship that enabled me to attend the conference at all. When I applied for the scholarship, I was just finishing up <a href="http://www.thisismetis.com/data-science-bootcamps">Metis</a> and was still months away from joining my current company, Etsy. Without a company to pay for my ticket and not knowing when I would start earning a salary again, I could not have covered the $1000+ for the conference ticket and travel, and certainly not the training day ticket.</p>
-<p>The availability of rstudio::conf diversity scholarships for women, LGBT+, and underrepresented minorities reflects the broader inclusion efforts I’ve seen in the R community. We have the newly-rebranded <a href="http://forwards.github.io/">R Forwards taskforce</a>, which changed their name from the R Foundation Task Force on Women so that they could “consider the needs of other marginalised groups as part of our mission.” There is also the <a href="https://rladies.org/">R-Ladies organization</a>, which has meet-up groups all around the world. <a href="http://www.user2017.brussels/">UseR!</a>, one of the main R conferences, is providing childcare options this year to make it easier for primary caregivers to attend. Overall, members of the R community seem aware of diversity issues and supportive of efforts to make the community more inclusive. That being said, there’s always more work to be done, as emphasized in this <a href="https://forwards.github.io/blog/2017/01/13/mapping-users/">report</a> on the demographics of the useR! attendees. I hope to do some of my part for these efforts by giving at least one R tutorial for the R-Ladies New York group this spring.</p>
-<p>I met many kick-ass R Ladies at the conference, including Jenny Bryan, Charlotte Wickham, Hilary Parker, and these awesome graduate students from Vanderbuilt:</p>
-<blockquote class="twitter-tweet" data-lang="en">
-<p lang="en" dir="ltr">
-Coming at you strong from <a href="https://twitter.com/RLadiesNash"><span class="citation">@RLadiesNash</span></a> - excited to kickoff <a href="https://twitter.com/hashtag/rstudioconf?src=hash">#rstudioconf</a> <a href="https://t.co/1DuGzx1w3h">pic.twitter.com/1DuGzx1w3h</a>
-</p>
-— Lucy (<span class="citation">@LucyStats</span>) <a href="https://twitter.com/LucyStats/status/819909032626503680">January 13, 2017</a>
-</blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-<p>One person I was especially excited to meet was Julia Silge, who works with <a href="varianceexplained.org">my brother</a> Dave at StackOverflow. I’d been following her on Twitter and reading her blog for a while, but we had never met in person. In fact, this conference was only the second time she met Dave in person, even though he hired her as the second Data Scientist at Stack Overflow and developed the tidy text package with her!</p>
-<blockquote class="twitter-tweet" data-lang="en">
-<p lang="en" dir="ltr">
-<a href="https://twitter.com/hspter"><span class="citation">@hspter</span></a> <a href="https://twitter.com/robinson_es"><span class="citation">@robinson_es</span></a> <a href="https://twitter.com/jaredlander"><span class="citation">@jaredlander</span></a> A delight to meet you all in person, and <a href="https://twitter.com/drob"><span class="citation">@drob</span></a> now for a GRAND TOTAL TWO TIMES.
-</p>
-— Julia Silge (<span class="citation">@juliasilge</span>) <a href="https://twitter.com/juliasilge/status/820493101303271429">January 15, 2017</a>
-</blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-<p>Julia only started using R about a year and a half ago, but she already has a great and active blog, a popular package, and a new career as a Data Scientist. While her strong previous scientific training (including an Astronomy PhD) certainly helped her, she’s a great example of how you can transition into data science later in your career without necessarily having a statistics or computer science degree.</p>
-</div>
-<div id="training-days" class="section level2">
-<h2>Training Days</h2>
-<p>There were three training day workshops available: Master R Developer with Hadley Wickham, Intermediate Shiny with Joe Cheng, and Master the Tidyverse with Garrett Grolemund. I was already familiar with most of the material in the Tidyverse workshop, and while I definitely want to learn more Shiny, I decided to take the Master R Developer workshop. I’ve been meaning to learn more about making packages, the focus of the second day, and I always enjoy getting the chance to learn from Hadley again:</p>
-<blockquote class="twitter-tweet" data-lang="en">
-<p lang="en" dir="ltr">
-Great to be learning again in-person, six years later, from my first stats professor <a href="https://twitter.com/hadleywickham"><span class="citation">@hadleywickham</span></a> <a href="https://t.co/AttTrTaOFm">pic.twitter.com/AttTrTaOFm</a>
-</p>
-— Emily Robinson (<span class="citation">@robinson_es</span>) <a href="https://twitter.com/robinson_es/status/775838513543675904">September 13, 2016</a>
-</blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-<p>There were about 70 people in the Master R Developer workshop. Hadley ran a fairly interactive workshop, with lots of exercises to work on by yourself or with your neighbor. This was a great way to try out what you’d just learn, figure out what you didn’t understand, and get help from the couple of TAs if needed.</p>
-<p>The first day had some material I’d already heard in Hadley’s meetups, but it’s always helpful to get a refresher. Other material, such as information on Object-Oriented Programming and S3 classes, was new. The second day on packages was entirely new to me and a great way to help overcome inertia and finally start writing my own packages.</p>
-<p>Much of the information Hadley covered is available in two of his free online books, <a href="http://adv-r.had.co.nz/">Advanced R</a> and <a href="http://r-pkgs.had.co.nz/">R Packages</a>. But I personally prefer learning programming from a lecture and interactive exercises to reading a book, and going to the training days also forced me to work on the material and allowed you to ask questions (and learn from others’ questions). Hadley also made some off-the-cuff remarks that, because of his long experience with R, were very helpful. Finally, the workshop was just plain enjoyable, and a great way to spend two days.</p>
-</div>
-<div id="main-conference" class="section level2">
-<h2>Main Conference</h2>
-<p>Outside of the two keynotes and closing panel, the conference had two parallel tracks of talks. This meant I couldn’t get to them all, although I plan to watch a few I missed once the videos are uploaded.</p>
-<p>It was a great, diverse line-up of speakers; some of my favorite talks were Hilary’s talk on <a href="https://www.rstudio.com/resources/videos/opinionated-analysis-development/">Opinionated Analysis Development</a>, Bob Rudis’ on <a href="https://www.rstudio.com/resources/videos/writing-readable-code-with-pipes/">Writing Readable Code with Pipes</a>, Jenny Bryan’s on <a href="https://www.rstudio.com/resources/videos/using-list-cols-in-your-dataframe/">List-Columns</a>, Julia Silge’s on <a href="https://www.rstudio.com/resources/videos/text-mining-the-tidy-way/">Text Mining, the Tidy Way</a>, and Jonathan McPherson’s on <a href="https://www.rstudio.com/resources/videos/r-notebook-workflows/">R Notebook Workflow</a>. If you’re interested, I would suggest watching the videos rather than just reading the slides so you can get the full impact; each talk is only about 20 minutes. I picked up a lot of technical tips and tricks from the content of the talks (see my other <a href="https://hookedondata.org/RStudio-Conference-Tips-and-Tricks/">post</a> for these), but I could always have watched these later online. What I couldn’t have gotten is a full immersion into the R community.</p>
-<p>To me, getting to meet and talk with new people and non-New York friends was one of the best parts of the conference. At lunch one day I met James, a Columbia professor, and we realized we were on the same flight back to New York. He asked how I was getting to the airport, and I told him I was sharing a cab with my brother, whose work was paying for the ride (Thanks Stack Overflow!), and asked if he wanted to join us.</p>
-<p>He and Dave quickly hit it off, with my brother noticing that James seemed to know a lot about one of Dave’s packages, gganimate. About halfway through the ride, James said, “Yeah, a couple months ago I used it to <a href="https://twitter.com/revodavid/status/771747696617160704">animate NBA plays.”</a> At which point, Dave asked, “Your last name is Curley, isn’t it?” It turns out Dave had been following James on twitter for a while and had meant to find him at the conference, but hadn’t made the connection. They spent the next few hours as we waited for our delayed flight in animated discussion while I enjoyed playing Super Mario Run.</p>
-</div>
-<div id="harry-potter-world" class="section level2">
-<h2>Harry Potter World</h2>
-<p>I’d be remiss if I didn’t mention the amazing night at Harry Potter world, where we had all of Hogsmeade to ourselves, as RStudio had rented out the park for the evening. Hilary Parker took some <a href="https://photos.google.com/share/AF1QipOe6Ypp_WLkOcBJQzxXhOY2RNelv8w57eR285pZuDvBxedg1liRCvaijNJsqgLeWw?key=WFNTVUNyRnlsOTlaVkpqS1pibFFhUE82MlVBTnVB">beautiful pictures</a> on her DSLR that captured the mood:</p>
-<div class="figure">
-<img src="/img/HP_image1.JPG" />
+<p>Have you ever had a “first this then that” question? For example, maybe you’re an e-commerce business and you want all the times people clicked on an item and then added it to their cart within 2 days, or the last page they visited before registering. Or <a href="https://twitter.com/scottishnp/status/1154657704578695168?s=20">you work with pharmaceutical data</a> and need to know what drugs people took before drug x and which drugs they took afterward and when. Or you <a href="https://twitter.com/Voovarb/status/1154445792125394945?s=20">tag fish</a> and need to know where they went and if they eventually migrated upstream.</p>
+<p>To solve these types of problem, I created the package funneljoin with <a href="https://twitter.com/drob">David Robinson</a> and <a href="https://www.linkedin.com/in/awbaker1/">Anthony Baker</a> in July 2018 and I’ve continued to maintain and iterate on it since. The goal of funneljoin is to make it easy to analyze behavior funnels with the <code>after_join()</code>, <code>funnel_start()</code>, and <code>funnel_step()</code> functions. If you work with data where you have events with their time and associated user, you probably have a problem funneljoin can help with.</p>
+<p>In this post, I’ll use <code>after_join()</code> to analyze data about all Stack Overflow questions and answers (including their other tags) with the tag R up to September 24th, 2017. The data was downloaded from Kaggle <a href="https://www.kaggle.com/stackoverflow/rquestions/downloads/rquestions.zip/3">here</a>. The next post in this series will look at the <code>funnel_start()</code> and <code>funnel_step()</code> functions, which we’ll use when all of the events or behavior are in one table.</p>
+<div id="set-up" class="section level2">
+<h2>Set-up</h2>
+<pre class="r"><code>library(knitr)
+opts_chunk$set(message = FALSE, warning = FALSE)</code></pre>
+<pre class="r"><code>library(tidyverse)
 
-</div>
-<p>It was a bit bizarre to go on a roller coaster that had more staff members than riders, but I definitely didn’t miss the lines. I was even picked to get a free wand from Ollivander’s (Vine with Unicorn hair), which you can use to interact with shop windows in the park. But again, whether exploring Hogwarts, enjoying a butter beer, or grabbing the front row of a ride, the experience was made all the richer for the people I got to enjoy it with:</p>
-<div class="figure">
-<img src="/img/Group_HP_pic.JPG" />
+answers &lt;- read_csv(&quot;Answers.csv&quot;)
+questions &lt;- read_csv(&quot;Questions.csv&quot;)</code></pre>
+<p><code>funneljoin</code> is not yet on CRAN, so you’ll need to use <code>devtools</code> to install it from GitHub. I’ll also use Ciarán Tobin’s package <code>ggthemr</code> to set my ggplot2 theme; check out the palettes available on the <a href="https://github.com/cttobin/ggthemr">GitHub page</a>.</p>
+<pre class="r"><code># devtools::install_github(&quot;robinsones/funneljoin&quot;)
+library(funneljoin)</code></pre>
+<pre class="r"><code># devtools::install_github(&#39;cttobin/ggthemr&#39;)
+library(ggthemr)
+ggthemr(&#39;fresh&#39;)</code></pre>
+<p>Let’s take a quick look at the questions and answers dataset.</p>
+<pre class="r"><code>questions</code></pre>
+<pre><code>## # A tibble: 189,930 x 6
+##        Id OwnerUserId CreationDate        Score Title         Body         
+##     &lt;dbl&gt;       &lt;dbl&gt; &lt;dttm&gt;              &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;        
+##  1  77434       14008 2008-09-16 21:40:29   171 How to acces… &quot;&lt;p&gt;Suppose …
+##  2  79709          NA 2008-09-17 03:39:16     3 Worse sin: s… &quot;&lt;p&gt;I have a…
+##  3  95007       15842 2008-09-18 17:59:19    56 Explain the … &quot;&lt;p&gt;I&#39;ve bee…
+##  4 103312          NA 2008-09-19 16:09:26     4 How to test … &quot;&lt;p&gt;How can …
+##  5 255697     1941213 2008-11-01 15:48:30     4 Is there an … &quot;&lt;p&gt;I&#39;m look…
+##  6 359438        2173 2008-12-11 14:02:06     4 Optimization… &quot;&lt;p&gt;Does any…
+##  7 439526       37751 2009-01-13 15:58:48    23 Thinking in … &quot;&lt;p&gt;I know t…
+##  8 445059       37751 2009-01-14 23:09:02    12 Vectorize my… &quot;&lt;p&gt;So earli…
+##  9 467110       11301 2009-01-21 21:33:13     5 Is R a compi… &quot;&lt;p&gt;I can&#39;t …
+## 10 476726         277 2009-01-24 21:56:23    10 Filtering da… &quot;&lt;p&gt;I have a…
+## # … with 189,920 more rows</code></pre>
+<pre class="r"><code>answers </code></pre>
+<pre><code>## # A tibble: 250,788 x 7
+##       Id OwnerUserId CreationDate        ParentId Score IsAcceptedAnswer
+##    &lt;dbl&gt;       &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt; &lt;dbl&gt; &lt;lgl&gt;           
+##  1 79741        3259 2008-09-17 03:43:22    79709    -1 FALSE           
+##  2 79768        6043 2008-09-17 03:48:29    79709     9 FALSE           
+##  3 79779        8002 2008-09-17 03:49:36    79709     0 FALSE           
+##  4 79788          NA 2008-09-17 03:51:30    79709     4 FALSE           
+##  5 79827       14257 2008-09-17 03:58:26    79709     1 FALSE           
+##  6 79893       14928 2008-09-17 04:11:08    79709     6 FALSE           
+##  7 83162       15842 2008-09-17 13:27:17    77434    70 FALSE           
+##  8 83222        1428 2008-09-17 13:32:45    77434   236 FALSE           
+##  9 86804          NA 2008-09-17 19:39:37    79709     1 FALSE           
+## 10 95598        1179 2008-09-18 18:49:09    95007     5 FALSE           
+## # … with 250,778 more rows, and 1 more variable: Body &lt;chr&gt;</code></pre>
+<p>Before I dive into the analysis, I’m going to use the janitor’s package <code>clean_names()</code> function to convert the column names to snake case and <code>%&lt;&gt;%</code> to modify the datasets. I’ll also get rid of the rows where user id is missing.</p>
+<pre class="r"><code>library(magrittr)
 
+questions %&lt;&gt;%
+  janitor::clean_names() %&gt;%
+  filter(!is.na(owner_user_id))
+
+answers %&lt;&gt;%
+  janitor::clean_names() %&gt;%
+  filter(!is.na(owner_user_id))</code></pre>
 </div>
+<div id="after_join" class="section level2">
+<h2>after_join()</h2>
+<p>Let’s start with a relatively simple question - how many people who ask a question later answer one? To look at this, we’ll need to link the questions with the answers table using <code>owner_user_id</code> and <code>creation_date</code> using funneljoin’s <code>after_join</code> function.</p>
+<pre class="r"><code>after_join(questions, 
+           answers,
+           by_time = &quot;creation_date&quot;,
+           by_user = &quot;owner_user_id&quot;,
+           mode = &quot;left&quot;,
+           type = &quot;first-firstafter&quot;)</code></pre>
+<pre><code>## # A tibble: 60,335 x 12
+##      id.x owner_user_id creation_date.x     score.x title body.x    id.y
+##     &lt;dbl&gt;         &lt;dbl&gt; &lt;dttm&gt;                &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    &lt;dbl&gt;
+##  1  77434         14008 2008-09-16 21:40:29     171 How … &quot;&lt;p&gt;S…      NA
+##  2  95007         15842 2008-09-18 17:59:19      56 Expl… &quot;&lt;p&gt;I… 4249121
+##  3 255697       1941213 2008-11-01 15:48:30       4 Is t… &quot;&lt;p&gt;I…      NA
+##  4 359438          2173 2008-12-11 14:02:06       4 Opti… &quot;&lt;p&gt;D…      NA
+##  5 439526         37751 2009-01-13 15:58:48      23 Thin… &quot;&lt;p&gt;I…  440066
+##  6 467110         11301 2009-01-21 21:33:13       5 Is R… &quot;&lt;p&gt;I…      NA
+##  7 476726           277 2009-01-24 21:56:23      10 Filt… &quot;&lt;p&gt;I… 4727309
+##  8 495744         12677 2009-01-30 14:48:19       2 Oper… &quot;&lt;p&gt;I… 2203628
+##  9 498932           445 2009-01-31 14:50:28       3 What… &quot;&lt;p&gt;I…  511763
+## 10 520810         63372 2009-02-06 15:49:48      20 Does… &quot;&lt;p&gt;A…      NA
+## # … with 60,325 more rows, and 5 more variables: creation_date.y &lt;dttm&gt;,
+## #   parent_id &lt;dbl&gt;, score.y &lt;dbl&gt;, is_accepted_answer &lt;lgl&gt;, body.y &lt;chr&gt;</code></pre>
+<p>The first two arguments are the tables we’re joining, with the first table being the events that happen first. We then specify what the time and user id columns are and the mode of the join (e.g. left, inner, anti).</p>
+<p>The power of <code>after_join()</code> comes in its <code>type</code> argument, which allows you to switch between types of funnels easily. In this case, we wanted only the first question someone asked and then wanted to know the first answer they gave afterward. For any <code>type</code> of <code>after_join()</code> though, the timestamps of the second table (in this case answers) will always be after the timestamp of the first table for each user - we can see their are no rows where <code>creation_date.y</code> (the time of the answer) is before <code>creation_date.x</code> (the time of the question):</p>
+<pre class="r"><code>after_join(questions, 
+           answers,
+           by_time = &quot;creation_date&quot;,
+           by_user = &quot;owner_user_id&quot;,
+           mode = &quot;left&quot;,
+           type = &quot;first-firstafter&quot;) %&gt;%
+  filter(creation_date.y &lt; creation_date.x)</code></pre>
+<pre><code>## # A tibble: 0 x 12
+## # … with 12 variables: id.x &lt;dbl&gt;, owner_user_id &lt;dbl&gt;,
+## #   creation_date.x &lt;dttm&gt;, score.x &lt;dbl&gt;, title &lt;chr&gt;, body.x &lt;chr&gt;,
+## #   id.y &lt;dbl&gt;, creation_date.y &lt;dttm&gt;, parent_id &lt;dbl&gt;, score.y &lt;dbl&gt;,
+## #   is_accepted_answer &lt;lgl&gt;, body.y &lt;chr&gt;</code></pre>
+<p>Because we wanted to keep all users even if they never answered a question later, we do a left join, specified with <code>mode = &quot;left&quot;</code>.</p>
+<p>To answer our original question, let’s get a count by what percent of rows don’t have an <code>id.y</code>, meaning they never answered a question after asking one. We’ll use the funneljoin’s <code>summarize_conversions()</code> function, where you specify what column indicates whether someone “converted” (in this case answered a question) and returns the total number of users (<code>nb_users</code>), the number of conversions (<code>nb_conversions</code>), and the percent converted (<code>pct_converted</code>).</p>
+<pre class="r"><code>after_join(questions, 
+                answers,
+                by_time = &quot;creation_date&quot;,
+                by_user = &quot;owner_user_id&quot;,
+                type = &quot;first-firstafter&quot;,
+                mode = &quot;left&quot;) %&gt;%
+  summarize_conversions(converted = id.y)</code></pre>
+<pre><code>## # A tibble: 1 x 3
+##   nb_users nb_conversions pct_converted
+##      &lt;int&gt;          &lt;int&gt;         &lt;dbl&gt;
+## 1    60335          13688         0.227</code></pre>
+<p>We see that of the approximately 60,000 users that asked an R question, 22.7% percent later went on to answer one.</p>
+<p>How long does it take for people to answer their first question? We can add <code>gap_col = TRUE</code> to <code>after_join()</code> to add a column, <code>.gap</code>, which is the gap between events (in seconds). We’ll also switch from from using the argument <code>mode</code> to specify the type of join to changing to a wrapper function, <code>after_left_join()</code>.</p>
+<pre class="r"><code>questions %&gt;%
+  after_left_join(answers,
+                  by_time = &quot;creation_date&quot;,
+                  by_user = &quot;owner_user_id&quot;,
+                  type = &quot;first-firstafter&quot;,
+                  gap_col = TRUE) %&gt;%
+  mutate(gap_hours = .gap  / 3600) %&gt;%
+  ggplot(aes(x = gap_hours)) + 
+  geom_histogram() + 
+  scale_x_log10(breaks = c(1, 24, 24 * 7, 24 * 7 * 30), 
+                     labels = c(&quot;1 hour&quot;, &quot;1 day&quot;, &quot;1 week&quot;, &quot;1 month&quot;)) + 
+  labs(x = &quot;&quot;,
+       y = &quot;Number of users&quot;,
+       title = &quot;What&#39;s the gap between someone&#39;s first StackOverflow question and their first answer?&quot;,
+       subtitle = &quot;Only for questions tagged with R&quot;) </code></pre>
+<p><img src="/post/2019-07-25-introducing-the-funneljoin-package_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>We can get an idea from this graph what percentage of people who ask a question answer one within a week, or we could filter our data to get an exact answer. To make it even easier though, we can use the <code>max_gap</code> argument in <code>after_join()</code> to specify that someone needs to have answered a question within a week from their data to be joined. <code>max_gap</code> takes either a <code>difftime</code> or an integer reprsenting the gap in seconds and will filter so that the time between events is less than or equal to that <code>max_gap</code>.</p>
+<pre class="r"><code>after_join(questions, 
+           answers,
+           by_time = &quot;creation_date&quot;,
+           by_user = &quot;owner_user_id&quot;,
+           type = &quot;first-firstafter&quot;,
+           mode = &quot;left&quot;,
+           max_gap = as.difftime(1, units = &quot;weeks&quot;)) %&gt;%
+  summarize_conversions(converted = id.y)</code></pre>
+<pre><code>## # A tibble: 1 x 3
+##   nb_users nb_conversions pct_converted
+##      &lt;int&gt;          &lt;int&gt;         &lt;dbl&gt;
+## 1    60335           5349        0.0887</code></pre>
+<p>Now we see that only 8.9% answer an R question within a week of asking their first one.</p>
+<p>We might be curious if the likelihood of answering a question later varies by the score of the question they asked. Before doing summarize_conversions, we can group by the score. There are some scores that only appear once (e.g. one person got a score of -18), so we’ll filter for only scores where there were more than 100 questions that got that score.</p>
+<pre class="r"><code>after_join(questions, 
+           answers,
+           by_time = &quot;creation_date&quot;,
+           by_user = &quot;owner_user_id&quot;,
+           type = &quot;first-firstafter&quot;,
+           mode = &quot;left&quot;) %&gt;%
+  group_by(score.x) %&gt;%
+  summarize_conversions(converted = id.y) %&gt;%
+  filter(nb_users &gt; 100) %&gt;%
+  ggplot(aes(x = score.x, y = pct_converted)) + 
+  geom_line() + 
+  geom_point(aes(size = nb_users)) + 
+  scale_y_continuous(labels = scales::percent) + 
+  labs(y = &quot;% who later answer a question&quot;,
+      x = &quot;Score on a user&#39;s first question&quot;,
+      title = &quot;The higher someone&#39;s score on their first question, the more likely they are to answer a question later&quot;,
+      subtitle = &quot;Only for questions tagged with R&quot;,
+      size = &quot;Number of users&quot;) + 
+  expand_limits(y = 0)</code></pre>
+<p><img src="/post/2019-07-25-introducing-the-funneljoin-package_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>Most people’s first questions have a score between -1 and 4, but for those who manage to score higher, they’re more likely to answer a question later. As always, you have to be careful of any claims of causality: it’s likely be those who are asking higher scored questions are better at R and thus have the knowledge to later provide answers.</p>
+<p>We’ve been looking so far at people’s answers after they’ve asked a question. But are there people who answer a question before they ever ask one? We can examine this with a <code>after_right_join</code> (to keep everyone who asks a question) to see what percent have answered one before. A <code>first-first</code> filters each table to the first instance of a user (e.g. their first answer and their first question) and then will only keep answers if it happened before the question.</p>
+<pre class="r"><code>answers %&gt;%
+  after_join(questions,
+           by_time = &quot;creation_date&quot;,
+           by_user = &quot;owner_user_id&quot;,
+           type = &quot;first-first&quot;,
+           mode = &quot;right&quot;) %&gt;%
+  summarize_conversions(id.x)</code></pre>
+<pre><code>## # A tibble: 1 x 3
+##   nb_users nb_conversions pct_converted
+##      &lt;int&gt;          &lt;int&gt;         &lt;dbl&gt;
+## 1    60335           2795        0.0463</code></pre>
+<p>Yes, 4.63% of people have answered a question before they asked their first one.</p>
+<p>To answer our original question, we used a <code>first-firstafter</code> type join, which means we’ve only been getting one row per user. For people who answer questions after asking one, let’s find out how many they answer. We’ll switch our query to an <code>after_inner_join</code> with a type <code>first-any</code>. Each user will only have one question, their first, as we used a <code>first-Y</code> type. But it has one row per answer they gave afterwards as we used a <code>X-any</code> type.</p>
+<pre class="r"><code>questions %&gt;%
+  after_inner_join(answers,
+           by_time = &quot;creation_date&quot;,
+           by_user = &quot;owner_user_id&quot;,
+           type = &quot;first-any&quot;) %&gt;%
+  count(owner_user_id) %&gt;%
+  ggplot(aes(n)) + 
+  geom_histogram() + 
+  scale_x_log10() + 
+  labs(x = &quot;Number of answers&quot;,
+       y = &quot;Number of users&quot;,
+       title = &quot;How many questions do people answer after asking their first one?&quot;,
+       subtitle = &quot;Only for questions tagged with R on StackOverflow&quot;)</code></pre>
+<p><img src="/post/2019-07-25-introducing-the-funneljoin-package_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>Not surprisingly, we see people mostly answer only 1 or 2 questions, with a long-tail of power users answering 100+ questions.</p>
 </div>
-<div id="wrap-up" class="section level2">
-<h2>Wrap-Up</h2>
-<p>For those considering going to rstudio::conf next year, I hope this gave you a better idea of what the experience was like. I want to emphasize again how friendly everyone at this conference was, even prominent and notable members of the community. If you’re new to conferences, don’t be shy about introducing yourself after talks or at the lunch table.</p>
-<p>In the final panel of Hadley Wickham, J.J. Allaire, and Joe Cheng, one of them said: “the strength of R is in the human factors. It’s possible for those who don’t have a conventional software background to be successful with R.” The R language maintainers, RStudio, and the many open-source package developers deserve much of the credit for this. But I think the final piece of really making R accessible is the rest of the great and friendly community. Whether it’s Stack Overflow power-users who enable you to find the answer when you Google questions, or the active bloggers who walk you through their code and analysis, or the Twitter users who share the newest packages and their insights, there are always people ready to help.</p>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
+<p>Some of the power of <code>funneljoin</code> comes from making it possible to code things you didn’t know how to before. But a lot of it comes from bringing things from “possible but time-consuming/annoying” to “easy.” When you’re doing exploratory analysis, you want to be able to quickly iterate between ideas: switching from the first thing someone added to their cart after searching for an item, to everything they added, to only things they added within a week.</p>
+<p>In the next post, I’ll be sharing <code>funneljoin</code>’s other main functions: <code>funnel_start()</code> and <code>funnel_step()</code>. In the meantime, if you find any bugs or have a feature request or question, please create an issue on <a href="https://github.com/robinsones/funneljoin">GitHub</a> or get in touch on <a href="https://twitter.com/robinson_es">Twitter</a>!</p>
 </div>
 
               
@@ -331,9 +462,9 @@ Great to be learning again in-person, six years later, from my first stats profe
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">TAGGED IN</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="/tags/conference/">Conference</a>
-
   <a class="tag tag--primary tag--small" href="/tags/r/">R</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/code/">Code</a>
 
                   </div>
                 
@@ -346,7 +477,7 @@ Great to be learning again in-person, six years later, from my first stats profe
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="/giving-your-first-data-science-talk/" data-tooltip="Giving Your First Data Science Talk">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -354,7 +485,7 @@ Great to be learning again in-person, six years later, from my first stats profe
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="/rstudio-conference-tips-and-tricks/" data-tooltip="RStudio Conference: Tips and Tricks">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/going-off-the-map/" data-tooltip="Going Off the Map: Exploring purrr&#39;s Other Functions">
               
                   <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                   <i class="fa fa-angle-right"></i>
@@ -372,13 +503,13 @@ Great to be learning again in-person, six years later, from my first stats profe
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/rstudio-conference-recap/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/introducing-the-funneljoin-package/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/rstudio-conference-recap/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/introducing-the-funneljoin-package/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -416,7 +547,7 @@ Great to be learning again in-person, six years later, from my first stats profe
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="/giving-your-first-data-science-talk/" data-tooltip="Giving Your First Data Science Talk">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -424,7 +555,7 @@ Great to be learning again in-person, six years later, from my first stats profe
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="/rstudio-conference-tips-and-tricks/" data-tooltip="RStudio Conference: Tips and Tricks">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/going-off-the-map/" data-tooltip="Going Off the Map: Exploring purrr&#39;s Other Functions">
               
                   <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                   <i class="fa fa-angle-right"></i>
@@ -442,13 +573,13 @@ Great to be learning again in-person, six years later, from my first stats profe
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/rstudio-conference-recap/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/introducing-the-funneljoin-package/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/rstudio-conference-recap/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/introducing-the-funneljoin-package/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -472,13 +603,13 @@ Great to be learning again in-person, six years later, from my first stats profe
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2Frstudio-conference-recap%2F">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2Fintroducing-the-funneljoin-package%2F">
           <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2Frstudio-conference-recap%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2Fintroducing-the-funneljoin-package%2F">
           <i class="fa fa-twitter"></i><span>Share on Twitter</span>
         </a>
       </li>
