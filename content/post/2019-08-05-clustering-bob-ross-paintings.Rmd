@@ -72,6 +72,8 @@ bob_ross %>%
   expand_limits(y = 1)
 ```
 
+This gives some more context of just how common having a tree was - more than 80% of his paintings had one!
+
 Did the content of the paintings change over time? We can answer this question in a lot of different ways - let's start by looking at features that appeared in more than 150 paintings and their trends over the season. 
 
 ```{r}
@@ -94,8 +96,11 @@ nb_features_by_season %>%
        title = "Bob Ross always loved trees, but fell out of love with clouds",
        subtitle = "Dashed line is number of total number of episodes") + 
   geom_hline(yintercept = 13, lty = 2) + 
-  theme(legend.position = "none") 
+  theme(legend.position = "none") + 
+  expand_limits(y = 0)
 ```
+
+Trees (of all types) stay consistently popular across seasons, while clouds became less featured.
 
 Were any features in every season? 
 
@@ -110,7 +115,9 @@ nb_features_by_season %>%
   knitr::kable()
 ```
 
-What about features that weren't in any of the paintings in the first 15 seasons, but appeared at least a few times in the last 16? 
+Yes - as we'd seen in the previous graph, all six most popular features of all-time were in each season, along with 6 others. 
+
+Were there any features that weren't in any of the paintings in the first 15 seasons, but appeared at least a few times in the last 16? 
 
 ```{r}
 features_by_season_half <- nb_features_by_season %>%
@@ -126,7 +133,7 @@ features_by_season_half %>%
 
 Nope - of the 13 features that never appear in the first 15 seasons, they only appear once in the last 16. Strangely, there's also a feature, "lakes", that never appears in any paintings. 
 
-What about the paintings with the great absolute difference? 
+What features have the great absolute difference between the first and second half of the series? 
 
 ```{r}
 features_by_season_half %>%
@@ -254,7 +261,8 @@ library(tidytext)
 bob_ross_for_tm <- bob_ross %>%
   mutate(nb_features = select_at(., vars(apple_frame:wood_framed)) %>% pmap_dbl(sum)) %>%
   filter(nb_features != 0) %>%
-  select(-title, -season, -episode, -nb_features)
+  select(-title, -season, -episode, -nb_features) %>%
+    select_if(~ sum(.) >= 5) 
 
 bob_ross_lda <- LDA(as.matrix(bob_ross_for_tm), k = 2, control = list(seed = 1234))
 
@@ -291,3 +299,7 @@ beta_spread %>%
   geom_col() + 
   coord_flip()
 ```
+
+## Conclusion 
+
+This was a new style of post for me, where I did an analysis without stopping to explain the code along the way (with a few exceptions). I hope you were able to learn some new tricks along the way. Let me know what you think on [twitter](https://twitter.com/robinson_es)!
