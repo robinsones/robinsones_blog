@@ -1,0 +1,293 @@
+---
+title: Clustering Bob Ross' paintings
+author: Emily Robinson
+date: '2019-08-05'
+slug: clustering-bob-ross-paintings
+categories: []
+tags: []
+keywords:
+  - R
+  - tidyverse
+  - code
+---
+
+Tidytuesday is an initiative by the [R for Data Science online learning community](https://www.rfordatasci.com/). Each Monday, a new dataset is posted on [GitHub](https://github.com/rfordatascience/tidytuesday) with a short description. You can see some analyses and visualizations people have done by searching for the [#tidytuesday hashtag on Twitter](https://twitter.com/search?q=%23tidytuesday). 
+
+I decided to participate this week and explore data on Bob Ross paintings. Each row describes a painting a did on his show, with the episode, season, title, and a column for each feature (e.g. "tree", "mountain") with a 1 if that painting included that feature and a 0 otherwise. Let's go exploring! 
+
+## Set up
+```{r}
+library(tidyverse)
+ggthemr::ggthemr('fresh')
+
+bob_ross <- read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-08-06/bob-ross.csv")
+
+# copied from tidytuesday repo
+bob_ross <- bob_ross %>%
+  janitor::clean_names() %>% 
+  separate(episode, into = c("season", "episode"), sep = "E") %>% 
+  mutate(season = str_extract(season, "[:digit:]+")) %>% 
+  mutate_at(vars(season, episode), as.integer) %>%
+  # added to clean up title
+  mutate(title = str_remove_all(title, '"')) 
+```
+
+## Exploratory graphs
+
+Let's start with some basic data exploration. What's are the ten most frequent features in his paintings?
+
+```{r}
+bob_ross %>%
+  summarize_at(vars(apple_frame:wood_framed), ~ sum(.)) %>%
+  gather(feature, nb_paintings) %>%
+  mutate(feature = fct_reorder(feature, nb_paintings)) %>%
+  top_n(10, nb_paintings) %>%
+  ggplot(aes(x = feature, y = nb_paintings)) + 
+  geom_col() + 
+  coord_flip() + 
+  labs(y = "Number of paintings", 
+       title = "What were most common features in Bob Ross paintings?",
+       x = "")
+```
+
+If you've seen Bob Ross paintings, it's probably not too surprising that "tree" is the top feature. I am a bit surprised to find that trees, deciduous, and conifer are all separate features (the latter two are types of trees). 
+
+Let's adapt this to show what percent of paintings contained the feature, rather than the total number. 
+
+```{r}
+bob_ross %>%
+  summarize_at(vars(apple_frame:wood_framed), ~ sum(.)) %>%
+  gather(feature, nb_paintings) %>%
+  mutate(total_paintings = nrow(bob_ross),
+         pct_w_feature = nb_paintings / total_paintings,
+         feature = fct_reorder(feature, pct_w_feature)) %>%
+  top_n(10, pct_w_feature) %>%
+  ggplot(aes(x = feature, y = pct_w_feature)) + 
+  geom_col() + 
+  coord_flip() + 
+  labs(y = "Percent of paintings with feature", 
+       title = "What were most common features in Bob Ross paintings?",
+       x = "") + 
+  scale_y_continuous(label = scales::percent) + 
+  expand_limits(y = 1)
+```
+
+Did the content of the paintings change over time? We can answer this question in a lot of different ways - let's start by looking at features that appeared in more than 150 paintings and their trends over the season. 
+
+```{r}
+nb_features_by_season <- bob_ross %>%
+  group_by(season) %>%
+  summarize_at(vars(apple_frame:wood_framed), ~ sum(.)) %>%
+  gather(feature, nb_paintings, -season)
+
+nb_features_by_season 
+```
+
+```{r}
+nb_features_by_season %>%
+  add_count(feature, wt = nb_paintings, name = "nb_total") %>%
+  filter(nb_total > 150) %>%
+  ggplot(aes(x = season, y = nb_paintings, color = feature)) + 
+  geom_line() + 
+  facet_wrap(~ feature) + 
+  labs(y = "Number of paintings with feature",
+       title = "Bob Ross always loved trees, but fell out of love with clouds",
+       subtitle = "Dashed line is number of total number of episodes") + 
+  geom_hline(yintercept = 13, lty = 2) + 
+  theme(legend.position = "none") 
+```
+
+Were any features in every season? 
+
+```{r}
+total_seasons <- max(nb_features_by_season$season)
+
+nb_features_by_season %>%
+  group_by(feature) %>%
+  summarize(nb_seasons_featured = sum(nb_paintings != 0)) %>%
+  filter(nb_seasons_featured == total_seasons) %>%
+  select("Features that appear in every season" = feature) %>%
+  knitr::kable()
+```
+
+What about features that weren't in any of the paintings in the first 15 seasons, but appeared at least a few times in the last 16? 
+
+```{r}
+features_by_season_half <- nb_features_by_season %>%
+  mutate(season_half = if_else(season <= 15, "first", "second")) %>%
+  group_by(season_half, feature) %>%
+  summarize(nb_paintings = sum(nb_paintings)) %>%
+  ungroup() %>%
+  spread(season_half, nb_paintings) 
+
+features_by_season_half %>%
+  filter(first == 0)
+```
+
+Nope - of the 13 features that never appear in the first 15 seasons, they only appear once in the last 16. Strangely, there's also a feature, "lakes", that never appears in any paintings. 
+
+What about the paintings with the great absolute difference? 
+
+```{r}
+features_by_season_half %>%
+  mutate(difference = second - first) %>%
+  top_n(10, abs(difference)) %>%
+  arrange(difference)
+```
+
+As we had seen in our graph of the top 6 features, clouds (and it's like, cumuls and cirrus) went down, while framed got a little more popular. 
+
+What's the distribution of the number of features per painting (code for a calculating the summary of a row thanks to [this tweet](https://twitter.com/JennyBryan/status/1158571075388575745) by Jenny Bryan)? 
+
+```{r}
+bob_ross %>%
+  mutate(nb_features = select_at(., vars(apple_frame:wood_framed)) %>% pmap_dbl(sum)) %>%
+  ggplot(aes(x = nb_features)) + 
+  geom_histogram(bins = 16)
+```
+
+Most paintings have between 5 and 11 features, although one has more than 15 and a couple have none. 
+
+## Clustering
+
+What features go together in a painting? Which paintings are the most similar? We're going to take to answer this with k-means clustering and principle components analysis.
+
+### K-means clustering 
+
+While generally you need to scale your data before doing a cluster analysis, in our case every feature is already on the same scale (being 0 or 1 depending if it's present or not). Before we start, we're going to remove features that appear in less than 10 paintings. 
+
+We'll use the elbow method to pick the number of clusters. 
+```{r}
+bob_ross_for_cluster <- bob_ross %>% 
+  select(-season, -episode, -title)  %>%
+  select_if(~ sum(.) >= 10) 
+
+tibble(k = 1:50) %>%
+  mutate(tot_withinss = map_dbl(k, ~ kmeans(bob_ross_for_cluster, centers = .)$tot.withinss)) %>%
+  ggplot(aes(x = k, y = tot_withinss)) + 
+  geom_line() + 
+  expand_limits(y = 0)
+```
+
+It doesn't seem like there's really an elbow - let's try 9 clusters. 
+
+```{r}
+library(cluster)
+
+tibble(k = 2:50) %>%
+  mutate(average_width = map_dbl(k, ~ pam(bob_ross_for_cluster, k = .)$silinfo$avg.width)) %>%
+  ggplot(aes(x = k, y = average_width)) + 
+  geom_line() + 
+  expand_limits(y = 0)
+```
+
+```{r}
+model <- kmeans(bob_ross_for_cluster, 3)
+
+bob_ross_for_cluster %>%
+  mutate(cluster = model$cluster) %>%
+  add_count(cluster) %>%
+  group_by(cluster, n) %>%
+  summarize_at(vars(barn:winter), ~ sum(.)) %>%
+  gather(feature, nb_paintings, -cluster, -n) %>%
+  mutate(pct_w_feature = nb_paintings / n) %>%
+  top_n(6, pct_w_feature) %>%
+  ungroup() %>%
+  ggplot(aes(x = feature, y = pct_w_feature)) + 
+  geom_col() + 
+  facet_wrap(~ cluster) + 
+  coord_flip() + 
+  scale_y_continuous(labels = scales::percent)
+```
+
+Most paintings in all of the clusters have tree/trees. Cluster 3 is snowy winter scenes, while 2 is mountains and clouds and 1 is river and grass.
+
+### Principle Components Analysis
+
+Julia Silge has a great post on [Principle Components Analysis](https://juliasilge.com/blog/stack-overflow-pca/), where she explains it using StackOverflow data. I highly recommend reading.
+
+```{r}
+library(Matrix)
+  
+s <- svd(as.matrix(bob_ross_for_cluster))
+```
+
+```{r}
+v <- broom::tidy(s, matrix = "v") %>%
+  mutate(feature = colnames(as.matrix(bob_ross_for_cluster))[column]) 
+```
+
+```{r}
+broom::tidy(s, matrix = "d") %>%
+  ggplot(aes(x = PC, y = cumulative)) + 
+  geom_col()
+```
+
+```{r}
+v %>%
+  filter(PC == 4) %>%
+  top_n(20, abs(value)) %>%
+  mutate(feature = fct_reorder(feature, value)) %>%
+  ggplot(aes(x = feature, y = value)) +
+  geom_col() + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
+
+```{r}
+v %>%
+  filter(PC == 3) %>%
+  top_n(30, abs(value)) %>%
+  mutate(feature = fct_reorder(feature, value)) %>%
+  ggplot(aes(x = feature, y = value)) +
+  geom_col() + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
+
+### Topic Modeling 
+
+We first need to get rid of the painting with no features. 
+
+```{r}
+library(topicmodels)
+library(tidytext)
+
+bob_ross_for_tm <- bob_ross %>%
+  mutate(nb_features = select_at(., vars(apple_frame:wood_framed)) %>% pmap_dbl(sum)) %>%
+  filter(nb_features != 0) %>%
+  select(-title, -season, -episode, -nb_features)
+
+bob_ross_lda <- LDA(as.matrix(bob_ross_for_tm), k = 2, control = list(seed = 1234))
+
+bob_ross_topics <- tidy(bob_ross_lda, matrix = "beta")
+bob_ross_topics
+```
+
+```{r}
+bob_ross_top_terms <- bob_ross_topics %>%
+  group_by(topic) %>%
+  top_n(10, beta) %>%
+  ungroup() %>%
+  arrange(topic, -beta)
+
+bob_ross_top_terms %>%
+  mutate(term = reorder(term, beta)) %>%
+  ggplot(aes(term, beta, fill = factor(topic))) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~ topic, scales = "free") +
+  coord_flip()
+```
+
+```{r}
+beta_spread <- bob_ross_topics %>%
+  mutate(topic = paste0("topic", topic)) %>%
+  spread(topic, beta) %>%
+  filter(topic1 > .001 | topic2 > .001) %>%
+  mutate(log_ratio = log2(topic2 / topic1))
+
+beta_spread %>% 
+  top_n(20, abs(log_ratio)) %>%
+  mutate(term = fct_reorder(term, log_ratio)) %>%
+  ggplot(aes(x = term, y = log_ratio)) + 
+  geom_col() + 
+  coord_flip()
+```
