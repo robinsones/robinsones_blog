@@ -1,8 +1,8 @@
 ---
-title: Clustering Bob Ross' paintings
+title: Exploring Bob Ross paintings
 author: Emily Robinson
-date: '2019-08-05'
-slug: clustering-bob-ross-paintings
+date: '2019-08-09'
+slug: exploring-bob-ross-paintings
 categories: []
 tags: []
 keywords:
@@ -11,12 +11,13 @@ keywords:
   - code
 ---
 
-Tidytuesday is an initiative by the [R for Data Science online learning community](https://www.rfordatasci.com/). Each Monday, a new dataset is posted on [GitHub](https://github.com/rfordatascience/tidytuesday) with a short description. You can see some analyses and visualizations people have done by searching for the [#tidytuesday hashtag on Twitter](https://twitter.com/search?q=%23tidytuesday). 
+This week, I decided to participate in Tidytuesday and explore data on Bob Ross paintings. Tidytuesday is an initiative by the [R for Data Science online learning community](https://www.rfordatasci.com/). Each Monday, a new dataset is posted on [GitHub](https://github.com/rfordatascience/tidytuesday) with a short description. You can see some analyses and visualizations people have done by searching for the [#tidytuesday hashtag on Twitter](https://twitter.com/search?q=%23tidytuesday). 
 
-I decided to participate this week and explore data on Bob Ross paintings. Each row describes a painting a did on his show, with the episode, season, title, and a column for each feature (e.g. "tree", "mountain") with a 1 if that painting included that feature and a 0 otherwise. Let's go exploring! 
+In this dataset, each row describes a painting Bos Ross (or a guest) did on his show, with the episode, season, title, and a column for each feature (e.g. "tree", "mountain") that is 1 if that painting included that feature and 0 otherwise. Let's go exploring! 
 
 ## Set up
-```{r}
+
+```{r message = FALSE, warning = FALSE}
 library(tidyverse)
 ggthemr::ggthemr('fresh')
 
@@ -30,11 +31,16 @@ bob_ross <- bob_ross %>%
   mutate_at(vars(season, episode), as.integer) %>%
   # added to clean up title
   mutate(title = str_remove_all(title, '"')) 
+
+bob_ross %>%
+  head(10) %>%
+  select(1:10) %>%
+  knitr::kable()
 ```
 
 ## Exploratory graphs
 
-Let's start with some basic data exploration. What's are the ten most frequent features in his paintings?
+Let's start with some basic data exploration. What are the ten most frequent features in his paintings?
 
 ```{r}
 bob_ross %>%
@@ -72,9 +78,9 @@ bob_ross %>%
   expand_limits(y = 1)
 ```
 
-This gives some more context of just how common having a tree was - more than 80% of his paintings had one!
+This gives some more context of just how common having a tree was - more than 80% of the paintings had one!
 
-Did the content of the paintings change over time? We can answer this question in a lot of different ways - let's start by looking at features that appeared in more than 150 paintings and their trends over the season. 
+Did the content of the paintings change over time? We can answer this question in a lot of different ways - let's start by looking at features that appeared in more than 150 paintings and their trends over the seasons. 
 
 ```{r}
 nb_features_by_season <- bob_ross %>%
@@ -82,7 +88,9 @@ nb_features_by_season <- bob_ross %>%
   summarize_at(vars(apple_frame:wood_framed), ~ sum(.)) %>%
   gather(feature, nb_paintings, -season)
 
-nb_features_by_season 
+nb_features_by_season %>%
+  head(5) %>%
+  knitr::kable()
 ```
 
 ```{r}
@@ -94,7 +102,7 @@ nb_features_by_season %>%
   facet_wrap(~ feature) + 
   labs(y = "Number of paintings with feature",
        title = "Bob Ross always loved trees, but fell out of love with clouds",
-       subtitle = "Dashed line is number of total number of episodes") + 
+       subtitle = "Dashed line is number of episodes in the season") + 
   geom_hline(yintercept = 13, lty = 2) + 
   theme(legend.position = "none") + 
   expand_limits(y = 0)
@@ -102,7 +110,7 @@ nb_features_by_season %>%
 
 Trees (of all types) stay consistently popular across seasons, while clouds became less featured.
 
-Were any features in every season? 
+These features were in every season - were any other features? 
 
 ```{r}
 total_seasons <- max(nb_features_by_season$season)
@@ -115,7 +123,7 @@ nb_features_by_season %>%
   knitr::kable()
 ```
 
-Yes - as we'd seen in the previous graph, all six most popular features of all-time were in each season, along with 6 others. 
+Yes - 6 more were in at least one painting, including grass, lake, and river.  
 
 Were there any features that weren't in any of the paintings in the first 15 seasons, but appeared at least a few times in the last 16? 
 
@@ -128,7 +136,8 @@ features_by_season_half <- nb_features_by_season %>%
   spread(season_half, nb_paintings) 
 
 features_by_season_half %>%
-  filter(first == 0)
+  filter(first == 0) %>%
+  knitr::kable()
 ```
 
 Nope - of the 13 features that never appear in the first 15 seasons, they only appear once in the last 16. Strangely, there's also a feature, "lakes", that never appears in any paintings. 
@@ -139,7 +148,8 @@ What features have the great absolute difference between the first and second ha
 features_by_season_half %>%
   mutate(difference = second - first) %>%
   top_n(10, abs(difference)) %>%
-  arrange(difference)
+  arrange(difference) %>%
+  knitr::kable()
 ```
 
 As we had seen in our graph of the top 6 features, clouds (and it's like, cumuls and cirrus) went down, while framed got a little more popular. 
@@ -150,105 +160,54 @@ What's the distribution of the number of features per painting (code for a calcu
 bob_ross %>%
   mutate(nb_features = select_at(., vars(apple_frame:wood_framed)) %>% pmap_dbl(sum)) %>%
   ggplot(aes(x = nb_features)) + 
-  geom_histogram(bins = 16)
+  geom_histogram(bins = 16) + 
+  labs(x = "Number of features in a painting",
+       y = "Number of paintings",
+       title = "Most paintings had between 5 and 11 features")
 ```
 
 Most paintings have between 5 and 11 features, although one has more than 15 and a couple have none. 
-
-## Clustering
-
-What features go together in a painting? Which paintings are the most similar? We're going to take to answer this with k-means clustering and principle components analysis.
-
-### K-means clustering 
-
-While generally you need to scale your data before doing a cluster analysis, in our case every feature is already on the same scale (being 0 or 1 depending if it's present or not). Before we start, we're going to remove features that appear in less than 10 paintings. 
-
-We'll use the elbow method to pick the number of clusters. 
-```{r}
-bob_ross_for_cluster <- bob_ross %>% 
-  select(-season, -episode, -title)  %>%
-  select_if(~ sum(.) >= 10) 
-
-tibble(k = 1:50) %>%
-  mutate(tot_withinss = map_dbl(k, ~ kmeans(bob_ross_for_cluster, centers = .)$tot.withinss)) %>%
-  ggplot(aes(x = k, y = tot_withinss)) + 
-  geom_line() + 
-  expand_limits(y = 0)
-```
-
-It doesn't seem like there's really an elbow - let's try 9 clusters. 
-
-```{r}
-library(cluster)
-
-tibble(k = 2:50) %>%
-  mutate(average_width = map_dbl(k, ~ pam(bob_ross_for_cluster, k = .)$silinfo$avg.width)) %>%
-  ggplot(aes(x = k, y = average_width)) + 
-  geom_line() + 
-  expand_limits(y = 0)
-```
-
-```{r}
-model <- kmeans(bob_ross_for_cluster, 3)
-
-bob_ross_for_cluster %>%
-  mutate(cluster = model$cluster) %>%
-  add_count(cluster) %>%
-  group_by(cluster, n) %>%
-  summarize_at(vars(barn:winter), ~ sum(.)) %>%
-  gather(feature, nb_paintings, -cluster, -n) %>%
-  mutate(pct_w_feature = nb_paintings / n) %>%
-  top_n(6, pct_w_feature) %>%
-  ungroup() %>%
-  ggplot(aes(x = feature, y = pct_w_feature)) + 
-  geom_col() + 
-  facet_wrap(~ cluster) + 
-  coord_flip() + 
-  scale_y_continuous(labels = scales::percent)
-```
-
-Most paintings in all of the clusters have tree/trees. Cluster 3 is snowy winter scenes, while 2 is mountains and clouds and 1 is river and grass.
 
 ### Principle Components Analysis
 
 Julia Silge has a great post on [Principle Components Analysis](https://juliasilge.com/blog/stack-overflow-pca/), where she explains it using StackOverflow data. I highly recommend reading.
 
 ```{r}
-library(Matrix)
-  
-s <- svd(as.matrix(bob_ross_for_cluster))
+bob_ross_for_cluster <- bob_ross %>% 
+  select(-season, -episode, -title)  %>%
+  select_if(~ sum(.) >= 5)
 ```
 
 ```{r}
-v <- broom::tidy(s, matrix = "v") %>%
-  mutate(feature = colnames(as.matrix(bob_ross_for_cluster))[column]) 
+tags_pca <- irlba::prcomp_irlba(bob_ross_for_cluster, n = 3, scale. = TRUE)
 ```
 
 ```{r}
-broom::tidy(s, matrix = "d") %>%
-  ggplot(aes(x = PC, y = cumulative)) + 
-  geom_col()
+tidied_pca <- bind_cols(feature = colnames(bob_ross_for_cluster),
+                        as_tibble(tags_pca$rotation)) %>%
+  gather(PC, value, PC1:PC3)
 ```
 
+We're going to use the new functions `reorder_within()` and `scale_x_reordered()` to make the features ordered within each plot (see Julia Silge's [post](https://juliasilge.com/blog/reorder-within/) for more).
+
 ```{r}
-v %>%
-  filter(PC == 4) %>%
-  top_n(20, abs(value)) %>%
-  mutate(feature = fct_reorder(feature, value)) %>%
-  ggplot(aes(x = feature, y = value)) +
+library(tidytext)
+
+tidied_pca %>%
+  group_by(PC) %>%
+  top_n(8, abs(value)) %>%
+  ungroup() %>%
+  #mutate(feature = fct_reorder(feature, value)) %>%
+  ggplot(aes(x = reorder_within(feature, value, PC), y = value)) +
   geom_col() + 
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  coord_flip() + 
+  facet_wrap(~ PC, scales = "free", ncol = 1) + 
+  scale_x_reordered() + 
+  labs(title = "What distinguishes Bob Ross paintings?",
+       subtitle = "They're divided between trees vs. beach, structures vs. mountains, and water vs. winter structures", y = "Relative importance in principle component",
+       x = "Feature")
 ```
 
-```{r}
-v %>%
-  filter(PC == 3) %>%
-  top_n(30, abs(value)) %>%
-  mutate(feature = fct_reorder(feature, value)) %>%
-  ggplot(aes(x = feature, y = value)) +
-  geom_col() + 
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))
-```
 
 ### Topic Modeling 
 
@@ -303,3 +262,99 @@ beta_spread %>%
 ## Conclusion 
 
 This was a new style of post for me, where I did an analysis without stopping to explain the code along the way (with a few exceptions). I hope you were able to learn some new tricks along the way. Let me know what you think on [twitter](https://twitter.com/robinson_es)!
+
+
+```{r}
+library(Matrix)
+  
+s <- svd(as.matrix(bob_ross_for_cluster))
+```
+
+```{r}
+v <- broom::tidy(s, matrix = "v") %>%
+  mutate(feature = colnames(as.matrix(bob_ross_for_cluster))[column]) 
+```
+
+
+```{r}
+broom::tidy(s, matrix = "d") %>%
+  ggplot(aes(x = PC, y = cumulative)) + 
+  geom_col()
+```
+
+```{r}
+v %>%
+  filter(PC == 4) %>%
+  top_n(20, abs(value)) %>%
+  mutate(feature = fct_reorder(feature, value)) %>%
+  ggplot(aes(x = feature, y = value)) +
+  geom_col() + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
+
+```{r}
+v %>%
+  filter(PC == 3) %>%
+  top_n(30, abs(value)) %>%
+  mutate(feature = fct_reorder(feature, value)) %>%
+  ggplot(aes(x = feature, y = value)) +
+  geom_col() + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
+
+## Clustering
+
+What features go together in a painting? Which paintings are the most similar? We're going to take to answer this with k-means clustering and principle components analysis.
+
+### K-means clustering 
+
+While generally you need to scale your data before doing a cluster analysis, in our case every feature is already on the same scale (being 0 or 1 depending if it's present or not). Before we start, we're going to remove features that appear in less than 10 paintings. 
+
+We'll use the elbow method to pick the number of clusters. 
+
+```{r}
+bob_ross_for_cluster <- bob_ross %>% 
+  select(-season, -episode, -title)  %>%
+  select_if(~ sum(.) >= 5) 
+
+tibble(k = 1:50) %>%
+  mutate(tot_withinss = map_dbl(k, ~ kmeans(scale(bob_ross_for_cluster), centers = .)$tot.withinss)) %>%
+  ggplot(aes(x = k, y = tot_withinss)) + 
+  geom_line() + 
+  expand_limits(y = 0)
+```
+
+It doesn't seem like there's really an elbow - let's try 9 clusters. 
+
+```{r}
+library(cluster)
+
+tibble(k = 2:50) %>%
+  mutate(average_width = map_dbl(k, ~ pam(bob_ross_for_cluster, k = .)$silinfo$avg.width)) %>%
+  ggplot(aes(x = k, y = average_width)) + 
+  geom_line() + 
+  expand_limits(y = 0)
+```
+
+```{r}
+model <- kmeans(scale(bob_ross_for_cluster), 9)
+
+bob_ross_for_cluster %>%
+  mutate(cluster = model$cluster) %>%
+  add_count(cluster) %>%
+  group_by(cluster, n) %>%
+  summarize_at(vars(barn:winter), ~ sum(.)) %>%
+  gather(feature, nb_paintings, -cluster, -n) %>%
+  mutate(pct_w_feature = nb_paintings / n) %>%
+  top_n(6, pct_w_feature) %>%
+  ungroup() %>%
+  ggplot(aes(x = feature, y = pct_w_feature)) + 
+  geom_col() + 
+  facet_wrap(~ cluster, scales = "free", ncol = 3) + 
+  coord_flip() + 
+  scale_y_continuous(labels = scales::percent)
+```
+
+Most paintings in all of the clusters have tree/trees. Cluster 3 is snowy winter scenes, while 2 is mountains and clouds and 1 is river and grass.
+
+
