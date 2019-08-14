@@ -9,9 +9,9 @@ keywords:
   - tech
 ---
 
-I recentlys started playing Pokemon again - "Pokemon Let's Go Eevee" on the Nintendo Switch to be specific. With pokemon, type match-ups are very important: some types of moves are "super effective" against other types. For example, fire moves are super effective against grass pokemon. If you can set yourself up so that you're always fighting against pokemon you're super effective against, you're going to have a much easier time. 
+I recentlys started playing Pokemon again - "Pokemon Let's Go Eevee" on the Nintendo Switch to be specific. With pokemon, type match-ups are very important, as some types of moves are "super effective" against other types. For example, fire moves are super effective against grass pokemon. If you can set yourself up so that you're always fighting against pokemon you're super effective against, you're going to have a much easier time. 
 
-But there are 18 types and you only go 6 pokemon on your team. This lead to the question - what's are the combinations of 6 types that make you super effective against the most types of pokemon?* It turns out this is a question [a lot of people have asked](https://www.google.com/search?q=what+pokemon+team+will+make+you+super+effetive+against+everything&oq=what+pokemon+team+will+make+you+super+effetive+against+everything&aqs=chrome..69i57.6074j0j7&sourceid=chrome&ie=UTF-8). 
+But there are 18 types and you only go 6 pokemon on your team. This leads to the question - what are the combinations of 6 types that make you super effective against the most types of pokemon?* It turns out this is a question [a lot of people have asked](https://www.google.com/search?q=what+pokemon+team+will+make+you+super+effetive+against+everything&oq=what+pokemon+team+will+make+you+super+effetive+against+everything&aqs=chrome..69i57.6074j0j7&sourceid=chrome&ie=UTF-8). 
 
 I knew there was a chart out there that matches up every attacking type against every defending and tells you whether they're super effective, normal, not very effective, or doesn't have any effect. So I decided to use my R skills to answer this question (many thanks to my brother [David Robinson](http://varianceexplained.org/) for his guidance at various points). 
 
@@ -57,7 +57,9 @@ To make it easier to explore the data, I'm going to start by tidying it.
 tidied_comparison <- type_comparisons %>%
   gather(Defending, outcome, -Attacking)
 
-tidied_comparison
+tidied_comparison %>%
+  head(6) %>%
+  knitr::kable()
 ```
 
 We now have a dataset of 324 rows, with each Attacking-Defending combination and what the outcome is. Here, outcome is 2 if it's super effective (what we're interested in), 1 if normal, .5 if not very effective, and 0 if no effect. 
@@ -68,7 +70,8 @@ What types are super effective against the most other types?
 tidied_comparison %>%
   group_by(Attacking) %>%
   summarize(nb_super_effective = sum(ifelse(outcome == 2, 1, 0))) %>%
-  arrange(desc(nb_super_effective))
+  arrange(desc(nb_super_effective)) %>%
+  knitr::kable()
 ```
 
 Fightning and Ground are both super effective against 5 different types, while Normal isn't super effective against any. 
@@ -79,7 +82,8 @@ Are there any types where only one Attacking type is super-effective?
 tidied_comparison %>%
   filter(outcome == 2) %>%
   add_count(Defending) %>%
-  arrange(n)
+  arrange(n) %>%
+  knitr::kable()
 ```
 
 Yes - if we want to be super effective against Normal and Electric types, we need Fightning and Ground types respectively. 
@@ -112,10 +116,11 @@ reshape2::melt(all_combinations,
   tbl_df() %>%
   mutate(type = type_comparisons$Attacking[type_index]) %>% 
   select(team, type) %>%
-  head(10)
+  head(10) %>%
+  knitr::kable()
 ```
 
-Now we have a table with each one of the 18k+ teams and what type of pokemon are on there. For example, we that first team has Normal, Fire, Water, Electric, Grass, and Ice. 
+Now we have a table with each one of the 18k+ teams and what type of pokemon are on there. For example, we see that first team has Normal, Fire, Water, Electric, Grass, and Ice. 
 
 Now we need to take this and understand how many types each team is super effective against.
 
@@ -130,16 +135,16 @@ m <- as.matrix(type_comparisons[, -1])
 rownames(m) <- type_comparisons$Attacking
 ```
 
-Next, because we only care about whether the entry is 2 or not, we'll change every entry that's a 2 to be 1 and every entry that's not to be 0 (the 1L makes it 1 or 0 instead of TRUE or FALSE). 
+Next, because we only care about whether the entry is 2 or not, we'll change every entry that's a 2 to be 1 and every entry that's not to be 0 (the `1L *` makes it 1 or 0 instead of TRUE or FALSE). 
 
 ```{r}
 super_effective_m <- 1L * (m == 2)
 super_effective_m
 ```
 
-This is a function given a vector, will say how many types are you super effective against. Row-indexing is the slowest part here because it creates a new object. 
 
-The `all_combinations` matrix we created is essentially a set of indices for the `super_effective_m` matrix. For example, column 1 of `all_combinations` are the numbers 1 through 6, which means we want to get rows 1 through 6 of `super_effective_m`. Remember, each row of `super_effective_m` is an attacking type on our team, and each column is a defending type. We then want to get the sum of each column and know how many columns have a sum of more than 0, meaning at least one of our attacking types was super effective against it. We'll make a function, `super_effective_nb`, to do this. 
+
+The `all_combinations` matrix we created before is essentially a set of indices for the `super_effective_m` matrix. For example, column 1 of `all_combinations` are the numbers 1 through 6, which means we want to get rows 1 through 6 of `super_effective_m`. Remember, each row of `super_effective_m` is an attacking type on our team, and each column is a defending type. We then want to get the sum of each column and know how many columns have a sum of more than 0, meaning at least one of our attacking types was super effective against it. We'll make a function, `super_effective_nb`:
 
 ```{r}
 super_effective_nb <- function(indices) {
@@ -147,7 +152,7 @@ super_effective_nb <- function(indices) {
 }
 ```
 
-Now we can use `apply` to get a vector, for all 18k+ teams, how many types they're super effective against. If you're not familiar with `apply`, the first argument is what we're applying our function to, the second is whether it should apply to the rows or columns (we choose 2 for column, since each column is the team), and the third is the function.
+Now we can use `apply()` to get a vector, for all 18k+ teams, of how many types they're super effective against. If you're not familiar with `apply()`, the first argument is what we're applying our function to, the second is whether it should apply to the rows or columns (we choose 2 for column, since each column is the team), and the third is the function.
 
 ```{r}
 super_effective_results <- apply(all_combinations, 2, super_effective_nb)
@@ -185,10 +190,11 @@ For our final step, we're actually going to make this a tibble, so I can look at
 strongest_teams %>%
   as_tibble() %>%
   gather(team, type) %>%
-  count(type, sort = TRUE)
+  count(type, sort = TRUE) %>%
+  knitr::kable()
 ```
 
-We see all 10 of the teams need a ground type, where 8 have a Fightning, Flying, or Ice type. On the other hand, Electric, Fairy, Rock, and Steel are only each used by two teams. 
+We see all 10 of the teams need a ground type, where 8 have a Fighting, Flying, or Ice type. On the other hand, Electric, Fairy, Rock, and Steel are only each used by two teams. 
 
 ## Making it faster
 
@@ -262,5 +268,6 @@ for (combo in 1:10) (
 
 ## Conclusion 
 
-While this is a bit of a silly usecase, there 
+While this is a bit of a silly use case ...
+
 * Pokemon players will know that you can have more than 6 types on your team, both because some pokemon have two types and because pokemon can learn moves of other types (e.g. a "Normal" type pokemon may be able to learn a "Dark" move). But for the purposes of this analysis I simplified it. 
