@@ -1,0 +1,228 @@
+---
+title: Exploring Bob Ross paintings
+author: Emily Robinson
+date: '2019-08-15'
+slug: exploring-bob-ross-paintings
+categories: []
+tags: []
+keywords:
+  - R
+  - tidyverse
+  - code
+---
+
+
+
+<p>In this post, I try something new and share an analysis I did without stopping to explain the code along the way (with a few exceptions). I analyze a dataset on Bob Ross paintings from last week’s Tidytuesday, an initiative by the <a href="https://www.rfordatasci.com/">R for Data Science online learning community</a>. Each Monday, a new dataset is posted on <a href="https://github.com/rfordatascience/tidytuesday">GitHub</a> with a short description. You can see some analyses and visualizations people have done by searching for the <a href="https://twitter.com/search?q=%23tidytuesday">#tidytuesday hashtag on Twitter</a>.</p>
+<p>In this dataset, each row describes a painting Bos Ross (or a guest) did on his show, with the episode, season, title, and a column for each feature (e.g. “tree”, “mountain”) that is 1 if that painting included that feature and 0 otherwise. Let’s go exploring!</p>
+<div class="figure">
+<img src="/img/bob_ross_painting.jpg" />
+
+</div>
+<div id="set-up" class="section level2">
+<h2>Set up</h2>
+<pre class="r"><code>library(tidyverse)
+ggthemr::ggthemr(&#39;fresh&#39;)
+
+bob_ross &lt;- read_csv(&quot;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-08-06/bob-ross.csv&quot;)
+
+# copied from tidytuesday repo
+bob_ross &lt;- bob_ross %&gt;%
+  janitor::clean_names() %&gt;% 
+  separate(episode, into = c(&quot;season&quot;, &quot;episode&quot;), sep = &quot;E&quot;) %&gt;% 
+  mutate(season = str_extract(season, &quot;[:digit:]+&quot;)) %&gt;% 
+  mutate_at(vars(season, episode), as.integer) %&gt;%
+  # added to clean up title
+  mutate(title = str_remove_all(title, &#39;&quot;&#39;)) 
+
+bob_ross %&gt;%
+  head(5) %&gt;%
+  select(1:7) %&gt;%
+  knitr::kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">season</th>
+<th align="right">episode</th>
+<th align="left">title</th>
+<th align="right">apple_frame</th>
+<th align="right">aurora_borealis</th>
+<th align="right">barn</th>
+<th align="right">beach</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="left">A WALK IN THE WOODS</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">MT. MCKINLEY</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="left">EBONY SUNSET</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="left">WINTER MIST</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="left">QUIET STREAM</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="exploratory-graphs" class="section level2">
+<h2>Exploratory graphs</h2>
+<p>Let’s start with some basic data exploration. What are the ten most frequent features in his paintings?</p>
+<pre class="r"><code>bob_ross %&gt;%
+  summarize_at(vars(apple_frame:wood_framed), ~ sum(.)) %&gt;%
+  gather(feature, nb_paintings) %&gt;%
+  mutate(feature = fct_reorder(feature, nb_paintings)) %&gt;%
+  top_n(10, nb_paintings) %&gt;%
+  ggplot(aes(x = feature, y = nb_paintings)) + 
+  geom_col() + 
+  coord_flip() + 
+  labs(y = &quot;Number of paintings&quot;, 
+       title = &quot;What were most common features in Bob Ross paintings?&quot;,
+       x = &quot;&quot;)</code></pre>
+<p><img src="/post/2019-08-05-clustering-bob-ross-paintings_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>If you’ve seen Bob Ross paintings, it’s probably not too surprising that “tree” is the top feature. I am a bit surprised to find that trees, deciduous, and conifer are all separate features (the latter two are types of trees).</p>
+<p>Let’s adapt this to show what percent of paintings contained the feature, rather than the total number.</p>
+<pre class="r"><code>bob_ross %&gt;%
+  summarize_at(vars(apple_frame:wood_framed), ~ sum(.)) %&gt;%
+  gather(feature, nb_paintings) %&gt;%
+  mutate(total_paintings = nrow(bob_ross),
+         pct_w_feature = nb_paintings / total_paintings,
+         feature = fct_reorder(feature, pct_w_feature)) %&gt;%
+  top_n(10, pct_w_feature) %&gt;%
+  ggplot(aes(x = feature, y = pct_w_feature)) + 
+  geom_col() + 
+  coord_flip() + 
+  labs(y = &quot;Percent of paintings with feature&quot;, 
+       title = &quot;What were most common features in Bob Ross paintings?&quot;,
+       x = &quot;&quot;) + 
+  scale_y_continuous(label = scales::percent) + 
+  expand_limits(y = 1)</code></pre>
+<p><img src="/post/2019-08-05-clustering-bob-ross-paintings_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>This gives some more context of just how common having a tree was - more than 80% of the paintings had one!</p>
+<p>Did the content of the paintings change over time? We can answer this question in a lot of different ways - let’s start by looking at features that appeared in more than 150 paintings and their trends over the seasons.</p>
+<pre class="r"><code>nb_features_by_season &lt;- bob_ross %&gt;%
+  group_by(season) %&gt;%
+  summarize_at(vars(apple_frame:wood_framed), ~ sum(.)) %&gt;%
+  gather(feature, nb_paintings, -season)</code></pre>
+<pre class="r"><code>nb_features_by_season %&gt;%
+  add_count(feature, wt = nb_paintings, name = &quot;nb_total&quot;) %&gt;%
+  filter(nb_total &gt; 150) %&gt;%
+  ggplot(aes(x = season, y = nb_paintings, color = feature)) + 
+  geom_line() + 
+  facet_wrap(~ feature) + 
+  labs(y = &quot;Number of paintings with feature&quot;,
+       title = &quot;Bob Ross always loved trees, but fell out of love with clouds&quot;,
+       subtitle = &quot;Dashed line is number of episodes in the season&quot;) + 
+  geom_hline(yintercept = 13, lty = 2) + 
+  theme(legend.position = &quot;none&quot;) + 
+  expand_limits(y = 0)</code></pre>
+<p><img src="/post/2019-08-05-clustering-bob-ross-paintings_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Trees (of all types) stay consistently popular across seasons, while clouds became less featured.</p>
+<p>What features have the great absolute difference between the first and second half of the series?</p>
+<pre class="r"><code>by_feature_half &lt;- nb_features_by_season %&gt;%
+  mutate(season_half = if_else(season &lt;= 15, &quot;first&quot;, &quot;second&quot;)) %&gt;%
+  group_by(season_half, feature) %&gt;%
+  summarize(nb_paintings = sum(nb_paintings)) %&gt;%
+  ungroup() %&gt;%
+  mutate(nb_paintings = ifelse(season_half == &quot;first&quot;, 
+                               nb_paintings / (15 * 67), 
+                               nb_paintings / (16 * 67))) %&gt;%
+  spread(season_half, nb_paintings) %&gt;%
+  mutate(difference = second - first) %&gt;%
+  top_n(10, abs(difference)) %&gt;%
+  gather(season_half, nb_paintings, first, second)
+
+by_feature_half %&gt;%
+  mutate(feature = fct_reorder(feature, difference, .desc = TRUE),
+         season_half = ifelse(season_half == &quot;first&quot;, &quot;1-15&quot;, &quot;16-31&quot;)) %&gt;%
+  ggplot(aes(nb_paintings, feature)) +
+  geom_line() +
+  geom_point(aes(color = season_half)) +
+  scale_color_manual(values = c(&quot;#E84646&quot;, &quot;#233B43&quot;)) + 
+  scale_x_continuous(labels = scales::percent) + 
+  labs(x = &quot;Percent of paintings with feature&quot;,
+       y = &quot;&quot;,
+       title = &quot;What features became more or less frequent?&quot;,
+       color = &quot;Seasons&quot;)</code></pre>
+<p><img src="/post/2019-08-05-clustering-bob-ross-paintings_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>As we had seen in our graph of the top 6 features, clouds (and it’s like, cumuls and cirrus) went down, while framed got a little more popular.</p>
+<p>What’s the distribution of the number of features per painting (code for a calculating the summary of a row thanks to <a href="https://twitter.com/JennyBryan/status/1158571075388575745">this tweet</a> by Jenny Bryan)?</p>
+<pre class="r"><code>bob_ross %&gt;%
+  mutate(nb_features = select_at(., vars(apple_frame:wood_framed)) %&gt;% pmap_dbl(sum)) %&gt;%
+  ggplot(aes(x = nb_features)) + 
+  geom_histogram(bins = 16) + 
+  labs(x = &quot;Number of features in a painting&quot;,
+       y = &quot;Number of paintings&quot;,
+       title = &quot;Most paintings had between 5 and 11 features&quot;)</code></pre>
+<p><img src="/post/2019-08-05-clustering-bob-ross-paintings_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>Most paintings have between 5 and 11 features, although one has more than 15 and a couple have none.</p>
+<div id="principle-components-analysis" class="section level3">
+<h3>Principle Components Analysis</h3>
+<p>In short, Principle Components Analysis is a dimensionality-reduction technique that takes all of your variables and creates a new set of characteristics that still contains the most information. For more information, I highly recommend checking out <a href="https://stats.stackexchange.com/questions/2691/making-sense-of-principal-component-analysis-eigenvectors-eigenvalues">this StackOverflow answer</a> for great explanations from simple to mathematical and Julia Silge’s <a href="https://juliasilge.com/blog/stack-overflow-pca/">post</a> where she explains Principle Components Analysis using StackOverflow data.</p>
+<p>We’ll start by selecting only features that appear in at least 5 paintings and calculate three principle components, adding <code>scale = TRUE</code> to scale the features. This is a critical step; while the features are all on the same scale (0 or 1, not say 0 or 100 for one and 0 or 50 for another), they have different variances as some have a lot of 1s and some a lot of 0s. We need to center our data so that they all have the same mean and variance.</p>
+<pre class="r"><code>bob_ross_for_pca &lt;- bob_ross %&gt;% 
+  select(-season, -episode, -title)  %&gt;%
+  select_if(~ sum(.) &gt;= 5)</code></pre>
+<pre class="r"><code>tags_pca &lt;- irlba::prcomp_irlba(bob_ross_for_pca, n = 3, scale = TRUE)
+
+tidied_pca &lt;- bind_cols(feature = colnames(bob_ross_for_pca),
+                        as_tibble(tags_pca$rotation)) %&gt;%
+  gather(PC, value, PC1:PC3)</code></pre>
+<p>Let’s take a look at which features have the most relative importance (highest absolute value) for each component. We’re going to use the new <code>tidytext</code> functions <code>reorder_within()</code> and <code>scale_x_reordered()</code> to make the features ordered within each plot (see Julia Silge’s <a href="https://juliasilge.com/blog/reorder-within/">post</a> for more).</p>
+<pre class="r"><code>library(tidytext)
+
+tidied_pca %&gt;%
+  group_by(PC) %&gt;%
+  top_n(8, abs(value)) %&gt;%
+  ungroup() %&gt;%
+  ggplot(aes(x = reorder_within(feature, value, PC), y = value)) +
+  geom_col() + 
+  coord_flip() + 
+  facet_wrap(~ PC, scales = &quot;free&quot;, ncol = 1) + 
+  scale_x_reordered() + 
+  labs(title = &quot;What distinguishes Bob Ross paintings?&quot;,
+       subtitle = &quot;They&#39;re divided between trees vs. beach, structures vs. mountains, and water vs. winter structures&quot;, y = &quot;Relative importance in principle component&quot;,
+       x = &quot;&quot;)</code></pre>
+<p><img src="/post/2019-08-05-clustering-bob-ross-paintings_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>We find that the first principle component divides painting between those at the ocean (with beach and palm trees) and those in the tree covered mountains. The next component divides mountains from structures like cabin and barns, while the final one distinguishes a cabin in the snow from a grassy river.</p>
+</div>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
+<p>I hope you enjoyed this new style of post and were able to learn some new tricks along the way. Let me know what you think on <a href="https://twitter.com/robinson_es">twitter</a>!</p>
+</div>

@@ -1,0 +1,200 @@
+---
+title: Exploring Bob Ross paintings
+author: Emily Robinson
+date: '2019-08-15'
+slug: exploring-bob-ross-paintings
+categories: []
+tags: []
+keywords:
+  - R
+  - tidyverse
+  - code
+---
+
+In this post, I try something new and share an analysis I did without stopping to explain the code along the way (with a few exceptions). I analyze a dataset on Bob Ross paintings from last week's Tidytuesday, an initiative by the [R for Data Science online learning community](https://www.rfordatasci.com/). Each Monday, a new dataset is posted on [GitHub](https://github.com/rfordatascience/tidytuesday) with a short description. You can see some analyses and visualizations people have done by searching for the [#tidytuesday hashtag on Twitter](https://twitter.com/search?q=%23tidytuesday). 
+
+In this dataset, each row describes a painting Bos Ross (or a guest) did on his show, with the episode, season, title, and a column for each feature (e.g. "tree", "mountain") that is 1 if that painting included that feature and 0 otherwise. Let's go exploring! 
+
+![](/img/bob_ross_painting.jpg)
+
+## Set up
+
+```{r message = FALSE, warning = FALSE}
+library(tidyverse)
+ggthemr::ggthemr('fresh')
+
+bob_ross <- read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-08-06/bob-ross.csv")
+
+# copied from tidytuesday repo
+bob_ross <- bob_ross %>%
+  janitor::clean_names() %>% 
+  separate(episode, into = c("season", "episode"), sep = "E") %>% 
+  mutate(season = str_extract(season, "[:digit:]+")) %>% 
+  mutate_at(vars(season, episode), as.integer) %>%
+  # added to clean up title
+  mutate(title = str_remove_all(title, '"')) 
+
+bob_ross %>%
+  head(5) %>%
+  select(1:7) %>%
+  knitr::kable()
+```
+
+## Exploratory graphs
+
+Let's start with some basic data exploration. What are the ten most frequent features in his paintings?
+
+```{r}
+bob_ross %>%
+  summarize_at(vars(apple_frame:wood_framed), ~ sum(.)) %>%
+  gather(feature, nb_paintings) %>%
+  mutate(feature = fct_reorder(feature, nb_paintings)) %>%
+  top_n(10, nb_paintings) %>%
+  ggplot(aes(x = feature, y = nb_paintings)) + 
+  geom_col() + 
+  coord_flip() + 
+  labs(y = "Number of paintings", 
+       title = "What were most common features in Bob Ross paintings?",
+       x = "")
+```
+
+If you've seen Bob Ross paintings, it's probably not too surprising that "tree" is the top feature. I am a bit surprised to find that trees, deciduous, and conifer are all separate features (the latter two are types of trees). 
+
+Let's adapt this to show what percent of paintings contained the feature, rather than the total number. 
+
+```{r}
+bob_ross %>%
+  summarize_at(vars(apple_frame:wood_framed), ~ sum(.)) %>%
+  gather(feature, nb_paintings) %>%
+  mutate(total_paintings = nrow(bob_ross),
+         pct_w_feature = nb_paintings / total_paintings,
+         feature = fct_reorder(feature, pct_w_feature)) %>%
+  top_n(10, pct_w_feature) %>%
+  ggplot(aes(x = feature, y = pct_w_feature)) + 
+  geom_col() + 
+  coord_flip() + 
+  labs(y = "Percent of paintings with feature", 
+       title = "What were most common features in Bob Ross paintings?",
+       x = "") + 
+  scale_y_continuous(label = scales::percent) + 
+  expand_limits(y = 1)
+```
+
+This gives some more context of just how common having a tree was - more than 80% of the paintings had one!
+
+Did the content of the paintings change over time? We can answer this question in a lot of different ways - let's start by looking at features that appeared in more than 150 paintings and their trends over the seasons. 
+
+```{r}
+nb_features_by_season <- bob_ross %>%
+  group_by(season) %>%
+  summarize_at(vars(apple_frame:wood_framed), ~ sum(.)) %>%
+  gather(feature, nb_paintings, -season)
+```
+
+```{r}
+nb_features_by_season %>%
+  add_count(feature, wt = nb_paintings, name = "nb_total") %>%
+  filter(nb_total > 150) %>%
+  ggplot(aes(x = season, y = nb_paintings, color = feature)) + 
+  geom_line() + 
+  facet_wrap(~ feature) + 
+  labs(y = "Number of paintings with feature",
+       title = "Bob Ross always loved trees, but fell out of love with clouds",
+       subtitle = "Dashed line is number of episodes in the season") + 
+  geom_hline(yintercept = 13, lty = 2) + 
+  theme(legend.position = "none") + 
+  expand_limits(y = 0)
+```
+
+Trees (of all types) stay consistently popular across seasons, while clouds became less featured.
+
+What features have the great absolute difference between the first and second half of the series? 
+
+```{r}
+by_feature_half <- nb_features_by_season %>%
+  mutate(season_half = if_else(season <= 15, "first", "second")) %>%
+  group_by(season_half, feature) %>%
+  summarize(nb_paintings = sum(nb_paintings)) %>%
+  ungroup() %>%
+  mutate(nb_paintings = ifelse(season_half == "first", 
+                               nb_paintings / (15 * 67), 
+                               nb_paintings / (16 * 67))) %>%
+  spread(season_half, nb_paintings) %>%
+  mutate(difference = second - first) %>%
+  top_n(10, abs(difference)) %>%
+  gather(season_half, nb_paintings, first, second)
+
+by_feature_half %>%
+  mutate(feature = fct_reorder(feature, difference, .desc = TRUE),
+         season_half = ifelse(season_half == "first", "1-15", "16-31")) %>%
+  ggplot(aes(nb_paintings, feature)) +
+  geom_line() +
+  geom_point(aes(color = season_half)) +
+  scale_color_manual(values = c("#E84646", "#233B43")) + 
+  scale_x_continuous(labels = scales::percent) + 
+  labs(x = "Percent of paintings with feature",
+       y = "",
+       title = "What features became more or less frequent?",
+       color = "Seasons")
+```
+
+As we had seen in our graph of the top 6 features, clouds (and it's like, cumuls and cirrus) went down, while framed got a little more popular. 
+
+What's the distribution of the number of features per painting (code for a calculating the summary of a row thanks to [this tweet](https://twitter.com/JennyBryan/status/1158571075388575745) by Jenny Bryan)? 
+
+```{r}
+bob_ross %>%
+  mutate(nb_features = select_at(., vars(apple_frame:wood_framed)) %>% pmap_dbl(sum)) %>%
+  ggplot(aes(x = nb_features)) + 
+  geom_histogram(bins = 16) + 
+  labs(x = "Number of features in a painting",
+       y = "Number of paintings",
+       title = "Most paintings had between 5 and 11 features")
+```
+
+Most paintings have between 5 and 11 features, although one has more than 15 and a couple have none. 
+
+### Principle Components Analysis
+
+In short, Principle Components Analysis is a dimensionality-reduction technique that takes all of your variables and creates a new set of characteristics that still contains the most information. For more information, I highly recommend checking out [this StackOverflow answer](https://stats.stackexchange.com/questions/2691/making-sense-of-principal-component-analysis-eigenvectors-eigenvalues) for great explanations from simple to mathematical and Julia Silge's [post](https://juliasilge.com/blog/stack-overflow-pca/) where she explains Principle Components Analysis using StackOverflow data.
+
+We'll start by selecting only features that appear in at least 5 paintings and calculate three principle components, adding `scale = TRUE` to scale the features. This is a critical step; while the features are all on the same scale (0 or 1, not say 0 or 100 for one and 0 or 50 for another), they have different variances as some have a lot of 1s and some a lot of 0s. We need to center our data so that they all have the same mean and variance.
+
+```{r}
+bob_ross_for_pca <- bob_ross %>% 
+  select(-season, -episode, -title)  %>%
+  select_if(~ sum(.) >= 5)
+```
+
+```{r}
+tags_pca <- irlba::prcomp_irlba(bob_ross_for_pca, n = 3, scale = TRUE)
+
+tidied_pca <- bind_cols(feature = colnames(bob_ross_for_pca),
+                        as_tibble(tags_pca$rotation)) %>%
+  gather(PC, value, PC1:PC3)
+```
+
+Let's take a look at which features have the most relative importance (highest absolute value) for each component. We're going to use the new `tidytext` functions `reorder_within()` and `scale_x_reordered()` to make the features ordered within each plot (see Julia Silge's [post](https://juliasilge.com/blog/reorder-within/) for more).
+
+```{r fig.height = 6}
+library(tidytext)
+
+tidied_pca %>%
+  group_by(PC) %>%
+  top_n(8, abs(value)) %>%
+  ungroup() %>%
+  ggplot(aes(x = reorder_within(feature, value, PC), y = value)) +
+  geom_col() + 
+  coord_flip() + 
+  facet_wrap(~ PC, scales = "free", ncol = 1) + 
+  scale_x_reordered() + 
+  labs(title = "What distinguishes Bob Ross paintings?",
+       subtitle = "They're divided between trees vs. beach, structures vs. mountains, and water vs. winter structures", y = "Relative importance in principle component",
+       x = "")
+```
+
+We find that the first principle component divides painting between those at the ocean (with beach and palm trees) and those in the tree covered mountains. The next component divides mountains from structures like cabin and barns, while the final one distinguishes a cabin in the snow from a grassy river. 
+
+## Conclusion 
+
+I hope you enjoyed this new style of post and were able to learn some new tricks along the way. Let me know what you think on [twitter](https://twitter.com/robinson_es)! 

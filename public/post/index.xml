@@ -6,10 +6,29 @@
     <description>Recent content in Posts on Hooked on Data</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 01 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 15 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Exploring Bob Ross paintings</title>
+      <link>/exploring-bob-ross-paintings/</link>
+      <pubDate>Thu, 15 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/exploring-bob-ross-paintings/</guid>
+      <description>In this post, I try something new and share an analysis I did without stopping to explain the code along the way (with a few exceptions). I analyze a dataset on Bob Ross paintings from last week’s Tidytuesday, an initiative by the R for Data Science online learning community. Each Monday, a new dataset is posted on GitHub with a short description. You can see some analyses and visualizations people have done by searching for the #tidytuesday hashtag on Twitter.</description>
+    </item>
+    
+    <item>
+      <title>Using funneljoin to analyze #rstats twitter</title>
+      <link>/using-funneljoin-to-analyze-rstats-twitter/</link>
+      <pubDate>Mon, 05 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/using-funneljoin-to-analyze-rstats-twitter/</guid>
+      <description>In my previous post, I used the after_join() function from my package funneljoin to analyze Stack Overflow questions and answers that used the tag R. In this post, I’ll introduce funneljoin’s funnel_start() and funnel_step() functions to look at tweets tagged with #rstats. This data comes from the R for Data Science tidytuesday initiative; you can download it here.
+library(tidyverse) # devtools::install_github(&amp;quot;robinsones/funneljoin&amp;quot;) library(funneljoin) tweets &amp;lt;- readRDS(&amp;quot;rstats_tweets.rds&amp;quot;) Let’s take a look at the dataset:</description>
+    </item>
     
     <item>
       <title>Introducing the funneljoin package</title>
