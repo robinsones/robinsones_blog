@@ -21,16 +21,6 @@
     </item>
     
     <item>
-      <title>Using funneljoin to analyze #rstats twitter</title>
-      <link>/using-funneljoin-to-analyze-rstats-twitter/</link>
-      <pubDate>Mon, 05 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/using-funneljoin-to-analyze-rstats-twitter/</guid>
-      <description>In my previous post, I used the after_join() function from my package funneljoin to analyze Stack Overflow questions and answers that used the tag R. In this post, I’ll introduce funneljoin’s funnel_start() and funnel_step() functions to look at tweets tagged with #rstats. This data comes from the R for Data Science tidytuesday initiative; you can download it here.
-library(tidyverse) # devtools::install_github(&amp;quot;robinsones/funneljoin&amp;quot;) library(funneljoin) tweets &amp;lt;- readRDS(&amp;quot;rstats_tweets.rds&amp;quot;) Let’s take a look at the dataset:</description>
-    </item>
-    
-    <item>
       <title>Introducing the funneljoin package</title>
       <link>/introducing-the-funneljoin-package/</link>
       <pubDate>Thu, 01 Aug 2019 00:00:00 +0000</pubDate>

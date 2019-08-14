@@ -419,14 +419,14 @@ by_feature_half %&gt;%
        title = &quot;Most paintings had between 5 and 11 features&quot;)</code></pre>
 <p><img src="/post/2019-08-05-clustering-bob-ross-paintings_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>Most paintings have between 5 and 11 features, although one has more than 15 and a couple have none.</p>
-<div id="principle-components-analysis" class="section level3">
-<h3>Principle Components Analysis</h3>
-<p>In short, Principle Components Analysis is a dimensionality-reduction technique that takes all of your variables and creates a new set of characteristics that still contains the most information. For more information, I highly recommend checking out <a href="https://stats.stackexchange.com/questions/2691/making-sense-of-principal-component-analysis-eigenvectors-eigenvalues">this StackOverflow answer</a> for great explanations from simple to mathematical and Julia Silge’s <a href="https://juliasilge.com/blog/stack-overflow-pca/">post</a> where she explains Principle Components Analysis using StackOverflow data.</p>
-<p>We’ll start by selecting only features that appear in at least 5 paintings and calculate three principle components, adding <code>scale = TRUE</code> to scale the features. This is a critical step; while the features are all on the same scale (0 or 1, not say 0 or 100 for one and 0 or 50 for another), they have different variances as some have a lot of 1s and some a lot of 0s. We need to center our data so that they all have the same mean and variance.</p>
+<div id="principal-components-analysis" class="section level3">
+<h3>principal Components Analysis</h3>
+<p>In short, principal Components Analysis is a dimensionality-reduction technique that takes all of your variables and creates a new set of characteristics that still contains the most information. For more information, I highly recommend checking out <a href="https://stats.stackexchange.com/questions/2691/making-sense-of-principal-component-analysis-eigenvectors-eigenvalues">this StackOverflow answer</a> for great explanations from simple to mathematical and Julia Silge’s <a href="https://juliasilge.com/blog/stack-overflow-pca/">post</a> where she explains principal Components Analysis using StackOverflow data.</p>
+<p>We’ll start by selecting only features that appear in at least 5 paintings and calculate three principal components, adding <code>scale = TRUE</code> to scale the features. This is a critical step; while the features are all on the same scale (0 or 1, not say 0 or 100 for one and 0 or 50 for another), they have different variances as some have a lot of 1s and some a lot of 0s. We need to center our data so that they all have the same mean and variance.</p>
 <pre class="r"><code>bob_ross_for_pca &lt;- bob_ross %&gt;% 
   select(-season, -episode, -title)  %&gt;%
   select_if(~ sum(.) &gt;= 5)</code></pre>
-<pre class="r"><code>tags_pca &lt;- irlba::prcomp_irlba(bob_ross_for_pca, n = 3, scale = TRUE)
+<pre class="r"><code>tags_pca &lt;- irlba::prcomp_irlba(bob_ross_for_pca, n = 3, scale. = TRUE)
 
 tidied_pca &lt;- bind_cols(feature = colnames(bob_ross_for_pca),
                         as_tibble(tags_pca$rotation)) %&gt;%
@@ -444,10 +444,10 @@ tidied_pca %&gt;%
   facet_wrap(~ PC, scales = &quot;free&quot;, ncol = 1) + 
   scale_x_reordered() + 
   labs(title = &quot;What distinguishes Bob Ross paintings?&quot;,
-       subtitle = &quot;Trees vs. beach, structures vs. mountains, and water vs. winter structures&quot;, y = &quot;Relative importance in principle component&quot;,
+       subtitle = &quot;Trees vs. beach, structures vs. mountains, and water vs. winter structures&quot;, y = &quot;Relative importance in principal component&quot;,
        x = &quot;&quot;)</code></pre>
 <p><img src="/post/2019-08-05-clustering-bob-ross-paintings_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
-<p>We find that the first principle component divides painting between those at the ocean (with beach and palm trees) and those in the tree covered mountains. The next component divides mountains from structures like cabin and barns, while the final one distinguishes a cabin in the snow from a grassy river.</p>
+<p>We find that the first principal component divides painting between those at the ocean (with beach and palm trees) and those in the tree covered mountains. The next component divides mountains from structures like cabin and barns, while the final one distinguishes a cabin in the snow from a grassy river.</p>
 </div>
 </div>
 <div id="conclusion" class="section level2">
@@ -477,7 +477,7 @@ tidied_pca %&gt;%
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="/using-funneljoin-to-analyze-rstats-twitter/" data-tooltip="Using funneljoin to analyze #rstats twitter">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/introducing-the-funneljoin-package/" data-tooltip="Introducing the funneljoin package">
               
                   <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                   <i class="fa fa-angle-right"></i>
@@ -547,7 +547,7 @@ tidied_pca %&gt;%
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="/using-funneljoin-to-analyze-rstats-twitter/" data-tooltip="Using funneljoin to analyze #rstats twitter">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/introducing-the-funneljoin-package/" data-tooltip="Introducing the funneljoin package">
               
                   <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                   <i class="fa fa-angle-right"></i>
@@ -671,24 +671,6 @@ tidied_pca %&gt;%
                 </span>
               </span>
               <div class="media-content hide-xs font-merryweather">In this post, I try something new and share an analysis I did without stopping to explain the code along the way (with a few exceptions). I analyze a dataset on Bob Ross paintings from last week’s Tidytuesday, an initiative by the R for Data Science online learning community. Each Monday, a new dataset is posted on GitHub with a short description. You can see some analyses and visualizations people have done by searching for the #tidytuesday hashtag on Twitter.</div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="/using-funneljoin-to-analyze-rstats-twitter/">
-                <h3 class="media-heading">Using funneljoin to analyze #rstats twitter</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Aug 8, 2019
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">In my previous post, I used the after_join() function from my package funneljoin to analyze Stack Overflow questions and answers that used the tag R. In this post, I’ll introduce funneljoin’s funnel_start() and funnel_step() functions to look at tweets tagged with #rstats. This data comes from the R for Data Science tidytuesday initiative; you can download it here.
-library(tidyverse) # devtools::install_github(&quot;robinsones/funneljoin&quot;) library(funneljoin) tweets &lt;- readRDS(&quot;rstats_tweets.rds&quot;) Let’s take a look at the dataset:</div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -833,6 +815,24 @@ What is sponsorship? When people discuss what they’re seeking from a more seni
             <hr>
           </div>
         
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/building-your-data-science-network-reaching-out/">
+                <h3 class="media-heading">Building your Data Science Network: Reaching Out</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jan 1, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">In the other part of this post, I covered how to start becoming involved in the data science community and meet people in general. But what if you read a really cool post by someone and want to follow up with them? This post offers some thoughts on how you can most effectively reach out to specific people.
+Two important caveats to start, both inspired by other posts on similar topics.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
       </div>
     </div>
     <div class="modal-footer">
@@ -840,7 +840,7 @@ What is sponsorship? When people discuss what they’re seeking from a more seni
          data-message-zero="no post found"
          data-message-one="1 post found"
          data-message-other="{n} posts found">
-         20 posts found
+         19 posts found
       </p>
     </div>
   </div>

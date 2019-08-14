@@ -152,11 +152,11 @@ bob_ross %>%
 
 Most paintings have between 5 and 11 features, although one has more than 15 and a couple have none. 
 
-### Principle Components Analysis
+### principal Components Analysis
 
-In short, Principle Components Analysis is a dimensionality-reduction technique that takes all of your variables and creates a new set of characteristics that still contains the most information. For more information, I highly recommend checking out [this StackOverflow answer](https://stats.stackexchange.com/questions/2691/making-sense-of-principal-component-analysis-eigenvectors-eigenvalues) for great explanations from simple to mathematical and Julia Silge's [post](https://juliasilge.com/blog/stack-overflow-pca/) where she explains Principle Components Analysis using StackOverflow data.
+In short, principal Components Analysis is a dimensionality-reduction technique that takes all of your variables and creates a new set of characteristics that still contains the most information. For more information, I highly recommend checking out [this StackOverflow answer](https://stats.stackexchange.com/questions/2691/making-sense-of-principal-component-analysis-eigenvectors-eigenvalues) for great explanations from simple to mathematical and Julia Silge's [post](https://juliasilge.com/blog/stack-overflow-pca/) where she explains principal Components Analysis using StackOverflow data.
 
-We'll start by selecting only features that appear in at least 5 paintings and calculate three principle components, adding `scale = TRUE` to scale the features. This is a critical step; while the features are all on the same scale (0 or 1, not say 0 or 100 for one and 0 or 50 for another), they have different variances as some have a lot of 1s and some a lot of 0s. We need to center our data so that they all have the same mean and variance.
+We'll start by selecting only features that appear in at least 5 paintings and calculate three principal components, adding `scale = TRUE` to scale the features. This is a critical step; while the features are all on the same scale (0 or 1, not say 0 or 100 for one and 0 or 50 for another), they have different variances as some have a lot of 1s and some a lot of 0s. We need to center our data so that they all have the same mean and variance.
 
 ```{r}
 bob_ross_for_pca <- bob_ross %>% 
@@ -165,7 +165,7 @@ bob_ross_for_pca <- bob_ross %>%
 ```
 
 ```{r}
-tags_pca <- irlba::prcomp_irlba(bob_ross_for_pca, n = 3, scale = TRUE)
+tags_pca <- irlba::prcomp_irlba(bob_ross_for_pca, n = 3, scale. = TRUE)
 
 tidied_pca <- bind_cols(feature = colnames(bob_ross_for_pca),
                         as_tibble(tags_pca$rotation)) %>%
@@ -187,11 +187,11 @@ tidied_pca %>%
   facet_wrap(~ PC, scales = "free", ncol = 1) + 
   scale_x_reordered() + 
   labs(title = "What distinguishes Bob Ross paintings?",
-       subtitle = "Trees vs. beach, structures vs. mountains, and water vs. winter structures", y = "Relative importance in principle component",
+       subtitle = "Trees vs. beach, structures vs. mountains, and water vs. winter structures", y = "Relative importance in principal component",
        x = "")
 ```
 
-We find that the first principle component divides painting between those at the ocean (with beach and palm trees) and those in the tree covered mountains. The next component divides mountains from structures like cabin and barns, while the final one distinguishes a cabin in the snow from a grassy river. 
+We find that the first principal component divides painting between those at the ocean (with beach and palm trees) and those in the tree covered mountains. The next component divides mountains from structures like cabin and barns, while the final one distinguishes a cabin in the snow from a grassy river. 
 
 ## Conclusion 
 
