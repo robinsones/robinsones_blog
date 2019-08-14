@@ -15,10 +15,6 @@ keywords:
 
 <p>In this post, I try something new and share an analysis I did without stopping to explain the code along the way (with a few exceptions). I analyze a dataset on Bob Ross paintings from last week’s Tidytuesday, an initiative by the <a href="https://www.rfordatasci.com/">R for Data Science online learning community</a>. Each Monday, a new dataset is posted on <a href="https://github.com/rfordatascience/tidytuesday">GitHub</a> with a short description. You can see some analyses and visualizations people have done by searching for the <a href="https://twitter.com/search?q=%23tidytuesday">#tidytuesday hashtag on Twitter</a>.</p>
 <p>In this dataset, each row describes a painting Bos Ross (or a guest) did on his show, with the episode, season, title, and a column for each feature (e.g. “tree”, “mountain”) that is 1 if that painting included that feature and 0 otherwise. Let’s go exploring!</p>
-<div class="figure">
-<img src="/img/bob_ross_painting.jpg" />
-
-</div>
 <div id="set-up" class="section level2">
 <h2>Set up</h2>
 <pre class="r"><code>library(tidyverse)
@@ -216,7 +212,7 @@ tidied_pca %&gt;%
   facet_wrap(~ PC, scales = &quot;free&quot;, ncol = 1) + 
   scale_x_reordered() + 
   labs(title = &quot;What distinguishes Bob Ross paintings?&quot;,
-       subtitle = &quot;They&#39;re divided between trees vs. beach, structures vs. mountains, and water vs. winter structures&quot;, y = &quot;Relative importance in principle component&quot;,
+       subtitle = &quot;Trees vs. beach, structures vs. mountains, and water vs. winter structures&quot;, y = &quot;Relative importance in principle component&quot;,
        x = &quot;&quot;)</code></pre>
 <p><img src="/post/2019-08-05-clustering-bob-ross-paintings_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>We find that the first principle component divides painting between those at the ocean (with beach and palm trees) and those in the tree covered mountains. The next component divides mountains from structures like cabin and barns, while the final one distinguishes a cabin in the snow from a grassy river.</p>

@@ -2,220 +2,220 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Hooked on Data</title>
-    <link>https://hookedondata.org/</link>
+    <link>/</link>
     <description>Recent content on Hooked on Data</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 14 Aug 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://hookedondata.org/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Exploring Bob Ross paintings</title>
-      <link>https://hookedondata.org/exploring-bob-ross-paintings/</link>
+      <link>/exploring-bob-ross-paintings/</link>
       <pubDate>Wed, 14 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/exploring-bob-ross-paintings/</guid>
+      <guid>/exploring-bob-ross-paintings/</guid>
       <description>In this post, I try something new and share an analysis I did without stopping to explain the code along the way (with a few exceptions). I analyze a dataset on Bob Ross paintings from last week’s Tidytuesday, an initiative by the R for Data Science online learning community. Each Monday, a new dataset is posted on GitHub with a short description. You can see some analyses and visualizations people have done by searching for the #tidytuesday hashtag on Twitter.</description>
     </item>
     
     <item>
       <title>Using funneljoin to analyze #rstats twitter</title>
-      <link>https://hookedondata.org/using-funneljoin-to-analyze-rstats-twitter/</link>
+      <link>/using-funneljoin-to-analyze-rstats-twitter/</link>
       <pubDate>Mon, 05 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/using-funneljoin-to-analyze-rstats-twitter/</guid>
+      <guid>/using-funneljoin-to-analyze-rstats-twitter/</guid>
       <description>In my previous post, I used the after_join() function from my package funneljoin to analyze Stack Overflow questions and answers that used the tag R. In this post, I’ll introduce funneljoin’s funnel_start() and funnel_step() functions to look at tweets tagged with #rstats. This data comes from the R for Data Science tidytuesday initiative; you can download it here.
 library(tidyverse) # devtools::install_github(&amp;quot;robinsones/funneljoin&amp;quot;) library(funneljoin) tweets &amp;lt;- readRDS(&amp;quot;rstats_tweets.rds&amp;quot;) Let’s take a look at the dataset:</description>
     </item>
     
     <item>
       <title>Introducing the funneljoin package</title>
-      <link>https://hookedondata.org/introducing-the-funneljoin-package/</link>
+      <link>/introducing-the-funneljoin-package/</link>
       <pubDate>Thu, 01 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/introducing-the-funneljoin-package/</guid>
+      <guid>/introducing-the-funneljoin-package/</guid>
       <description>Have you ever had a “first this then that” question? For example, maybe you’re an e-commerce business and you want all the times people clicked on an item and then added it to their cart within 2 days, or the last page they visited before registering. Or you work with pharmaceutical data and need to know what drugs people took before drug x and which drugs they took afterward and when.</description>
     </item>
     
     <item>
       <title>Going Off the Map: Exploring purrr&#39;s Other Functions</title>
-      <link>https://hookedondata.org/going-off-the-map/</link>
+      <link>/going-off-the-map/</link>
       <pubDate>Wed, 09 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/going-off-the-map/</guid>
+      <guid>/going-off-the-map/</guid>
       <description>I recently completed Colin Fay’s excellent DataCamp course, Intermediate Functional Programming with purrr (full disclosure: I work at DataCamp, but part of why I joined was that I was a big fan of the short, interactive course format). Although I’ve used the purrr package before, there were a lot of functions in this course that were new to me. I wrote this post to hopefully demystify purrr a bit for those who find it overwhelming and illustrate some of its lesser known functions.</description>
     </item>
     
     <item>
       <title>The Lesser Known Stars of the Tidyverse</title>
-      <link>https://hookedondata.org/the-lesser-known-stars-of-the-tidyverse/</link>
+      <link>/the-lesser-known-stars-of-the-tidyverse/</link>
       <pubDate>Fri, 16 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/the-lesser-known-stars-of-the-tidyverse/</guid>
+      <guid>/the-lesser-known-stars-of-the-tidyverse/</guid>
       <description>In early 2018, I gave a few conference talks on “The Lesser Known Stars of the Tidyverse.” I focused on some packages and functions that aren’t as well known as the core parts of ggplot2 and dplyr but are very helpful in exploratory analysis. I walked through an example analysis of Kaggle’s 2017 State of Data Science and Machine Learning Survey to show how I would use these functions in an exploratory analysis.</description>
     </item>
     
     <item>
       <title>Guidelines for A/B Testing</title>
-      <link>https://hookedondata.org/guidelines-for-ab-testing/</link>
+      <link>/guidelines-for-ab-testing/</link>
       <pubDate>Tue, 07 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/guidelines-for-ab-testing/</guid>
+      <guid>/guidelines-for-ab-testing/</guid>
       <description>When I was working at Etsy, I benefited from a very robust A/B testing system. Etsy had been doing A/B testing for more than 6 years. By the time I left, Etsy’s in-house experimentation system, called Catapult, had more than 5 data engineers working on it full-time. Every morning, I was greeted with a homepage that listed all the experiments that Etsy had run in the prior four years. When you clicked on one, you got a summary of what the experiment was testing (usually written by the product manager).</description>
     </item>
     
     <item>
       <title>Red Flags in Data Science Interviews</title>
-      <link>https://hookedondata.org/red-flags-in-data-science-interviews/</link>
+      <link>/red-flags-in-data-science-interviews/</link>
       <pubDate>Tue, 03 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/red-flags-in-data-science-interviews/</guid>
+      <guid>/red-flags-in-data-science-interviews/</guid>
       <description>This post was co-written with Jacqueline Nolis, Principal at Nolis, LLC. Check out the rest of her blog posts, including ones on prioritizing data science work, hiring data scientists, and what to do when your data science project isn’t working.
 When interviewing for any position, you should be evaluating the company just as much as they are evaluating you. While you can research the company beforehand on glassdoor and similar sites, interviews are the best place to get a deeper understanding of the company and ask important questions.</description>
     </item>
     
     <item>
       <title>Advice for Applying to Data Science Jobs</title>
-      <link>https://hookedondata.org/advice-for-applying-to-data-science-jobs/</link>
+      <link>/advice-for-applying-to-data-science-jobs/</link>
       <pubDate>Tue, 29 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/advice-for-applying-to-data-science-jobs/</guid>
+      <guid>/advice-for-applying-to-data-science-jobs/</guid>
       <description>Following Dave Robinson’s sage tweet to write a blog post when you’ve given the same advice three times, this post is a collection of my thoughts and recommendations for people interested in applying to data science jobs in the US. Many of these principles also apply to tech jobs in general.
 A disclaimer: I have never worked as a recruiter or career coach. This knowledge comes from mainly from my study of Organizational Behavior (including negotiations and women in tech) in graduate school and my own career.</description>
     </item>
     
     <item>
       <title>The Importance of Sponsorship</title>
-      <link>https://hookedondata.org/the-importance-of-sponsorship/</link>
+      <link>/the-importance-of-sponsorship/</link>
       <pubDate>Wed, 14 Feb 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/the-importance-of-sponsorship/</guid>
+      <guid>/the-importance-of-sponsorship/</guid>
       <description>In my last post, I discussed the importance of building your network and some strategies for effectively reaching out. I closed with emphasizing how helpful your peers or people one step ahead of you can be. But there’s a specific area where people with more resources, status, or experience can help you: sponsorship.
 What is sponsorship? When people discuss what they’re seeking from a more senior person in their field, they usually talk about “mentorship.</description>
     </item>
     
     <item>
       <title>Building Your Data Science Network: Finding Community</title>
-      <link>https://hookedondata.org/building-your-data-science-network-finding-community/</link>
+      <link>/building-your-data-science-network-finding-community/</link>
       <pubDate>Wed, 10 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/building-your-data-science-network-finding-community/</guid>
+      <guid>/building-your-data-science-network-finding-community/</guid>
       <description>So you’ve heard you’re supposed to network. That’s the key in getting a job or establishing a reputation in your broader field, right? And it’s true that the importance of having a good network is supported by a lot of social sciences research. But if the thought of networking makes you cringe, you’re not alone. Many people equate networking to sending out millions of unsolicited Linkedin requests with no message, handing out 20 business cards at a meetup once a week, or sending emails to prominent data scientists with the subject line “Can I pick your brain?</description>
     </item>
     
     <item>
       <title>Building your Data Science Network: Reaching Out</title>
-      <link>https://hookedondata.org/building-your-data-science-network-reaching-out/</link>
+      <link>/building-your-data-science-network-reaching-out/</link>
       <pubDate>Wed, 10 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/building-your-data-science-network-reaching-out/</guid>
+      <guid>/building-your-data-science-network-reaching-out/</guid>
       <description>In the other part of this post, I covered how to start becoming involved in the data science community and meet people in general. But what if you read a really cool post by someone and want to follow up with them? This post offers some thoughts on how you can most effectively reach out to specific people.
 Two important caveats to start, both inspired by other posts on similar topics.</description>
     </item>
     
     <item>
       <title>Making R Code Faster: A Case Study</title>
-      <link>https://hookedondata.org/making-r-code-faster-a-case-study/</link>
+      <link>/making-r-code-faster-a-case-study/</link>
       <pubDate>Thu, 30 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/making-r-code-faster-a-case-study/</guid>
+      <guid>/making-r-code-faster-a-case-study/</guid>
       <description>About two months ago I put a call out to Rstats twitter:
 #rstats twitter - who loves helping to make (short) code run as fast as possible? Playing w/ foreach, doparallel, data.table but know little — Emily Robinson (@robinson_es) October 4, 2017   I had a working, short script that took 3 1/2 minutes to run. While this may be fine if you only need to run it once, I needed to run it hundreds of time for simulations.</description>
     </item>
     
     <item>
       <title>Managing Business Challenges in Data Science</title>
-      <link>https://hookedondata.org/managing-business-challenges-in-data-science/</link>
+      <link>/managing-business-challenges-in-data-science/</link>
       <pubDate>Thu, 28 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/managing-business-challenges-in-data-science/</guid>
+      <guid>/managing-business-challenges-in-data-science/</guid>
       <description>A few weeks ago, I wrote about my experience giving my first data science talk. If you’re interested, the full talk is available online, as well as the slides. In this post, I wanted to share some suggestions for managing business challenges that I didn’t have time to cover in my talk.
 Why Business Challenges? Why devote a whole post and half a talk to business challenges instead of, say, cutting edge deep learning papers or the shiny new language for handling Big DataTM?</description>
     </item>
     
     <item>
       <title>Giving Your First Data Science Talk</title>
-      <link>https://hookedondata.org/giving-your-first-data-science-talk/</link>
+      <link>/giving-your-first-data-science-talk/</link>
       <pubDate>Mon, 14 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/giving-your-first-data-science-talk/</guid>
+      <guid>/giving-your-first-data-science-talk/</guid>
       <description>A few weeks ago, I gave my first ever data science talk. Jared Lander, organizer of the New York Statistical Open Programming meetup, had been asking me to speak, and after about six months at Etsy I thought I could share what I’d learned about A/B Testing and its challenges. If you’d like to watch it, you can view the recording here. The talk starts around 9:00 and ends at 41:30, with the rest being Q&amp;amp;A (I tried to repeat the questions, so you should be able to follow that as well).</description>
     </item>
     
     <item>
       <title>RStudio Conference Recap</title>
-      <link>https://hookedondata.org/rstudio-conference-recap/</link>
+      <link>/rstudio-conference-recap/</link>
       <pubDate>Thu, 19 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/rstudio-conference-recap/</guid>
+      <guid>/rstudio-conference-recap/</guid>
       <description>Last week I spent four amazing days in Orlando at the first ever rstudio::conf. I learned a ton, met some really cool people, connected with several I hadn’t seen in a while, and came out feeling ready to take on the world.
 I’ve divided my summary of the conference into two parts. This first one shares my personal experience and some more general learnings, while the other one has quick, bullet-pointed lists on writing functions, packages, tools, and functions I learned, and general tips and tricks.</description>
     </item>
     
     <item>
       <title>RStudio Conference: Tips and Tricks</title>
-      <link>https://hookedondata.org/rstudio-conference-tips-and-tricks/</link>
+      <link>/rstudio-conference-tips-and-tricks/</link>
       <pubDate>Thu, 19 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/rstudio-conference-tips-and-tricks/</guid>
+      <guid>/rstudio-conference-tips-and-tricks/</guid>
       <description>This is the second part of my posts on the rstudio::conf. If you’re interested in more general thoughts on the conference and some personal notes, check out my other post. This post is to gather, as succintly and organized as possible, the practical and technical things I learned at the conference. While I did a whole training day on writing R Packages, I haven’t included most of what I’ve learned here.</description>
     </item>
     
     <item>
       <title>Topic Modeling the New York Times and Trump</title>
-      <link>https://hookedondata.org/topic-modeling-the-new-york-times-and-trump/</link>
+      <link>/topic-modeling-the-new-york-times-and-trump/</link>
       <pubDate>Fri, 30 Sep 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/topic-modeling-the-new-york-times-and-trump/</guid>
+      <guid>/topic-modeling-the-new-york-times-and-trump/</guid>
       <description>When Donald Trump first entered the Republican presidential primary on June 16, 2015, no media outlet seemed to take him seriously as a contender. He is a highly unusual candidate, and some in the media have admitted that they, and the media more generally, don’t know how to cover him, both in the primary and now in the general election. Trump himself has criticized the media’s coverage of him:</description>
     </item>
     
     <item>
       <title>Better Plotting in Python with Seaborn</title>
-      <link>https://hookedondata.org/better-plotting-in-python-with-seaborn/</link>
+      <link>/better-plotting-in-python-with-seaborn/</link>
       <pubDate>Mon, 08 Aug 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/better-plotting-in-python-with-seaborn/</guid>
+      <guid>/better-plotting-in-python-with-seaborn/</guid>
       <description>The Bright Blue Horror Coming into Metis, I knew one of the hardest parts would be switching from R to Python. Beyond simply having much more experience in R, I had come to rely on Hadley Wickham’s fantastic set of R packages for data science. One of these is ggplot2, a data visualization package. While there is a version of ggplot2 for python, I decided to learn the main plotting system in Python, matplotlib.</description>
     </item>
     
     <item>
       <title>Creating My First R Package Part 1</title>
-      <link>https://hookedondata.org/creating-my-first-r-package-part-1/</link>
+      <link>/creating-my-first-r-package-part-1/</link>
       <pubDate>Tue, 26 Jul 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/creating-my-first-r-package-part-1/</guid>
+      <guid>/creating-my-first-r-package-part-1/</guid>
       <description>As I mentioned in my previous post, I was fortunate to enter graduate school with a few years of programming experience in R. I learned R exclusively through my Statistics classes; while I took the graduate-level psychology statistics course at Rice and was a research assistant in multiple departments, all used SPSS.
 As this discrepancy suggests, the social sciences are often lagging behind in teaching and using open-source software. Fortunately, there is some effort to change this.</description>
     </item>
     
     <item>
       <title>From Social Scientist to Data Scientist</title>
-      <link>https://hookedondata.org/from-social-scientist-to-data-scientist/</link>
+      <link>/from-social-scientist-to-data-scientist/</link>
       <pubDate>Tue, 05 Jul 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/from-social-scientist-to-data-scientist/</guid>
+      <guid>/from-social-scientist-to-data-scientist/</guid>
       <description>I learned a lot in my two years at INSEAD getting a master’s in Organizational Behavior. Many of the skills and knowledge I gained there will be beneficial as a data scientist, from defining a problem to carrying out a thoughtful analysis to communicating to a range of audiences. But one skill I wasn’t developing was working in an industry-level coding environment.
 This hit home one day this spring. In one of my classes, we had been writing code in STATA.</description>
     </item>
     
     <item>
       <title>About</title>
-      <link>https://hookedondata.org/about/</link>
+      <link>/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/about/</guid>
+      <guid>/about/</guid>
       <description>I work at DataCamp as a Data Scientist on the growth team. Previously, I was a Data Scientist at Etsy working with their search team to design, implement, and analyze experiments on the ranking algorithm, UI changes, and new features. I regularly give talks on A/B testing and R programming at conferences and meetups; if you&amp;rsquo;re interested in having me speak at your event, please email at robinson.es[at]gmail.com. You can see a list of all my past talks, including links to recordings where available, here.</description>
     </item>
     
     <item>
       <title>Speaking</title>
-      <link>https://hookedondata.org/speaking/</link>
+      <link>/speaking/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/speaking/</guid>
+      <guid>/speaking/</guid>
       <description>I regularly give talks on A/B Testing, working in R, data science career advice, and more. I&amp;rsquo;ve given talks across the country and internationally, to audiences ranging from 25 people to 800. If you&amp;rsquo;re interested in having me speak at your event, please contact me at robinson.es[at]gmail.com
 Upcoming Talks November 2019, DC R conference.
 Previous Talks Joining the Data Science Community July 2019, Demystifying Data Science, an online conference by Metis.</description>

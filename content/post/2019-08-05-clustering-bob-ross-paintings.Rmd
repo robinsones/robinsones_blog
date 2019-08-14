@@ -15,8 +15,6 @@ In this post, I try something new and share an analysis I did without stopping t
 
 In this dataset, each row describes a painting Bos Ross (or a guest) did on his show, with the episode, season, title, and a column for each feature (e.g. "tree", "mountain") that is 1 if that painting included that feature and 0 otherwise. Let's go exploring! 
 
-![](/img/bob_ross_painting.jpg)
-
 ## Set up
 
 ```{r message = FALSE, warning = FALSE}
@@ -189,7 +187,7 @@ tidied_pca %>%
   facet_wrap(~ PC, scales = "free", ncol = 1) + 
   scale_x_reordered() + 
   labs(title = "What distinguishes Bob Ross paintings?",
-       subtitle = "They're divided between trees vs. beach, structures vs. mountains, and water vs. winter structures", y = "Relative importance in principle component",
+       subtitle = "Trees vs. beach, structures vs. mountains, and water vs. winter structures", y = "Relative importance in principle component",
        x = "")
 ```
 

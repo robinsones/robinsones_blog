@@ -2,68 +2,68 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>R on Hooked on Data</title>
-    <link>https://hookedondata.org/tags/r/</link>
+    <link>/tags/r/</link>
     <description>Recent content in R on Hooked on Data</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 01 Aug 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://hookedondata.org/tags/r/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/r/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Introducing the funneljoin package</title>
-      <link>https://hookedondata.org/introducing-the-funneljoin-package/</link>
+      <link>/introducing-the-funneljoin-package/</link>
       <pubDate>Thu, 01 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/introducing-the-funneljoin-package/</guid>
+      <guid>/introducing-the-funneljoin-package/</guid>
       <description>Have you ever had a “first this then that” question? For example, maybe you’re an e-commerce business and you want all the times people clicked on an item and then added it to their cart within 2 days, or the last page they visited before registering. Or you work with pharmaceutical data and need to know what drugs people took before drug x and which drugs they took afterward and when.</description>
     </item>
     
     <item>
       <title>Going Off the Map: Exploring purrr&#39;s Other Functions</title>
-      <link>https://hookedondata.org/going-off-the-map/</link>
+      <link>/going-off-the-map/</link>
       <pubDate>Wed, 09 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/going-off-the-map/</guid>
+      <guid>/going-off-the-map/</guid>
       <description>I recently completed Colin Fay’s excellent DataCamp course, Intermediate Functional Programming with purrr (full disclosure: I work at DataCamp, but part of why I joined was that I was a big fan of the short, interactive course format). Although I’ve used the purrr package before, there were a lot of functions in this course that were new to me. I wrote this post to hopefully demystify purrr a bit for those who find it overwhelming and illustrate some of its lesser known functions.</description>
     </item>
     
     <item>
       <title>The Lesser Known Stars of the Tidyverse</title>
-      <link>https://hookedondata.org/the-lesser-known-stars-of-the-tidyverse/</link>
+      <link>/the-lesser-known-stars-of-the-tidyverse/</link>
       <pubDate>Fri, 16 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/the-lesser-known-stars-of-the-tidyverse/</guid>
+      <guid>/the-lesser-known-stars-of-the-tidyverse/</guid>
       <description>In early 2018, I gave a few conference talks on “The Lesser Known Stars of the Tidyverse.” I focused on some packages and functions that aren’t as well known as the core parts of ggplot2 and dplyr but are very helpful in exploratory analysis. I walked through an example analysis of Kaggle’s 2017 State of Data Science and Machine Learning Survey to show how I would use these functions in an exploratory analysis.</description>
     </item>
     
     <item>
       <title>Making R Code Faster: A Case Study</title>
-      <link>https://hookedondata.org/making-r-code-faster-a-case-study/</link>
+      <link>/making-r-code-faster-a-case-study/</link>
       <pubDate>Thu, 30 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/making-r-code-faster-a-case-study/</guid>
+      <guid>/making-r-code-faster-a-case-study/</guid>
       <description>About two months ago I put a call out to Rstats twitter:
 #rstats twitter - who loves helping to make (short) code run as fast as possible? Playing w/ foreach, doparallel, data.table but know little — Emily Robinson (@robinson_es) October 4, 2017   I had a working, short script that took 3 1/2 minutes to run. While this may be fine if you only need to run it once, I needed to run it hundreds of time for simulations.</description>
     </item>
     
     <item>
       <title>RStudio Conference Recap</title>
-      <link>https://hookedondata.org/rstudio-conference-recap/</link>
+      <link>/rstudio-conference-recap/</link>
       <pubDate>Thu, 19 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/rstudio-conference-recap/</guid>
+      <guid>/rstudio-conference-recap/</guid>
       <description>Last week I spent four amazing days in Orlando at the first ever rstudio::conf. I learned a ton, met some really cool people, connected with several I hadn’t seen in a while, and came out feeling ready to take on the world.
 I’ve divided my summary of the conference into two parts. This first one shares my personal experience and some more general learnings, while the other one has quick, bullet-pointed lists on writing functions, packages, tools, and functions I learned, and general tips and tricks.</description>
     </item>
     
     <item>
       <title>Creating My First R Package Part 1</title>
-      <link>https://hookedondata.org/creating-my-first-r-package-part-1/</link>
+      <link>/creating-my-first-r-package-part-1/</link>
       <pubDate>Tue, 26 Jul 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/creating-my-first-r-package-part-1/</guid>
+      <guid>/creating-my-first-r-package-part-1/</guid>
       <description>As I mentioned in my previous post, I was fortunate to enter graduate school with a few years of programming experience in R. I learned R exclusively through my Statistics classes; while I took the graduate-level psychology statistics course at Rice and was a research assistant in multiple departments, all used SPSS.
 As this discrepancy suggests, the social sciences are often lagging behind in teaching and using open-source software. Fortunately, there is some effort to change this.</description>
     </item>
