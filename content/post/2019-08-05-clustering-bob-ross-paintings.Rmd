@@ -11,7 +11,7 @@ keywords:
   - code
 ---
 
-Last week, I decided to participate in Tidytuesday and explore some data on Bob Ross paintings. Tidytuesday is an initiative by the [R for Data Science online learning community](https://www.rfordatasci.com/). Each Monday, a new dataset is posted on [GitHub](https://github.com/rfordatascience/tidytuesday) with a short description. You can see some analyses and visualizations people have done by searching for the [#tidytuesday hashtag on Twitter](https://twitter.com/search?q=%23tidytuesday). 
+In this post, I try something new and share an analysis I did without stopping to explain the code along the way (with a few exceptions). I analyze a dataset on Bob Ross paintings from last week's Tidytuesday, an initiative by the [R for Data Science online learning community](https://www.rfordatasci.com/). Each Monday, a new dataset is posted on [GitHub](https://github.com/rfordatascience/tidytuesday) with a short description. You can see some analyses and visualizations people have done by searching for the [#tidytuesday hashtag on Twitter](https://twitter.com/search?q=%23tidytuesday). 
 
 In this dataset, each row describes a painting Bos Ross (or a guest) did on his show, with the episode, season, title, and a column for each feature (e.g. "tree", "mountain") that is 1 if that painting included that feature and 0 otherwise. Let's go exploring! 
 
@@ -111,43 +111,31 @@ Trees (of all types) stay consistently popular across seasons, while clouds beca
 What features have the great absolute difference between the first and second half of the series? 
 
 ```{r}
-features_by_season_half <- nb_features_by_season %>%
+by_feature_half <- nb_features_by_season %>%
   mutate(season_half = if_else(season <= 15, "first", "second")) %>%
   group_by(season_half, feature) %>%
   summarize(nb_paintings = sum(nb_paintings)) %>%
   ungroup() %>%
-  mutate(pct_featuring = ifelse(season_half == "first", nb_paintings / (15 * 67), nb_paintings / (16 * 67))) %>%
-  select(-nb_paintings) %>%
-  spread(season_half, pct_featuring) 
-
-features_by_season_half %>%
-  mutate(difference = `Second half` - `First half`) %>%
-  top_n(10, abs(difference)) %>%
-  mutate(feature = fct_reorder(feature, `First half`)) %>%
-  ggplot(aes(y = feature, x = `First half`, xend = `Second half`)) + 
-  geom_point()
-  ggalt::geom_dumbbell(size = 2,
-                    color="#65ADC2", 
-                    colour_x = "#E84646", colour_xend = "#233B43") + 
-  # needed to add legend to plot
-  labs(x = "", y = "") + 
-  scale_x_continuous(labels = scales::percent)
-```
-
-```{r}
-nb_features_by_season %>%
-  mutate(season_half = if_else(season <= 15, "first", "second")) %>%
-  group_by(season_half, feature) %>%
-  summarize(nb_paintings = sum(nb_paintings)) %>%
-  ungroup() %>%
-  mutate(nb_paintings = ifelse(season_half == "first", nb_paintings / (15 * 67), nb_paintings / (16 * 67))) %>%
+  mutate(nb_paintings = ifelse(season_half == "first", 
+                               nb_paintings / (15 * 67), 
+                               nb_paintings / (16 * 67))) %>%
   spread(season_half, nb_paintings) %>%
   mutate(difference = second - first) %>%
   top_n(10, abs(difference)) %>%
-  ggplot(aes(first, second)) +
-  geom_point() +
-  geom_text(aes(label = ))
-  geom_abline(color = "red")
+  gather(season_half, nb_paintings, first, second)
+
+by_feature_half %>%
+  mutate(feature = fct_reorder(feature, difference, .desc = TRUE),
+         season_half = ifelse(season_half == "first", "1-15", "16-31")) %>%
+  ggplot(aes(nb_paintings, feature)) +
+  geom_line() +
+  geom_point(aes(color = season_half)) +
+  scale_color_manual(values = c("#E84646", "#233B43")) + 
+  scale_x_continuous(labels = scales::percent) + 
+  labs(x = "Percent of paintings with feature",
+       y = "",
+       title = "What features became more or less frequent?",
+       color = "Seasons")
 ```
 
 As we had seen in our graph of the top 6 features, clouds (and it's like, cumuls and cirrus) went down, while framed got a little more popular. 
@@ -168,7 +156,7 @@ Most paintings have between 5 and 11 features, although one has more than 15 and
 
 ### Principle Components Analysis
 
-I highly recommend reading Julia Silge's great post on [Principle Components Analysis](https://juliasilge.com/blog/stack-overflow-pca/), where she explains it using StackOverflow data. In short, Principle Components Analysis is a dimensionality-reduction technique that takes all of your variables and creates a new set of characteristics that still contains the most information (check out [this StackOverflow answer](https://stats.stackexchange.com/questions/2691/making-sense-of-principal-component-analysis-eigenvectors-eigenvalues) for great explanations from simple to mathematical).
+In short, Principle Components Analysis is a dimensionality-reduction technique that takes all of your variables and creates a new set of characteristics that still contains the most information. For more information, I highly recommend checking out [this StackOverflow answer](https://stats.stackexchange.com/questions/2691/making-sense-of-principal-component-analysis-eigenvectors-eigenvalues) for great explanations from simple to mathematical and Julia Silge's [post](https://juliasilge.com/blog/stack-overflow-pca/) where she explains Principle Components Analysis using StackOverflow data.
 
 We'll start by selecting only features that appear in at least 5 paintings and calculate three principle components, adding `scale = TRUE` to scale the features. This is a critical step; while the features are all on the same scale (0 or 1, not say 0 or 100 for one and 0 or 50 for another), they have different variances as some have a lot of 1s and some a lot of 0s. We need to center our data so that they all have the same mean and variance.
 
@@ -179,14 +167,14 @@ bob_ross_for_pca <- bob_ross %>%
 ```
 
 ```{r}
-tags_pca <- irlba::prcomp_irlba(bob_ross_for_pca, n = 3, scale. = TRUE)
+tags_pca <- irlba::prcomp_irlba(bob_ross_for_pca, n = 3, scale = TRUE)
 
 tidied_pca <- bind_cols(feature = colnames(bob_ross_for_pca),
                         as_tibble(tags_pca$rotation)) %>%
   gather(PC, value, PC1:PC3)
 ```
 
-After  take a look at which features have the most relative importance (highest absolute value) for each. We're going to use the new functions `tidytext` functions `reorder_within()` and `scale_x_reordered()` to make the features ordered within each plot (see Julia Silge's [post](https://juliasilge.com/blog/reorder-within/) for more).
+Let's take a look at which features have the most relative importance (highest absolute value) for each component. We're going to use the new `tidytext` functions `reorder_within()` and `scale_x_reordered()` to make the features ordered within each plot (see Julia Silge's [post](https://juliasilge.com/blog/reorder-within/) for more).
 
 ```{r fig.height = 6}
 library(tidytext)
@@ -195,7 +183,6 @@ tidied_pca %>%
   group_by(PC) %>%
   top_n(8, abs(value)) %>%
   ungroup() %>%
-  #mutate(feature = fct_reorder(feature, value)) %>%
   ggplot(aes(x = reorder_within(feature, value, PC), y = value)) +
   geom_col() + 
   coord_flip() + 
@@ -210,4 +197,4 @@ We find that the first principle component divides painting between those at the
 
 ## Conclusion 
 
-This was a new style of post for me, where I did an analysis without stopping to explain the code along the way (with a few exceptions). I hope you were able to learn some new tricks along the way. Let me know what you think on [twitter](https://twitter.com/robinson_es)!
+I hope you enjoyed this new style of post and were able to learn some new tricks along the way. Let me know what you think on [twitter](https://twitter.com/robinson_es)! 
