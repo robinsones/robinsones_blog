@@ -1,7 +1,7 @@
 ---
 title: Exploring Bob Ross paintings
 author: Emily Robinson
-date: '2019-08-09'
+date: '2019-08-15'
 slug: exploring-bob-ross-paintings
 categories: []
 tags: []
@@ -11,9 +11,11 @@ keywords:
   - code
 ---
 
-This week, I decided to participate in Tidytuesday and explore data on Bob Ross paintings. Tidytuesday is an initiative by the [R for Data Science online learning community](https://www.rfordatasci.com/). Each Monday, a new dataset is posted on [GitHub](https://github.com/rfordatascience/tidytuesday) with a short description. You can see some analyses and visualizations people have done by searching for the [#tidytuesday hashtag on Twitter](https://twitter.com/search?q=%23tidytuesday). 
+Last week, I decided to participate in Tidytuesday and explore some data on Bob Ross paintings. Tidytuesday is an initiative by the [R for Data Science online learning community](https://www.rfordatasci.com/). Each Monday, a new dataset is posted on [GitHub](https://github.com/rfordatascience/tidytuesday) with a short description. You can see some analyses and visualizations people have done by searching for the [#tidytuesday hashtag on Twitter](https://twitter.com/search?q=%23tidytuesday). 
 
 In this dataset, each row describes a painting Bos Ross (or a guest) did on his show, with the episode, season, title, and a column for each feature (e.g. "tree", "mountain") that is 1 if that painting included that feature and 0 otherwise. Let's go exploring! 
+
+![](/img/bob_ross_painting.jpg)
 
 ## Set up
 
@@ -33,8 +35,8 @@ bob_ross <- bob_ross %>%
   mutate(title = str_remove_all(title, '"')) 
 
 bob_ross %>%
-  head(10) %>%
-  select(1:10) %>%
+  head(5) %>%
+  select(1:7) %>%
   knitr::kable()
 ```
 
@@ -87,10 +89,6 @@ nb_features_by_season <- bob_ross %>%
   group_by(season) %>%
   summarize_at(vars(apple_frame:wood_framed), ~ sum(.)) %>%
   gather(feature, nb_paintings, -season)
-
-nb_features_by_season %>%
-  head(5) %>%
-  knitr::kable()
 ```
 
 ```{r}
@@ -110,22 +108,7 @@ nb_features_by_season %>%
 
 Trees (of all types) stay consistently popular across seasons, while clouds became less featured.
 
-These features were in every season - were any other features? 
-
-```{r}
-total_seasons <- max(nb_features_by_season$season)
-
-nb_features_by_season %>%
-  group_by(feature) %>%
-  summarize(nb_seasons_featured = sum(nb_paintings != 0)) %>%
-  filter(nb_seasons_featured == total_seasons) %>%
-  select("Features that appear in every season" = feature) %>%
-  knitr::kable()
-```
-
-Yes - 6 more were in at least one painting, including grass, lake, and river.  
-
-Were there any features that weren't in any of the paintings in the first 15 seasons, but appeared at least a few times in the last 16? 
+What features have the great absolute difference between the first and second half of the series? 
 
 ```{r}
 features_by_season_half <- nb_features_by_season %>%
@@ -133,23 +116,38 @@ features_by_season_half <- nb_features_by_season %>%
   group_by(season_half, feature) %>%
   summarize(nb_paintings = sum(nb_paintings)) %>%
   ungroup() %>%
-  spread(season_half, nb_paintings) 
+  mutate(pct_featuring = ifelse(season_half == "first", nb_paintings / (15 * 67), nb_paintings / (16 * 67))) %>%
+  select(-nb_paintings) %>%
+  spread(season_half, pct_featuring) 
 
 features_by_season_half %>%
-  filter(first == 0) %>%
-  knitr::kable()
+  mutate(difference = `Second half` - `First half`) %>%
+  top_n(10, abs(difference)) %>%
+  mutate(feature = fct_reorder(feature, `First half`)) %>%
+  ggplot(aes(y = feature, x = `First half`, xend = `Second half`)) + 
+  geom_point()
+  ggalt::geom_dumbbell(size = 2,
+                    color="#65ADC2", 
+                    colour_x = "#E84646", colour_xend = "#233B43") + 
+  # needed to add legend to plot
+  labs(x = "", y = "") + 
+  scale_x_continuous(labels = scales::percent)
 ```
 
-Nope - of the 13 features that never appear in the first 15 seasons, they only appear once in the last 16. Strangely, there's also a feature, "lakes", that never appears in any paintings. 
-
-What features have the great absolute difference between the first and second half of the series? 
-
 ```{r}
-features_by_season_half %>%
+nb_features_by_season %>%
+  mutate(season_half = if_else(season <= 15, "first", "second")) %>%
+  group_by(season_half, feature) %>%
+  summarize(nb_paintings = sum(nb_paintings)) %>%
+  ungroup() %>%
+  mutate(nb_paintings = ifelse(season_half == "first", nb_paintings / (15 * 67), nb_paintings / (16 * 67))) %>%
+  spread(season_half, nb_paintings) %>%
   mutate(difference = second - first) %>%
   top_n(10, abs(difference)) %>%
-  arrange(difference) %>%
-  knitr::kable()
+  ggplot(aes(first, second)) +
+  geom_point() +
+  geom_text(aes(label = ))
+  geom_abline(color = "red")
 ```
 
 As we had seen in our graph of the top 6 features, clouds (and it's like, cumuls and cirrus) went down, while framed got a little more popular. 
@@ -170,27 +168,27 @@ Most paintings have between 5 and 11 features, although one has more than 15 and
 
 ### Principle Components Analysis
 
-Julia Silge has a great post on [Principle Components Analysis](https://juliasilge.com/blog/stack-overflow-pca/), where she explains it using StackOverflow data. I highly recommend reading.
+I highly recommend reading Julia Silge's great post on [Principle Components Analysis](https://juliasilge.com/blog/stack-overflow-pca/), where she explains it using StackOverflow data. In short, Principle Components Analysis is a dimensionality-reduction technique that takes all of your variables and creates a new set of characteristics that still contains the most information (check out [this StackOverflow answer](https://stats.stackexchange.com/questions/2691/making-sense-of-principal-component-analysis-eigenvectors-eigenvalues) for great explanations from simple to mathematical).
+
+We'll start by selecting only features that appear in at least 5 paintings and calculate three principle components, adding `scale = TRUE` to scale the features. This is a critical step; while the features are all on the same scale (0 or 1, not say 0 or 100 for one and 0 or 50 for another), they have different variances as some have a lot of 1s and some a lot of 0s. We need to center our data so that they all have the same mean and variance.
 
 ```{r}
-bob_ross_for_cluster <- bob_ross %>% 
+bob_ross_for_pca <- bob_ross %>% 
   select(-season, -episode, -title)  %>%
   select_if(~ sum(.) >= 5)
 ```
 
 ```{r}
-tags_pca <- irlba::prcomp_irlba(bob_ross_for_cluster, n = 3, scale. = TRUE)
-```
+tags_pca <- irlba::prcomp_irlba(bob_ross_for_pca, n = 3, scale. = TRUE)
 
-```{r}
-tidied_pca <- bind_cols(feature = colnames(bob_ross_for_cluster),
+tidied_pca <- bind_cols(feature = colnames(bob_ross_for_pca),
                         as_tibble(tags_pca$rotation)) %>%
   gather(PC, value, PC1:PC3)
 ```
 
-We're going to use the new functions `reorder_within()` and `scale_x_reordered()` to make the features ordered within each plot (see Julia Silge's [post](https://juliasilge.com/blog/reorder-within/) for more).
+After  take a look at which features have the most relative importance (highest absolute value) for each. We're going to use the new functions `tidytext` functions `reorder_within()` and `scale_x_reordered()` to make the features ordered within each plot (see Julia Silge's [post](https://juliasilge.com/blog/reorder-within/) for more).
 
-```{r}
+```{r fig.height = 6}
 library(tidytext)
 
 tidied_pca %>%
@@ -205,156 +203,11 @@ tidied_pca %>%
   scale_x_reordered() + 
   labs(title = "What distinguishes Bob Ross paintings?",
        subtitle = "They're divided between trees vs. beach, structures vs. mountains, and water vs. winter structures", y = "Relative importance in principle component",
-       x = "Feature")
+       x = "")
 ```
 
-
-### Topic Modeling 
-
-We first need to get rid of the painting with no features. 
-
-```{r}
-library(topicmodels)
-library(tidytext)
-
-bob_ross_for_tm <- bob_ross %>%
-  mutate(nb_features = select_at(., vars(apple_frame:wood_framed)) %>% pmap_dbl(sum)) %>%
-  filter(nb_features != 0) %>%
-  select(-title, -season, -episode, -nb_features) %>%
-    select_if(~ sum(.) >= 5) 
-
-bob_ross_lda <- LDA(as.matrix(bob_ross_for_tm), k = 2, control = list(seed = 1234))
-
-bob_ross_topics <- tidy(bob_ross_lda, matrix = "beta")
-bob_ross_topics
-```
-
-```{r}
-bob_ross_top_terms <- bob_ross_topics %>%
-  group_by(topic) %>%
-  top_n(10, beta) %>%
-  ungroup() %>%
-  arrange(topic, -beta)
-
-bob_ross_top_terms %>%
-  mutate(term = reorder(term, beta)) %>%
-  ggplot(aes(term, beta, fill = factor(topic))) +
-  geom_col(show.legend = FALSE) +
-  facet_wrap(~ topic, scales = "free") +
-  coord_flip()
-```
-
-```{r}
-beta_spread <- bob_ross_topics %>%
-  mutate(topic = paste0("topic", topic)) %>%
-  spread(topic, beta) %>%
-  filter(topic1 > .001 | topic2 > .001) %>%
-  mutate(log_ratio = log2(topic2 / topic1))
-
-beta_spread %>% 
-  top_n(20, abs(log_ratio)) %>%
-  mutate(term = fct_reorder(term, log_ratio)) %>%
-  ggplot(aes(x = term, y = log_ratio)) + 
-  geom_col() + 
-  coord_flip()
-```
+We find that the first principle component divides painting between those at the ocean (with beach and palm trees) and those in the tree covered mountains. The next component divides mountains from structures like cabin and barns, while the final one distinguishes a cabin in the snow from a grassy river. 
 
 ## Conclusion 
 
 This was a new style of post for me, where I did an analysis without stopping to explain the code along the way (with a few exceptions). I hope you were able to learn some new tricks along the way. Let me know what you think on [twitter](https://twitter.com/robinson_es)!
-
-
-```{r}
-library(Matrix)
-  
-s <- svd(as.matrix(bob_ross_for_cluster))
-```
-
-```{r}
-v <- broom::tidy(s, matrix = "v") %>%
-  mutate(feature = colnames(as.matrix(bob_ross_for_cluster))[column]) 
-```
-
-
-```{r}
-broom::tidy(s, matrix = "d") %>%
-  ggplot(aes(x = PC, y = cumulative)) + 
-  geom_col()
-```
-
-```{r}
-v %>%
-  filter(PC == 4) %>%
-  top_n(20, abs(value)) %>%
-  mutate(feature = fct_reorder(feature, value)) %>%
-  ggplot(aes(x = feature, y = value)) +
-  geom_col() + 
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))
-```
-
-```{r}
-v %>%
-  filter(PC == 3) %>%
-  top_n(30, abs(value)) %>%
-  mutate(feature = fct_reorder(feature, value)) %>%
-  ggplot(aes(x = feature, y = value)) +
-  geom_col() + 
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))
-```
-
-## Clustering
-
-What features go together in a painting? Which paintings are the most similar? We're going to take to answer this with k-means clustering and principle components analysis.
-
-### K-means clustering 
-
-While generally you need to scale your data before doing a cluster analysis, in our case every feature is already on the same scale (being 0 or 1 depending if it's present or not). Before we start, we're going to remove features that appear in less than 10 paintings. 
-
-We'll use the elbow method to pick the number of clusters. 
-
-```{r}
-bob_ross_for_cluster <- bob_ross %>% 
-  select(-season, -episode, -title)  %>%
-  select_if(~ sum(.) >= 5) 
-
-tibble(k = 1:50) %>%
-  mutate(tot_withinss = map_dbl(k, ~ kmeans(scale(bob_ross_for_cluster), centers = .)$tot.withinss)) %>%
-  ggplot(aes(x = k, y = tot_withinss)) + 
-  geom_line() + 
-  expand_limits(y = 0)
-```
-
-It doesn't seem like there's really an elbow - let's try 9 clusters. 
-
-```{r}
-library(cluster)
-
-tibble(k = 2:50) %>%
-  mutate(average_width = map_dbl(k, ~ pam(bob_ross_for_cluster, k = .)$silinfo$avg.width)) %>%
-  ggplot(aes(x = k, y = average_width)) + 
-  geom_line() + 
-  expand_limits(y = 0)
-```
-
-```{r}
-model <- kmeans(scale(bob_ross_for_cluster), 9)
-
-bob_ross_for_cluster %>%
-  mutate(cluster = model$cluster) %>%
-  add_count(cluster) %>%
-  group_by(cluster, n) %>%
-  summarize_at(vars(barn:winter), ~ sum(.)) %>%
-  gather(feature, nb_paintings, -cluster, -n) %>%
-  mutate(pct_w_feature = nb_paintings / n) %>%
-  top_n(6, pct_w_feature) %>%
-  ungroup() %>%
-  ggplot(aes(x = feature, y = pct_w_feature)) + 
-  geom_col() + 
-  facet_wrap(~ cluster, scales = "free", ncol = 3) + 
-  coord_flip() + 
-  scale_y_continuous(labels = scales::percent)
-```
-
-Most paintings in all of the clusters have tree/trees. Cluster 3 is snowy winter scenes, while 2 is mountains and clouds and 1 is river and grass.
-
-
