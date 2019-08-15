@@ -1,0 +1,189 @@
+---
+title: Tidying up some Pokemon
+author: Emily Robinson
+date: '2019-08-15'
+slug: tidying-up-some-pokemon
+categories: []
+tags: []
+keywords:
+  - tech
+---
+
+```{r message = FALSE, warning = FALSE}
+library(tidyverse)
+```
+
+```{r}
+library(datapasta)
+# use tribble_paste()
+type_comparisons <- tibble::tribble(
+     ~Attacking, ~Normal, ~Fire, ~Water, ~Electric, ~Grass, ~Ice, ~Fighting, ~Poison, ~Ground, ~Flying, ~Psychic, ~Bug, ~Rock, ~Ghost, ~Dragon, ~Dark, ~Steel, ~Fairy,
+       "Normal",       1,     1,      1,         1,      1,    1,         1,       1,       1,       1,        1,    1,   0.5,      0,       1,     1,    0.5,      1,
+         "Fire",       1,   0.5,    0.5,         1,      2,    2,         1,       1,       1,       1,        1,    2,   0.5,      1,     0.5,     1,      2,      1,
+        "Water",       1,     2,    0.5,         1,    0.5,    1,         1,       1,       2,       1,        1,    1,     2,      1,     0.5,     1,      1,      1,
+     "Electric",       1,     1,      2,       0.5,    0.5,    1,         1,       1,       0,       2,        1,    1,     1,      1,     0.5,     1,      1,      1,
+        "Grass",       1,   0.5,      2,         1,    0.5,    1,         1,     0.5,       2,     0.5,        1,  0.5,     2,      1,     0.5,     1,    0.5,      1,
+          "Ice",       1,   0.5,    0.5,         1,      2,  0.5,         1,       1,       2,       2,        1,    1,     1,      1,       2,     1,    0.5,      1,
+     "Fighting",       2,     1,      1,         1,      1,    2,         1,     0.5,       1,     0.5,      0.5,  0.5,     2,      0,       1,     2,      2,    0.5,
+       "Poison",       1,     1,      1,         1,      2,    1,         1,     0.5,     0.5,       1,        1,    1,   0.5,    0.5,       1,     1,      0,      2,
+       "Ground",       1,     2,      1,         2,    0.5,    1,         1,       2,       1,       0,        1,  0.5,     2,      1,       1,     1,      2,      1,
+       "Flying",       1,     1,      1,       0.5,      2,    1,         2,       1,       1,       1,        1,    2,   0.5,      1,       1,     1,    0.5,      1,
+      "Psychic",       1,     1,      1,         1,      1,    1,         2,       2,       1,       1,      0.5,    1,     1,      1,       1,     0,    0.5,      1,
+          "Bug",       1,   0.5,      1,         1,      2,    1,       0.5,     0.5,       1,     0.5,        2,    1,     1,    0.5,       1,     2,    0.5,    0.5,
+         "Rock",       1,     2,      1,         1,      1,    2,       0.5,       1,     0.5,       2,        1,    2,     1,      1,       1,     1,    0.5,      1,
+        "Ghost",       0,     1,      1,         1,      1,    1,         1,       1,       1,       1,        2,    1,     1,      2,       1,   0.5,      1,      1,
+       "Dragon",       1,     1,      1,         1,      1,    1,         1,       1,       1,       1,        1,    1,     1,      1,       2,     1,    0.5,      0,
+         "Dark",       1,     1,      1,         1,      1,    1,       0.5,       1,       1,       1,        2,    1,     1,      2,       1,   0.5,      1,    0.5,
+        "Steel",       1,   0.5,    0.5,       0.5,      1,    2,         1,       1,       1,       1,        1,    1,     2,      1,       1,     1,    0.5,      2,
+        "Fairy",       1,   0.5,      1,         1,      1,    1,         2,     0.5,       1,       1,        1,    1,     1,      1,       2,     2,    0.5,      1
+     )
+```
+
+```{r}
+all_combinations <- combn(18, 6)
+m <- as.matrix(type_comparisons[, -1])
+rownames(m) <- type_comparisons$Attacking
+super_effective_m <- (m == 2) * 1L
+```
+
+## Making it faster
+
+We can actually make the `apply()` step faster by recognizing we're dealing with matrix multiplication. We'll start by making a matrix of zeros with 18 rows and 18,564 columns (one for each possible team). 
+
+```{r}
+sparse_combinations <- matrix(0, nrow = 18, ncol = ncol(all_combinations))
+```
+
+We then want to fill in the matrix with 1s in each column where that row type is on that team. For example, for the 1st column, we'd want 1s for 1 through 6, for the second column 1s from 1 to 5 and for 7, etc. We know which rows we need for each column from `all_combinations`, but how do we do it? 
+
+If we were changing one entry to 1, we'd do it like this: 
+
+```{r}
+sparse_combinations[1, 1] <- 1
+sparse_combinations[, 1:3]
+```
+
+That works the same if we did it for multiple entries: 
+
+```{r}
+sparse_combinations[1:3, 1] <- 1
+sparse_combinations[, 1:3]
+```
+
+First, we're going to make `all_combinations` a vector instead by putting it inside `c()`. This will be our indicator of which rows should be filled in with 1. Then we realize we need to modify rows 1:6 in column 1, rows 1:5 and 7 in column 2, etc. In other words, the first six entries of `all_combinations` should be paired with 1, the next 6 2, the next 6 3, etc, to indicate what column that row should be modified in. That means we need a vector of six 1s, six 2s, six 3s, all the way up to six 18,546, to put in the column index. We can do that with `rep()`: 
+
+```{r}
+all_columns <- rep(1:ncol(all_combinations), each = 6)
+all_columns[1:24]
+```
+
+In the final step, we wrap those into `cbind()`:
+
+```{r}
+sparse_combinations[cbind(c(all_combinations), all_columns)] <- 1
+```
+
+```{r}
+sparse_combinations[1:8, 1:2]
+```
+
+Now `sparse_combinations` has 1s in the correct places to indicate which types are on which teams. 
+
+We now multiple the tranpose of `super_effective_m` by `spare_combinations`, to get a new matrix, `strategy_effectiveness`, that is 18 by 18,564. Each column represents a six-type team and each row a defending type. Each entry is how many pokemon on the six-type team is super-effective against the defending team.
+
+```{r}
+strategy_effectiveness <- (t(super_effective_m) %*% sparse_combinations)
+
+strategy_effectiveness[, 1:3]
+```
+
+For example, on the first team, none are super effective against Normal, 1 of the pokemon is super effective against Fire, two are super effective against Water. We need to know how many entries are greater than 0, as that is how many types the team is super effective against. We can do this with `colSums()`:
+
+```{r}
+super_effective_results <- colSums(strategy_effectiveness > 0)
+super_effective_results[1:5]
+```
+
+`super_effective_results` is a vector of length 18,564 - the first entry is how many types team 1 is super effective against, the second how many types team 2 is super effective against etc. We now look for only those entries that are equal to the max value of the vector:
+
+```{r}
+best_combos <- all_combinations[, super_effective_results == max(super_effective_results)]
+matrix(rownames(super_effective_m)[best_combos], 6)
+```
+
+As we expected, we see the same 10 teams from our previous method. 
+
+These are all effective against 17 types, what are they missing? We can see which types a given team is super effective by indexing the rows of `super_effective_m` to only the ones on our team and then summing those columns. Let's try that with the first combination:  
+```{r}
+colSums(super_effective_m[best_combos[, 1],  ])
+```
+
+This says this combo is ineffective against fairy, while there are two types on the attacking team that are super effective against Grass, Flying, Rock, and Steel.
+
+We can write a quick for loop to do this for all ten teams:
+
+```{r}
+for (combo in 1:10) ( 
+  print(names(which(colSums(super_effective_m[best_combos[, combo],  ]) == 0)))
+  )
+```
+
+We see four teams have no one effective against Fairy, two teams no one against Normal, and four teams no one against Water.
+
+## Tidying it up
+
+We've been having fun learning all about matrices, but let's see if we can do this a tidy way. We wouldn't bother if we were very concerned about speed (see my previous post on [make R code faster](https://hookedondata.org/making-r-code-faster-a-case-study/) for how working with matrices is super fast and efficient in R), but since it's a relatively small operation, I think it's worth trying. 
+
+We'll start by making `all_combinations` a tidy table by using `melt()` (from the old school `reshape2` package): 
+
+```{r}
+tidy_teams <- reshape2::melt(all_combinations, 
+               varnames = c("number", "team"), 
+               value.name = "type_index")  %>%
+  tbl_df() %>%
+  mutate(type = type_comparisons$Attacking[type_index]) %>% 
+  select(team, type)
+
+tidy_teams %>%
+  head(10) %>%
+  knitr::kable()
+```
+
+Now we have a table with each one of the 18k+ teams and what type of pokemon are on there. For example, we see that first team has Normal, Fire, Water, Electric, Grass, and Ice. 
+
+We now join this with our `tidied_comparison` table where the outcomes was 2 (super effective). Now for each pokemon type on each type, there will be a row for each type it's super effective against. We're going to change the Defending column to numeric by making it first a factor and then a numeric, as that will make the next step much faster.
+
+```{r}
+tidy_team_effectiveness <- tidy_teams %>%
+  inner_join(tidied_comparison %>%
+               filter(outcome == 2) %>%
+               mutate(Defending = as.numeric(as.factor(Defending))), 
+             by = c("type" = "Attacking"))
+
+tidy_team_effectiveness %>%
+  head(10) %>%
+  knitr::kable()
+```
+
+For example, team 1 has a Fire type that it's effective against four types. 
+
+We now calculate for each team how many distinct Defending types they're effective against. This is slower than our previous versions but still only takes .2 seconds since we changed Defending to be numeric (when it's a character it takes about 14 seconds).
+
+```{r}
+tidy_nb_effective_against <- tidy_team_effectiveness %>%
+  group_by(team) %>%
+  mutate(nb_effective_against = n_distinct(Defending)) %>%
+  ungroup() 
+```
+
+We can then filter for those with the maximum value of `nb_effective_against`. If we just want the team numbers of type, we'll run a `distinct()`:
+
+```{r}
+tidy_nb_effective_against %>%
+  filter(nb_effective_against == max(nb_effective_against)) %>%
+  distinct(team, type) %>%
+  head(10) %>%
+  knitr::kable()
+```
+
+We now again have the 10 combinations of six types that will be super effective against 17 types.
