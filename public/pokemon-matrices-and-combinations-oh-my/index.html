@@ -8,18 +8,18 @@
 <meta name="generator" content="Hugo 0.51 with theme Tranquilpeak 0.4.3-SNAPSHOT">
 <meta name="author" content="Emily Robinson">
 <meta name="keywords" content="tech">
-<meta name="description" content="I recentlys started playing Pokemon again - “Pokemon Let’s Go Eevee” on the Nintendo Switch to be specific. With pokemon, type match-ups are very important, as some types of moves are “super effective” against other types. For example, fire moves are super effective against grass pokemon. If you can set yourself up so that you’re always fighting against pokemon you’re super effective against, you’re going to have a much easier time.">
+<meta name="description" content="I recentlys started playing Pokemon again - “Pokemon Let’s Go Eevee” on the Nintendo Switch to be specific. With pokemon, type match-ups are very important in battles, as some types of moves are “super effective” against other types. For example, fire moves are super effective against grass pokemon, which means they do double the damage they normally would. If you can set yourself up so that you’re always fighting against pokemon you’re super effective against, you’re going to have a much easier time.">
 
 
-<meta property="og:description" content="I recentlys started playing Pokemon again - “Pokemon Let’s Go Eevee” on the Nintendo Switch to be specific. With pokemon, type match-ups are very important, as some types of moves are “super effective” against other types. For example, fire moves are super effective against grass pokemon. If you can set yourself up so that you’re always fighting against pokemon you’re super effective against, you’re going to have a much easier time.">
+<meta property="og:description" content="I recentlys started playing Pokemon again - “Pokemon Let’s Go Eevee” on the Nintendo Switch to be specific. With pokemon, type match-ups are very important in battles, as some types of moves are “super effective” against other types. For example, fire moves are super effective against grass pokemon, which means they do double the damage they normally would. If you can set yourself up so that you’re always fighting against pokemon you’re super effective against, you’re going to have a much easier time.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Pokemon, matrices, and combinations, oh my">
 <meta name="twitter:title" content="Pokemon, matrices, and combinations, oh my">
 <meta property="og:url" content="/pokemon-matrices-and-combinations-oh-my/">
 <meta property="twitter:url" content="/pokemon-matrices-and-combinations-oh-my/">
 <meta property="og:site_name" content="Hooked on Data">
-<meta property="og:description" content="I recentlys started playing Pokemon again - “Pokemon Let’s Go Eevee” on the Nintendo Switch to be specific. With pokemon, type match-ups are very important, as some types of moves are “super effective” against other types. For example, fire moves are super effective against grass pokemon. If you can set yourself up so that you’re always fighting against pokemon you’re super effective against, you’re going to have a much easier time.">
-<meta name="twitter:description" content="I recentlys started playing Pokemon again - “Pokemon Let’s Go Eevee” on the Nintendo Switch to be specific. With pokemon, type match-ups are very important, as some types of moves are “super effective” against other types. For example, fire moves are super effective against grass pokemon. If you can set yourself up so that you’re always fighting against pokemon you’re super effective against, you’re going to have a much easier time.">
+<meta property="og:description" content="I recentlys started playing Pokemon again - “Pokemon Let’s Go Eevee” on the Nintendo Switch to be specific. With pokemon, type match-ups are very important in battles, as some types of moves are “super effective” against other types. For example, fire moves are super effective against grass pokemon, which means they do double the damage they normally would. If you can set yourself up so that you’re always fighting against pokemon you’re super effective against, you’re going to have a much easier time.">
+<meta name="twitter:description" content="I recentlys started playing Pokemon again - “Pokemon Let’s Go Eevee” on the Nintendo Switch to be specific. With pokemon, type match-ups are very important in battles, as some types of moves are “super effective” against other types. For example, fire moves are super effective against grass pokemon, which means they do double the damage they normally would. If you can set yourself up so that you’re always fighting against pokemon you’re super effective against, you’re going to have a much easier time.">
 <meta property="og:locale" content="en-us">
 
   
@@ -245,9 +245,9 @@ if (!doNotTrack) {
               
 
 
-<p>I recentlys started playing Pokemon again - “Pokemon Let’s Go Eevee” on the Nintendo Switch to be specific. With pokemon, type match-ups are very important, as some types of moves are “super effective” against other types. For example, fire moves are super effective against grass pokemon. If you can set yourself up so that you’re always fighting against pokemon you’re super effective against, you’re going to have a much easier time.</p>
+<p>I recentlys started playing Pokemon again - “Pokemon Let’s Go Eevee” on the Nintendo Switch to be specific. With pokemon, type match-ups are very important in battles, as some types of moves are “super effective” against other types. For example, fire moves are super effective against grass pokemon, which means they do double the damage they normally would. If you can set yourself up so that you’re always fighting against pokemon you’re super effective against, you’re going to have a much easier time.</p>
 <p>But there are 18 types and you only go 6 pokemon on your team. This leads to the question - what are the combinations of 6 types that make you super effective against the most types of pokemon?* It turns out this is a question <a href="https://www.google.com/search?q=what+pokemon+team+will+make+you+super+effetive+against+everything&amp;oq=what+pokemon+team+will+make+you+super+effetive+against+everything&amp;aqs=chrome..69i57.6074j0j7&amp;sourceid=chrome&amp;ie=UTF-8">a lot of people have asked</a>.</p>
-<p>I knew there was a chart out there that matches up every attacking type against every defending and tells you whether they’re super effective, normal, not very effective, or doesn’t have any effect. So I decided to use my R skills to answer this question (many thanks to my brother <a href="http://varianceexplained.org/">David Robinson</a> for his guidance at various points).</p>
+<p>I knew there was a chart out there that matches up every attacking type against every defending and tells you whether they’re super effective, normal, not very effective, or doesn’t have any effect. So I decided to use my R skills to answer this question, with some great tips from my brother <a href="http://varianceexplained.org/">David Robinson</a> at various points.</p>
 <div id="data-exploration" class="section level2">
 <h2>Data Exploration</h2>
 <p>I found a csv of the pokemon type chart on GitHub. Using <code>read_csv()</code> didn’t work, and rather than try to debug it, I decided to “cheat”&quot; and use the magic package <code>datapasta</code>. On Github, I clicked to edit the file, copied everything in it, and then used <code>tribble_paste()</code>, which output my clipboard into the code that would create the dataset I called <code>type_comparisons</code>.</p>
@@ -261,20 +261,7 @@ if (!doNotTrack) {
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()</code></pre>
 <pre class="r"><code># this didn&#39;t work
-type_comparisons &lt;- read_csv(&quot;https://github.com/robinsones/pokemon-chart/blob/master/chart.csv&quot;)</code></pre>
-<pre><code>## Parsed with column specification:
-## cols(
-##   `&lt;!DOCTYPE html&gt;` = col_character()
-## )</code></pre>
-<pre><code>## Warning: 58 parsing failures.
-## row col  expected    actual                                                                file
-##  37  -- 1 columns 7 columns &#39;https://github.com/robinsones/pokemon-chart/blob/master/chart.csv&#39;
-##  58  -- 1 columns 3 columns &#39;https://github.com/robinsones/pokemon-chart/blob/master/chart.csv&#39;
-##  70  -- 1 columns 9 columns &#39;https://github.com/robinsones/pokemon-chart/blob/master/chart.csv&#39;
-##  71  -- 1 columns 3 columns &#39;https://github.com/robinsones/pokemon-chart/blob/master/chart.csv&#39;
-##  92  -- 1 columns 4 columns &#39;https://github.com/robinsones/pokemon-chart/blob/master/chart.csv&#39;
-## ... ... ......... ......... ...................................................................
-## See problems(...) for more details.</code></pre>
+# type_comparisons &lt;- read_csv(&quot;https://github.com/robinsones/pokemon-chart/blob/master/chart.csv&quot;)</code></pre>
 <pre class="r"><code>library(datapasta)
 # use tribble_paste()
 type_comparisons &lt;- tibble::tribble(
@@ -765,7 +752,7 @@ tidied_comparison %&gt;%
 </div>
 <div id="building-pokemon-teams" class="section level2">
 <h2>Building Pokemon Teams</h2>
-<p>The first step is to build out all the hypothetical teams of 6. If you remember your introduction to statistics days, this is a combinatorial problem: we have 18 possibilities, need to choose 6, and the order doesn’t matter. We can do this in R with the function <code>combn</code></p>
+<p>The first step is to build out all the hypothetical teams of 6. If you remember your introduction to statistics days, this is a combinatorial problem: we have 18 options, need to choose 6, and the order doesn’t matter (e.g. 1 to 6 is the same as 6 to 1). We can do this in R with the function <code>combn</code>:</p>
 <pre class="r"><code>all_combinations &lt;- combn(18, 6)
 dim(all_combinations)</code></pre>
 <pre><code>## [1]     6 18564</code></pre>
@@ -779,7 +766,7 @@ dim(all_combinations)</code></pre>
 ## [5,]    5    5
 ## [6,]    6    7</code></pre>
 <p>The first column is one team with the types 1 through 6, while the second is a team with 1 through 5 and 7.</p>
-<p>We’re going to make this a tidy table instead using <code>melt</code> (from the old school <code>reshape2</code> package).</p>
+<p>We’re going to make this a tidy table instead using <code>melt</code> (from the old school <code>reshape2</code> package):</p>
 <pre class="r"><code>reshape2::melt(all_combinations, 
                varnames = c(&quot;number&quot;, &quot;team&quot;), 
                value.name = &quot;type_index&quot;)  %&gt;%
@@ -843,7 +830,7 @@ dim(all_combinations)</code></pre>
 </div>
 <div id="matrix-magic" class="section level2">
 <h2>Matrix Magic</h2>
-<p>I originally was thinking of calling this “Going back to the Base[ics],” since I’m moving out of the tidyverse and into the world of matrices, but there’s really nothing basic about this. Let’s walk through it step by step.</p>
+<p>I originally was thinking of calling this post “Going back to the Base[ics],” since I’m moving out of the tidyverse and into the world of matrices, but there’s really nothing basic about this. Let’s walk through it step by step.</p>
 <p>First, we’re going to take our table and make it a matrix. We can’t just do <code>as.matrix()</code> directly, as it will make the Attacking column the first column, while we want that to be the rownames, so we’ll do it in two steps.</p>
 <pre class="r"><code>m &lt;- as.matrix(type_comparisons[, -1])
 rownames(m) &lt;- type_comparisons$Attacking</code></pre>
@@ -1407,7 +1394,7 @@ matrix(rownames(super_effective_m)[best_combos], 6)</code></pre>
                   Aug 8, 2019
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">I recentlys started playing Pokemon again - “Pokemon Let’s Go Eevee” on the Nintendo Switch to be specific. With pokemon, type match-ups are very important, as some types of moves are “super effective” against other types. For example, fire moves are super effective against grass pokemon. If you can set yourself up so that you’re always fighting against pokemon you’re super effective against, you’re going to have a much easier time.</div>
+              <div class="media-content hide-xs font-merryweather">I recentlys started playing Pokemon again - “Pokemon Let’s Go Eevee” on the Nintendo Switch to be specific. With pokemon, type match-ups are very important in battles, as some types of moves are “super effective” against other types. For example, fire moves are super effective against grass pokemon, which means they do double the damage they normally would. If you can set yourself up so that you’re always fighting against pokemon you’re super effective against, you’re going to have a much easier time.</div>
             </div>
             <div style="clear:both;"></div>
             <hr>
