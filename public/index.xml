@@ -12,12 +12,12 @@
     
     
     <item>
-      <title>Pokemon, matrices, and combinations in R, oh my</title>
-      <link>/pokemon-matrices-and-combinations-oh-my/</link>
+      <title>Pokemon, Matrices, and Combinations in R: Part 1</title>
+      <link>/pokemon-matrices-and-combinations/</link>
       <pubDate>Thu, 15 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>/pokemon-matrices-and-combinations-oh-my/</guid>
-      <description>I recently started playing Pokemon again - “Pokemon Let’s Go Eevee” on the Nintendo Switch to be specific. With pokemon, type match-ups are very important in battles, as some types of moves are “super effective” against other types. For example, fire moves are super effective against grass pokemon, which means they do double the damage they normally would. If you can set yourself up so that you’re always fighting against pokemon you’re super effective against, you’re going to have a much easier time.</description>
+      <guid>/pokemon-matrices-and-combinations/</guid>
+      <description>I recently started playing Pokemon again - “Pokemon Let’s Go Eevee” on the Nintendo Switch to be specific. In the classic pokemon games, you have a team of 6 pokemon that you use to battle against other trainers. In battles, type match-ups are very important, as some types of moves are “super effective” against other types. For example, fire moves are super effective against grass pokemon, which means they do double the damage they normally would.</description>
     </item>
     
     <item>
