@@ -9,6 +9,7 @@ keywords:
   - tech
 ---
 
+In my last post, I found the 10 combinations of six pokemon types that are super effective against the most defending types. 
 ```{r message = FALSE, warning = FALSE}
 library(tidyverse)
 ```
