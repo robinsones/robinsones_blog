@@ -1,5 +1,5 @@
 ---
-title: 'Using R to Find the Best Combinations of Pokemon Types'
+title: 'What Types Should You Pick for Your Pokemon Team? Efficient Simulation with Matrices in R'
 author: Emily Robinson
 date: '2019-08-19'
 slug: pokémon-type-combinations
