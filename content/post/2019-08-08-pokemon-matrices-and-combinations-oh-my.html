@@ -1,8 +1,8 @@
 ---
-title: 'What Types Should You Pick for Your Pokemon Team? Efficient Simulation with Matrices in R'
+title: 'Building the Strongest Pokemon Team: Efficient Simulation with Matrices in R'
 author: Emily Robinson
-date: '2019-08-19'
-slug: pokémon-type-combinations
+date: '2019-08-20'
+slug: pokemon-type-combinations
 categories: []
 tags: 
   - R
@@ -11,15 +11,15 @@ tags:
 
 
 
-<p>I recently started playing Pokémon again - <a href="https://www.amazon.com/Pokémon-Lets-Go-Eevee-Switch/dp/B01N7RE3HB">“Pokémon Let’s Go Eevee”</a> on the Nintendo Switch to be specific. In the classic pokémon games, you have a team of 6 pokémon that you use to battle against other trainers. In battles, type match-ups are very important, as some types of moves are “super effective” against other types. For example, fire moves are super effective against grass pokémon, which means they do double the damage they normally would. If you can set yourself up so that you’re always fighting against pokémon you’re super effective against, you’re going to have a much easier time.</p>
-<p>But there are 18 types and you only go 6 pokémon on your team. This leads to the question - what are the combinations of 6 types that make you super effective against the most types of pokémon?<sup>1</sup> It turns out this is a question <a href="https://www.google.com/search?q=what+pokémon+team+will+make+you+super+effetive+against+everything&amp;oq=what+pokémon+team+will+make+you+super+effetive+against+everything&amp;aqs=chrome..69i57.6074j0j7&amp;sourceid=chrome&amp;ie=UTF-8">a lot of people have asked</a>.</p>
+<p>I recently started playing Pokémon again - <a href="https://www.amazon.com/Pokémon-Lets-Go-Eevee-Switch/dp/B01N7RE3HB">“Pokémon Let’s Go Eevee”</a> on the Nintendo Switch to be specific. In the classic Pokémon games, you have a team of 6 Pokémon that you use to battle against other trainers. In battles, type match-ups are very important, as some types of moves are “super effective” against other types. For example, fire moves are super effective against grass Pokémon, which means they do double the damage they normally would. If you can set your team up so that you’re always optimally matched, you’re going to have a much easier time.</p>
+<p>But there are 18 types and you only get 6 Pokémon on your team. This leads to the question - what are the combinations of 6 types that make you super effective against the most types of Pokémon?<sup>1</sup> It turns out this is a question <a href="https://www.google.com/search?q=what+Pokémon+team+will+make+you+super+effetive+against+everything&amp;oq=what+Pokémon+team+will+make+you+super+effetive+against+everything&amp;aqs=chrome..69i57.6074j0j7&amp;sourceid=chrome&amp;ie=UTF-8">a lot of people have asked</a>.</p>
 <p>I knew there was a chart out there that matches up every attacking type against every defending and tells you whether they’re super effective, normal, not very effective, or doesn’t have any effect. So I decided to use my R skills to answer this question (many thanks to my brother <a href="http://varianceexplained.org/">David Robinson</a> for his guidance at various points). Along the way, we’ll do a quick exploratory analysis, learn about combinatorials, and leave the tidyverse to use matrices and some base functions.</p>
 <div id="data-exploration" class="section level2">
 <h2>Data Exploration</h2>
-<p>I found a csv of the pokémon type chart on GitHub. Using <code>read_csv()</code> on the url didn’t work, and rather than try to debug it, I decided to “cheat”&quot; and use the magic package <a href="https://github.com/MilesMcBain/datapasta"><code>datapasta</code> package</a>. On Github, I clicked to edit the file, copied everything in it, and then used <code>tribble_paste()</code>, which output my clipboard into the code that would create a tibble I called <code>type_comparisons</code>.</p>
+<p>I found a csv of the Pokémon type chart on GitHub. Using <code>read_csv()</code> on the url didn’t work, and rather than try to debug it, I decided to “cheat”&quot; and use the magic package <a href="https://github.com/MilesMcBain/datapasta"><code>datapasta</code> package</a>. On Github, I clicked to edit the file, copied everything in it, and then used <code>tribble_paste()</code>, which output my clipboard into the code that would create a tibble I called <code>type_comparisons</code>.</p>
 <pre class="r"><code>library(tidyverse)
 # this didn&#39;t work
-# type_comparisons &lt;- read_csv(&quot;https://github.com/robinsones/pokémon-chart/blob/master/chart.csv&quot;)</code></pre>
+# type_comparisons &lt;- read_csv(&quot;https://github.com/robinsones/Pokémon-chart/blob/master/chart.csv&quot;)</code></pre>
 <pre class="r"><code>library(datapasta)
 # use tribble_paste()
 type_comparisons &lt;- tibble::tribble(
@@ -229,12 +229,11 @@ tidied_comparison %&gt;%
 </tr>
 </tbody>
 </table>
-<p>Yes - if we want to be super effective against Normal and Electric types, we need Fightning and Ground types respectively.</p>
-<p>Overall are 18 types I need to go up against and I have 17 attacking types to choose from (because normal isn’t super effective against anything).</p>
+<p>Yes - if we want to be super effective against Normal and Electric types, we need Fighting and Ground types respectively.</p>
 </div>
 <div id="building-pokemon-teams" class="section level2">
 <h2>Building Pokémon Teams</h2>
-<p>The first step is to build out all the hypothetical teams of 6. If you remember your introduction to statistics days, this is a combinatorial problem: we have 18 options, need to choose 6, and the order doesn’t matter (e.g. 1 to 6 is the same as 6 to 1). We can do this in R with the function <code>combn</code>:</p>
+<p>The first step is to build out all the hypothetical teams of 6. If you remember your introduction to statistics days, this is a combinatorial problem: we have 18 options (although we don’t expect “Normal” to show up since it’s not super effective against anything), need to choose 6, and the order doesn’t matter (e.g. 1 to 6 is the same as 6 to 1). We can do this in R with the function <code>combn</code>:</p>
 <pre class="r"><code>all_combinations &lt;- combn(18, 6)
 dim(all_combinations)</code></pre>
 <pre><code>## [1]     6 18564</code></pre>
@@ -415,5 +414,5 @@ best_combos</code></pre>
 <h2>Conclusion</h2>
 <p>While this is a bit of a silly use case, the code we walked through and lessons learned could be applied to a lot of different projects. When I advise people to make a portfolio of data science projects if they’re looking for a job, I sometimes get asked, “But how do I find something to work on?” I recommend looking in your own life and interests where you could use data science. If you’re a runner and use an activity tracker, graph how your run distances and times are related to the weather. If you’re active on a subreddit, you could use the reddit API to get the last 500 posts and do a text analysis. The possibilities are limitless!</p>
 <p>I also played around with getting this code even faster and trying to do everything in a tidy way instead. Including those methods made the post run a little too long, so I may follow up with a part 2 of this post.</p>
-<p>[1] Pokémon players will know that you can have more than 6 types on your team, both because some pokémon have two types and because pokémon can learn moves of other types (e.g. a Normal type pokémon may be able to learn a Dark move). But for the purposes of this analysis I simplified it.</p>
+<p>[1] Pokémon players will know that you can have more than 6 types on your team, both because some Pokémon have two types and because Pokémon can learn moves of other types (e.g. a Normal type Pokémon may be able to learn a Dark move). But for the purposes of this analysis I simplified it.</p>
 </div>
