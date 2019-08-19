@@ -13,8 +13,8 @@
 
 <meta property="og:description" content="I recently started playing Pokemon again - “Pokemon Let’s Go Eevee” on the Nintendo Switch to be specific. In the classic pokemon games, you have a team of 6 pokemon that you use to battle against other trainers. In battles, type match-ups are very important, as some types of moves are “super effective” against other types. For example, fire moves are super effective against grass pokemon, which means they do double the damage they normally would.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Pokemon, Matrices, and Combinations in R: Part 1">
-<meta name="twitter:title" content="Pokemon, Matrices, and Combinations in R: Part 1">
+<meta property="og:title" content="Pokemon, Matrices, and Combinations in R">
+<meta name="twitter:title" content="Pokemon, Matrices, and Combinations in R">
 <meta property="og:url" content="/pokemon-matrices-and-combinations/">
 <meta property="twitter:url" content="/pokemon-matrices-and-combinations/">
 <meta property="og:site_name" content="Hooked on Data">
@@ -23,10 +23,10 @@
 <meta property="og:locale" content="en-us">
 
   
-    <meta property="article:published_time" content="2019-08-15T00:00:00">
+    <meta property="article:published_time" content="2019-08-19T00:00:00">
   
   
-    <meta property="article:modified_time" content="2019-08-15T00:00:00">
+    <meta property="article:modified_time" content="2019-08-19T00:00:00">
   
   
   
@@ -59,7 +59,7 @@
   <meta property="twitter:image" content="https://avatars.githubusercontent.com/robinsones">
 
 
-    <title>Pokemon, Matrices, and Combinations in R: Part 1</title>
+    <title>Pokemon, Matrices, and Combinations in R</title>
 
     <link rel="icon" href="/favicon.png">
     
@@ -229,15 +229,15 @@ if (!doNotTrack) {
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      Pokemon, Matrices, and Combinations in R: Part 1
+      Pokemon, Matrices, and Combinations in R
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2019-08-15T00:00:00Z">
+      <time itemprop="datePublished" datetime="2019-08-19T00:00:00Z">
         
-  August 15, 2019
+  August 19, 2019
 
       </time>
     
@@ -253,10 +253,10 @@ if (!doNotTrack) {
 
 <p>I recently started playing Pokemon again - <a href="https://www.amazon.com/Pokemon-Lets-Go-Eevee-Switch/dp/B01N7RE3HB">“Pokemon Let’s Go Eevee”</a> on the Nintendo Switch to be specific. In the classic pokemon games, you have a team of 6 pokemon that you use to battle against other trainers. In battles, type match-ups are very important, as some types of moves are “super effective” against other types. For example, fire moves are super effective against grass pokemon, which means they do double the damage they normally would. If you can set yourself up so that you’re always fighting against pokemon you’re super effective against, you’re going to have a much easier time.</p>
 <p>But there are 18 types and you only go 6 pokemon on your team. This leads to the question - what are the combinations of 6 types that make you super effective against the most types of pokemon?<sup>1</sup> It turns out this is a question <a href="https://www.google.com/search?q=what+pokemon+team+will+make+you+super+effetive+against+everything&amp;oq=what+pokemon+team+will+make+you+super+effetive+against+everything&amp;aqs=chrome..69i57.6074j0j7&amp;sourceid=chrome&amp;ie=UTF-8">a lot of people have asked</a>.</p>
-<p>I knew there was a chart out there that matches up every attacking type against every defending and tells you whether they’re super effective, normal, not very effective, or doesn’t have any effect. So I decided to use my R skills to answer this question (many thanks to my brother <a href="http://varianceexplained.org/">David Robinson</a> for his guidance at various points).</p>
+<p>I knew there was a chart out there that matches up every attacking type against every defending and tells you whether they’re super effective, normal, not very effective, or doesn’t have any effect. So I decided to use my R skills to answer this question (many thanks to my brother <a href="http://varianceexplained.org/">David Robinson</a> for his guidance at various points). Along the way, we’ll do a quick exploratory analysis, learn about combinatorials, and leave the tidyverse to use matrices and some base functions.</p>
 <div id="data-exploration" class="section level2">
 <h2>Data Exploration</h2>
-<p>I found a csv of the pokemon type chart on GitHub. Using <code>read_csv()</code> didn’t work, and rather than try to debug it, I decided to “cheat”&quot; and use the magic package <code>datapasta</code>. On Github, I clicked to edit the file, copied everything in it, and then used <code>tribble_paste()</code>, which output my clipboard into the code that would create the dataset I called <code>type_comparisons</code>.</p>
+<p>I found a csv of the pokemon type chart on GitHub. Using <code>read_csv()</code> on the url didn’t work, and rather than try to debug it, I decided to “cheat”&quot; and use the magic package <a href="https://github.com/MilesMcBain/datapasta"><code>datapasta</code> package</a>. On Github, I clicked to edit the file, copied everything in it, and then used <code>tribble_paste()</code>, which output my clipboard into the code that would create a tibble I called <code>type_comparisons</code>.</p>
 <pre class="r"><code>library(tidyverse)
 # this didn&#39;t work
 # type_comparisons &lt;- read_csv(&quot;https://github.com/robinsones/pokemon-chart/blob/master/chart.csv&quot;)</code></pre>
@@ -288,7 +288,7 @@ type_comparisons &lt;- tibble::tribble(
   gather(Defending, outcome, -Attacking)
 
 tidied_comparison %&gt;%
-  head(6) %&gt;%
+  slice(103:109) %&gt;%
   knitr::kable()</code></pre>
 <table>
 <thead>
@@ -300,33 +300,38 @@ tidied_comparison %&gt;%
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Normal</td>
-<td align="left">Normal</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Fire</td>
-<td align="left">Normal</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Water</td>
-<td align="left">Normal</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Electric</td>
-<td align="left">Normal</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Grass</td>
-<td align="left">Normal</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
+<td align="left">Rock</td>
 <td align="left">Ice</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Ghost</td>
+<td align="left">Ice</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Dragon</td>
+<td align="left">Ice</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Dark</td>
+<td align="left">Ice</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Steel</td>
+<td align="left">Ice</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Fairy</td>
+<td align="left">Ice</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
 <td align="left">Normal</td>
+<td align="left">Fighting</td>
 <td align="right">1</td>
 </tr>
 </tbody>
@@ -873,7 +878,7 @@ best_combos</code></pre>
             
             <div class="media-body">
               <a class="link-unstyled" href="/pokemon-matrices-and-combinations/">
-                <h3 class="media-heading">Pokemon, Matrices, and Combinations in R: Part 1</h3>
+                <h3 class="media-heading">Pokemon, Matrices, and Combinations in R</h3>
               </a>
               <span class="media-meta">
                 <span class="media-date text-small">
