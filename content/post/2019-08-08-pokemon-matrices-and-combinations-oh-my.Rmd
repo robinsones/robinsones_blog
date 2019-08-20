@@ -1,0 +1,194 @@
+---
+title: 'What Types Should You Have on Your Pokémon Team? Efficient Simulation with Matrices in R'
+author: Emily Robinson
+date: '2019-08-20'
+slug: pokemon-type-combinations
+categories: []
+tags: 
+  - R
+  - code
+---
+
+I recently started playing Pokémon again - ["Pokémon Let's Go Eevee"](https://www.amazon.com/Pokémon-Lets-Go-Eevee-Switch/dp/B01N7RE3HB) on the Nintendo Switch to be specific. In the classic Pokémon games, you have a team of 6 Pokémon that you use to battle against other trainers. In battles, type match-ups are very important, as some types of moves are "super effective" against other types. For example, fire moves are super effective against grass Pokémon, which means they do double the damage they normally would. If you can set your team up so that you're always optimally matched, you're going to have a much easier time. 
+
+But there are 18 types and you only get 6 Pokémon on your team. This leads to the question - what are the combinations of 6 types that make you super effective against the most types of Pokémon?<sup>1</sup> It turns out this is a question [a lot of people have asked](https://www.google.com/search?q=what+Pokémon+team+will+make+you+super+effetive+against+everything&oq=what+Pokémon+team+will+make+you+super+effetive+against+everything&aqs=chrome..69i57.6074j0j7&sourceid=chrome&ie=UTF-8).
+
+I knew there was a chart out there that matches up every attacking type against every defending and tells you whether they're super effective, normal, not very effective, or doesn't have any effect. So I decided to use my R skills to answer this question (many thanks to my brother [David Robinson](http://varianceexplained.org/) for his guidance at various points). Along the way, we'll do a quick exploratory analysis, learn about combinatorials, and leave the tidyverse to use matrices and some base functions.
+
+## Data Exploration
+
+I found a csv of the Pokémon type chart on GitHub. Using `read_csv()` on the url didn't work, and rather than try to debug it, I decided to "cheat"" and use the magic package [`datapasta` package](https://github.com/MilesMcBain/datapasta). On Github, I clicked to edit the file, copied everything in it, and then used `tribble_paste()`, which output my clipboard into the code that would create a tibble I called `type_comparisons`. 
+
+```{r message = FALSE, warning = FALSE}
+library(tidyverse)
+# this didn't work
+# type_comparisons <- read_csv("https://github.com/robinsones/Pokémon-chart/blob/master/chart.csv")
+```
+
+```{r}
+library(datapasta)
+# use tribble_paste()
+type_comparisons <- tibble::tribble(
+     ~Attacking, ~Normal, ~Fire, ~Water, ~Electric, ~Grass, ~Ice, ~Fighting, ~Poison, ~Ground, ~Flying, ~Psychic, ~Bug, ~Rock, ~Ghost, ~Dragon, ~Dark, ~Steel, ~Fairy,
+       "Normal",       1,     1,      1,         1,      1,    1,         1,       1,       1,       1,        1,    1,   0.5,      0,       1,     1,    0.5,      1,
+         "Fire",       1,   0.5,    0.5,         1,      2,    2,         1,       1,       1,       1,        1,    2,   0.5,      1,     0.5,     1,      2,      1,
+        "Water",       1,     2,    0.5,         1,    0.5,    1,         1,       1,       2,       1,        1,    1,     2,      1,     0.5,     1,      1,      1,
+     "Electric",       1,     1,      2,       0.5,    0.5,    1,         1,       1,       0,       2,        1,    1,     1,      1,     0.5,     1,      1,      1,
+        "Grass",       1,   0.5,      2,         1,    0.5,    1,         1,     0.5,       2,     0.5,        1,  0.5,     2,      1,     0.5,     1,    0.5,      1,
+          "Ice",       1,   0.5,    0.5,         1,      2,  0.5,         1,       1,       2,       2,        1,    1,     1,      1,       2,     1,    0.5,      1,
+     "Fighting",       2,     1,      1,         1,      1,    2,         1,     0.5,       1,     0.5,      0.5,  0.5,     2,      0,       1,     2,      2,    0.5,
+       "Poison",       1,     1,      1,         1,      2,    1,         1,     0.5,     0.5,       1,        1,    1,   0.5,    0.5,       1,     1,      0,      2,
+       "Ground",       1,     2,      1,         2,    0.5,    1,         1,       2,       1,       0,        1,  0.5,     2,      1,       1,     1,      2,      1,
+       "Flying",       1,     1,      1,       0.5,      2,    1,         2,       1,       1,       1,        1,    2,   0.5,      1,       1,     1,    0.5,      1,
+      "Psychic",       1,     1,      1,         1,      1,    1,         2,       2,       1,       1,      0.5,    1,     1,      1,       1,     0,    0.5,      1,
+          "Bug",       1,   0.5,      1,         1,      2,    1,       0.5,     0.5,       1,     0.5,        2,    1,     1,    0.5,       1,     2,    0.5,    0.5,
+         "Rock",       1,     2,      1,         1,      1,    2,       0.5,       1,     0.5,       2,        1,    2,     1,      1,       1,     1,    0.5,      1,
+        "Ghost",       0,     1,      1,         1,      1,    1,         1,       1,       1,       1,        2,    1,     1,      2,       1,   0.5,      1,      1,
+       "Dragon",       1,     1,      1,         1,      1,    1,         1,       1,       1,       1,        1,    1,     1,      1,       2,     1,    0.5,      0,
+         "Dark",       1,     1,      1,         1,      1,    1,       0.5,       1,       1,       1,        2,    1,     1,      2,       1,   0.5,      1,    0.5,
+        "Steel",       1,   0.5,    0.5,       0.5,      1,    2,         1,       1,       1,       1,        1,    1,     2,      1,       1,     1,    0.5,      2,
+        "Fairy",       1,   0.5,      1,         1,      1,    1,         2,     0.5,       1,       1,        1,    1,     1,      1,       2,     2,    0.5,      1
+     )
+```
+
+To make it easier to explore the data, I'm going to start by tidying it. 
+
+```{r}
+tidied_comparison <- type_comparisons %>%
+  gather(Defending, outcome, -Attacking)
+
+tidied_comparison %>%
+  slice(103:109) %>%
+  knitr::kable()
+```
+
+We now have a dataset of 324 rows, with each Attacking-Defending combination and what the outcome is. Here, outcome is 2 if it's super effective (what we're interested in), 1 if normal, .5 if not very effective, and 0 if no effect. 
+
+What types are super effective against the most other types?
+
+```{r}
+tidied_comparison %>%
+  group_by(Attacking) %>%
+  summarize(nb_super_effective = sum(ifelse(outcome == 2, 1, 0))) %>%
+  arrange(desc(nb_super_effective)) %>%
+  knitr::kable()
+```
+
+Fighting and Ground are both super effective against 5 different types, while Normal isn't super effective against any. 
+
+Are there any types where only one Attacking type is super-effective? 
+
+```{r}
+tidied_comparison %>%
+  filter(outcome == 2) %>%
+  add_count(Defending) %>%
+  arrange(n) %>%
+  head(4) %>%
+  knitr::kable()
+```
+
+Yes - if we want to be super effective against Normal and Electric types, we need Fighting and Ground types respectively. 
+  
+
+## Building Pokémon Teams
+
+The first step is to build out all the hypothetical teams of 6. If you remember your introduction to statistics days, this is a combinatorial problem: we have 18 options (although we don't expect "Normal" to show up since it's not super effective against anything), need to choose 6, and the order doesn't matter (e.g. 1 to 6 is the same as 6 to 1). We can do this in R with the function `combn`:
+
+```{r}
+all_combinations <- combn(18, 6)
+dim(all_combinations)
+```
+
+`all_combinations` is a 6 by 18,564 matrix: each column is a different combination of types. For example, let's look at the first two columns: 
+
+```{r}
+all_combinations[, 1:2]
+```
+
+The first column is one team with the types 1 through 6, while the second is a team with 1 through 5 and 7. 
+
+Now we need to take this and understand how many types each team is super effective against.
+
+## Matrix Magic
+
+I originally was thinking of calling this post "Going back to the Base[ics]," since I'm moving out of the tidyverse and into the world of matrices, but there's really nothing basic about this. Let's walk through it step by step. 
+
+First, we're going to take our table and make it a matrix. We can't just do `as.matrix()` directly, as it will make the Attacking column the first column, while we want that to be the rownames, so we'll do it in two steps.
+
+```{r}
+m <- as.matrix(type_comparisons[, -1])
+rownames(m) <- type_comparisons$Attacking
+```
+
+Next, because we only care about whether the entry is 2 or not, we'll change every entry that's a 2 to be 1 and every entry that's not to be 0 (the `1L *` makes it 1 or 0 instead of TRUE or FALSE). 
+
+```{r}
+super_effective_m <- (m == 2) * 1L
+```
+
+```{r}
+super_effective_m
+```
+
+The `all_combinations` matrix we created before is essentially a set of indices for the `super_effective_m` matrix. For example, column 1 of `all_combinations` are the numbers 1 through 6, which means we want to get rows 1 through 6 of `super_effective_m`. Remember, each row of `super_effective_m` is an attacking type on our team, and each column is a defending type. We then want to get the sum of each column and know how many columns have a sum of more than 0, meaning at least one of our attacking types was super effective against it. We'll make a function, `super_effective_nb`:
+
+```{r}
+super_effective_nb <- function(indices) {
+  sum(colSums(super_effective_m[indices, ]) > 0)
+}
+```
+
+Now we can use `apply()` to get a vector, for all 18k+ teams, of how many types they're super effective against. If you're not familiar with `apply()`, the first argument is what we're applying our function to, the second is whether it should apply to the rows or columns (we choose 2 for column, since each column is the team), and the third is the function.
+
+```{r}
+super_effective_results <- apply(all_combinations, 2, super_effective_nb)
+```
+
+What are the combinations that are super effective against the maximum number of types possible? 
+
+```{r}
+which(super_effective_results == max(super_effective_results))
+```
+
+We see there are 10 possible combinations of six types. Let's take a look at them by getting those columns from `all_combinations`. 
+
+```{r}
+best_combos <- all_combinations[, super_effective_results == max(super_effective_results)]
+best_combos
+```
+
+We now have a matrix, `best_combo`, where each column is a team. For example, we see a team of types 4, 6, 7, 9, 10, and 14 cover the maximum number of defending types. But what is type 4? To answer that, we take the row names from `super_effective_m` and index it by `best_combos`. 
+
+```{r}
+rownames(super_effective_m)[best_combos]
+```
+
+This gets us a character vector though. It's in order, so we know that the first six is team 1, the second six team 2, etc., but it's not displayed very well. We can use `matrix` to turn this into a matrix instead, specifying that we want 6 rows. 
+
+```{r}
+strongest_teams <- matrix(rownames(super_effective_m)[best_combos], nrow = 6)
+```
+
+```{r}
+strongest_teams
+```
+
+For our final step, we're actually going to make this a tibble, so I can look at which types appear the most often across the different team possibilities. 
+
+```{r warning = FALSE}
+strongest_teams %>%
+  as_tibble() %>%
+  gather(team, type) %>%
+  count(type, sort = TRUE) %>%
+  knitr::kable()
+```
+
+We see all 10 of the teams need a ground type, where 8 have a Fighting, Flying, or Ice type. On the other hand, Electric, Fairy, Rock, and Steel are only each used by two teams. 
+
+## Conclusion 
+
+While this is a bit of a silly use case, the code we walked through and lessons learned could be applied to a lot of different projects. When I advise people to make a portfolio of data science projects if they're looking for a job, I sometimes get asked, "But how do I find something to work on?" I recommend looking in your own life and interests where you could use data science. If you're a runner and use an activity tracker, graph how your run distances and times are related to the weather. If you're active on a subreddit, you could use the reddit API to get the last 500 posts and do a text analysis. The possibilities are limitless! 
+
+I also played around with getting this code even faster and trying to do everything in a tidy way instead. Including those methods made the post run a little too long, so I may follow up with a part 2 of this post.
+
+[1] Pokémon players will know that you can have more than 6 types on your team, both because some Pokémon have two types and because Pokémon can learn moves of other types (e.g. a Normal type Pokémon may be able to learn a Dark move). But for the purposes of this analysis I simplified it. 

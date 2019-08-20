@@ -13,6 +13,7 @@ I regularly give talks on A/B Testing, working in R, data science career advice,
 
 ## Upcoming Talks
 
+May 2019, PyData Ann Arbor
 November 2019, DC R conference. 
 
 ## Previous Talks 

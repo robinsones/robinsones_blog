@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.51 with theme Tranquilpeak 0.4.3-SNAPSHOT">
+<meta name="author" content="Emily Robinson">
+<meta name="keywords" content="tech">
+<meta name="description" content="I recently started playing Pokemon again - “Pokemon Let’s Go Eevee” on the Nintendo Switch to be specific. With pokemon, type match-ups are very important in battles, as some types of moves are “super effective” against other types. For example, fire moves are super effective against grass pokemon, which means they do double the damage they normally would. If you can set yourself up so that you’re always fighting against pokemon you’re super effective against, you’re going to have a much easier time.">
+
+
+<meta property="og:description" content="I recently started playing Pokemon again - “Pokemon Let’s Go Eevee” on the Nintendo Switch to be specific. With pokemon, type match-ups are very important in battles, as some types of moves are “super effective” against other types. For example, fire moves are super effective against grass pokemon, which means they do double the damage they normally would. If you can set yourself up so that you’re always fighting against pokemon you’re super effective against, you’re going to have a much easier time.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pokemon, matrices, and combinations in R, oh my">
+<meta name="twitter:title" content="Pokemon, matrices, and combinations in R, oh my">
+<meta property="og:url" content="/pokemon-matrices-and-combinations-oh-my/">
+<meta property="twitter:url" content="/pokemon-matrices-and-combinations-oh-my/">
+<meta property="og:site_name" content="Hooked on Data">
+<meta property="og:description" content="I recently started playing Pokemon again - “Pokemon Let’s Go Eevee” on the Nintendo Switch to be specific. With pokemon, type match-ups are very important in battles, as some types of moves are “super effective” against other types. For example, fire moves are super effective against grass pokemon, which means they do double the damage they normally would. If you can set yourself up so that you’re always fighting against pokemon you’re super effective against, you’re going to have a much easier time.">
+<meta name="twitter:description" content="I recently started playing Pokemon again - “Pokemon Let’s Go Eevee” on the Nintendo Switch to be specific. With pokemon, type match-ups are very important in battles, as some types of moves are “super effective” against other types. For example, fire moves are super effective against grass pokemon, which means they do double the damage they normally would. If you can set yourself up so that you’re always fighting against pokemon you’re super effective against, you’re going to have a much easier time.">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2019-08-15T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2019-08-15T00:00:00">
+  
+  
+  
+  
+
+
+<meta name="twitter:card" content="summary">
+
+  <meta name="twitter:site" content="@robinson_es">
+
+
+  <meta name="twitter:creator" content="@robinson_es">
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://avatars.githubusercontent.com/robinsones">
+  <meta property="twitter:image" content="https://avatars.githubusercontent.com/robinsones">
+
+
+    <title>Pokemon, matrices, and combinations in R, oh my</title>
+
+    <link rel="icon" href="/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="/pokemon-matrices-and-combinations-oh-my/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-80069806-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/">Hooked on Data</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="/about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://avatars.githubusercontent.com/robinsones" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="/about">
+          <img class="sidebar-profile-picture" src="https://avatars.githubusercontent.com/robinsones" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Emily Robinson</h4>
+        
+          <h5 class="sidebar-profile-bio">Date Scientist at DataCamp</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/robinsones/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">Linkedin</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/robinsones">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/speaking">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">Speaking</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Pokemon, matrices, and combinations in R, oh my
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-08-15T00:00:00Z">
+        
+  August 15, 2019
+
+      </time>
+    
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+
+<p>I recently started playing Pokemon again - “Pokemon Let’s Go Eevee” on the Nintendo Switch to be specific. With pokemon, type match-ups are very important in battles, as some types of moves are “super effective” against other types. For example, fire moves are super effective against grass pokemon, which means they do double the damage they normally would. If you can set yourself up so that you’re always fighting against pokemon you’re super effective against, you’re going to have a much easier time.</p>
+<p>But there are 18 types and you only go 6 pokemon on your team. This leads to the question - what are the combinations of 6 types that make you super effective against the most types of pokemon?<sup>1</sup> It turns out this is a question <a href="https://www.google.com/search?q=what+pokemon+team+will+make+you+super+effetive+against+everything&amp;oq=what+pokemon+team+will+make+you+super+effetive+against+everything&amp;aqs=chrome..69i57.6074j0j7&amp;sourceid=chrome&amp;ie=UTF-8">a lot of people have asked</a>.</p>
+<p>I knew there was a chart out there that matches up every attacking type against every defending and tells you whether they’re super effective, normal, not very effective, or doesn’t have any effect. So I decided to use my R skills to answer this question, with some great tips from my brother <a href="http://varianceexplained.org/">David Robinson</a> at various points.</p>
+<div id="data-exploration" class="section level2">
+<h2>Data Exploration</h2>
+<p>I found a csv of the pokemon type chart on GitHub. Using <code>read_csv()</code> didn’t work, and rather than try to debug it, I decided to “cheat”&quot; and use the magic package <code>datapasta</code>. On Github, I clicked to edit the file, copied everything in it, and then used <code>tribble_paste()</code>, which output my clipboard into the code that would create the dataset I called <code>type_comparisons</code>.</p>
+<pre class="r"><code>library(tidyverse)
+# this didn&#39;t work
+# type_comparisons &lt;- read_csv(&quot;https://github.com/robinsones/pokemon-chart/blob/master/chart.csv&quot;)</code></pre>
+<pre class="r"><code>library(datapasta)
+# use tribble_paste()
+type_comparisons &lt;- tibble::tribble(
+     ~Attacking, ~Normal, ~Fire, ~Water, ~Electric, ~Grass, ~Ice, ~Fighting, ~Poison, ~Ground, ~Flying, ~Psychic, ~Bug, ~Rock, ~Ghost, ~Dragon, ~Dark, ~Steel, ~Fairy,
+       &quot;Normal&quot;,       1,     1,      1,         1,      1,    1,         1,       1,       1,       1,        1,    1,   0.5,      0,       1,     1,    0.5,      1,
+         &quot;Fire&quot;,       1,   0.5,    0.5,         1,      2,    2,         1,       1,       1,       1,        1,    2,   0.5,      1,     0.5,     1,      2,      1,
+        &quot;Water&quot;,       1,     2,    0.5,         1,    0.5,    1,         1,       1,       2,       1,        1,    1,     2,      1,     0.5,     1,      1,      1,
+     &quot;Electric&quot;,       1,     1,      2,       0.5,    0.5,    1,         1,       1,       0,       2,        1,    1,     1,      1,     0.5,     1,      1,      1,
+        &quot;Grass&quot;,       1,   0.5,      2,         1,    0.5,    1,         1,     0.5,       2,     0.5,        1,  0.5,     2,      1,     0.5,     1,    0.5,      1,
+          &quot;Ice&quot;,       1,   0.5,    0.5,         1,      2,  0.5,         1,       1,       2,       2,        1,    1,     1,      1,       2,     1,    0.5,      1,
+     &quot;Fighting&quot;,       2,     1,      1,         1,      1,    2,         1,     0.5,       1,     0.5,      0.5,  0.5,     2,      0,       1,     2,      2,    0.5,
+       &quot;Poison&quot;,       1,     1,      1,         1,      2,    1,         1,     0.5,     0.5,       1,        1,    1,   0.5,    0.5,       1,     1,      0,      2,
+       &quot;Ground&quot;,       1,     2,      1,         2,    0.5,    1,         1,       2,       1,       0,        1,  0.5,     2,      1,       1,     1,      2,      1,
+       &quot;Flying&quot;,       1,     1,      1,       0.5,      2,    1,         2,       1,       1,       1,        1,    2,   0.5,      1,       1,     1,    0.5,      1,
+      &quot;Psychic&quot;,       1,     1,      1,         1,      1,    1,         2,       2,       1,       1,      0.5,    1,     1,      1,       1,     0,    0.5,      1,
+          &quot;Bug&quot;,       1,   0.5,      1,         1,      2,    1,       0.5,     0.5,       1,     0.5,        2,    1,     1,    0.5,       1,     2,    0.5,    0.5,
+         &quot;Rock&quot;,       1,     2,      1,         1,      1,    2,       0.5,       1,     0.5,       2,        1,    2,     1,      1,       1,     1,    0.5,      1,
+        &quot;Ghost&quot;,       0,     1,      1,         1,      1,    1,         1,       1,       1,       1,        2,    1,     1,      2,       1,   0.5,      1,      1,
+       &quot;Dragon&quot;,       1,     1,      1,         1,      1,    1,         1,       1,       1,       1,        1,    1,     1,      1,       2,     1,    0.5,      0,
+         &quot;Dark&quot;,       1,     1,      1,         1,      1,    1,       0.5,       1,       1,       1,        2,    1,     1,      2,       1,   0.5,      1,    0.5,
+        &quot;Steel&quot;,       1,   0.5,    0.5,       0.5,      1,    2,         1,       1,       1,       1,        1,    1,     2,      1,       1,     1,    0.5,      2,
+        &quot;Fairy&quot;,       1,   0.5,      1,         1,      1,    1,         2,     0.5,       1,       1,        1,    1,     1,      1,       2,     2,    0.5,      1
+     )</code></pre>
+<p>To make it easier to explore the data, I’m going to start by tidying it.</p>
+<pre class="r"><code>tidied_comparison &lt;- type_comparisons %&gt;%
+  gather(Defending, outcome, -Attacking)
+
+tidied_comparison %&gt;%
+  head(6) %&gt;%
+  knitr::kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Attacking</th>
+<th align="left">Defending</th>
+<th align="right">outcome</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Normal</td>
+<td align="left">Normal</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Fire</td>
+<td align="left">Normal</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Water</td>
+<td align="left">Normal</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Electric</td>
+<td align="left">Normal</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Grass</td>
+<td align="left">Normal</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Ice</td>
+<td align="left">Normal</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+<p>We now have a dataset of 324 rows, with each Attacking-Defending combination and what the outcome is. Here, outcome is 2 if it’s super effective (what we’re interested in), 1 if normal, .5 if not very effective, and 0 if no effect.</p>
+<p>What types are super effective against the most other types?</p>
+<pre class="r"><code>tidied_comparison %&gt;%
+  group_by(Attacking) %&gt;%
+  summarize(nb_super_effective = sum(ifelse(outcome == 2, 1, 0))) %&gt;%
+  arrange(desc(nb_super_effective)) %&gt;%
+  knitr::kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Attacking</th>
+<th align="right">nb_super_effective</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Fighting</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">Ground</td>
+<td align="right">5</td>
+</tr>
+<tr class="odd">
+<td align="left">Fire</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">Ice</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">Rock</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">Bug</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">Fairy</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">Flying</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">Grass</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">Steel</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">Water</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">Dark</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Electric</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Ghost</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Poison</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Psychic</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Dragon</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Normal</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<p>Fightning and Ground are both super effective against 5 different types, while Normal isn’t super effective against any.</p>
+<p>Are there any types where only one Attacking type is super-effective?</p>
+<pre class="r"><code>tidied_comparison %&gt;%
+  filter(outcome == 2) %&gt;%
+  add_count(Defending) %&gt;%
+  arrange(n) %&gt;%
+  head(4) %&gt;%
+  knitr::kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Attacking</th>
+<th align="left">Defending</th>
+<th align="right">outcome</th>
+<th align="right">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Fighting</td>
+<td align="left">Normal</td>
+<td align="right">2</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Ground</td>
+<td align="left">Electric</td>
+<td align="right">2</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Electric</td>
+<td align="left">Water</td>
+<td align="right">2</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Grass</td>
+<td align="left">Water</td>
+<td align="right">2</td>
+<td align="right">2</td>
+</tr>
+</tbody>
+</table>
+<p>Yes - if we want to be super effective against Normal and Electric types, we need Fightning and Ground types respectively.</p>
+<p>Overall are 18 types I need to go up against and I have 17 attacking types to choose from (because normal isn’t super effective against anything).</p>
+</div>
+<div id="building-pokemon-teams" class="section level2">
+<h2>Building Pokemon Teams</h2>
+<p>The first step is to build out all the hypothetical teams of 6. If you remember your introduction to statistics days, this is a combinatorial problem: we have 18 options, need to choose 6, and the order doesn’t matter (e.g. 1 to 6 is the same as 6 to 1). We can do this in R with the function <code>combn</code>:</p>
+<pre class="r"><code>all_combinations &lt;- combn(18, 6)
+dim(all_combinations)</code></pre>
+<pre><code>## [1]     6 18564</code></pre>
+<p><code>all_combinations</code> is a 6 by 18,564 matrix: each column is a different combination of types. For example, let’s look at the first two columns:</p>
+<pre class="r"><code>all_combinations[, 1:2]</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    1    1
+## [2,]    2    2
+## [3,]    3    3
+## [4,]    4    4
+## [5,]    5    5
+## [6,]    6    7</code></pre>
+<p>The first column is one team with the types 1 through 6, while the second is a team with 1 through 5 and 7.</p>
+<p>Now we need to take this and understand how many types each team is super effective against.</p>
+</div>
+<div id="matrix-magic" class="section level2">
+<h2>Matrix Magic</h2>
+<p>I originally was thinking of calling this post “Going back to the Base[ics],” since I’m moving out of the tidyverse and into the world of matrices, but there’s really nothing basic about this. Let’s walk through it step by step.</p>
+<p>First, we’re going to take our table and make it a matrix. We can’t just do <code>as.matrix()</code> directly, as it will make the Attacking column the first column, while we want that to be the rownames, so we’ll do it in two steps.</p>
+<pre class="r"><code>m &lt;- as.matrix(type_comparisons[, -1])
+rownames(m) &lt;- type_comparisons$Attacking</code></pre>
+<p>Next, because we only care about whether the entry is 2 or not, we’ll change every entry that’s a 2 to be 1 and every entry that’s not to be 0 (the <code>1L *</code> makes it 1 or 0 instead of TRUE or FALSE).</p>
+<pre class="r"><code>super_effective_m &lt;- (m == 2) * 1L</code></pre>
+<pre class="r"><code>super_effective_m</code></pre>
+<pre><code>##          Normal Fire Water Electric Grass Ice Fighting Poison Ground
+## Normal        0    0     0        0     0   0        0      0      0
+## Fire          0    0     0        0     1   1        0      0      0
+## Water         0    1     0        0     0   0        0      0      1
+## Electric      0    0     1        0     0   0        0      0      0
+## Grass         0    0     1        0     0   0        0      0      1
+## Ice           0    0     0        0     1   0        0      0      1
+## Fighting      1    0     0        0     0   1        0      0      0
+## Poison        0    0     0        0     1   0        0      0      0
+## Ground        0    1     0        1     0   0        0      1      0
+## Flying        0    0     0        0     1   0        1      0      0
+## Psychic       0    0     0        0     0   0        1      1      0
+## Bug           0    0     0        0     1   0        0      0      0
+## Rock          0    1     0        0     0   1        0      0      0
+## Ghost         0    0     0        0     0   0        0      0      0
+## Dragon        0    0     0        0     0   0        0      0      0
+## Dark          0    0     0        0     0   0        0      0      0
+## Steel         0    0     0        0     0   1        0      0      0
+## Fairy         0    0     0        0     0   0        1      0      0
+##          Flying Psychic Bug Rock Ghost Dragon Dark Steel Fairy
+## Normal        0       0   0    0     0      0    0     0     0
+## Fire          0       0   1    0     0      0    0     1     0
+## Water         0       0   0    1     0      0    0     0     0
+## Electric      1       0   0    0     0      0    0     0     0
+## Grass         0       0   0    1     0      0    0     0     0
+## Ice           1       0   0    0     0      1    0     0     0
+## Fighting      0       0   0    1     0      0    1     1     0
+## Poison        0       0   0    0     0      0    0     0     1
+## Ground        0       0   0    1     0      0    0     1     0
+## Flying        0       0   1    0     0      0    0     0     0
+## Psychic       0       0   0    0     0      0    0     0     0
+## Bug           0       1   0    0     0      0    1     0     0
+## Rock          1       0   1    0     0      0    0     0     0
+## Ghost         0       1   0    0     1      0    0     0     0
+## Dragon        0       0   0    0     0      1    0     0     0
+## Dark          0       1   0    0     1      0    0     0     0
+## Steel         0       0   0    1     0      0    0     0     1
+## Fairy         0       0   0    0     0      1    1     0     0</code></pre>
+<p>The <code>all_combinations</code> matrix we created before is essentially a set of indices for the <code>super_effective_m</code> matrix. For example, column 1 of <code>all_combinations</code> are the numbers 1 through 6, which means we want to get rows 1 through 6 of <code>super_effective_m</code>. Remember, each row of <code>super_effective_m</code> is an attacking type on our team, and each column is a defending type. We then want to get the sum of each column and know how many columns have a sum of more than 0, meaning at least one of our attacking types was super effective against it. We’ll make a function, <code>super_effective_nb</code>:</p>
+<pre class="r"><code>super_effective_nb &lt;- function(indices) {
+  sum(colSums(super_effective_m[indices, ]) &gt; 0)
+}</code></pre>
+<p>Now we can use <code>apply()</code> to get a vector, for all 18k+ teams, of how many types they’re super effective against. If you’re not familiar with <code>apply()</code>, the first argument is what we’re applying our function to, the second is whether it should apply to the rows or columns (we choose 2 for column, since each column is the team), and the third is the function.</p>
+<pre class="r"><code>super_effective_results &lt;- apply(all_combinations, 2, super_effective_nb)</code></pre>
+<p>What are the combinations that are super effective against the maximum number of types possible?</p>
+<pre class="r"><code>which(super_effective_results == max(super_effective_results))</code></pre>
+<pre><code>##  [1] 14323 14325 15610 15612 16454 16459 16852 16854 16989 16994</code></pre>
+<p>We see there are 10 possible combinations of six types. Let’s take a look at them by getting those columns from <code>all_combinations</code>.</p>
+<pre class="r"><code>best_combos &lt;- all_combinations[, super_effective_results == max(super_effective_results)]
+best_combos</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+## [1,]    4    4    5    5    5    5    6    6    6     6
+## [2,]    6    6    6    6    8    8    7    7    7     7
+## [3,]    7    7    7    7    9    9    8    8    9     9
+## [4,]    9    9    9    9   13   13    9    9   10    10
+## [5,]   10   10   10   10   14   16   10   10   14    16
+## [6,]   14   16   14   16   18   18   14   16   17    17</code></pre>
+<p>We now have a matrix, <code>best_combo</code>, where each column is a team. For example, we see a team of types 4, 6, 7, 9, 10, and 14 cover the maximum number of defending types. But what is type 4? To answer that, we take the row names from <code>super_effective_m</code> and index it by <code>best_combos</code>.</p>
+<pre class="r"><code>rownames(super_effective_m)[best_combos]</code></pre>
+<pre><code>##  [1] &quot;Electric&quot; &quot;Ice&quot;      &quot;Fighting&quot; &quot;Ground&quot;   &quot;Flying&quot;   &quot;Ghost&quot;   
+##  [7] &quot;Electric&quot; &quot;Ice&quot;      &quot;Fighting&quot; &quot;Ground&quot;   &quot;Flying&quot;   &quot;Dark&quot;    
+## [13] &quot;Grass&quot;    &quot;Ice&quot;      &quot;Fighting&quot; &quot;Ground&quot;   &quot;Flying&quot;   &quot;Ghost&quot;   
+## [19] &quot;Grass&quot;    &quot;Ice&quot;      &quot;Fighting&quot; &quot;Ground&quot;   &quot;Flying&quot;   &quot;Dark&quot;    
+## [25] &quot;Grass&quot;    &quot;Poison&quot;   &quot;Ground&quot;   &quot;Rock&quot;     &quot;Ghost&quot;    &quot;Fairy&quot;   
+## [31] &quot;Grass&quot;    &quot;Poison&quot;   &quot;Ground&quot;   &quot;Rock&quot;     &quot;Dark&quot;     &quot;Fairy&quot;   
+## [37] &quot;Ice&quot;      &quot;Fighting&quot; &quot;Poison&quot;   &quot;Ground&quot;   &quot;Flying&quot;   &quot;Ghost&quot;   
+## [43] &quot;Ice&quot;      &quot;Fighting&quot; &quot;Poison&quot;   &quot;Ground&quot;   &quot;Flying&quot;   &quot;Dark&quot;    
+## [49] &quot;Ice&quot;      &quot;Fighting&quot; &quot;Ground&quot;   &quot;Flying&quot;   &quot;Ghost&quot;    &quot;Steel&quot;   
+## [55] &quot;Ice&quot;      &quot;Fighting&quot; &quot;Ground&quot;   &quot;Flying&quot;   &quot;Dark&quot;     &quot;Steel&quot;</code></pre>
+<p>This gets us a character vector though. It’s in order, so we know that the first six is team 1, the second six team 2, etc., but it’s not displayed very well. We can use <code>matrix</code> to turn this into a matrix instead, specifying that we want 6 rows.</p>
+<pre class="r"><code>strongest_teams &lt;- matrix(rownames(super_effective_m)[best_combos], nrow = 6)</code></pre>
+<pre class="r"><code>strongest_teams</code></pre>
+<pre><code>##      [,1]       [,2]       [,3]       [,4]       [,5]     [,6]    
+## [1,] &quot;Electric&quot; &quot;Electric&quot; &quot;Grass&quot;    &quot;Grass&quot;    &quot;Grass&quot;  &quot;Grass&quot; 
+## [2,] &quot;Ice&quot;      &quot;Ice&quot;      &quot;Ice&quot;      &quot;Ice&quot;      &quot;Poison&quot; &quot;Poison&quot;
+## [3,] &quot;Fighting&quot; &quot;Fighting&quot; &quot;Fighting&quot; &quot;Fighting&quot; &quot;Ground&quot; &quot;Ground&quot;
+## [4,] &quot;Ground&quot;   &quot;Ground&quot;   &quot;Ground&quot;   &quot;Ground&quot;   &quot;Rock&quot;   &quot;Rock&quot;  
+## [5,] &quot;Flying&quot;   &quot;Flying&quot;   &quot;Flying&quot;   &quot;Flying&quot;   &quot;Ghost&quot;  &quot;Dark&quot;  
+## [6,] &quot;Ghost&quot;    &quot;Dark&quot;     &quot;Ghost&quot;    &quot;Dark&quot;     &quot;Fairy&quot;  &quot;Fairy&quot; 
+##      [,7]       [,8]       [,9]       [,10]     
+## [1,] &quot;Ice&quot;      &quot;Ice&quot;      &quot;Ice&quot;      &quot;Ice&quot;     
+## [2,] &quot;Fighting&quot; &quot;Fighting&quot; &quot;Fighting&quot; &quot;Fighting&quot;
+## [3,] &quot;Poison&quot;   &quot;Poison&quot;   &quot;Ground&quot;   &quot;Ground&quot;  
+## [4,] &quot;Ground&quot;   &quot;Ground&quot;   &quot;Flying&quot;   &quot;Flying&quot;  
+## [5,] &quot;Flying&quot;   &quot;Flying&quot;   &quot;Ghost&quot;    &quot;Dark&quot;    
+## [6,] &quot;Ghost&quot;    &quot;Dark&quot;     &quot;Steel&quot;    &quot;Steel&quot;</code></pre>
+<p>For our final step, we’re actually going to make this a tibble, so I can look at which types appear the most often across the different team possibilities.</p>
+<pre class="r"><code>strongest_teams %&gt;%
+  as_tibble() %&gt;%
+  gather(team, type) %&gt;%
+  count(type, sort = TRUE) %&gt;%
+  knitr::kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">type</th>
+<th align="right">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Ground</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="left">Fighting</td>
+<td align="right">8</td>
+</tr>
+<tr class="odd">
+<td align="left">Flying</td>
+<td align="right">8</td>
+</tr>
+<tr class="even">
+<td align="left">Ice</td>
+<td align="right">8</td>
+</tr>
+<tr class="odd">
+<td align="left">Dark</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">Ghost</td>
+<td align="right">5</td>
+</tr>
+<tr class="odd">
+<td align="left">Grass</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">Poison</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">Electric</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Fairy</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Rock</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Steel</td>
+<td align="right">2</td>
+</tr>
+</tbody>
+</table>
+<p>We see all 10 of the teams need a ground type, where 8 have a Fighting, Flying, or Ice type. On the other hand, Electric, Fairy, Rock, and Steel are only each used by two teams.</p>
+</div>
+<div id="making-it-faster" class="section level2">
+<h2>Making it faster</h2>
+<p>We can actually make the <code>apply()</code> step faster by recognizing we’re dealing with matrix multiplication. We’ll start by making a matrix of zeros with 18 rows and 18,564 columns (one for each possible team).</p>
+<pre class="r"><code>sparse_combinations &lt;- matrix(0, nrow = 18, ncol = ncol(all_combinations))</code></pre>
+<p>We then want to fill in the matrix with 1s in each column where that row type is on that team. For example, for the 1st column, we’d want 1s for 1 through 6, for the second column 1s from 1 to 5 and for 7, etc. We know which rows we need for each column from <code>all_combinations</code>, but how do we do it?</p>
+<p>If we were changing one entry to 1, we’d do it like this:</p>
+<pre class="r"><code>sparse_combinations[1, 1] &lt;- 1
+sparse_combinations[, 1:3]</code></pre>
+<pre><code>##       [,1] [,2] [,3]
+##  [1,]    1    0    0
+##  [2,]    0    0    0
+##  [3,]    0    0    0
+##  [4,]    0    0    0
+##  [5,]    0    0    0
+##  [6,]    0    0    0
+##  [7,]    0    0    0
+##  [8,]    0    0    0
+##  [9,]    0    0    0
+## [10,]    0    0    0
+## [11,]    0    0    0
+## [12,]    0    0    0
+## [13,]    0    0    0
+## [14,]    0    0    0
+## [15,]    0    0    0
+## [16,]    0    0    0
+## [17,]    0    0    0
+## [18,]    0    0    0</code></pre>
+<p>That works the same if we did it for multiple entries:</p>
+<pre class="r"><code>sparse_combinations[1:3, 1] &lt;- 1
+sparse_combinations[, 1:3]</code></pre>
+<pre><code>##       [,1] [,2] [,3]
+##  [1,]    1    0    0
+##  [2,]    1    0    0
+##  [3,]    1    0    0
+##  [4,]    0    0    0
+##  [5,]    0    0    0
+##  [6,]    0    0    0
+##  [7,]    0    0    0
+##  [8,]    0    0    0
+##  [9,]    0    0    0
+## [10,]    0    0    0
+## [11,]    0    0    0
+## [12,]    0    0    0
+## [13,]    0    0    0
+## [14,]    0    0    0
+## [15,]    0    0    0
+## [16,]    0    0    0
+## [17,]    0    0    0
+## [18,]    0    0    0</code></pre>
+<p>First, we’re going to make <code>all_combinations</code> a vector instead by putting it inside <code>c()</code>. This will be our indicator of which rows should be filled in with 1. Then we realize we need to modify rows 1:6 in column 1, rows 1:5 and 7 in column 2, etc. In other words, the first six entries of <code>all_combinations</code> should be paired with 1, the next 6 2, the next 6 3, etc, to indicate what column that row should be modified in. That means we need a vector of six 1s, six 2s, six 3s, all the way up to six 18,546, to put in the column index. We can do that with <code>rep()</code>:</p>
+<pre class="r"><code>all_columns &lt;- rep(1:ncol(all_combinations), each = 6)
+all_columns[1:24]</code></pre>
+<pre><code>##  [1] 1 1 1 1 1 1 2 2 2 2 2 2 3 3 3 3 3 3 4 4 4 4 4 4</code></pre>
+<p>In the final step, we wrap those into <code>cbind()</code>:</p>
+<pre class="r"><code>sparse_combinations[cbind(c(all_combinations), all_columns)] &lt;- 1</code></pre>
+<pre class="r"><code>sparse_combinations[1:8, 1:2]</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    1    1
+## [2,]    1    1
+## [3,]    1    1
+## [4,]    1    1
+## [5,]    1    1
+## [6,]    1    0
+## [7,]    0    1
+## [8,]    0    0</code></pre>
+<p>Now <code>sparse_combinations</code> has 1s in the correct places to indicate which types are on which teams.</p>
+<p>We now multiple the tranpose of <code>super_effective_m</code> by <code>spare_combinations</code>, to get a new matrix, <code>strategy_effectiveness</code>, that is 18 by 18,564. Each column represents a six-type team and each row a defending type. Each entry is how many pokemon on the six-type team is super-effective against the defending team.</p>
+<pre class="r"><code>strategy_effectiveness &lt;- (t(super_effective_m) %*% sparse_combinations)
+
+strategy_effectiveness[, 1:3]</code></pre>
+<pre><code>##          [,1] [,2] [,3]
+## Normal      0    1    0
+## Fire        1    1    1
+## Water       2    2    2
+## Electric    0    0    0
+## Grass       2    1    2
+## Ice         1    2    1
+## Fighting    0    0    0
+## Poison      0    0    0
+## Ground      3    2    2
+## Flying      2    1    1
+## Psychic     0    0    0
+## Bug         1    1    1
+## Rock        2    3    2
+## Ghost       0    0    0
+## Dragon      1    0    0
+## Dark        0    1    0
+## Steel       1    2    1
+## Fairy       0    0    1</code></pre>
+<p>For example, on the first team, none are super effective against Normal, 1 of the pokemon is super effective against Fire, two are super effective against Water. We need to know how many entries are greater than 0, as that is how many types the team is super effective against. We can do this with <code>colSums()</code>:</p>
+<pre class="r"><code>super_effective_results &lt;- colSums(strategy_effectiveness &gt; 0)
+super_effective_results[1:5]</code></pre>
+<pre><code>## [1] 10 11 10 11 10</code></pre>
+<p><code>super_effective_results</code> is a vector of length 18,564 - the first entry is how many types team 1 is super effective against, the second how many types team 2 is super effective against etc. We now look for only those entries that are equal to the max value of the vector:</p>
+<pre class="r"><code>best_combos &lt;- all_combinations[, super_effective_results == max(super_effective_results)]
+matrix(rownames(super_effective_m)[best_combos], 6)</code></pre>
+<pre><code>##      [,1]       [,2]       [,3]       [,4]       [,5]     [,6]    
+## [1,] &quot;Electric&quot; &quot;Electric&quot; &quot;Grass&quot;    &quot;Grass&quot;    &quot;Grass&quot;  &quot;Grass&quot; 
+## [2,] &quot;Ice&quot;      &quot;Ice&quot;      &quot;Ice&quot;      &quot;Ice&quot;      &quot;Poison&quot; &quot;Poison&quot;
+## [3,] &quot;Fighting&quot; &quot;Fighting&quot; &quot;Fighting&quot; &quot;Fighting&quot; &quot;Ground&quot; &quot;Ground&quot;
+## [4,] &quot;Ground&quot;   &quot;Ground&quot;   &quot;Ground&quot;   &quot;Ground&quot;   &quot;Rock&quot;   &quot;Rock&quot;  
+## [5,] &quot;Flying&quot;   &quot;Flying&quot;   &quot;Flying&quot;   &quot;Flying&quot;   &quot;Ghost&quot;  &quot;Dark&quot;  
+## [6,] &quot;Ghost&quot;    &quot;Dark&quot;     &quot;Ghost&quot;    &quot;Dark&quot;     &quot;Fairy&quot;  &quot;Fairy&quot; 
+##      [,7]       [,8]       [,9]       [,10]     
+## [1,] &quot;Ice&quot;      &quot;Ice&quot;      &quot;Ice&quot;      &quot;Ice&quot;     
+## [2,] &quot;Fighting&quot; &quot;Fighting&quot; &quot;Fighting&quot; &quot;Fighting&quot;
+## [3,] &quot;Poison&quot;   &quot;Poison&quot;   &quot;Ground&quot;   &quot;Ground&quot;  
+## [4,] &quot;Ground&quot;   &quot;Ground&quot;   &quot;Flying&quot;   &quot;Flying&quot;  
+## [5,] &quot;Flying&quot;   &quot;Flying&quot;   &quot;Ghost&quot;    &quot;Dark&quot;    
+## [6,] &quot;Ghost&quot;    &quot;Dark&quot;     &quot;Steel&quot;    &quot;Steel&quot;</code></pre>
+<p>As we expected, we see the same 10 teams from our previous method.</p>
+<p>These are all effective against 17 types, what are they missing? We can see which types a given team is super effective by indexing the rows of <code>super_effective_m</code> to only the ones on our team and then summing those columns. Let’s try that with the first combination:</p>
+<pre class="r"><code>colSums(super_effective_m[best_combos[, 1],  ])</code></pre>
+<pre><code>##   Normal     Fire    Water Electric    Grass      Ice Fighting   Poison 
+##        1        1        1        1        2        1        1        1 
+##   Ground   Flying  Psychic      Bug     Rock    Ghost   Dragon     Dark 
+##        1        2        1        1        2        1        1        1 
+##    Steel    Fairy 
+##        2        0</code></pre>
+<p>This says this combo is ineffective against fairy, while there are two types on the attacking team that are super effective against Grass, Flying, Rock, and Steel.</p>
+<p>We can write a quick for loop to do this for all ten teams:</p>
+<pre class="r"><code>for (combo in 1:10) ( 
+  print(names(which(colSums(super_effective_m[best_combos[, combo],  ]) == 0)))
+  )</code></pre>
+<pre><code>## [1] &quot;Fairy&quot;
+## [1] &quot;Fairy&quot;
+## [1] &quot;Fairy&quot;
+## [1] &quot;Fairy&quot;
+## [1] &quot;Normal&quot;
+## [1] &quot;Normal&quot;
+## [1] &quot;Water&quot;
+## [1] &quot;Water&quot;
+## [1] &quot;Water&quot;
+## [1] &quot;Water&quot;</code></pre>
+<p>We see four teams have no one effective against Fairy, two teams no one against Normal, and four teams no one against Water.</p>
+</div>
+<div id="tidying-it-up" class="section level2">
+<h2>Tidying it up</h2>
+<p>We’ve been having fun learning all about matrices, but let’s see if we can do this a tidy way. We wouldn’t bother if we were very concerned about speed (see my previous post on <a href="https://hookedondata.org/making-r-code-faster-a-case-study/">make R code faster</a> for how working with matrices is super fast and efficient in R), but since it’s a relatively small operation, I think it’s worth trying.</p>
+<p>We’ll start by making <code>all_combinations</code> a tidy table by using <code>melt()</code> (from the old school <code>reshape2</code> package):</p>
+<pre class="r"><code>tidy_teams &lt;- reshape2::melt(all_combinations, 
+               varnames = c(&quot;number&quot;, &quot;team&quot;), 
+               value.name = &quot;type_index&quot;)  %&gt;%
+  tbl_df() %&gt;%
+  mutate(type = type_comparisons$Attacking[type_index]) %&gt;% 
+  select(team, type)
+
+tidy_teams %&gt;%
+  head(10) %&gt;%
+  knitr::kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">team</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">Normal</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="left">Fire</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">Water</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="left">Electric</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">Grass</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="left">Ice</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="left">Normal</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">Fire</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="left">Water</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">Electric</td>
+</tr>
+</tbody>
+</table>
+<p>Now we have a table with each one of the 18k+ teams and what type of pokemon are on there. For example, we see that first team has Normal, Fire, Water, Electric, Grass, and Ice.</p>
+<p>We now join this with our <code>tidied_comparison</code> table where the outcomes was 2 (super effective). Now for each pokemon type on each type, there will be a row for each type it’s super effective against. We’re going to change the Defending column to numeric by making it first a factor and then a numeric, as that will make the next step much faster.</p>
+<pre class="r"><code>tidy_team_effectiveness &lt;- tidy_teams %&gt;%
+  inner_join(tidied_comparison %&gt;%
+               filter(outcome == 2) %&gt;%
+               mutate(Defending = as.numeric(as.factor(Defending))), 
+             by = c(&quot;type&quot; = &quot;Attacking&quot;))
+
+tidy_team_effectiveness %&gt;%
+  head(10) %&gt;%
+  knitr::kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">team</th>
+<th align="left">type</th>
+<th align="right">Defending</th>
+<th align="right">outcome</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">Fire</td>
+<td align="right">10</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="left">Fire</td>
+<td align="right">12</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">Fire</td>
+<td align="right">1</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="left">Fire</td>
+<td align="right">17</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">Water</td>
+<td align="right">7</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="left">Water</td>
+<td align="right">11</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">Water</td>
+<td align="right">16</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="left">Electric</td>
+<td align="right">18</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">Electric</td>
+<td align="right">8</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="left">Grass</td>
+<td align="right">18</td>
+<td align="right">2</td>
+</tr>
+</tbody>
+</table>
+<p>For example, team 1 has a Fire type that it’s effective against four types.</p>
+<p>We now calculate for each team how many distinct Defending types they’re effective against. This is slower than our previous versions but still only takes .2 seconds since we changed Defending to be numeric (when it’s a character it takes about 14 seconds).</p>
+<pre class="r"><code>tidy_nb_effective_against &lt;- tidy_team_effectiveness %&gt;%
+  group_by(team) %&gt;%
+  mutate(nb_effective_against = n_distinct(Defending)) %&gt;%
+  ungroup() </code></pre>
+<p>We can then filter for those with the maximum value of <code>nb_effective_against</code>. If we just want the team numbers of type, we’ll run a <code>distinct()</code>:</p>
+<pre class="r"><code>tidy_nb_effective_against %&gt;%
+  filter(nb_effective_against == max(nb_effective_against)) %&gt;%
+  distinct(team, type) %&gt;%
+  head(10) %&gt;%
+  knitr::kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">team</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">14323</td>
+<td align="left">Electric</td>
+</tr>
+<tr class="even">
+<td align="right">14323</td>
+<td align="left">Ice</td>
+</tr>
+<tr class="odd">
+<td align="right">14323</td>
+<td align="left">Fighting</td>
+</tr>
+<tr class="even">
+<td align="right">14323</td>
+<td align="left">Ground</td>
+</tr>
+<tr class="odd">
+<td align="right">14323</td>
+<td align="left">Flying</td>
+</tr>
+<tr class="even">
+<td align="right">14323</td>
+<td align="left">Ghost</td>
+</tr>
+<tr class="odd">
+<td align="right">14325</td>
+<td align="left">Electric</td>
+</tr>
+<tr class="even">
+<td align="right">14325</td>
+<td align="left">Ice</td>
+</tr>
+<tr class="odd">
+<td align="right">14325</td>
+<td align="left">Fighting</td>
+</tr>
+<tr class="even">
+<td align="right">14325</td>
+<td align="left">Ground</td>
+</tr>
+</tbody>
+</table>
+<p>We now again have the 10 combinations of six types that will be super effective against 17 types.</p>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
+<p>While this is a bit of a silly use case, the code we walked through and lessons learned could be applied to a lot of different projects. When I advise people to make a portfolio of data science projects if they’re looking for a job, I sometimes get asked, “But how do I find something to work on?” I recommend looking in your own life and interests where you could use data science. If you’re a runner and use an activity tracker, graph how your run distances and times are related to the weather. If you’re active on a subreddit, you could use the reddit API to get the last 500 posts and do a text analysis. The possibilities are limitless!</p>
+<p>[1] Pokemon players will know that you can have more than 6 types on your team, both because some pokemon have two types and because pokemon can learn moves of other types (e.g. a Normal type pokemon may be able to learn a Dark move). But for the purposes of this analysis I simplified it.</p>
+</div>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/exploring-bob-ross-paintings/" data-tooltip="Exploring Bob Ross paintings">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/pokemon-matrices-and-combinations-oh-my/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/pokemon-matrices-and-combinations-oh-my/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 Emily Robinson. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/exploring-bob-ross-paintings/" data-tooltip="Exploring Bob Ross paintings">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/pokemon-matrices-and-combinations-oh-my/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/pokemon-matrices-and-combinations-oh-my/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2Fpokemon-matrices-and-combinations-oh-my%2F">
+          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2Fpokemon-matrices-and-combinations-oh-my%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://avatars.githubusercontent.com/robinsones" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Emily Robinson</h4>
+    
+      <div id="about-card-bio">Date Scientist at DataCamp</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Data Scientist
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        New York
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Search" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center">no post found</div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/pokemon-matrices-and-combinations-oh-my/">
+                <h3 class="media-heading">Pokemon, matrices, and combinations in R, oh my</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">I recently started playing Pokemon again - “Pokemon Let’s Go Eevee” on the Nintendo Switch to be specific. With pokemon, type match-ups are very important in battles, as some types of moves are “super effective” against other types. For example, fire moves are super effective against grass pokemon, which means they do double the damage they normally would. If you can set yourself up so that you’re always fighting against pokemon you’re super effective against, you’re going to have a much easier time.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/exploring-bob-ross-paintings/">
+                <h3 class="media-heading">Exploring Bob Ross paintings</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">In this post, I try something new and share an analysis I did without stopping to explain the code along the way (with a few exceptions). I analyze a dataset on Bob Ross paintings from last week’s Tidytuesday, an initiative by the R for Data Science online learning community. Each Monday, a new dataset is posted on GitHub with a short description. You can see some analyses and visualizations people have done by searching for the #tidytuesday hashtag on Twitter.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/introducing-the-funneljoin-package/">
+                <h3 class="media-heading">Introducing the funneljoin package</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Have you ever had a “first this then that” question? For example, maybe you’re an e-commerce business and you want all the times people clicked on an item and then added it to their cart within 2 days, or the last page they visited before registering. Or you work with pharmaceutical data and need to know what drugs people took before drug x and which drugs they took afterward and when.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/going-off-the-map/">
+                <h3 class="media-heading">Going Off the Map: Exploring purrr&#39;s Other Functions</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jan 1, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">I recently completed Colin Fay’s excellent DataCamp course, Intermediate Functional Programming with purrr (full disclosure: I work at DataCamp, but part of why I joined was that I was a big fan of the short, interactive course format). Although I’ve used the purrr package before, there were a lot of functions in this course that were new to me. I wrote this post to hopefully demystify purrr a bit for those who find it overwhelming and illustrate some of its lesser known functions.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/the-lesser-known-stars-of-the-tidyverse/">
+                <h3 class="media-heading">The Lesser Known Stars of the Tidyverse</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">In early 2018, I gave a few conference talks on “The Lesser Known Stars of the Tidyverse.” I focused on some packages and functions that aren’t as well known as the core parts of ggplot2 and dplyr but are very helpful in exploratory analysis. I walked through an example analysis of Kaggle’s 2017 State of Data Science and Machine Learning Survey to show how I would use these functions in an exploratory analysis.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/guidelines-for-ab-testing/">
+                <h3 class="media-heading">Guidelines for A/B Testing</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">When I was working at Etsy, I benefited from a very robust A/B testing system. Etsy had been doing A/B testing for more than 6 years. By the time I left, Etsy’s in-house experimentation system, called Catapult, had more than 5 data engineers working on it full-time. Every morning, I was greeted with a homepage that listed all the experiments that Etsy had run in the prior four years. When you clicked on one, you got a summary of what the experiment was testing (usually written by the product manager).</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/red-flags-in-data-science-interviews/">
+                <h3 class="media-heading">Red Flags in Data Science Interviews</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jul 7, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">This post was co-written with Jacqueline Nolis, Principal at Nolis, LLC. Check out the rest of her blog posts, including ones on prioritizing data science work, hiring data scientists, and what to do when your data science project isn’t working.
+When interviewing for any position, you should be evaluating the company just as much as they are evaluating you. While you can research the company beforehand on glassdoor and similar sites, interviews are the best place to get a deeper understanding of the company and ask important questions.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/advice-for-applying-to-data-science-jobs/">
+                <h3 class="media-heading">Advice for Applying to Data Science Jobs</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Following Dave Robinson’s sage tweet to write a blog post when you’ve given the same advice three times, this post is a collection of my thoughts and recommendations for people interested in applying to data science jobs in the US. Many of these principles also apply to tech jobs in general.
+A disclaimer: I have never worked as a recruiter or career coach. This knowledge comes from mainly from my study of Organizational Behavior (including negotiations and women in tech) in graduate school and my own career.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/the-importance-of-sponsorship/">
+                <h3 class="media-heading">The Importance of Sponsorship</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Feb 2, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">In my last post, I discussed the importance of building your network and some strategies for effectively reaching out. I closed with emphasizing how helpful your peers or people one step ahead of you can be. But there’s a specific area where people with more resources, status, or experience can help you: sponsorship.
+What is sponsorship? When people discuss what they’re seeking from a more senior person in their field, they usually talk about “mentorship.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/building-your-data-science-network-finding-community/">
+                <h3 class="media-heading">Building Your Data Science Network: Finding Community</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jan 1, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">So you’ve heard you’re supposed to network. That’s the key in getting a job or establishing a reputation in your broader field, right? And it’s true that the importance of having a good network is supported by a lot of social sciences research. But if the thought of networking makes you cringe, you’re not alone. Many people equate networking to sending out millions of unsolicited Linkedin requests with no message, handing out 20 business cards at a meetup once a week, or sending emails to prominent data scientists with the subject line “Can I pick your brain?</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero="no post found"
+         data-message-one="1 post found"
+         data-message-other="{n} posts found">
+         20 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('/images/cover.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

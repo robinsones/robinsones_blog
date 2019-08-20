@@ -6,10 +6,19 @@
     <description>Recent content on Hooked on Data</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 14 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 20 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>What Types Should You Have on Your Pokémon Team? Efficient Simulation with Matrices in R</title>
+      <link>/pokemon-type-combinations/</link>
+      <pubDate>Tue, 20 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/pokemon-type-combinations/</guid>
+      <description>I recently started playing Pokémon again - “Pokémon Let’s Go Eevee” on the Nintendo Switch to be specific. In the classic Pokémon games, you have a team of 6 Pokémon that you use to battle against other trainers. In battles, type match-ups are very important, as some types of moves are “super effective” against other types. For example, fire moves are super effective against grass Pokémon, which means they do double the damage they normally would.</description>
+    </item>
     
     <item>
       <title>Exploring Bob Ross paintings</title>
@@ -207,7 +216,7 @@ This hit home one day this spring. In one of my classes, we had been writing cod
       
       <guid>/speaking/</guid>
       <description>I regularly give talks on A/B Testing, working in R, data science career advice, and more. I&amp;rsquo;ve given talks across the country and internationally, to audiences ranging from 25 people to 800. If you&amp;rsquo;re interested in having me speak at your event, please contact me at robinson.es[at]gmail.com
-Upcoming Talks November 2019, DC R conference.
+Upcoming Talks May 2019, PyData Ann Arbor November 2019, DC R conference.
 Previous Talks Joining the Data Science Community July 2019, Demystifying Data Science, an online conference by Metis.</description>
     </item>
     
