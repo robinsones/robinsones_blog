@@ -23,7 +23,7 @@ November 2019, DC R conference.
 
 ### Joining the Data Science Community
 
-July 2019, [Demystifying Data Science](https://www.thisismetis.com/demystifying-data-science), an online conference by Metis. 
+July 2019, Demystifying Data Science, [Recording](https://www.youtube.com/watch?v=YiROP9-OJh4&feature=youtu.be).
 
 May & July 2018, Metis Data Science Bootcamp.
 
