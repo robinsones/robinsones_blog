@@ -17,8 +17,8 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Making R Code Faster: A Case Study">
 <meta name="twitter:title" content="Making R Code Faster: A Case Study">
-<meta property="og:url" content="https://hookedondata.org/making-r-code-faster-a-case-study/">
-<meta property="twitter:url" content="https://hookedondata.org/making-r-code-faster-a-case-study/">
+<meta property="og:url" content="/making-r-code-faster-a-case-study/">
+<meta property="twitter:url" content="/making-r-code-faster-a-case-study/">
 <meta property="og:site_name" content="Hooked on Data">
 <meta property="og:description" content="About two months ago I put a call out to Rstats twitter:
 #rstats twitter - who loves helping to make (short) code run as fast as possible? Playing w/ foreach, doparallel, data.table but know little — Emily Robinson (@robinson_es) October 4, 2017   I had a working, short script that took 3 1/2 minutes to run. While this may be fine if you only need to run it once, I needed to run it hundreds of time for simulations.">
@@ -65,12 +65,12 @@
 
     <title>Making R Code Faster: A Case Study</title>
 
-    <link rel="icon" href="https://hookedondata.org/favicon.png">
+    <link rel="icon" href="/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://hookedondata.org/making-r-code-faster-a-case-study/">
+    <link rel="canonical" href="/making-r-code-faster-a-case-study/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -78,7 +78,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
     
     
-    <link rel="stylesheet" href="https://hookedondata.org/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    <link rel="stylesheet" href="/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
     
     
 
@@ -106,12 +106,12 @@ if (!doNotTrack) {
       <header id="header" data-behavior="5">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
-    <a class="header-title-link" href="https://hookedondata.org/">Hooked on Data</a>
+    <a class="header-title-link" href="/">Hooked on Data</a>
   </div>
   
     
       <a class="header-right-picture "
-         href="https://hookedondata.org/about">
+         href="/about">
     
     
     
@@ -127,7 +127,7 @@ if (!doNotTrack) {
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
-        <a href="https://hookedondata.org/about">
+        <a href="/about">
           <img class="sidebar-profile-picture" src="https://avatars.githubusercontent.com/robinsones" alt="Author&#39;s picture" />
         </a>
         <h4 class="sidebar-profile-name">Emily Robinson</h4>
@@ -140,7 +140,7 @@ if (!doNotTrack) {
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://hookedondata.org/">
+      <a class="sidebar-button-link " href="/">
     
       <i class="sidebar-button-icon fa fa-lg fa-home"></i>
       
@@ -150,7 +150,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://hookedondata.org/tags">
+      <a class="sidebar-button-link " href="/tags">
     
       <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
       
@@ -160,7 +160,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://hookedondata.org/about">
+      <a class="sidebar-button-link " href="/about">
     
       <i class="sidebar-button-icon fa fa-lg fa-question"></i>
       
@@ -170,7 +170,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://hookedondata.org/archives">
+      <a class="sidebar-button-link " href="/archives">
     
       <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
       
@@ -180,7 +180,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://www.linkedin.com/in/robinsones/" target="_blank" rel="noopener">
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/robinsones/">
     
       <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
       
@@ -194,7 +194,7 @@ if (!doNotTrack) {
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://github.com/robinsones" target="_blank" rel="noopener">
+      <a class="sidebar-button-link " href="https://github.com/robinsones">
     
       <i class="sidebar-button-icon fa fa-lg fa-github"></i>
       
@@ -204,7 +204,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://hookedondata.org/speaking">
+      <a class="sidebar-button-link " href="/speaking">
     
       <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
       
@@ -275,7 +275,7 @@ if (!doNotTrack) {
 <h2>Asking for help</h2>
 <p>I am very fortunate to have a data scientist brother who will jump in to help out even when not directly asked. A lot of the code improvements following come from him.</p>
 <div class="figure">
-<img src="https://hookedondata.org/img/Dave_optimization_tweet.png" alt="center" />
+<img src="/img/Dave_optimization_tweet.png" alt="center" />
 <p class="caption">center</p>
 </div>
 <p>I’ve also gotten to know many other people in the R community through RLadies, conferences, and twitter, some of whom offered help as well. But even if you’re new to R and don’t know anyone, there are people who will jump in and help you too. RStudio recently launched a new <a href="https://community.rstudio.com/">community website</a> where you can ask quesitons ranging from a specific issue that you need to debug to <a href="https://community.rstudio.com/t/convince-me-to-start-using-r-markdown/1636">why you should use RMarkdown</a>. There’s also a <a href="https://medium.com/@kierisi/join-the-r-for-data-science-online-learning-community-842527222ab3">slack community</a>, organized by <a href="https://twitter.com/kierisi">Jesse Maegan</a>, that brings people wanting to learn R together with mentors to work through Garrett Grolemund and Hadley Wickham’s <a href="http://r4ds.had.co.nz/">R for Data Science</a> book. Jesse has been writing a great series of blog posts reflecting on some <a href="https://medium.com/@kierisi/latest">lessons from each week</a>, and she’ll also be doing another round.</p>
@@ -393,7 +393,7 @@ length(simulate_p_values_visit_result)*100  </code></pre>
 <p>But we can then recognize that our table currently has a lot of redudancy: we have many browsers that have 1 visit and 0 conversions, 2 visits and 0 conversions, etc.</p>
 <p>Therefore, we can make our code faster by: - Transforming our table so each row is a unique combination of visits &amp; conversions, with a column that is the number of browsers with that combination. We can do this in SQL and output the table as “count of counts”.</p>
 <div class="figure">
-<img src="https://hookedondata.org/img/performance_post_visualization.png" />
+<img src="/img/performance_post_visualization.png" />
 
 </div>
 <pre class="sql"><code>with counts as (
@@ -564,9 +564,9 @@ One rule of thumb for maximizing <a href="https://twitter.com/hashtag/rstats?src
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">TAGGED IN</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://hookedondata.org/tags/r/">R</a>
+  <a class="tag tag--primary tag--small" href="/tags/r/">R</a>
 
-  <a class="tag tag--primary tag--small" href="https://hookedondata.org/tags/code/">Code</a>
+  <a class="tag tag--primary tag--small" href="/tags/code/">Code</a>
 
                   </div>
                 
@@ -579,7 +579,7 @@ One rule of thumb for maximizing <a href="https://twitter.com/hashtag/rstats?src
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://hookedondata.org/building-your-data-science-network-reaching-out/" data-tooltip="Building your Data Science Network: Reaching Out">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/building-your-data-science-network-reaching-out/" data-tooltip="Building your Data Science Network: Reaching Out">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -587,7 +587,7 @@ One rule of thumb for maximizing <a href="https://twitter.com/hashtag/rstats?src
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://hookedondata.org/managing-business-challenges-in-data-science/" data-tooltip="Managing Business Challenges in Data Science">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/managing-business-challenges-in-data-science/" data-tooltip="Managing Business Challenges in Data Science">
               
                   <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                   <i class="fa fa-angle-right"></i>
@@ -605,13 +605,13 @@ One rule of thumb for maximizing <a href="https://twitter.com/hashtag/rstats?src
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://hookedondata.org/making-r-code-faster-a-case-study/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/making-r-code-faster-a-case-study/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://hookedondata.org/making-r-code-faster-a-case-study/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/making-r-code-faster-a-case-study/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -649,7 +649,7 @@ One rule of thumb for maximizing <a href="https://twitter.com/hashtag/rstats?src
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://hookedondata.org/building-your-data-science-network-reaching-out/" data-tooltip="Building your Data Science Network: Reaching Out">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/building-your-data-science-network-reaching-out/" data-tooltip="Building your Data Science Network: Reaching Out">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -657,7 +657,7 @@ One rule of thumb for maximizing <a href="https://twitter.com/hashtag/rstats?src
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://hookedondata.org/managing-business-challenges-in-data-science/" data-tooltip="Managing Business Challenges in Data Science">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/managing-business-challenges-in-data-science/" data-tooltip="Managing Business Challenges in Data Science">
               
                   <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                   <i class="fa fa-angle-right"></i>
@@ -675,13 +675,13 @@ One rule of thumb for maximizing <a href="https://twitter.com/hashtag/rstats?src
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://hookedondata.org/making-r-code-faster-a-case-study/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/making-r-code-faster-a-case-study/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://hookedondata.org/making-r-code-faster-a-case-study/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/making-r-code-faster-a-case-study/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -705,13 +705,13 @@ One rule of thumb for maximizing <a href="https://twitter.com/hashtag/rstats?src
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fhookedondata.org%2Fmaking-r-code-faster-a-case-study%2F">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2Fmaking-r-code-faster-a-case-study%2F">
           <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fhookedondata.org%2Fmaking-r-code-faster-a-case-study%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2Fmaking-r-code-faster-a-case-study%2F">
           <i class="fa fa-twitter"></i><span>Share on Twitter</span>
         </a>
       </li>
@@ -772,7 +772,7 @@ One rule of thumb for maximizing <a href="https://twitter.com/hashtag/rstats?src
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://hookedondata.org/pokemon-type-combinations/">
+              <a class="link-unstyled" href="/pokemon-type-combinations/">
                 <h3 class="media-heading">What Types Should You Have on Your Pokémon Team? Efficient Simulation with Matrices in R</h3>
               </a>
               <span class="media-meta">
@@ -789,7 +789,7 @@ One rule of thumb for maximizing <a href="https://twitter.com/hashtag/rstats?src
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://hookedondata.org/exploring-bob-ross-paintings/">
+              <a class="link-unstyled" href="/exploring-bob-ross-paintings/">
                 <h3 class="media-heading">Exploring Bob Ross paintings</h3>
               </a>
               <span class="media-meta">
@@ -806,7 +806,7 @@ One rule of thumb for maximizing <a href="https://twitter.com/hashtag/rstats?src
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://hookedondata.org/introducing-the-funneljoin-package/">
+              <a class="link-unstyled" href="/introducing-the-funneljoin-package/">
                 <h3 class="media-heading">Introducing the funneljoin package</h3>
               </a>
               <span class="media-meta">
@@ -823,7 +823,7 @@ One rule of thumb for maximizing <a href="https://twitter.com/hashtag/rstats?src
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://hookedondata.org/going-off-the-map/">
+              <a class="link-unstyled" href="/going-off-the-map/">
                 <h3 class="media-heading">Going Off the Map: Exploring purrr&#39;s Other Functions</h3>
               </a>
               <span class="media-meta">
@@ -840,7 +840,7 @@ One rule of thumb for maximizing <a href="https://twitter.com/hashtag/rstats?src
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://hookedondata.org/the-lesser-known-stars-of-the-tidyverse/">
+              <a class="link-unstyled" href="/the-lesser-known-stars-of-the-tidyverse/">
                 <h3 class="media-heading">The Lesser Known Stars of the Tidyverse</h3>
               </a>
               <span class="media-meta">
@@ -857,7 +857,7 @@ One rule of thumb for maximizing <a href="https://twitter.com/hashtag/rstats?src
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://hookedondata.org/guidelines-for-ab-testing/">
+              <a class="link-unstyled" href="/guidelines-for-ab-testing/">
                 <h3 class="media-heading">Guidelines for A/B Testing</h3>
               </a>
               <span class="media-meta">
@@ -874,7 +874,7 @@ One rule of thumb for maximizing <a href="https://twitter.com/hashtag/rstats?src
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://hookedondata.org/red-flags-in-data-science-interviews/">
+              <a class="link-unstyled" href="/red-flags-in-data-science-interviews/">
                 <h3 class="media-heading">Red Flags in Data Science Interviews</h3>
               </a>
               <span class="media-meta">
@@ -892,7 +892,7 @@ When interviewing for any position, you should be evaluating the company just as
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://hookedondata.org/advice-for-applying-to-data-science-jobs/">
+              <a class="link-unstyled" href="/advice-for-applying-to-data-science-jobs/">
                 <h3 class="media-heading">Advice for Applying to Data Science Jobs</h3>
               </a>
               <span class="media-meta">
@@ -910,7 +910,7 @@ A disclaimer: I have never worked as a recruiter or career coach. This knowledge
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://hookedondata.org/the-importance-of-sponsorship/">
+              <a class="link-unstyled" href="/the-importance-of-sponsorship/">
                 <h3 class="media-heading">The Importance of Sponsorship</h3>
               </a>
               <span class="media-meta">
@@ -928,7 +928,7 @@ What is sponsorship? When people discuss what they’re seeking from a more seni
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://hookedondata.org/building-your-data-science-network-finding-community/">
+              <a class="link-unstyled" href="/building-your-data-science-network-finding-community/">
                 <h3 class="media-heading">Building Your Data Science Network: Finding Community</h3>
               </a>
               <span class="media-meta">
@@ -957,7 +957,7 @@ What is sponsorship? When people discuss what they’re seeking from a more seni
     
   
     
-    <div id="cover" style="background-image:url('https://hookedondata.org/images/cover.jpg');"></div>
+    <div id="cover" style="background-image:url('/images/cover.jpg');"></div>
   
 
 
@@ -969,7 +969,7 @@ What is sponsorship? When people discuss what they’re seeking from a more seni
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
 
 
-<script src="https://hookedondata.org/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+<script src="/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
 
 
 <script lang="javascript">
