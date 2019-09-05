@@ -42,28 +42,16 @@ tags:
 <p><code>purrr</code> is a package for functional programming in R. If you’re familiar with it, it’s probably because of the <code>map()*</code> functions. And if you’ve been a little bit intimidated by them, I’m right there with you. You’ll often see <code>purrr</code> used with nested lists or dataframes, like in this (modified) example from one of the last lessons in Jenny Bryan’s <code>purrr</code> tutorial:</p>
 <pre class="r"><code>library(dplyr)
 library(purrr)
-library(gapminder)
-library(tidyr)</code></pre>
+library(gapminder)</code></pre>
+<pre><code>## Error in library(gapminder): there is no package called &#39;gapminder&#39;</code></pre>
+<pre class="r"><code>library(tidyr)</code></pre>
 <pre class="r"><code>gapminder %&gt;%
   group_by(country) %&gt;%
   nest() %&gt;%  
   mutate(fit = map(data, ~ lm(lifeExp ~ year, data = .x))) %&gt;%
   mutate(rsq = map_dbl(fit, ~ summary(.x)[[&quot;r.squared&quot;]])) %&gt;%
   arrange(rsq)</code></pre>
-<pre><code>## # A tibble: 142 x 4
-##    country          data              fit         rsq
-##    &lt;fct&gt;            &lt;list&gt;            &lt;list&gt;    &lt;dbl&gt;
-##  1 Rwanda           &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.0172
-##  2 Botswana         &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.0340
-##  3 Zimbabwe         &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.0562
-##  4 Zambia           &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.0598
-##  5 Swaziland        &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.0682
-##  6 Lesotho          &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.0849
-##  7 Cote d&#39;Ivoire    &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.283 
-##  8 South Africa     &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.312 
-##  9 Uganda           &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.342 
-## 10 Congo, Dem. Rep. &lt;tibble [12 × 5]&gt; &lt;S3: lm&gt; 0.348 
-## # … with 132 more rows</code></pre>
+<pre><code>## Error in eval(lhs, parent, parent): object &#39;gapminder&#39; not found</code></pre>
 <p>If you’ve generally worked with plain-old table data or vectors (like I have), you might have this reaction to that code:</p>
 <div class="figure">
 <img src="https://media.giphy.com/media/a93jwI0wkWTQs/giphy.gif" />
