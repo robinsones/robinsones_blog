@@ -13,7 +13,7 @@ I regularly give talks on A/B Testing, programming in R, data science career adv
 
 ## Upcoming Talks
 
-May 2019, PyData Ann Arbor.
+May 2020, PyData Ann Arbor.
 
 November 2019, Conversion Hotel in the Netherlands.
 
