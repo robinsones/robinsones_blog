@@ -472,7 +472,7 @@ tidied_comparison %&gt;%
 </table>
 <p>Yes - if we want to be super effective against Normal and Electric types, we need Fighting and Ground types respectively.</p>
 </div>
-<div id="building-pokemon-teams" class="section level2">
+<div id="building-pokémon-teams" class="section level2">
 <h2>Building Pokémon Teams</h2>
 <p>The first step is to build out all the hypothetical teams of 6. If you remember your introduction to statistics days, this is a combinatorial problem: we have 18 options (although we don’t expect “Normal” to show up since it’s not super effective against anything), need to choose 6, and the order doesn’t matter (e.g. 1 to 6 is the same as 6 to 1). We can do this in R with the function <code>combn</code>:</p>
 <pre class="r"><code>all_combinations &lt;- combn(18, 6)
