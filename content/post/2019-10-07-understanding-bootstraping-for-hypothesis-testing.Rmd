@@ -1,0 +1,72 @@
+---
+title: Understanding Bootstraping for Hypothesis Testing
+author: Emily Robinson
+date: '2019-10-07'
+slug: understanding-bootstraping-for-hypothesis-testing
+categories: []
+tags:
+  - Code
+  - R
+  - Statistics
+keywords:
+  - tech
+---
+
+```{r}
+sample1 <- rlnorm(10000, meanlog = 50, sdlog = 10)
+sample2 <- rlnorm(10000, meanlog = 52, sdlog = 10)
+t.test(sample1, sample2)
+
+log_test_results <- rep(NA, 1000)
+normal_test_results <- rep(NA, 1000)
+
+# What if they're different?
+for (i in seq(1, 1000)) {
+  sample1 <- rlnorm(10000, meanlog = 50, sdlog = 10)
+  sample2 <- rlnorm(10000, meanlog = 52, sdlog = 10)
+  normal_test_results[i] <- t.test(sample1, sample2)$p.value
+  log_test_results[i] <- t.test(log(sample1), log(sample2))$p.value
+}
+
+mean(normal_test_results < .05)
+mean(log_test_results < .05)
+
+# What if they're  the same?
+for (i in seq(1, 1000)) {
+  sample1 <- rlnorm(10000, meanlog = 50, sdlog = 10)
+  sample2 <- rlnorm(10000, meanlog = 50, sdlog = 10)
+  normal_test_results[i] <- t.test(sample1, sample2)$p.value
+  log_test_results[i] <- t.test(log(sample1), log(sample2))$p.value
+}
+
+# Would expect around .05. Turns out actually it's lower for regular t-test!
+mean(normal_test_results < .05)
+mean(log_test_results < .05)
+
+# Maybe do some power curves. 
+
+for (i in seq(1, 1000)) {
+  sample1 <- rlnorm(10000, meanlog = 50, sdlog = 10)
+  sample2 <- rlnorm(10000, meanlog = 52, sdlog = 10)
+  wilcox_test_results[i] <- wilcox.test(mpg ~ am, data=mtcars)$p.value
+}
+```
+
+http://allendowney.blogspot.com/2011/05/there-is-only-one-test.html
+
+https://statisticsbyjim.com/hypothesis-testing/bootstrapping/
+  Traditional hypothesis test: assumes sampling distribution looks like one specified by test statistic
+Bootstrap estimate sampling distribution by resampling
+
+Real issue is POWER. CLT means t-test will do fine from a false positive perspective, but could do terribly from a false negative scenario. Let’s take an example of a log normal distribution. 
+
+https://twitter.com/juliasilge/status/961684419231666176
+
+Read section III in Modern Dive https://moderndive.com/7-sampling.html
+
+Permutation test: builds the sampling distribution by shuffling the observed data labels (e.g. assigning different outcome values to each observation) for doing hypothesis testing, but do it without replacement. We see all possible permutations (or a large number).
+
+Bootstrap can be an issue with small sample sizes: https://stats.stackexchange.com/questions/112147/can-bootstrap-be-seen-as-a-cure-for-the-small-sample-size/112681#112681. 
+
+
+
