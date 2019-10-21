@@ -15,7 +15,11 @@ I regularly give talks on A/B Testing, programming in R, data science career adv
 
 May 2020, PyData Ann Arbor.
 
+November 2019, Booking.com Headquarters.
+
 November 2019, Conversion Hotel in the Netherlands.
+
+November 2019, R-Ladies DC and DC Emerging Technologies. 
 
 November 2019, DC R conference. 
 
