@@ -19,11 +19,17 @@ November 2019, Booking.com Headquarters.
 
 November 2019, Conversion Hotel in the Netherlands.
 
-November 2019, R-Ladies DC and DC Emerging Technologies. 
-
-November 2019, DC R conference. 
+November 2019, Columbia University. 
 
 ## Previous Talks 
+
+## Build a Career in Data Science 
+
+November 2019, R-Ladies DC and DC Emerging Technologies.
+
+## funneljoin: Defining a Tidy Grammar of Funnels in R
+
+November 2019, DC R conference. [Slides](https://speakerdeck.com/robinsones/funneljoin-defining-a-tidy-grammar-of-funnels-in-r).
 
 ### Joining the Data Science Community
 
