@@ -13,7 +13,7 @@ Have you ever had a "first this then that" question? For example, maybe you're a
 
 Enter the [funneljoin package](https://github.com/robinsones/funneljoin). The goal of funneljoin is to make it easy to analyze behavior funnels with the `after_join()`,  `funnel_start()`, and `funnel_step()` functions. If you work with data where you have events with their time and associated user, you probably have a problem funneljoin can help with. I created this package with [David Robinson](https://twitter.com/drob) and [Anthony Baker](https://www.linkedin.com/in/awbaker1/) in July 2018 and have continued to maintain and build on it since. 
 
-In this post, I'll use `funneljoin::after_join()` to analyze data about all Stack Overflow questions and answers with the tag R up to September 24th, 2017. The data was downloaded from Kaggle [here](https://www.kaggle.com/stackoverflow/rquestions/downloads/rquestions.zip/3). The next post in this series will look at the `funnel_start()` and `funnel_step()` functions, which we'll use when all of the events or behavior are in one table. 
+In this post, I'll use `funneljoin::after_join()` to analyze data about all Stack Overflow questions and answers with the tag R up to September 24th, 2017. The data was downloaded from Kaggle [here](https://www.kaggle.com/stackoverflow/rquestions). The next post in this series will look at the `funnel_start()` and `funnel_step()` functions, which we'll use when all of the events or behavior are in one table. 
 
 ## Set-up
 

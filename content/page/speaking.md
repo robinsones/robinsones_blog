@@ -15,19 +15,19 @@ I regularly give talks on A/B Testing, programming in R, data science career adv
 
 May 2020, PyData Ann Arbor.
 
-November 2019, Booking.com Headquarters.
-
-November 2019, Conversion Hotel in the Netherlands.
-
-November 2019, Columbia University. 
-
 ## Previous Talks 
 
-## Build a Career in Data Science 
+### Data Science Demstifyed 
+
+November 2019, Conversion Hotel in the Netherlands. [Slides](https://www.slideshare.net/webanalisten/ch2019-keynote-emily-robinson-data-science-demystified), [5-minute video summary](https://conversionhotel.com/session/keynote-2019-data-science-demystified/).
+
+### Build a Career in Data Science 
 
 November 2019, R-Ladies DC and DC Emerging Technologies.
 
-## funneljoin: Defining a Tidy Grammar of Funnels in R
+### funneljoin: Defining a Tidy Grammar of Funnels in R
+
+November 2019, Booking.com Headquarters.
 
 November 2019, DC R conference. [Slides](https://speakerdeck.com/robinsones/funneljoin-defining-a-tidy-grammar-of-funnels-in-r).
 
@@ -42,6 +42,8 @@ May & July 2018, Metis Data Science Bootcamp.
 June 2019, [Data Matters](https://skillsmatter.com/meetups/11783-keynote-evening-with-emily-robinson) in London. [Recording](https://skillsmatter.com/skillscasts/13056-creating-a-strong-data-science-portfolio), [Slides](https://speakerdeck.com/robinsones/build-a-strong-data-science-portfolio).
 
 ### Everything You Wanted to Know About Making R Packages but Were Afraid to Ask
+
+November 2019, Columbia University. 
 
 May 2019, New York R Conference. [Recording](https://www.youtube.com/embed/33BzunEXEIE),  [Slides](https://www.slideshare.net/EmilyRobinson52/everything-you-wanted-to-know-about-making-an-r-package-but-were-afraid-to-ask).
 
