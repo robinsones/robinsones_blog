@@ -71,7 +71,7 @@ I like it because it serves as notes for myself, it's a way to share key points 
 
 I'll end this first part with a similar promise to Dave's: if you live tweet a talk or share a great data science resource on Twitter, let me know with a tweet and I'll retweet. Let's continue building a friendly, supportive community together.
 
-[1] IIf you found this post useful, you might be interested in the book on data science careers I'm writing with [Jacqueline Nolis](jnolis.com), ["Build Your Career in Data Science,"](www.datascicareer.com) to be published by Manning in March 2020. The entire book is available online if you pre-order, and you can get 40% off with the code buildbook40%.
+[1] IIf you found this post useful, you might be interested in the book on data science careers I'm writing with [Jacqueline Nolis](https://jnolis.com), ["Build Your Career in Data Science,"](https://datascicareer.com) to be published by Manning in March 2020. The entire book is available online if you pre-order, and you can get 40% off with the code buildbook40%.
 
 [1] lic (i.e. not a private message), brief hello is friendly. A virtual “I see you're going to be at the NY R conference, what hotel are you staying in, where are you eating, will you be wearing the same black dress as last year, because you looked really hot” is not. Harassment and stalking are serious and common problems. Keep messages professional; don't be this person:
 
