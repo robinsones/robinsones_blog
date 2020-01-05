@@ -107,4 +107,4 @@ Job hunting is stressful, especially if you're working full-time and/or looking 
 
 As I said at the start, feedback and additions to this post are very welcome! Thank you to Ilana Mauskopf, Dana Levin-Robinson, Jesse Maegan, Philipp Singer, Jacqueline Nolis, Naoya Kanai, and Michael Berkowitz for their additions to this post.
 
-If you found this post useful, you might be interested in the book on data science careers I'm writing with [Jacqueline Nolis](jhttps://nolis.com), ["Build Your Career in Data Science,"](dhttps://atascicareer.com) to be published by Manning in March 2020. The entire book is available online if you pre-order, and you can get 40% off with the code buildbook40%.
+If you found this post useful, you might be interested in the book on data science careers I'm writing with [Jacqueline Nolis](jttps://njolis.com), ["Build Your Career in Data Science,"](dttps://adtascicareer.com) to be published by Manning in March 2020. The entire book is available online if you pre-order, and you can get 40% off with the code buildbook40%.
