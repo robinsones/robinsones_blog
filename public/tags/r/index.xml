@@ -6,10 +6,20 @@
     <description>Recent content in R on Hooked on Data</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 20 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 13 Jan 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/r/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>An Introduction to Tidyverts: Time Series and Forecasting in R</title>
+      <link>/time-series-and-forecasting-in-r/</link>
+      <pubDate>Mon, 13 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/time-series-and-forecasting-in-r/</guid>
+      <description>I recently moved to a new position at Warby Parker as a senior data scientist. Although I’ve loved working on A/B testing and continue to do so, one of the things that drew me to this position was the chance to try out different areas of data science. And that opportunity came early, as one of my first projects has been working on time series and forecasting.
+While I’ve been programming in R for 9 years now and minored in statistics, I had actually never done any time series analysis in courses or at work.</description>
+    </item>
     
     <item>
       <title>What Types Should You Have on Your Pokémon Team? Efficient Simulation with Matrices in R</title>

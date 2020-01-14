@@ -1,0 +1,34 @@
+---
+title: 'An Introduction to Tidyverts: Time Series and Forecasting in R'
+author: Emily Robinson
+date: '2020-01-13'
+slug: time-series-and-forecasting-in-r
+categories: []
+tags:
+  - R
+  - Code
+  - tidyverse
+---
+
+
+
+<p>I recently moved to a new position at Warby Parker as a senior data scientist. Although I’ve loved working on A/B testing and continue to do so, one of the things that drew me to this position was the chance to try out different areas of data science. And that opportunity came early, as one of my first projects has been working on time series and forecasting.</p>
+<p>While I’ve been programming in R for 9 years now and minored in statistics, I had actually never done any time series analysis in courses or at work. I had however heard some great talks on time series in R from <a href="https://www.youtube.com/watch?v=AH7n2LflQZo&amp;feature=youtu.be">Earo Wang</a> and <a href="https://www.youtube.com/watch?v=yx6OQ-8HofU&amp;feature=youtu.be">Rob Hyndman</a> at the New York Open Statistical Programming Meetup, so I was somewhat familiar with the packages.</p>
+<p>I highly recommend checking out <a href="https://otexts.com/fpp3/">the full book</a>. It’s one of the best textbooks I’ve ever read: clear, practical, with plenty of examples. While the book is not yet finished, it’s mainly done and the only things I’ve noticed missing are ocassional references to other parts of the book.</p>
+<p>To get started, let’s load the <code>fpp3</code> set of packages, which includes some core <code>tidyverse</code> pacakges as well as <code>tidyverts</code> ones.</p>
+<pre class="r"><code>#devtools::install_github(&quot;thebioengineer/tidytuesdayR&quot;)
+#install.packages(&quot;fpp3&quot;)
+library(fpp3)</code></pre>
+<pre><code>## ── Attaching packages ─────────────────────────────────────────── fpp3 0.1 ──</code></pre>
+<pre><code>## ✓ tibble      2.1.3     ✓ tsibble     0.8.5
+## ✓ dplyr       0.8.3     ✓ tsibbledata 0.1.0
+## ✓ tidyr       0.8.3     ✓ feasts      0.1.1
+## ✓ lubridate   1.7.4     ✓ fable       0.1.1
+## ✓ ggplot2     3.2.1</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────────── fpp3_conflicts ──
+## x lubridate::date()       masks base::date()
+## x dplyr::filter()         masks stats::filter()
+## x tsibble::id()           masks dplyr::id()
+## x tsibble::interval()     masks lubridate::interval()
+## x dplyr::lag()            masks stats::lag()
+## x tsibble::new_interval() masks lubridate::new_interval()</code></pre>

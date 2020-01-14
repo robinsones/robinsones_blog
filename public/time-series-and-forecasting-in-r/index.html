@@ -8,19 +8,41 @@
 <meta name="generator" content="Hugo 0.53 with theme Tranquilpeak 0.4.3-SNAPSHOT">
 <meta name="author" content="Emily Robinson">
 <meta name="keywords" content="">
-<meta name="description" content="Data Science blog by Emily Robinson">
+<meta name="description" content="I recently moved to a new position at Warby Parker as a senior data scientist. Although I’ve loved working on A/B testing and continue to do so, one of the things that drew me to this position was the chance to try out different areas of data science. And that opportunity came early, as one of my first projects has been working on time series and forecasting.
+While I’ve been programming in R for 9 years now and minored in statistics, I had actually never done any time series analysis in courses or at work.">
 
 
-<meta property="og:description" content="Data Science blog by Emily Robinson">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Posts">
-<meta name="twitter:title" content="Posts">
-<meta property="og:url" content="/post/">
-<meta property="twitter:url" content="/post/">
+<meta property="og:description" content="I recently moved to a new position at Warby Parker as a senior data scientist. Although I’ve loved working on A/B testing and continue to do so, one of the things that drew me to this position was the chance to try out different areas of data science. And that opportunity came early, as one of my first projects has been working on time series and forecasting.
+While I’ve been programming in R for 9 years now and minored in statistics, I had actually never done any time series analysis in courses or at work.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="An Introduction to Tidyverts: Time Series and Forecasting in R">
+<meta name="twitter:title" content="An Introduction to Tidyverts: Time Series and Forecasting in R">
+<meta property="og:url" content="/time-series-and-forecasting-in-r/">
+<meta property="twitter:url" content="/time-series-and-forecasting-in-r/">
 <meta property="og:site_name" content="Hooked on Data">
-<meta property="og:description" content="Data Science blog by Emily Robinson">
-<meta name="twitter:description" content="Data Science blog by Emily Robinson">
+<meta property="og:description" content="I recently moved to a new position at Warby Parker as a senior data scientist. Although I’ve loved working on A/B testing and continue to do so, one of the things that drew me to this position was the chance to try out different areas of data science. And that opportunity came early, as one of my first projects has been working on time series and forecasting.
+While I’ve been programming in R for 9 years now and minored in statistics, I had actually never done any time series analysis in courses or at work.">
+<meta name="twitter:description" content="I recently moved to a new position at Warby Parker as a senior data scientist. Although I’ve loved working on A/B testing and continue to do so, one of the things that drew me to this position was the chance to try out different areas of data science. And that opportunity came early, as one of my first projects has been working on time series and forecasting.
+While I’ve been programming in R for 9 years now and minored in statistics, I had actually never done any time series analysis in courses or at work.">
 <meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2020-01-13T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2020-01-13T00:00:00">
+  
+  
+  
+  
+    
+      <meta property="article:tag" content="R">
+    
+      <meta property="article:tag" content="Code">
+    
+      <meta property="article:tag" content="tidyverse">
+    
+  
 
 
 <meta name="twitter:card" content="summary">
@@ -43,16 +65,14 @@
   <meta property="twitter:image" content="https://avatars.githubusercontent.com/robinsones">
 
 
-    <title>Posts</title>
+    <title>An Introduction to Tidyverts: Time Series and Forecasting in R</title>
 
     <link rel="icon" href="/favicon.png">
     
-      <link rel="alternate" type="application/rss+xml" title="RSS" href="/post/index.xml">
-    
 
     
 
-    <link rel="canonical" href="/post/">
+    <link rel="canonical" href="/time-series-and-forecasting-in-r/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -85,7 +105,7 @@ if (!doNotTrack) {
 
   <body>
     <div id="blog">
-      <header id="header" data-behavior="2">
+      <header id="header" data-behavior="5">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
     <a class="header-title-link" href="/">Hooked on Data</a>
@@ -105,7 +125,7 @@ if (!doNotTrack) {
   
 </header>
 
-      <nav id="sidebar" data-behavior="2">
+      <nav id="sidebar" data-behavior="5">
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
@@ -205,282 +225,142 @@ if (!doNotTrack) {
 
       
 
-      <div id="main" data-behavior="2"
+      <div id="main" data-behavior="5"
         class="
                hasCoverMetaIn
                ">
-        <section class="postShorten-group main-content-wrap">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
           
           
-            
+            <div class="post-header main-content-wrap text-left">
   
-    
-      
-        
-      
-    
+    <h1 class="post-title" itemprop="headline">
+      An Introduction to Tidyverts: Time Series and Forecasting in R
+    </h1>
   
-
-
   
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="/building-your-data-science-network-finding-community/">
-          Building Your Data Science Network: Finding Community
-        </a>
-      </h1>
-      
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2018-01-10T00:00:00Z">
+      <time itemprop="datePublished" datetime="2020-01-13T00:00:00Z">
         
-  January 10, 2018
+  January 13, 2020
 
       </time>
     
     
   </div>
 
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      
-        So you’ve heard you’re supposed to network. That’s the key in getting a job or establishing a reputation in your broader field, right? And it’s true that the importance of having a good network is supported by a lot of social sciences research. But if the thought of networking makes you cringe, you’re not alone. Many people equate networking to sending out millions of unsolicited Linkedin requests with no message, handing out 20 business cards at a meetup once a week, or sending emails to prominent data scientists with the subject line “Can I pick your brain?
-      
-      <p>
-        <a href="/building-your-data-science-network-finding-community/" class="postShorten-excerpt_link link">Continue reading</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
+</div>
           
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+
+<p>I recently moved to a new position at Warby Parker as a senior data scientist. Although I’ve loved working on A/B testing and continue to do so, one of the things that drew me to this position was the chance to try out different areas of data science. And that opportunity came early, as one of my first projects has been working on time series and forecasting.</p>
+<p>While I’ve been programming in R for 9 years now and minored in statistics, I had actually never done any time series analysis in courses or at work. I had however heard some great talks on time series in R from <a href="https://www.youtube.com/watch?v=AH7n2LflQZo&amp;feature=youtu.be">Earo Wang</a> and <a href="https://www.youtube.com/watch?v=yx6OQ-8HofU&amp;feature=youtu.be">Rob Hyndman</a> at the New York Open Statistical Programming Meetup, so I was somewhat familiar with the packages.</p>
+<p>I highly recommend checking out <a href="https://otexts.com/fpp3/">the full book</a>. It’s one of the best textbooks I’ve ever read: clear, practical, with plenty of examples. While the book is not yet finished, it’s mainly done and the only things I’ve noticed missing are ocassional references to other parts of the book.</p>
+<p>To get started, let’s load the <code>fpp3</code> set of packages, which includes some core <code>tidyverse</code> pacakges as well as <code>tidyverts</code> ones.</p>
+<pre class="r"><code>#devtools::install_github(&quot;thebioengineer/tidytuesdayR&quot;)
+#install.packages(&quot;fpp3&quot;)
+library(fpp3)</code></pre>
+<pre><code>## ── Attaching packages ─────────────────────────────────────────── fpp3 0.1 ──</code></pre>
+<pre><code>## ✓ tibble      2.1.3     ✓ tsibble     0.8.5
+## ✓ dplyr       0.8.3     ✓ tsibbledata 0.1.0
+## ✓ tidyr       0.8.3     ✓ feasts      0.1.1
+## ✓ lubridate   1.7.4     ✓ fable       0.1.1
+## ✓ ggplot2     3.2.1</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────────── fpp3_conflicts ──
+## x lubridate::date()       masks base::date()
+## x dplyr::filter()         masks stats::filter()
+## x tsibble::id()           masks dplyr::id()
+## x tsibble::interval()     masks lubridate::interval()
+## x dplyr::lag()            masks stats::lag()
+## x tsibble::new_interval() masks lubridate::new_interval()</code></pre>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
             
-  
-    
-      
-        
-      
-    
-  
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="/tags/r/">R</a>
 
+  <a class="tag tag--primary tag--small" href="/tags/code/">Code</a>
 
-  
+  <a class="tag tag--primary tag--small" href="/tags/tidyverse/">tidyverse</a>
 
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="/building-your-data-science-network-reaching-out/">
-          Building your Data Science Network: Reaching Out
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2018-01-10T00:00:00Z">
-        
-  January 10, 2018
-
-      </time>
-    
-    
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      
-        In the other part of this post, I covered how to start becoming involved in the data science community and meet people in general. But what if you read a really cool post by someone and want to follow up with them? This post offers some thoughts on how you can most effectively reach out to specific people.
-Two important caveats to start, both inspired by other posts on similar topics.
-      
-      <p>
-        <a href="/building-your-data-science-network-reaching-out/" class="postShorten-excerpt_link link">Continue reading</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
-          
+                  </div>
+                
+              
             
+            <div class="post-actions-wrap">
   
-    
-      
-        
-      
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="/making-r-code-faster-a-case-study/">
-          Making R Code Faster: A Case Study
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2017-11-30T00:00:00Z">
-        
-  November 30, 2017
-
-      </time>
-    
-    
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      
-        About two months ago I put a call out to Rstats twitter. I had a working, short script that took 3 minutes to run. While this may be fine if you only need to run it once, I needed to run it hundreds of time for simulations. My first attempt to do so ended about four hours after I started the code, with 400 simulations left to go, and I knew I needed to get some help.
-      
-      <p>
-        <a href="/making-r-code-faster-a-case-study/" class="postShorten-excerpt_link link">Continue reading</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
+      <nav >
+        <ul class="post-actions post-action-nav">
           
-            
-  
-    
-      
-        
-      
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="/managing-business-challenges-in-data-science/">
-          Managing Business Challenges in Data Science
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2017-09-28T00:00:00Z">
-        
-  September 28, 2017
-
-      </time>
-    
-    
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      
-        A few weeks ago, I wrote about my experience giving my first data science talk. If you’re interested, the full talk is available online, as well as the slides. In this post, I wanted to share some suggestions for managing business challenges that I didn’t have time to cover in my talk.
-Why Business Challenges? Why devote a whole post and half a talk to business challenges instead of, say, cutting edge deep learning papers or the shiny new language for handling Big DataTM?
-      
-      <p>
-        <a href="/managing-business-challenges-in-data-science/" class="postShorten-excerpt_link link">Continue reading</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/pokemon-type-combinations/" data-tooltip="What Types Should You Have on Your Pokémon Team? Efficient Simulation with Matrices in R">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
           
-            
-  
-    
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
       
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
         
-      
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="/giving-your-first-data-science-talk/">
-          Giving Your First Data Science Talk
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2017-08-14T00:00:00Z">
-        
-  August 14, 2017
-
-      </time>
-    
-    
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      
-        A few weeks ago, I gave my first ever data science talk. Jared Lander, organizer of the New York Statistical Open Programming meetup, had been asking me to speak, and after about six months at Etsy I thought I could share what I’d learned about A/B Testing and its challenges. If you’d like to watch it, you can view the recording here. The talk starts around 9:00 and ends at 41:30, with the rest being Q&amp;A (I tried to repeat the questions, so you should be able to follow that as well).
-      
-      <p>
-        <a href="/giving-your-first-data-science-talk/" class="postShorten-excerpt_link link">Continue reading</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
-          
-          
-  <div class="pagination-bar">
-    <ul class="pagination">
-      
-        
-          <li class="pagination-prev">
-            <a class="btn btn--default btn--small" href="/post/page/2/">
-              <i class="fa fa-angle-left text-base icon-mr"></i>
-              <span>NEWER POSTS</span>
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/time-series-and-forecasting-in-r/">
+              <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
-        
-          <li class="pagination-next">
-            <a class="btn btn--default btn--small" href="/post/page/4/">
-              <span>OLDER POSTS</span>
-              <i class="fa fa-angle-right text-base icon-ml"></i>
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/time-series-and-forecasting-in-r/">
+              <i class="fa fa-twitter"></i>
             </a>
           </li>
         
       
-      <li class="pagination-number">page 3 of 5</li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
     </ul>
-  </div>
+  
+</div>
 
-
-        </section>
+            
+              
+            
+          </div>
+        </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
     &copy; 2020 Emily Robinson. All Rights Reserved
@@ -488,6 +368,84 @@ Why Business Challenges? Why devote a whole post and half a talk to business cha
 </footer>
 
       </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/pokemon-type-combinations/" data-tooltip="What Types Should You Have on Your Pokémon Team? Efficient Simulation with Matrices in R">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/time-series-and-forecasting-in-r/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/time-series-and-forecasting-in-r/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2Ftime-series-and-forecasting-in-r%2F">
+          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2Ftime-series-and-forecasting-in-r%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
     </div>
     
     <div id="about">
@@ -769,6 +727,10 @@ $(document).ready(function() {
 });
 </script>
 
+
+  
+    
+  
 
 
 

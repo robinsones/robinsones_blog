@@ -1,0 +1,47 @@
+---
+title: 'An Introduction to Tidyverts: Time Series and Forecasting in R'
+author: Emily Robinson
+date: '2020-01-13'
+slug: time-series-and-forecasting-in-r
+categories: []
+tags:
+  - R
+  - Code
+  - tidyverse
+---
+
+I recently moved to a new position at Warby Parker as a senior data scientist. Although I've loved working on A/B testing and continue to do so, one of the things that drew me to this position was the chance to try out different areas of data science. And that opportunity came early, as one of my first projects has been working on time series and forecasting. 
+
+While I've been programming in R for 9 years now and minored in statistics, I had actually never done any time series analysis in courses or at work. I had however heard some great talks on time series in R from [Earo Wang](https://www.youtube.com/watch?v=AH7n2LflQZo&feature=youtu.be) and [Rob Hyndman](https://www.youtube.com/watch?v=yx6OQ-8HofU&feature=youtu.be) at the New York Open Statistical Programming Meetup, so I was somewhat familiar with the packages. 
+
+I highly recommend checking out [the full book](https://otexts.com/fpp3/). It's one of the best textbooks I've ever read: clear, practical, with plenty of examples. While the book is not yet finished, it's mainly done and the only things I've noticed missing are ocassional references to other parts of the book.
+
+## Exploratory analysis
+
+To get started, let's load the `fpp3` set of packages, which includes some core `tidyverse` pacakges as well as `tidyverts` ones, and download a dataset of R tweets from the Tidytuesday project. 
+
+```{r}
+library(tidyverse)
+library(fpp3)
+# this put it in the home directory of my blog, so I had to move it to the content folder
+r_tweets <- readRDS("rstats_tweets.rds")
+```
+
+The first thing we need to do is convert the `r_tweets` dataset into a `tsibble`. A `tsibble` extends a `tibble`.
+
+A `tsibble` needs to be unique on a key-index pair. The index is the time of the observation. If you have multiple groups with observations at the same time, you need to set those groups as the index. Let's get the top twenty tweeters (thanks to my brother [Dave](http://varianceexplained.org/) for the one-liner trick). I noticed a couple bots and companies in my first past so I've manually filtered out those screennames. 
+
+```{r}
+top_tweeters <- r_tweets %>%
+  #count(screen_name, date = as_date(created_at), name = "nb_tweets") %>%
+  filter(!screen_name %in% c("CRANberriesFeed", "DailyRpackage", "MangoTheCat", 
+                             "Rbloggers", "RLangTip", "rOpenSci",
+                             "LearnRinaDay", "rOpenSci", "AnalyticsVidhya")) %>%
+  filter(fct_lump(screen_name, 10) != "Other") 
+
+top_tweeters %>%  
+  count(day = as_date(created_at), screen_name) %>%
+  as_tsibble(index = date, key = screen_name)
+```
+
+## Forecasting 
