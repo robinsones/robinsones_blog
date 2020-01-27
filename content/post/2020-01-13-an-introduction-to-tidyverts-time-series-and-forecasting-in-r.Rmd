@@ -12,9 +12,9 @@ tags:
 
 I recently moved to a new position at Warby Parker as a senior data scientist. Although I've loved working on A/B testing and continue to do so, one of the things that drew me to this position was the chance to try out different areas of data science. And that opportunity came early, as one of my first projects has been working on time series and forecasting. 
 
-While I've been programming in R for 9 years now and minored in statistics, I had actually never done any time series analysis in courses or at work. I had however heard some great talks on time series in R from [Earo Wang](https://www.youtube.com/watch?v=AH7n2LflQZo&feature=youtu.be) and [Rob Hyndman](https://www.youtube.com/watch?v=yx6OQ-8HofU&feature=youtu.be) at the New York Open Statistical Programming Meetup, so I was somewhat familiar with the packages. 
+While I've been programming in R for 9 years now and minored in statistics in undergraduate, I had actually never done time series analysis in courses or at previous jobs. I had however heard some great talks on time series in R from [Earo Wang](https://www.youtube.com/watch?v=AH7n2LflQZo&feature=youtu.be) and [Rob Hyndman](https://www.youtube.com/watch?v=yx6OQ-8HofU&feature=youtu.be), so I was somewhat familiar with the packages for time series. 
 
-I highly recommend checking out [the full book](https://otexts.com/fpp3/). It's one of the best textbooks I've ever read: clear, practical, with plenty of examples. While the book is not yet finished, it's mainly done and the only things I've noticed missing are ocassional references to other parts of the book.
+Fortunately, Rob Hyndman and his co-author George Athanasopoulos have been working on a third edition of their classic forecasting textbook, "Forecasting: Principles and Practice," which updates the code to use the `tsibble`, `feasts`, and `fable` packages (which together make up the `tidyverts`) rather than the `forecast` package. I highly recommend checking out [the full book](https://otexts.com/fpp3/), which is available for free online. It's one of the best textbooks I've ever read: clear, practical, with plenty of examples. While the book is not yet finished, the first 10 (out of 12) chapters are available. 
 
 ## Exploratory analysis
 
@@ -23,13 +23,220 @@ To get started, let's load the `fpp3` set of packages, which includes some core 
 ```{r}
 library(tidyverse)
 library(fpp3)
-# this put it in the home directory of my blog, so I had to move it to the content folder
-r_tweets <- readRDS("rstats_tweets.rds")
+# from https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-01-01
+r_tweets <- readRDS(here::here("content", "post", "rstats_tweets.rds"))
 ```
 
-The first thing we need to do is convert the `r_tweets` dataset into a `tsibble`. A `tsibble` extends a `tibble`.
+I'll also use [Mike Kearney's](https://twitter.com/kearneymw?lang=en) `tweetbotornot` package to get rid of the likely bots in the dataset, since I'm not interested in their behavior. `tweetbotornot()` can take either a vector of usernames or data returned by the `rtweet` functions and returns a probability that an account is a bot. Since it takes 15 minutes to run on the whole dataset, I ran once and saved in an RDS file. 
 
-A `tsibble` needs to be unique on a key-index pair. The index is the time of the observation. If you have multiple groups with observations at the same time, you need to set those groups as the index. Let's get the top twenty tweeters (thanks to my brother [Dave](http://varianceexplained.org/) for the one-liner trick). I noticed a couple bots and companies in my first past so I've manually filtered out those screennames. 
+```{r}
+# devtools::install_github("mkearney/tweetbotornot")
+library(tweetbotornot)
+```
+
+```{r}
+get_bot_data <- function(cache_file = 'bot_data.Rds', data) {
+  if (file.exists(cache_file)) {
+    readRDS(cache_file)
+  } else {
+    mydata <- tweetbotornot(data)
+    saveRDS(mydata, cache_file)
+    mydata
+  }
+}
+```
+
+```{r}
+bot_data <- get_bot_data(cache_file = here::here("content", "post", "bot_data.Rds"), 
+                         data = r_tweets)
+```
+
+What's the distribution of bot probabilities? 
+```{r}
+ggplot(bot_data, aes(x = prob_bot)) + 
+  geom_histogram()
+```
+
+We see it's slowly increasing until around .75, when the counts really tick up. Let's take a look at ones with around a .8 probability. 
+
+```{r}
+bot_data %>%
+  filter(round(prob_bot, 1) == .8)
+```
+
+These seem like mostly real accounts. What about around .9?
+
+```{r}
+bot_data %>%
+  filter(round(prob_bot, 2) > .95) %>%
+  inner_join(r_tweets %>%
+               count(screen_name), by = "screen_name")
+```
+
+One of these is a known bot (CRANberriesFeed) and two I know aren't (winston_chang and WeAreRLadies). Let me pair this with how many tweets they have - bots I feel generally are going to have more tweets. 
+
+I'll choose a threshold of .94. Are any under this that are frequent tweets I think are bots? 
+
+```{r}
+bot_data %>%
+  filter(round(prob_bot, 2) < .94) %>%
+  inner_join(r_tweets %>% 
+               count(screen_name), by = "screen_name") %>%
+  arrange(desc(n))
+```
+
+YEs - Rbloggers is the biggest one, I'm surprised that wasn't identified higher as a bot. I'm going to say if you have prob bot over .6 and more than 1000 tweets. 
+
+```{r}
+bot_data %>%
+  filter(prob_bot > .6) %>%
+  inner_join(r_tweets %>% 
+               count(screen_name), by = "screen_name") %>%
+  filter(n > 400) %>%
+  arrange(prob_bot)
+```
+
+
+```{r}
+
+```
+
+
+The first thing we need to do is convert the `r_tweets` dataset into a `tsibble`. A `tsibble` is extends a `tibble` object where each row needs to be unique on a key-index pair. The index is the time of the observation, in this case the creation of the tweet. We'll create our `tsibble` by counting the number of tweets per day. If we'd wanted it by another time interval instead, we could have done `yearweek()` for weekly, `yearmonth()` for monthly, or `yearquarter()` for quarterly instead of `as_date()`. 
+
+```{r}
+daily_tweets <- r_tweets %>%
+  count(date = as_date(created_at)) %>%
+  as_tsibble(index = date)
+
+daily_tweets %>%
+  head(3)
+```
+
+Lookig at our `tsibble` we see it has `[1D]` after the number of rows x columns at the top. This represent the time interval, 1 day. If we'd done it weekly, it would say `[1W]` instead.
+
+Let's take an initial look at how the number of tweets with the hashtage #rstats has changed over time. 
+
+```{r}
+daily_tweets %>%
+  autoplot(n) + 
+  labs(x = "Year", title = "Number of tweets with #rstats over time", y = "")
+```
+
+We see the use of the hashtag has been gfrowing, with a maximum of a little over 600 in one day and a minimum in the last two years of about 100. 
+
+It seems like there might be some seasonal patterns in the data. We can use `gg_season()` to make a graph for each year overlaid on top of each other. It won't work immediately as some days aren't present in the dataset, so first we'll use `tsibble::fill_gaps()` to fill in those missing dates with zero. 
+
+```{r}
+daily_tweets %>%
+  fill_gaps() %>%
+  gg_season(n) + 
+  labs(x = "Year", title = "Number of tweets with #rstats over time", y = "")
+```
+
+This graph is too crowded to really tell much, but we can tell there might be a weekly pattern. 
+
+```{r}
+daily_tweets %>%
+  fill_gaps() %>%
+  gg_subseries(n)
+```
+
+```{r}
+tweetbotornot(head(r_tweets, 10000))
+```
+
+```{r}
+daily_tweets %>%
+  fill_gaps() %>%
+  gg_lag(n)
+```
+
+Let's look at monthly counts instead. We'll get rid of the last month because it's's only partial. 
+
+```{r}
+monthly_tweets <- r_tweets %>%
+  # remember < "2018-12-01" will keep tweets on 2018-12-01
+  filter(created_at < as_datetime("2018-12-01 00:00:00")) %>%
+  count(month = yearmonth(created_at)) %>%
+  as_tsibble(index = month) %>%
+  fill_gaps(n = 0L)
+
+monthly_tweets
+```
+
+```{r}
+monthly_tweets %>%
+  gg_season(n) + 
+  labs(x = "Year", title = "Number of tweets with #rstats over time", y = "")
+```
+
+This graph is too crowded to really tell much, but we can tell there might be a weekly pattern. 
+
+```{r}
+monthly_tweets %>%
+  gg_subseries(n)
+```
+
+
+```{r}
+monthly_tweets %>%
+  gg_lag(n)
+```
+
+```{r}
+monthly_tweets %>% ACF(n) %>% autoplot()
+```
+
+Clear data has a trend. Doesn't seem like data is seasonal or would see some spikes.
+
+```{r}
+train <- monthly_tweets %>%
+  filter_index(2008 ~ 2018)
+
+monthly_fit <- train %>%
+  model(RW(n ~ drift())) 
+
+monthly_fit %>%
+  forecast(h = 11) %>%
+  autoplot(train, level = NULL)
+```
+
+```{r}
+aug <- augment(monthly_fit)
+```
+
+Let's look at residuals. 
+
+```{r}
+monthly_fit %>%
+  gg_tsresiduals()
+```
+
+Mean of residuals is close to zero, variation does increase over time and longer right tail may not be normal. But do seem uncorrelated.
+
+```{r}
+aug %>% features(.resid, ljung_box, lag = 10, dof = 0)
+```
+
+SOMETHING IS WRONG THISSHOULD WORK
+```{r}
+google_stock <- gafa_stock %>%
+  filter(Symbol == "GOOG") %>%
+  mutate(day = row_number()) %>%
+  update_tsibble(index = day, regular = TRUE)
+# Filter the year of interest
+google_2015 <- google_stock %>% filter(year(Date) == 2015)
+aug <- google_2015 %>% model(NAIVE(Close)) %>% augment()
+aug %>% features(.resid, box_pierce, lag=10, dof=0)
+
+```
+
+### Multiple time series
+
+ If you have multiple groups with observations at the same time, you need to set those groups as the index. For example, later in the post I'll want to look at the time series of different users, so I'll need to set `screen_name` as the key. 
+ 
+Let's get the top twenty tweeters (thanks to my brother [Dave](http://varianceexplained.org/) for the one-liner trick). I noticed a couple bots and companies in my first past so I've manually filtered out those screennames. 
 
 ```{r}
 top_tweeters <- r_tweets %>%
