@@ -13,7 +13,9 @@ I regularly give talks on A/B Testing, programming in R, data science career adv
 
 ## Upcoming Talks
 
-May 2020, PyData Ann Arbor.
+November 2020, XII R Users Spain Meeting.
+
+June 2020, New York R Conference. 
 
 ## Previous Talks 
 
@@ -29,7 +31,7 @@ November 2019, R-Ladies DC and DC Emerging Technologies, [Slides](https://speake
 
 November 2019, Booking.com Headquarters.
 
-November 2019, DC R conference. [Slides](https://speakerdeck.com/robinsones/funneljoin-defining-a-tidy-grammar-of-funnels-in-r).
+November 2019, DC R conference. [Slides](https://speakerdeck.com/robinsones/funneljoin-defining-a-tidy-grammar-of-funnels-in-r), [Recording](https://www.youtube.com/watch?v=-n4XaYHDlG8&feature=youtu.be).
 
 ### Joining the Data Science Community
 
