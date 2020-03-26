@@ -232,7 +232,7 @@ tidied_comparison %&gt;%
 </table>
 <p>Yes - if we want to be super effective against Normal and Electric types, we need Fighting and Ground types respectively.</p>
 </div>
-<div id="building-pokemon-teams" class="section level2">
+<div id="building-pokémon-teams" class="section level2">
 <h2>Building Pokémon Teams</h2>
 <p>The first step is to build out all the hypothetical teams of 6. If you remember your introduction to statistics days, this is a combinatorial problem: we have 18 options (although we don’t expect “Normal” to show up since it’s not super effective against anything), need to choose 6, and the order doesn’t matter (e.g. 1 to 6 is the same as 6 to 1). We can do this in R with the function <code>combn</code>:</p>
 <pre class="r"><code>all_combinations &lt;- combn(18, 6)
@@ -259,44 +259,44 @@ rownames(m) &lt;- type_comparisons$Attacking</code></pre>
 <p>Next, because we only care about whether the entry is 2 or not, we’ll change every entry that’s a 2 to be 1 and every entry that’s not to be 0 (the <code>1L *</code> makes it 1 or 0 instead of TRUE or FALSE).</p>
 <pre class="r"><code>super_effective_m &lt;- (m == 2) * 1L</code></pre>
 <pre class="r"><code>super_effective_m</code></pre>
-<pre><code>##          Normal Fire Water Electric Grass Ice Fighting Poison Ground
-## Normal        0    0     0        0     0   0        0      0      0
-## Fire          0    0     0        0     1   1        0      0      0
-## Water         0    1     0        0     0   0        0      0      1
-## Electric      0    0     1        0     0   0        0      0      0
-## Grass         0    0     1        0     0   0        0      0      1
-## Ice           0    0     0        0     1   0        0      0      1
-## Fighting      1    0     0        0     0   1        0      0      0
-## Poison        0    0     0        0     1   0        0      0      0
-## Ground        0    1     0        1     0   0        0      1      0
-## Flying        0    0     0        0     1   0        1      0      0
-## Psychic       0    0     0        0     0   0        1      1      0
-## Bug           0    0     0        0     1   0        0      0      0
-## Rock          0    1     0        0     0   1        0      0      0
-## Ghost         0    0     0        0     0   0        0      0      0
-## Dragon        0    0     0        0     0   0        0      0      0
-## Dark          0    0     0        0     0   0        0      0      0
-## Steel         0    0     0        0     0   1        0      0      0
-## Fairy         0    0     0        0     0   0        1      0      0
-##          Flying Psychic Bug Rock Ghost Dragon Dark Steel Fairy
-## Normal        0       0   0    0     0      0    0     0     0
-## Fire          0       0   1    0     0      0    0     1     0
-## Water         0       0   0    1     0      0    0     0     0
-## Electric      1       0   0    0     0      0    0     0     0
-## Grass         0       0   0    1     0      0    0     0     0
-## Ice           1       0   0    0     0      1    0     0     0
-## Fighting      0       0   0    1     0      0    1     1     0
-## Poison        0       0   0    0     0      0    0     0     1
-## Ground        0       0   0    1     0      0    0     1     0
-## Flying        0       0   1    0     0      0    0     0     0
-## Psychic       0       0   0    0     0      0    0     0     0
-## Bug           0       1   0    0     0      0    1     0     0
-## Rock          1       0   1    0     0      0    0     0     0
-## Ghost         0       1   0    0     1      0    0     0     0
-## Dragon        0       0   0    0     0      1    0     0     0
-## Dark          0       1   0    0     1      0    0     0     0
-## Steel         0       0   0    1     0      0    0     0     1
-## Fairy         0       0   0    0     0      1    1     0     0</code></pre>
+<pre><code>##          Normal Fire Water Electric Grass Ice Fighting Poison Ground Flying
+## Normal        0    0     0        0     0   0        0      0      0      0
+## Fire          0    0     0        0     1   1        0      0      0      0
+## Water         0    1     0        0     0   0        0      0      1      0
+## Electric      0    0     1        0     0   0        0      0      0      1
+## Grass         0    0     1        0     0   0        0      0      1      0
+## Ice           0    0     0        0     1   0        0      0      1      1
+## Fighting      1    0     0        0     0   1        0      0      0      0
+## Poison        0    0     0        0     1   0        0      0      0      0
+## Ground        0    1     0        1     0   0        0      1      0      0
+## Flying        0    0     0        0     1   0        1      0      0      0
+## Psychic       0    0     0        0     0   0        1      1      0      0
+## Bug           0    0     0        0     1   0        0      0      0      0
+## Rock          0    1     0        0     0   1        0      0      0      1
+## Ghost         0    0     0        0     0   0        0      0      0      0
+## Dragon        0    0     0        0     0   0        0      0      0      0
+## Dark          0    0     0        0     0   0        0      0      0      0
+## Steel         0    0     0        0     0   1        0      0      0      0
+## Fairy         0    0     0        0     0   0        1      0      0      0
+##          Psychic Bug Rock Ghost Dragon Dark Steel Fairy
+## Normal         0   0    0     0      0    0     0     0
+## Fire           0   1    0     0      0    0     1     0
+## Water          0   0    1     0      0    0     0     0
+## Electric       0   0    0     0      0    0     0     0
+## Grass          0   0    1     0      0    0     0     0
+## Ice            0   0    0     0      1    0     0     0
+## Fighting       0   0    1     0      0    1     1     0
+## Poison         0   0    0     0      0    0     0     1
+## Ground         0   0    1     0      0    0     1     0
+## Flying         0   1    0     0      0    0     0     0
+## Psychic        0   0    0     0      0    0     0     0
+## Bug            1   0    0     0      0    1     0     0
+## Rock           0   1    0     0      0    0     0     0
+## Ghost          1   0    0     1      0    0     0     0
+## Dragon         0   0    0     0      1    0     0     0
+## Dark           1   0    0     1      0    0     0     0
+## Steel          0   0    1     0      0    0     0     1
+## Fairy          0   0    0     0      1    1     0     0</code></pre>
 <p>The <code>all_combinations</code> matrix we created before is essentially a set of indices for the <code>super_effective_m</code> matrix. For example, column 1 of <code>all_combinations</code> are the numbers 1 through 6, which means we want to get rows 1 through 6 of <code>super_effective_m</code>. Remember, each row of <code>super_effective_m</code> is an attacking type on our team, and each column is a defending type. We then want to get the sum of each column and know how many columns have a sum of more than 0, meaning at least one of our attacking types was super effective against it. We’ll make a function, <code>super_effective_nb</code>:</p>
 <pre class="r"><code>super_effective_nb &lt;- function(indices) {
   sum(colSums(super_effective_m[indices, ]) &gt; 0)
@@ -331,20 +331,20 @@ best_combos</code></pre>
 <p>This gets us a character vector though. It’s in order, so we know that the first six is team 1, the second six team 2, etc., but it’s not displayed very well. We can use <code>matrix</code> to turn this into a matrix instead, specifying that we want 6 rows.</p>
 <pre class="r"><code>strongest_teams &lt;- matrix(rownames(super_effective_m)[best_combos], nrow = 6)</code></pre>
 <pre class="r"><code>strongest_teams</code></pre>
-<pre><code>##      [,1]       [,2]       [,3]       [,4]       [,5]     [,6]    
-## [1,] &quot;Electric&quot; &quot;Electric&quot; &quot;Grass&quot;    &quot;Grass&quot;    &quot;Grass&quot;  &quot;Grass&quot; 
-## [2,] &quot;Ice&quot;      &quot;Ice&quot;      &quot;Ice&quot;      &quot;Ice&quot;      &quot;Poison&quot; &quot;Poison&quot;
-## [3,] &quot;Fighting&quot; &quot;Fighting&quot; &quot;Fighting&quot; &quot;Fighting&quot; &quot;Ground&quot; &quot;Ground&quot;
-## [4,] &quot;Ground&quot;   &quot;Ground&quot;   &quot;Ground&quot;   &quot;Ground&quot;   &quot;Rock&quot;   &quot;Rock&quot;  
-## [5,] &quot;Flying&quot;   &quot;Flying&quot;   &quot;Flying&quot;   &quot;Flying&quot;   &quot;Ghost&quot;  &quot;Dark&quot;  
-## [6,] &quot;Ghost&quot;    &quot;Dark&quot;     &quot;Ghost&quot;    &quot;Dark&quot;     &quot;Fairy&quot;  &quot;Fairy&quot; 
-##      [,7]       [,8]       [,9]       [,10]     
-## [1,] &quot;Ice&quot;      &quot;Ice&quot;      &quot;Ice&quot;      &quot;Ice&quot;     
-## [2,] &quot;Fighting&quot; &quot;Fighting&quot; &quot;Fighting&quot; &quot;Fighting&quot;
-## [3,] &quot;Poison&quot;   &quot;Poison&quot;   &quot;Ground&quot;   &quot;Ground&quot;  
-## [4,] &quot;Ground&quot;   &quot;Ground&quot;   &quot;Flying&quot;   &quot;Flying&quot;  
-## [5,] &quot;Flying&quot;   &quot;Flying&quot;   &quot;Ghost&quot;    &quot;Dark&quot;    
-## [6,] &quot;Ghost&quot;    &quot;Dark&quot;     &quot;Steel&quot;    &quot;Steel&quot;</code></pre>
+<pre><code>##      [,1]       [,2]       [,3]       [,4]       [,5]     [,6]     [,7]      
+## [1,] &quot;Electric&quot; &quot;Electric&quot; &quot;Grass&quot;    &quot;Grass&quot;    &quot;Grass&quot;  &quot;Grass&quot;  &quot;Ice&quot;     
+## [2,] &quot;Ice&quot;      &quot;Ice&quot;      &quot;Ice&quot;      &quot;Ice&quot;      &quot;Poison&quot; &quot;Poison&quot; &quot;Fighting&quot;
+## [3,] &quot;Fighting&quot; &quot;Fighting&quot; &quot;Fighting&quot; &quot;Fighting&quot; &quot;Ground&quot; &quot;Ground&quot; &quot;Poison&quot;  
+## [4,] &quot;Ground&quot;   &quot;Ground&quot;   &quot;Ground&quot;   &quot;Ground&quot;   &quot;Rock&quot;   &quot;Rock&quot;   &quot;Ground&quot;  
+## [5,] &quot;Flying&quot;   &quot;Flying&quot;   &quot;Flying&quot;   &quot;Flying&quot;   &quot;Ghost&quot;  &quot;Dark&quot;   &quot;Flying&quot;  
+## [6,] &quot;Ghost&quot;    &quot;Dark&quot;     &quot;Ghost&quot;    &quot;Dark&quot;     &quot;Fairy&quot;  &quot;Fairy&quot;  &quot;Ghost&quot;   
+##      [,8]       [,9]       [,10]     
+## [1,] &quot;Ice&quot;      &quot;Ice&quot;      &quot;Ice&quot;     
+## [2,] &quot;Fighting&quot; &quot;Fighting&quot; &quot;Fighting&quot;
+## [3,] &quot;Poison&quot;   &quot;Ground&quot;   &quot;Ground&quot;  
+## [4,] &quot;Ground&quot;   &quot;Flying&quot;   &quot;Flying&quot;  
+## [5,] &quot;Flying&quot;   &quot;Ghost&quot;    &quot;Dark&quot;    
+## [6,] &quot;Dark&quot;     &quot;Steel&quot;    &quot;Steel&quot;</code></pre>
 <p>For our final step, we’re actually going to make this a tibble, so I can look at which types appear the most often across the different team possibilities.</p>
 <pre class="r"><code>strongest_teams %&gt;%
   as_tibble() %&gt;%

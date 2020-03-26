@@ -277,8 +277,8 @@ multiple_choice_responses_base %&gt;%
 ##   StudentStatus     n
 ##   &lt;fct&gt;         &lt;int&gt;
 ## 1 &quot;&quot;            15436
-## 2 No              299
-## 3 Yes             981</code></pre>
+## 2 &quot;No&quot;            299
+## 3 &quot;Yes&quot;           981</code></pre>
 <p>Yep. We see here we have a lot of <code>&quot;&quot;</code> entries instead of NAs. We can correct this with <code>na_if</code> from <code>dplyr</code>, which takes as an argument what we want to turn into NAs. We can also use <code>%&lt;&gt;%</code>, which is a reassignment pipe. While this is nice to save some typing, it can make it confusing when reading a script, so use with caution.</p>
 <pre class="r"><code>multiple_choice_responses_base %&lt;&gt;%
   na_if(&quot;&quot;)
@@ -313,18 +313,18 @@ multiple_choice_responses_base &lt;- multiple_choice_responses_base %&gt;%
 <p>It’s definitely faster, but it seems we have some errors. Let’s inspect them.</p>
 <pre class="r"><code>problems(multiple_choice_responses)</code></pre>
 <pre><code>## # A tibble: 43 x 5
-##      row col                   expected      actual      file              
-##    &lt;int&gt; &lt;chr&gt;                 &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;             
-##  1  1209 CompensationAmount    a number      -           &#39;multipleChoiceRe…
-##  2  1316 WorkToolsFrequencyKN… 1/0/T/F/TRUE… Rarely      &#39;multipleChoiceRe…
-##  3  1594 WorkToolsFrequencyKN… 1/0/T/F/TRUE… Often       &#39;multipleChoiceRe…
-##  4  2443 WorkToolsFrequencyKN… 1/0/T/F/TRUE… Most of th… &#39;multipleChoiceRe…
-##  5  2466 WorkToolsFrequencyKN… 1/0/T/F/TRUE… Most of th… &#39;multipleChoiceRe…
-##  6  2622 WorkToolsFrequencyKN… 1/0/T/F/TRUE… Often       &#39;multipleChoiceRe…
-##  7  2630 WorkToolsFrequencyKN… 1/0/T/F/TRUE… Sometimes   &#39;multipleChoiceRe…
-##  8  2724 WorkToolsFrequencyKN… 1/0/T/F/TRUE… Often       &#39;multipleChoiceRe…
-##  9  3022 WorkToolsFrequencyKN… 1/0/T/F/TRUE… Sometimes   &#39;multipleChoiceRe…
-## 10  3396 WorkToolsFrequencyKN… 1/0/T/F/TRUE… Sometimes   &#39;multipleChoiceRe…
+##      row col                     expected       actual       file               
+##    &lt;int&gt; &lt;chr&gt;                   &lt;chr&gt;          &lt;chr&gt;        &lt;chr&gt;              
+##  1  1209 CompensationAmount      a number       -            &#39;multipleChoiceRes…
+##  2  1316 WorkToolsFrequencyKNIM… 1/0/T/F/TRUE/… Rarely       &#39;multipleChoiceRes…
+##  3  1594 WorkToolsFrequencyKNIM… 1/0/T/F/TRUE/… Often        &#39;multipleChoiceRes…
+##  4  2443 WorkToolsFrequencyKNIM… 1/0/T/F/TRUE/… Most of the… &#39;multipleChoiceRes…
+##  5  2466 WorkToolsFrequencyKNIM… 1/0/T/F/TRUE/… Most of the… &#39;multipleChoiceRes…
+##  6  2622 WorkToolsFrequencyKNIM… 1/0/T/F/TRUE/… Often        &#39;multipleChoiceRes…
+##  7  2630 WorkToolsFrequencyKNIM… 1/0/T/F/TRUE/… Sometimes    &#39;multipleChoiceRes…
+##  8  2724 WorkToolsFrequencyKNIM… 1/0/T/F/TRUE/… Often        &#39;multipleChoiceRes…
+##  9  3022 WorkToolsFrequencyKNIM… 1/0/T/F/TRUE/… Sometimes    &#39;multipleChoiceRes…
+## 10  3396 WorkToolsFrequencyKNIM… 1/0/T/F/TRUE/… Sometimes    &#39;multipleChoiceRes…
 ## # … with 33 more rows</code></pre>
 <p>We see each row and column where a problem occurs. What’s happening is that <code>read_csv</code> uses the first 1000 rows of a column to guess its type. But in some cases, it’s guessing the column is an integer, because the first 1000 rows are whole numbers, when actually it should be double, as some entries have decimal points. We can fix this by changing the number of rows <code>read_csv</code> uses to guess the column type (with the <code>guess_max</code> argument) to the number of rows in the data set.</p>
 <pre class="r"><code>multiple_choice_responses &lt;- readr::read_csv(&quot;multipleChoiceResponses.csv&quot;, 
@@ -336,26 +336,16 @@ multiple_choice_responses_base &lt;- multiple_choice_responses_base %&gt;%
 <p>Let’s see what we can glean from the column names themselves. I’ll only look at the first 20 since there are so many.</p>
 <pre class="r"><code>colnames(multiple_choice_responses) %&gt;%
   head(20)</code></pre>
-<pre><code>##  [1] &quot;GenderSelect&quot;                     
-##  [2] &quot;Country&quot;                          
-##  [3] &quot;Age&quot;                              
-##  [4] &quot;EmploymentStatus&quot;                 
-##  [5] &quot;StudentStatus&quot;                    
-##  [6] &quot;LearningDataScience&quot;              
-##  [7] &quot;CodeWriter&quot;                       
-##  [8] &quot;CareerSwitcher&quot;                   
-##  [9] &quot;CurrentJobTitleSelect&quot;            
-## [10] &quot;TitleFit&quot;                         
-## [11] &quot;CurrentEmployerType&quot;              
-## [12] &quot;MLToolNextYearSelect&quot;             
-## [13] &quot;MLMethodNextYearSelect&quot;           
-## [14] &quot;LanguageRecommendationSelect&quot;     
-## [15] &quot;PublicDatasetsSelect&quot;             
-## [16] &quot;LearningPlatformSelect&quot;           
-## [17] &quot;LearningPlatformUsefulnessArxiv&quot;  
-## [18] &quot;LearningPlatformUsefulnessBlogs&quot;  
-## [19] &quot;LearningPlatformUsefulnessCollege&quot;
-## [20] &quot;LearningPlatformUsefulnessCompany&quot;</code></pre>
+<pre><code>##  [1] &quot;GenderSelect&quot;                      &quot;Country&quot;                          
+##  [3] &quot;Age&quot;                               &quot;EmploymentStatus&quot;                 
+##  [5] &quot;StudentStatus&quot;                     &quot;LearningDataScience&quot;              
+##  [7] &quot;CodeWriter&quot;                        &quot;CareerSwitcher&quot;                   
+##  [9] &quot;CurrentJobTitleSelect&quot;             &quot;TitleFit&quot;                         
+## [11] &quot;CurrentEmployerType&quot;               &quot;MLToolNextYearSelect&quot;             
+## [13] &quot;MLMethodNextYearSelect&quot;            &quot;LanguageRecommendationSelect&quot;     
+## [15] &quot;PublicDatasetsSelect&quot;              &quot;LearningPlatformSelect&quot;           
+## [17] &quot;LearningPlatformUsefulnessArxiv&quot;   &quot;LearningPlatformUsefulnessBlogs&quot;  
+## [19] &quot;LearningPlatformUsefulnessCollege&quot; &quot;LearningPlatformUsefulnessCompany&quot;</code></pre>
 <p>We can see that there were categories of questions, like “LearningPlatform,” with each platform having its own column.</p>
 <p>Now let’s take a look at our numeric columns with <a href="https://github.com/ropensci/skimr">skimr</a>. Skimr is a package from <a href="https://ropensci.org/">rOpenSci</a> that allows you to quickly view summaries of your data. We can use <code>select_if</code> to select only columns where a certain condition, in this case whether it’s a numeric column, is true.</p>
 <pre class="r"><code>multiple_choice_responses %&gt;%
@@ -365,46 +355,46 @@ multiple_choice_responses_base &lt;- multiple_choice_responses_base %&gt;%
 ##  n obs: 16716 
 ##  n variables: 13 
 ## 
-## ── Variable type:numeric ────────────────────────────────────────────────────
-##                       variable missing complete     n  mean    sd p0 p25
-##                            Age     331    16385 16716 32.37 10.47  0  25
-##         LearningCategoryKaggle    3590    13126 16716  5.53 11.07  0   0
-##  LearningCategoryOnlineCourses    3590    13126 16716 27.38 26.86  0   5
-##          LearningCategoryOther    3622    13094 16716  1.8   9.36  0   0
-##    LearningCategorySelftTaught    3607    13109 16716 33.37 25.79  0  15
-##     LearningCategoryUniversity    3594    13122 16716 16.99 23.68  0   0
-##           LearningCategoryWork    3605    13111 16716 15.22 19     0   0
-##            TimeFindingInsights    9193     7523 16716 13.09 12.97  0   5
-##              TimeGatheringData    9186     7530 16716 36.14 21.65  0  20
-##              TimeModelBuilding    9188     7528 16716 21.27 16.17  0  10
-##                TimeOtherSelect    9203     7513 16716  2.4  12.16  0   0
-##                 TimeProduction    9199     7517 16716 10.81 12.26  0   0
-##                TimeVisualizing    9187     7529 16716 13.87 11.72  0   5
-##  p50 p75 p100     hist
-##   30  37  100 ▁▅▇▃▁▁▁▁
-##    0  10  100 ▇▁▁▁▁▁▁▁
-##   20  40  100 ▇▃▂▃▁▁▁▁
-##    0   0  100 ▇▁▁▁▁▁▁▁
-##   30  50  100 ▇▇▅▇▂▁▁▂
-##    5  30  100 ▇▂▁▁▁▁▁▁
-##   10  25  100 ▇▂▁▁▁▁▁▁
-##   10  20  303 ▇▁▁▁▁▁▁▁
-##   35  50  100 ▅▅▅▇▂▂▁▁
-##   20  30  100 ▇▇▃▂▁▁▁▁
-##    0   0  100 ▇▁▁▁▁▁▁▁
-##   10  15  100 ▇▂▁▁▁▁▁▁
-##   10  20  100 ▇▅▁▁▁▁▁▁</code></pre>
+## ── Variable type:numeric ─────────────────────────────────────────────────────────────────────────
+##                       variable missing complete     n  mean    sd p0 p25 p50
+##                            Age     331    16385 16716 32.37 10.47  0  25  30
+##         LearningCategoryKaggle    3590    13126 16716  5.53 11.07  0   0   0
+##  LearningCategoryOnlineCourses    3590    13126 16716 27.38 26.86  0   5  20
+##          LearningCategoryOther    3622    13094 16716  1.8   9.36  0   0   0
+##    LearningCategorySelftTaught    3607    13109 16716 33.37 25.79  0  15  30
+##     LearningCategoryUniversity    3594    13122 16716 16.99 23.68  0   0   5
+##           LearningCategoryWork    3605    13111 16716 15.22 19     0   0  10
+##            TimeFindingInsights    9193     7523 16716 13.09 12.97  0   5  10
+##              TimeGatheringData    9186     7530 16716 36.14 21.65  0  20  35
+##              TimeModelBuilding    9188     7528 16716 21.27 16.17  0  10  20
+##                TimeOtherSelect    9203     7513 16716  2.4  12.16  0   0   0
+##                 TimeProduction    9199     7517 16716 10.81 12.26  0   0  10
+##                TimeVisualizing    9187     7529 16716 13.87 11.72  0   5  10
+##  p75 p100     hist
+##   37  100 ▁▅▇▃▁▁▁▁
+##   10  100 ▇▁▁▁▁▁▁▁
+##   40  100 ▇▃▂▃▁▁▁▁
+##    0  100 ▇▁▁▁▁▁▁▁
+##   50  100 ▇▇▅▇▂▁▁▂
+##   30  100 ▇▂▁▁▁▁▁▁
+##   25  100 ▇▂▁▁▁▁▁▁
+##   20  303 ▇▁▁▁▁▁▁▁
+##   50  100 ▅▅▅▇▂▂▁▁
+##   30  100 ▇▇▃▂▁▁▁▁
+##    0  100 ▇▁▁▁▁▁▁▁
+##   15  100 ▇▂▁▁▁▁▁▁
+##   20  100 ▇▅▁▁▁▁▁▁</code></pre>
 <p>I love the histograms. We can quickly see from them that people self teach a lot and spend a good amount of time building models and gathering data, compared to visualizing data or working in production.</p>
 <p>Let’s see how many distinct answers we have for each question. We can use <code>n_distinct()</code>, a shorter and faster version of <code>length(unique())</code>. We’ll use <code>summarise_all</code>, which is the same as <code>summarise_at</code> except that you don’t select a group of columns and so it applies to every one in the dataset.</p>
 <pre class="r"><code>multiple_choice_responses %&gt;%
   summarise_all(n_distinct) %&gt;%
   select(1:10)</code></pre>
 <pre><code>## # A tibble: 1 x 10
-##   GenderSelect Country   Age EmploymentStatus StudentStatus
-##          &lt;int&gt;   &lt;int&gt; &lt;int&gt;            &lt;int&gt;         &lt;int&gt;
-## 1            5      53    85                7             3
-## # … with 5 more variables: LearningDataScience &lt;int&gt;, CodeWriter &lt;int&gt;,
-## #   CareerSwitcher &lt;int&gt;, CurrentJobTitleSelect &lt;int&gt;, TitleFit &lt;int&gt;</code></pre>
+##   GenderSelect Country   Age EmploymentStatus StudentStatus LearningDataSci…
+##          &lt;int&gt;   &lt;int&gt; &lt;int&gt;            &lt;int&gt;         &lt;int&gt;            &lt;int&gt;
+## 1            5      53    85                7             3                4
+## # … with 4 more variables: CodeWriter &lt;int&gt;, CareerSwitcher &lt;int&gt;,
+## #   CurrentJobTitleSelect &lt;int&gt;, TitleFit &lt;int&gt;</code></pre>
 <p>This data would be more helpful if it was tidy and had two columns, <code>question</code> and <code>num_distinct_answers</code>. We can use <code>tidyr::gather</code> to change our data from “wide” to “long” format and then <code>arrange</code> it so we can see the columns with the most distinct answers first. If you’ve used (or are still using!) reshape2, check out tidyr; reshape2 is retired and is only updated with changes necessary for it to remain on CRAN. While not exactly equivalent, <code>tidyr::spread</code> replaces <code>reshape2::dcast</code>, <code>tidyr::separate</code> <code>reshape2::colsplit</code>, and <code>tidyr::gather</code> <code>reshape2::melt</code>.</p>
 <pre class="r"><code>multiple_choice_responses %&gt;%
   summarise_all(n_distinct) %&gt;%

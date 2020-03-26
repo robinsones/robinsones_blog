@@ -23,7 +23,7 @@ November 2019, Conversion Hotel in the Netherlands. [Slides](https://www.slidesh
 
 ### Build a Career in Data Science 
 
-November 2019, R-Ladies DC and DC Emerging Technologies.
+November 2019, R-Ladies DC and DC Emerging Technologies, [Slides](https://speakerdeck.com/robinsones/build-a-career-in-data-science).
 
 ### funneljoin: Defining a Tidy Grammar of Funnels in R
 
@@ -33,7 +33,7 @@ November 2019, DC R conference. [Slides](https://speakerdeck.com/robinsones/funn
 
 ### Joining the Data Science Community
 
-July 2019, Demystifying Data Science, [Recording](https://www.youtube.com/watch?v=YiROP9-OJh4&feature=youtu.be).
+July 2019, Demystifying Data Science, [Slides](https://speakerdeck.com/robinsones/joining-the-data-science-community), [Recording](https://www.youtube.com/watch?v=YiROP9-OJh4&feature=youtu.be).
 
 May & July 2018, Metis Data Science Bootcamp.
 
