@@ -17,6 +17,12 @@ November 2020, XII R Users Spain Meeting.
 
 June 2020, New York R Conference. 
 
+## Upcoming Podcasts
+
+April 2020, [The Super Data Science Podcast](https://www.superdatascience.com/podcast). 
+
+April 2020, [Greater than Code](https://www.greaterthancode.com/). 
+
 ## Previous Talks 
 
 ### Data Science Demstifyed 
@@ -37,7 +43,7 @@ November 2019, DC R conference. [Slides](https://speakerdeck.com/robinsones/funn
 
 July 2019, Demystifying Data Science, [Slides](https://speakerdeck.com/robinsones/joining-the-data-science-community), [Recording](https://www.youtube.com/watch?v=YiROP9-OJh4&feature=youtu.be).
 
-May & July 2018, Metis Data Science Bootcamp.
+May 2018, July 2018, and April 2020, Metis Data Science Bootcamp.
 
 ### Creating a Strong Data Science Portfolio
 
@@ -90,6 +96,14 @@ October 2017, West Point Academy. [Slides](https://github.com/robinsones/AB-Test
 September 2017, Demystifying Data Science Conference by Metis. [Recording](https://www.youtube.com/watch?v=hlYFksjjgXg), [Slides](https://www.slideshare.net/secret/DBLR67WhEK2qWd).
 
 July 2017, New York Open Statistical Programming Meetup. [Recording](https://www.youtube.com/watch?v=SF-ryGgLOgQ), [Slides](https://github.com/robinsones/AB-Testing-Slides/blob/master/AB%20Testing%20in%20the%20Wild.pdf). 
+
+## Previous Podcasts
+
+April 2020, Building a Career in Data Science on Towards Data Science. [Recording and summary](https://towardsdatascience.com/building-a-career-in-data-science-with-emily-robinson-27cd9bdba4c4). 
+
+March 2020, Start a Career in Data Science on Women in TECH with Ariana (Jacqueline Nolis, my co-author, was also a guest). [Recording](https://anchor.fm/womenintech/episodes/Start-a-Career-in-Data-Science-with-Emily--Jacqueline-ebcbee).
+
+February 2018, Data Science and Online Experiments at Etsy on DataFramed. [Recording](https://soundcloud.com/dataframed/9-data-science-and-online-experiments-at-etsy). 
 
 ## Previous Panels
 
