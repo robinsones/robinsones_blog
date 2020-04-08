@@ -103,6 +103,8 @@ April 2020, Building a Career in Data Science on Towards Data Science. [Recordin
 
 March 2020, Start a Career in Data Science on Women in TECH with Ariana (Jacqueline Nolis, my co-author, was also a guest). [Recording](https://anchor.fm/womenintech/episodes/Start-a-Career-in-Data-Science-with-Emily--Jacqueline-ebcbee).
 
+March 2020, Building a Career in Data Science on Practical AI. [Recording](https://changelog.com/practicalai/81) (transcript available on the page).
+
 February 2018, Data Science and Online Experiments at Etsy on DataFramed. [Recording](https://soundcloud.com/dataframed/9-data-science-and-online-experiments-at-etsy). 
 
 ## Previous Panels
