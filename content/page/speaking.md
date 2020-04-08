@@ -43,7 +43,7 @@ November 2019, DC R conference. [Slides](https://speakerdeck.com/robinsones/funn
 
 July 2019, Demystifying Data Science, [Slides](https://speakerdeck.com/robinsones/joining-the-data-science-community), [Recording](https://www.youtube.com/watch?v=YiROP9-OJh4&feature=youtu.be).
 
-May 2018, July 2018, and April 2020, Metis Data Science Bootcamp.
+May 2018, July 2018, and April 2020, Metis Data Science Bootcamp. [Slides](https://speakerdeck.com/robinsones/joining-the-data-science-community-245bca95-0556-4653-9511-9be65f3c228a).
 
 ### Creating a Strong Data Science Portfolio
 
