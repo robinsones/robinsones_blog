@@ -21,8 +21,6 @@ June 2020, New York R Conference.
 
 April 2020, [The Super Data Science Podcast](https://www.superdatascience.com/podcast). 
 
-April 2020, [Greater than Code](https://www.greaterthancode.com/). 
-
 ## Previous Talks 
 
 ### Data Science Demstifyed 
@@ -98,6 +96,8 @@ September 2017, Demystifying Data Science Conference by Metis. [Recording](https
 July 2017, New York Open Statistical Programming Meetup. [Recording](https://www.youtube.com/watch?v=SF-ryGgLOgQ), [Slides](https://github.com/robinsones/AB-Testing-Slides/blob/master/AB%20Testing%20in%20the%20Wild.pdf). 
 
 ## Previous Podcasts
+
+April 2020, Data Science and Sponsorship on Greater Than Code. [Recording and episode outline](https://www.greaterthancode.com/data-science-and-sponsorship). 
 
 April 2020, Building a Career in Data Science on Towards Data Science. [Recording and summary](https://towardsdatascience.com/building-a-career-in-data-science-with-emily-robinson-27cd9bdba4c4). 
 
