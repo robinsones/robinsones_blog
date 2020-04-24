@@ -13,13 +13,17 @@ I regularly give talks on A/B Testing, programming in R, data science career adv
 
 ## Upcoming Talks
 
-November 2020, XII R Users Spain Meeting.
-
 June 2020, New York R Conference. 
 
 ## Upcoming Podcasts
 
-April 2020, [The Super Data Science Podcast](https://www.superdatascience.com/podcast). 
+April 2020, [develomentor](https://develomentor.com/). 
+
+April 2020, [Talk Python to Me](https://talkpython.fm/). 
+
+## Upcoming Panels
+
+April 2020, [R-Ladies NYC, All About Blogs](https://www.meetup.com/rladies-newyork/events/270210924/). 
 
 ## Previous Talks 
 
@@ -96,6 +100,8 @@ September 2017, Demystifying Data Science Conference by Metis. [Recording](https
 July 2017, New York Open Statistical Programming Meetup. [Recording](https://www.youtube.com/watch?v=SF-ryGgLOgQ), [Slides](https://github.com/robinsones/AB-Testing-Slides/blob/master/AB%20Testing%20in%20the%20Wild.pdf). 
 
 ## Previous Podcasts
+
+April 2020, Tackling Data Science Job Hunting, Interviews & Negotiations on Super Data Science Podcast, [Recording and transcript](https://www.superdatascience.com/podcast/tackling-data-science-job-hunting-interviews-and-negotiations). 
 
 April 2020, Data Science and Sponsorship on Greater Than Code. [Recording and episode outline](https://www.greaterthancode.com/data-science-and-sponsorship). 
 
