@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>A/B Testing on Hooked on Data</title>
-    <link>https://hookedondata.org/tags/a-b-testing/</link>
+    <link>/tags/a-b-testing/</link>
     <description>Recent content in A/B Testing on Hooked on Data</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 07 Aug 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://hookedondata.org/tags/a-b-testing/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/a-b-testing/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Guidelines for A/B Testing</title>
-      <link>https://hookedondata.org/guidelines-for-ab-testing/</link>
+      <link>/guidelines-for-ab-testing/</link>
       <pubDate>Tue, 07 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/guidelines-for-ab-testing/</guid>
+      <guid>/guidelines-for-ab-testing/</guid>
       <description>When I was working at Etsy, I benefited from a very robust A/B testing system. Etsy had been doing A/B testing for more than 6 years. By the time I left, Etsy’s in-house experimentation system, called Catapult, had more than 5 data engineers working on it full-time. Every morning, I was greeted with a homepage that listed all the experiments that Etsy had run in the prior four years. When you clicked on one, you got a summary of what the experiment was testing (usually written by the product manager).</description>
     </item>
     

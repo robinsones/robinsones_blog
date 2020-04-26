@@ -25,14 +25,17 @@ As this discrepancy suggests, the social sciences are often lagging behind in te
 <h2>The MEMORE function</h2>
 <p>MEMORE stands for “MEdiation and MOderation in REpeated-measures designs” and is a macro for SPSS and SAS created by Montoya and Hayes. As they describe:</p>
 <blockquote>
-<p>It estimates the total, direct, and indirect effects of X on Y through one or more mediators M in the two-condition or two-occasion within-subjects/repeated measures design. In a path analytic form using OLS regression as illustrated in Montoya and Hayes (2015), it implements the method described by Judd, Kenny, and McClelland (2001, Psychological Methods) and extended by Montoya and Hayes (2015) to multiple mediators. Along with an estimate of the indirect effect(s), MEMORE generates confidence intervals for inference about the indirect effect(s) using bootstrapping approach.</p>
+<p>It estimates the total, direct, and indirect effects of X on Y through one or more mediators
+M in the two-condition or two-occasion within-subjects/repeated measures design. In a path analytic
+form using OLS regression as illustrated in Montoya and Hayes (2015), it implements the
+method described by Judd, Kenny, and McClelland (2001, Psychological Methods) and extended
+by Montoya and Hayes (2015) to multiple mediators. Along with an estimate of the indirect
+effect(s), MEMORE generates confidence intervals for inference about the indirect effect(s) using
+bootstrapping approach.</p>
 </blockquote>
 <p>I managed to get the STATA code to work eventually, but in the meantime I decided to tackle it with R. I also wanted the chance to keep to continue practicing using R Markdown instead of R Scripts. With R Markdown, I could not only write a function equivalent to the MEMORE macro but also include an explanation of the function in the same document. Using a combination of the <a href="http://afhayes.com/public/memore.pdf">documentation of the function</a> and <a href="http://psycnet.apa.org/psycinfo/2016-32270-001/">the accompanying paper</a>, I replicated the basic function and included the options for setting number of bootstrap repetitions, confidence interval (CI) size, and which bootstrap CI would be calculated.</p>
 <p>This did earn me some praise from my difficult-to-please German professor:</p>
-<div class="figure">
-<img src="/img/Excellent_Feedback.png" />
-
-</div>
+<p><img src="/img/Excellent_Feedback.png" /></p>
 <p>I also created a <a href="https://github.com/robinsones/R-MEMORE">GitHub repository</a> to store my R Markdown document. But since March I had pretty much left it there.</p>
 </div>
 <div id="motivation" class="section level2">

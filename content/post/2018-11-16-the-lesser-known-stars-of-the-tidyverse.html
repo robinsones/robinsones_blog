@@ -34,7 +34,7 @@ multiple_choice_responses_base %&gt;%
   count(StudentStatus) </code></pre>
 <pre><code>## # A tibble: 3 x 2
 ##   StudentStatus     n
-##   &lt;fct&gt;         &lt;int&gt;
+##   &lt;chr&gt;         &lt;int&gt;
 ## 1 &quot;&quot;            15436
 ## 2 &quot;No&quot;            299
 ## 3 &quot;Yes&quot;           981</code></pre>
@@ -110,39 +110,7 @@ multiple_choice_responses_base &lt;- multiple_choice_responses_base %&gt;%
 <pre class="r"><code>multiple_choice_responses %&gt;%
   select_if(is.numeric) %&gt;%
   skimr::skim()</code></pre>
-<pre><code>## Skim summary statistics
-##  n obs: 16716 
-##  n variables: 13 
-## 
-## ── Variable type:numeric ────────────────────────────────────────
-##                       variable missing complete     n  mean    sd p0 p25 p50
-##                            Age     331    16385 16716 32.37 10.47  0  25  30
-##         LearningCategoryKaggle    3590    13126 16716  5.53 11.07  0   0   0
-##  LearningCategoryOnlineCourses    3590    13126 16716 27.38 26.86  0   5  20
-##          LearningCategoryOther    3622    13094 16716  1.8   9.36  0   0   0
-##    LearningCategorySelftTaught    3607    13109 16716 33.37 25.79  0  15  30
-##     LearningCategoryUniversity    3594    13122 16716 16.99 23.68  0   0   5
-##           LearningCategoryWork    3605    13111 16716 15.22 19     0   0  10
-##            TimeFindingInsights    9193     7523 16716 13.09 12.97  0   5  10
-##              TimeGatheringData    9186     7530 16716 36.14 21.65  0  20  35
-##              TimeModelBuilding    9188     7528 16716 21.27 16.17  0  10  20
-##                TimeOtherSelect    9203     7513 16716  2.4  12.16  0   0   0
-##                 TimeProduction    9199     7517 16716 10.81 12.26  0   0  10
-##                TimeVisualizing    9187     7529 16716 13.87 11.72  0   5  10
-##  p75 p100     hist
-##   37  100 ▁▅▇▃▁▁▁▁
-##   10  100 ▇▁▁▁▁▁▁▁
-##   40  100 ▇▃▂▃▁▁▁▁
-##    0  100 ▇▁▁▁▁▁▁▁
-##   50  100 ▇▇▅▇▂▁▁▂
-##   30  100 ▇▂▁▁▁▁▁▁
-##   25  100 ▇▂▁▁▁▁▁▁
-##   20  303 ▇▁▁▁▁▁▁▁
-##   50  100 ▅▅▅▇▂▂▁▁
-##   30  100 ▇▇▃▂▁▁▁▁
-##    0  100 ▇▁▁▁▁▁▁▁
-##   15  100 ▇▂▁▁▁▁▁▁
-##   20  100 ▇▅▁▁▁▁▁▁</code></pre>
+<pre><code>## Error in loadNamespace(name): there is no package called &#39;skimr&#39;</code></pre>
 <p>I love the histograms. We can quickly see from them that people self teach a lot and spend a good amount of time building models and gathering data, compared to visualizing data or working in production.</p>
 <p>Let’s see how many distinct answers we have for each question. We can use <code>n_distinct()</code>, a shorter and faster version of <code>length(unique())</code>. We’ll use <code>summarise_all</code>, which is the same as <code>summarise_at</code> except that you don’t select a group of columns and so it applies to every one in the dataset.</p>
 <pre class="r"><code>multiple_choice_responses %&gt;%

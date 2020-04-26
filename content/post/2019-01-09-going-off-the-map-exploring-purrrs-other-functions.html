@@ -53,10 +53,7 @@ library(gapminder)</code></pre>
   arrange(rsq)</code></pre>
 <pre><code>## Error in eval(lhs, parent, parent): object &#39;gapminder&#39; not found</code></pre>
 <p>If you’ve generally worked with plain-old table data or vectors (like I have), you might have this reaction to that code:</p>
-<div class="figure">
-<img src="https://media.giphy.com/media/a93jwI0wkWTQs/giphy.gif" />
-
-</div>
+<p><img src="https://media.giphy.com/media/a93jwI0wkWTQs/giphy.gif" /></p>
 <p>But I am here to tell you: <code>purrr</code> can make your life easier even if you never write code like this. Certainly, knowing how to work with complicated nested lists and dataframes is very useful - it can simplify code you’ve written, and your data may arrive in that format (for example, JSON data is often represented as nested lists or dataframes in R). But even if all you ever work with is “simple” lists, dataframes, and vectors, you’ll be glad to know a bit of <code>purrr</code>.</p>
 </div>
 <div id="a-brief-introduction-to-map" class="section level2">
@@ -77,7 +74,7 @@ map(my_vector, round)</code></pre>
 ## 
 ## [[4]]
 ## [1] 5</code></pre>
-<p>The result is a list (hence the double brackets), which is always the case with <code>map()</code>. But you can return a dataframe or different types of vectors instead by using the appropriate <code>map_*()</code> function. In this case, let’s return a vector of type <code>double</code><a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>:</p>
+<p>The result is a list (hence the double brackets), which is always the case with <code>map()</code>. But you can return a dataframe or different types of vectors instead by using the appropriate <code>map_*()</code> function. In this case, let’s return a vector of type <code>double</code><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>:</p>
 <pre class="r"><code>map_dbl(my_vector, round)</code></pre>
 <pre><code>## [1] 1 2 3 5</code></pre>
 <p>You can also use <code>map</code> with an “anonymous” function, a function that doesn’t have a name. The formula is a <code>~</code> followed by what you want to do to each element, with <code>.x</code> representing the element (<code>.</code> also works). We can make an anonymous function to add ten to each element of our vector:</p>
@@ -291,6 +288,6 @@ round(vec_as_list)</code></pre>
 <pre class="r"><code>map(vec_as_list, round)</code></pre>
 <pre><code>## [[1]]
 ## [1] 1 2 3 5</code></pre>
-<p>Generally, you don’t need <code>map</code> when you’re working with a simple vector and a vectorized function. <code>map</code> shines where you either a) have a non-vectorized function or b) a more complicated data structure (including a list).<a href="#fnref1">↩</a></p></li>
+<p>Generally, you don’t need <code>map</code> when you’re working with a simple vector and a vectorized function. <code>map</code> shines where you either a) have a non-vectorized function or b) a more complicated data structure (including a list).<a href="#fnref1" class="footnote-back">↩</a></p></li>
 </ol>
 </div>

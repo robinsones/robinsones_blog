@@ -149,11 +149,9 @@ length(simulate_p_values_visit_result)*100  </code></pre>
 <div id="eliminate-redundancy" class="section level3">
 <h3>Eliminate redundancy</h3>
 <p>But we can then recognize that our table currently has a lot of redudancy: we have many browsers that have 1 visit and 0 conversions, 2 visits and 0 conversions, etc.</p>
-<p>Therefore, we can make our code faster by: - Transforming our table so each row is a unique combination of visits &amp; conversions, with a column that is the number of browsers with that combination. We can do this in SQL and output the table as “count of counts”.</p>
-<div class="figure">
-<img src="/img/performance_post_visualization.png" />
-
-</div>
+<p>Therefore, we can make our code faster by:
+- Transforming our table so each row is a unique combination of visits &amp; conversions, with a column that is the number of browsers with that combination. We can do this in SQL and output the table as “count of counts”.</p>
+<p><img src="/img/performance_post_visualization.png" /></p>
 <pre class="sql"><code>with counts as (
   SELECT count(*) as total_visits, sum(converted) as converted 
   FROM erobinson.simulate_fp_search

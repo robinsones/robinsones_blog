@@ -94,7 +94,7 @@ first_answer_after_first_question</code></pre>
 <ul>
 <li><code>by_time</code>: the time columns in each table. This would typically be a datetime or a date column. These columns are used to filter for time y being after time x.</li>
 <li><code>by_user</code>: the user or identity columns in each table. These must always be identical for a pair of rows to match.</li>
-<li><code>type</code>: the type of funnel used to distinguish between event pairs, such as “first-firstafter”, first-first“,”last-first“,”any-firstafter“.</li>
+<li><code>type</code>: the type of funnel used to distinguish between event pairs, such as “first-firstafter”, first-first“,”last-first“,”any-firstafter&quot;.</li>
 <li><code>suffix</code>: just like dplyr’s join functions, this specifies what should be appended to the names of columns that are in both tables.</li>
 </ul>
 <p>The <code>type</code> argument is the most powerful one, as it allows you to switch between types of funnels easily. In this case, we wanted only the first question someone asked and then wanted to know the first answer they gave afterward.</p>
