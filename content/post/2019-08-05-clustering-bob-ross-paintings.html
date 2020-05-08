@@ -4,11 +4,10 @@ author: Emily Robinson
 date: '2019-08-14'
 slug: exploring-bob-ross-paintings
 categories: []
-tags: []
-keywords:
+tags: 
   - R
-  - tidyverse
   - code
+  - tidyverse
 ---
 
 
@@ -187,9 +186,9 @@ by_feature_half %&gt;%
        title = &quot;Most paintings had between 5 and 11 features&quot;)</code></pre>
 <p><img src="/post/2019-08-05-clustering-bob-ross-paintings_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>Most paintings have between 5 and 11 features, although one has more than 15 and a couple have none.</p>
-<div id="principal-components-analysis" class="section level3">
-<h3>Principal Components Analysis</h3>
-<p>In short, principal components analysis is a dimensionality-reduction technique that takes all of your variables and creates a new set of characteristics that still contains the most information. For more information, I highly recommend checking out <a href="https://stats.stackexchange.com/questions/2691/making-sense-of-principal-component-analysis-eigenvectors-eigenvalues">this StackOverflow answer</a> for great explanations from simple to mathematical and Julia Silge’s <a href="https://juliasilge.com/blog/stack-overflow-pca/">post</a> where she explains principal Components Analysis using StackOverflow data.</p>
+<div id="principal-component-analysis" class="section level3">
+<h3>Principal Component Analysis</h3>
+<p>In short, principal component analysis is a dimensionality-reduction technique that takes all of your variables and creates a new set of characteristics that still contains the most information. For more information, I highly recommend checking out <a href="https://stats.stackexchange.com/questions/2691/making-sense-of-principal-component-analysis-eigenvectors-eigenvalues">this StackOverflow answer</a> for great explanations from simple to mathematical and Julia Silge’s <a href="https://juliasilge.com/blog/stack-overflow-pca/">post</a> where she explains principal component analysis using StackOverflow data.</p>
 <p>We’ll start by selecting only features that appear in at least 5 paintings and calculate three principal components, adding <code>scale = TRUE</code> to scale the features. This is a critical step; while the features are all on the same scale (0 or 1, not say 0 or 100 for one and 0 or 50 for another), they have different variances as some have a lot of 1s and some a lot of 0s. We need to center our data so that they all have the same mean and variance.</p>
 <pre class="r"><code>bob_ross_for_pca &lt;- bob_ross %&gt;% 
   select(-season, -episode, -title)  %&gt;%

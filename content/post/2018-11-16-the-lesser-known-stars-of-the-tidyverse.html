@@ -110,7 +110,232 @@ multiple_choice_responses_base &lt;- multiple_choice_responses_base %&gt;%
 <pre class="r"><code>multiple_choice_responses %&gt;%
   select_if(is.numeric) %&gt;%
   skimr::skim()</code></pre>
-<pre><code>## Error in loadNamespace(name): there is no package called &#39;skimr&#39;</code></pre>
+<table>
+<caption><span id="tab:unnamed-chunk-11">Table 1: </span>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td align="left">Name</td>
+<td align="left">Piped data</td>
+</tr>
+<tr class="even">
+<td align="left">Number of rows</td>
+<td align="left">16716</td>
+</tr>
+<tr class="odd">
+<td align="left">Number of columns</td>
+<td align="left">13</td>
+</tr>
+<tr class="even">
+<td align="left">_______________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Column type frequency:</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">numeric</td>
+<td align="left">13</td>
+</tr>
+<tr class="odd">
+<td align="left">________________________</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Group variables</td>
+<td align="left">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">p0</th>
+<th align="right">p25</th>
+<th align="right">p50</th>
+<th align="right">p75</th>
+<th align="right">p100</th>
+<th align="left">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Age</td>
+<td align="right">331</td>
+<td align="right">0.98</td>
+<td align="right">32.37</td>
+<td align="right">10.47</td>
+<td align="right">0</td>
+<td align="right">25</td>
+<td align="right">30</td>
+<td align="right">37</td>
+<td align="right">100</td>
+<td align="left">▁▇▂▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">LearningCategorySelftTaught</td>
+<td align="right">3607</td>
+<td align="right">0.78</td>
+<td align="right">33.37</td>
+<td align="right">25.79</td>
+<td align="right">0</td>
+<td align="right">15</td>
+<td align="right">30</td>
+<td align="right">50</td>
+<td align="right">100</td>
+<td align="left">▇▅▃▂▁</td>
+</tr>
+<tr class="odd">
+<td align="left">LearningCategoryOnlineCourses</td>
+<td align="right">3590</td>
+<td align="right">0.79</td>
+<td align="right">27.38</td>
+<td align="right">26.86</td>
+<td align="right">0</td>
+<td align="right">5</td>
+<td align="right">20</td>
+<td align="right">40</td>
+<td align="right">100</td>
+<td align="left">▇▃▂▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">LearningCategoryWork</td>
+<td align="right">3605</td>
+<td align="right">0.78</td>
+<td align="right">15.22</td>
+<td align="right">19.00</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">10</td>
+<td align="right">25</td>
+<td align="right">100</td>
+<td align="left">▇▂▁▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">LearningCategoryUniversity</td>
+<td align="right">3594</td>
+<td align="right">0.78</td>
+<td align="right">16.99</td>
+<td align="right">23.68</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">5</td>
+<td align="right">30</td>
+<td align="right">100</td>
+<td align="left">▇▂▁▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">LearningCategoryKaggle</td>
+<td align="right">3590</td>
+<td align="right">0.79</td>
+<td align="right">5.53</td>
+<td align="right">11.07</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">10</td>
+<td align="right">100</td>
+<td align="left">▇▁▁▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">LearningCategoryOther</td>
+<td align="right">3622</td>
+<td align="right">0.78</td>
+<td align="right">1.80</td>
+<td align="right">9.36</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">100</td>
+<td align="left">▇▁▁▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">TimeGatheringData</td>
+<td align="right">9186</td>
+<td align="right">0.45</td>
+<td align="right">36.14</td>
+<td align="right">21.65</td>
+<td align="right">0</td>
+<td align="right">20</td>
+<td align="right">35</td>
+<td align="right">50</td>
+<td align="right">100</td>
+<td align="left">▇▇▆▂▁</td>
+</tr>
+<tr class="odd">
+<td align="left">TimeModelBuilding</td>
+<td align="right">9188</td>
+<td align="right">0.45</td>
+<td align="right">21.27</td>
+<td align="right">16.17</td>
+<td align="right">0</td>
+<td align="right">10</td>
+<td align="right">20</td>
+<td align="right">30</td>
+<td align="right">100</td>
+<td align="left">▇▃▁▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">TimeProduction</td>
+<td align="right">9199</td>
+<td align="right">0.45</td>
+<td align="right">10.81</td>
+<td align="right">12.26</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">10</td>
+<td align="right">15</td>
+<td align="right">100</td>
+<td align="left">▇▁▁▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">TimeVisualizing</td>
+<td align="right">9187</td>
+<td align="right">0.45</td>
+<td align="right">13.87</td>
+<td align="right">11.72</td>
+<td align="right">0</td>
+<td align="right">5</td>
+<td align="right">10</td>
+<td align="right">20</td>
+<td align="right">100</td>
+<td align="left">▇▁▁▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">TimeFindingInsights</td>
+<td align="right">9193</td>
+<td align="right">0.45</td>
+<td align="right">13.09</td>
+<td align="right">12.97</td>
+<td align="right">0</td>
+<td align="right">5</td>
+<td align="right">10</td>
+<td align="right">20</td>
+<td align="right">303</td>
+<td align="left">▇▁▁▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">TimeOtherSelect</td>
+<td align="right">9203</td>
+<td align="right">0.45</td>
+<td align="right">2.40</td>
+<td align="right">12.16</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">100</td>
+<td align="left">▇▁▁▁▁</td>
+</tr>
+</tbody>
+</table>
 <p>I love the histograms. We can quickly see from them that people self teach a lot and spend a good amount of time building models and gathering data, compared to visualizing data or working in production.</p>
 <p>Let’s see how many distinct answers we have for each question. We can use <code>n_distinct()</code>, a shorter and faster version of <code>length(unique())</code>. We’ll use <code>summarise_all</code>, which is the same as <code>summarise_at</code> except that you don’t select a group of columns and so it applies to every one in the dataset.</p>
 <pre class="r"><code>multiple_choice_responses %&gt;%

@@ -11,65 +11,28 @@ showActions:    false
 
 I regularly give talks on A/B Testing, programming in R, data science career advice, and more. I've given talks across the country and internationally, to audiences ranging from 25 people to 800. If you're interested in having me speak at your event, please contact me at robinson.es[at]gmail.com
 
-## Upcoming Talks
+### Jump to:
+[A/B Testing](#a-b-testing)
 
-June 2020, New York R Conference. 
+[Programming in R](#programming-in-r)
 
-## Upcoming Podcasts
+[Data Science Career Advice](#data-science-career-advice)
 
-April 2020, [develomentor](https://develomentor.com/). 
+## A/B Testing
 
-April 2020, [Talk Python to Me](https://talkpython.fm/). 
-
-## Upcoming Panels
-
-April 2020, [R-Ladies NYC, All About Blogs](https://www.meetup.com/rladies-newyork/events/270210924/). 
-
-## Previous Talks 
-
-### Data Science Demstifyed 
-
-November 2019, Conversion Hotel in the Netherlands. [Slides](https://www.slideshare.net/webanalisten/ch2019-keynote-emily-robinson-data-science-demystified), [5-minute video summary](https://conversionhotel.com/session/keynote-2019-data-science-demystified/).
-
-### Build a Career in Data Science 
-
-November 2019, R-Ladies DC and DC Emerging Technologies, [Slides](https://speakerdeck.com/robinsones/build-a-career-in-data-science).
-
-### funneljoin: Defining a Tidy Grammar of Funnels in R
-
-November 2019, Booking.com Headquarters.
-
-November 2019, DC R conference. [Slides](https://speakerdeck.com/robinsones/funneljoin-defining-a-tidy-grammar-of-funnels-in-r), [Recording](https://www.youtube.com/watch?v=-n4XaYHDlG8&feature=youtu.be).
-
-### Joining the Data Science Community
-
-July 2019, Demystifying Data Science, [Slides](https://speakerdeck.com/robinsones/joining-the-data-science-community), [Recording](https://www.youtube.com/watch?v=YiROP9-OJh4&feature=youtu.be).
-
-May 2018, July 2018, and April 2020, Metis Data Science Bootcamp. [Slides](https://speakerdeck.com/robinsones/joining-the-data-science-community-245bca95-0556-4653-9511-9be65f3c228a).
-
-### Creating a Strong Data Science Portfolio
-
-June 2019, [Data Matters](https://skillsmatter.com/meetups/11783-keynote-evening-with-emily-robinson) in London. [Recording](https://skillsmatter.com/skillscasts/13056-creating-a-strong-data-science-portfolio), [Slides](https://speakerdeck.com/robinsones/build-a-strong-data-science-portfolio).
-
-### Everything You Wanted to Know About Making R Packages but Were Afraid to Ask
-
-November 2019, Columbia University. 
-
-May 2019, New York R Conference. [Recording](https://www.youtube.com/embed/33BzunEXEIE),  [Slides](https://www.slideshare.net/EmilyRobinson52/everything-you-wanted-to-know-about-making-an-r-package-but-were-afraid-to-ask).
-
-### 6 Guidelines for A/B Testing
+#### 6 Guidelines for A/B Testing
 
 March 2019, CXL Live. [Slides](https://www.slideshare.net/EmilyRobinson52/6-guidelines-for-ab-testing-145531526), [Recording](https://conversionxl.com/institute/media/guidelines-for-ab-testing/) - you will need to [sign-up here](https://conversionxl.com/institute/checkout/) for free.
 
-### Building an A/B Testing Analytics System
+#### Building an A/B Testing Analytics System
 
 January 2019, RStudio Conference. [Slides](https://www.slideshare.net/secret/Ba52FYuH2FoWE), [Recording](https://resources.rstudio.com/rstudio-conf-2019/building-an-ab-testing-analytics-system-with-r-and-shiny). 
 
-November 2018, [DC R Conference](https://www.rstats.ai/speakers/).
+November 2018, DC R Conference. [Recording](https://www.youtube.com/watch?v=zDONDfXzKdA&feature=youtu.be).
 
 October 2018, [Nor'eastR Conference](https://noreastrconf.com/schedule/). 
 
-### 10 Guidelines for A/B Testing
+#### 10 Guidelines for A/B Testing
 
 June 2019, Keynote at Microsoft internal One Analyst conference in Seattle. 
 
@@ -79,7 +42,31 @@ October 2018, [PyData NYC](https://pydata.org/nyc2018/).
 
 October 2018, [Taiwanese Data Professionals](https://www.meetup.com/Taiwanese-Data-Professionals/events/vdgkdqyxnbjc/).
 
-### The Lesser Known Stars of the Tidyverse
+February 2018, Data Science and Online Experiments at Etsy on the DataFramed podcast. [Recording](https://soundcloud.com/dataframed/9-data-science-and-online-experiments-at-etsy). 
+
+####  A/B Testing in the Wild
+
+October 2017, West Point Academy. [Slides](https://github.com/robinsones/AB-Testing-Slides/blob/master/AB%20Testing%20in%20the%20Wild.pdf).
+
+September 2017, Demystifying Data Science Conference by Metis. [Recording](https://www.youtube.com/watch?v=hlYFksjjgXg), [Slides](https://www.slideshare.net/secret/DBLR67WhEK2qWd).
+
+July 2017, New York Open Statistical Programming Meetup. [Recording](https://www.youtube.com/watch?v=SF-ryGgLOgQ), [Slides](https://github.com/robinsones/AB-Testing-Slides/blob/master/AB%20Testing%20in%20the%20Wild.pdf). 
+
+## Programming in R
+
+#### funneljoin: Defining a Tidy Grammar of Funnels in R
+
+November 2019, Booking.com Headquarters.
+
+November 2019, DC R conference. [Slides](https://speakerdeck.com/robinsones/funneljoin-defining-a-tidy-grammar-of-funnels-in-r), [Recording](https://www.youtube.com/watch?v=-n4XaYHDlG8&feature=youtu.be).
+
+#### Everything You Wanted to Know About Making R Packages but Were Afraid to Ask
+
+November 2019, Columbia University. 
+
+May 2019, New York R Conference. [Recording](https://www.youtube.com/embed/33BzunEXEIE),  [Slides](https://www.slideshare.net/EmilyRobinson52/everything-you-wanted-to-know-about-making-an-r-package-but-were-afraid-to-ask).
+
+#### The Lesser Known Stars of the Tidyverse
 
 December 2018, DataCamp Webinar. [Recording](https://www.youtube.com/watch?v=uG3igAGX7UE&t=632s).
 
@@ -91,17 +78,31 @@ February 2018, RStudio Conference. [Recording](https://www.rstudio.com/resources
 
 January 2018, Data Day Texas Conference. [Slides](https://github.com/robinsones/Data-Day-Talk/blob/master/Data_day_presentation.pdf), [Code](https://github.com/robinsones/Data-Day-Talk/blob/master/data_day_script_accompanying.md). 
 
-###  A/B Testing in the Wild
+## Data Science Career Advice
 
-October 2017, West Point Academy. [Slides](https://github.com/robinsones/AB-Testing-Slides/blob/master/AB%20Testing%20in%20the%20Wild.pdf).
+#### Data Science Demstifyed 
 
-September 2017, Demystifying Data Science Conference by Metis. [Recording](https://www.youtube.com/watch?v=hlYFksjjgXg), [Slides](https://www.slideshare.net/secret/DBLR67WhEK2qWd).
+November 2019, Conversion Hotel in the Netherlands. [Slides](https://www.slideshare.net/webanalisten/ch2019-keynote-emily-robinson-data-science-demystified), [5-minute video summary](https://conversionhotel.com/session/keynote-2019-data-science-demystified/).
 
-July 2017, New York Open Statistical Programming Meetup. [Recording](https://www.youtube.com/watch?v=SF-ryGgLOgQ), [Slides](https://github.com/robinsones/AB-Testing-Slides/blob/master/AB%20Testing%20in%20the%20Wild.pdf). 
+#### Build a Career in Data Science 
 
-## Previous Podcasts
+November 2019, R-Ladies DC and DC Emerging Technologies, [Slides](https://speakerdeck.com/robinsones/build-a-career-in-data-science).
 
-April 2020, Tackling Data Science Job Hunting, Interviews & Negotiations on Super Data Science Podcast, [Recording and transcript](https://www.superdatascience.com/podcast/tackling-data-science-job-hunting-interviews-and-negotiations). 
+#### Joining the Data Science Community
+
+July 2019, Demystifying Data Science, [Slides](https://speakerdeck.com/robinsones/joining-the-data-science-community), [Recording](https://www.youtube.com/watch?v=YiROP9-OJh4&feature=youtu.be).
+
+May 2018, July 2018, and April 2020, Metis Data Science Bootcamp. [Slides](https://speakerdeck.com/robinsones/joining-the-data-science-community-245bca95-0556-4653-9511-9be65f3c228a).
+
+#### Creating a Strong Data Science Portfolio
+
+June 2019, [Data Matters](https://skillsmatter.com/meetups/11783-keynote-evening-with-emily-robinson) in London. [Recording](https://skillsmatter.com/skillscasts/13056-creating-a-strong-data-science-portfolio), [Slides](https://speakerdeck.com/robinsones/build-a-strong-data-science-portfolio).
+
+#### Podcasts 
+
+April 2020, Build a Career in Data Science on Talk Python to Me (Jacqueline Nolis, my co-author, was also a guest), [Recording](https://talkpython.fm/episodes/show/262/build-a-career-in-data-science). 
+
+April 2020, Tackling Data Science Job Hunting, Interviews & Negotiations on Super Data Science Podcast. [Recording and transcript](https://www.superdatascience.com/podcast/tackling-data-science-job-hunting-interviews-and-negotiations). 
 
 April 2020, Data Science and Sponsorship on Greater Than Code. [Recording and episode outline](https://www.greaterthancode.com/data-science-and-sponsorship). 
 
@@ -109,12 +110,4 @@ April 2020, Building a Career in Data Science on Towards Data Science. [Recordin
 
 March 2020, Start a Career in Data Science on Women in TECH with Ariana (Jacqueline Nolis, my co-author, was also a guest). [Recording](https://anchor.fm/womenintech/episodes/Start-a-Career-in-Data-Science-with-Emily--Jacqueline-ebcbee).
 
-March 2020, Building a Career in Data Science on Practical AI. [Recording](https://changelog.com/practicalai/81) (transcript available on the page).
-
-February 2018, Data Science and Online Experiments at Etsy on DataFramed. [Recording](https://soundcloud.com/dataframed/9-data-science-and-online-experiments-at-etsy). 
-
-## Previous Panels
-
-March 2019, [Women in Data Science, Career Paths in Data Science](https://events.sap.com/us/widsnyc2019/en/agendas).
-
-January 2018, [PyData, DataFramed Podcast Launch](https://www.meetup.com/PyDataNYC/events/246701729/). 
+March 2020, Building a Career in Data Science on Practical AI. [Recording and transcript](https://changelog.com/practicalai/81) 
