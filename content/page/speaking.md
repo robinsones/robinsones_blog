@@ -80,13 +80,17 @@ January 2018, Data Day Texas Conference. [Slides](https://github.com/robinsones/
 
 ## Data Science Career Advice
 
+#### Build a Career in Data Science 
+
+June 2020, Data Umbrella, [Recording](https://www.youtube.com/watch?v=HsFFuFYz7zE) (including 45 minutes of Q&A). 
+
+June 2020, DataScienceGO Virtual, [Recording](https://www.youtube.com/watch?v=ChCYyWl2lNY), [Slides](https://speakerdeck.com/robinsones/build-a-career-in-data-science-7ef18f3c-876d-4ece-b755-9909ad2eacda). 
+
+November 2019, R-Ladies DC and DC Emerging Technologies, [Slides](https://speakerdeck.com/robinsones/build-a-career-in-data-science).
+
 #### Data Science Demstifyed 
 
 November 2019, Conversion Hotel in the Netherlands. [Slides](https://www.slideshare.net/webanalisten/ch2019-keynote-emily-robinson-data-science-demystified), [5-minute video summary](https://conversionhotel.com/session/keynote-2019-data-science-demystified/).
-
-#### Build a Career in Data Science 
-
-November 2019, R-Ladies DC and DC Emerging Technologies, [Slides](https://speakerdeck.com/robinsones/build-a-career-in-data-science).
 
 #### Joining the Data Science Community
 
@@ -98,7 +102,9 @@ May 2018, July 2018, and April 2020, Metis Data Science Bootcamp. [Slides](https
 
 June 2019, [Data Matters](https://skillsmatter.com/meetups/11783-keynote-evening-with-emily-robinson) in London. [Recording](https://skillsmatter.com/skillscasts/13056-creating-a-strong-data-science-portfolio), [Slides](https://speakerdeck.com/robinsones/build-a-strong-data-science-portfolio).
 
-#### Podcasts 
+## Podcasts
+
+June 2020, Build a Career in Data Science Book Session with Women in Analytics and Women in Tech International (Jacqueline Nolis, my co-author, was also a guest), [Recording](https://www.youtube.com/watch?v=P9rfb09FWjI).
 
 April 2020, Build a Career in Data Science on Talk Python to Me (Jacqueline Nolis, my co-author, was also a guest), [Recording](https://talkpython.fm/episodes/show/262/build-a-career-in-data-science). 
 
