@@ -2,34 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pages on Hooked on Data</title>
-    <link>/page/</link>
+    <link>https://hookedondata.org/page/</link>
     <description>Recent content in Pages on Hooked on Data</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="/page/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hookedondata.org/page/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>About</title>
-      <link>/about/</link>
+      <link>https://hookedondata.org/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/about/</guid>
+      <guid>https://hookedondata.org/about/</guid>
       <description>I work at Warby Parker as a senior data scientist on a centralized team tackling some of the company&amp;rsquo;s biggest projects. Previously I was at DataCamp, where I built and ran their experimentation analytics system, and at Etsy, where I worked with their search team to design, implement, and analyze experiments. I regularly give talks on A/B testing, R programming, and data science career advice at conferences and meetups (see all talks here).</description>
     </item>
     
     <item>
       <title>Speaking</title>
-      <link>/speaking/</link>
+      <link>https://hookedondata.org/speaking/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/speaking/</guid>
+      <guid>https://hookedondata.org/speaking/</guid>
       <description>I regularly give talks on A/B Testing, programming in R, data science career advice, and more. I&amp;rsquo;ve given talks across the country and internationally, to audiences ranging from 25 people to 800. If you&amp;rsquo;re interested in having me speak at your event, please contact me at robinson.es[at]gmail.com
-Jump to: A/B Testing
-Programming in R
-Data Science Career Advice
-A/B Testing 6 Guidelines for A/B Testing March 2019, CXL Live. Slides, Recording - you will need to sign-up here for free.</description>
+My co-author Jacqueline Nolis and I also have our own podcast based on our book of the same title, Build a Career in Data Science.</description>
     </item>
     
   </channel>

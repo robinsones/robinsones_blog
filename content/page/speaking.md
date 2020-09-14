@@ -11,12 +11,16 @@ showActions:    false
 
 I regularly give talks on A/B Testing, programming in R, data science career advice, and more. I've given talks across the country and internationally, to audiences ranging from 25 people to 800. If you're interested in having me speak at your event, please contact me at robinson.es[at]gmail.com
 
+My co-author Jacqueline Nolis and I also have our own podcast based on our book of the same title, Build a Career in Data Science. Each episode covers one chapter of the book, sharing the main takeaways as well as our personal experiences. The podcast is available on all major podcast platforms, and you can visit the website [here](https://podcast.bestbook.cool/). 
+
 ### Jump to:
 [A/B Testing](#a-b-testing)
 
 [Programming in R](#programming-in-r)
 
 [Data Science Career Advice](#data-science-career-advice)
+
+[Podcasts](#podcasts)
 
 ## A/B Testing
 
@@ -56,6 +60,8 @@ July 2017, New York Open Statistical Programming Meetup. [Recording](https://www
 
 #### funneljoin: Defining a Tidy Grammar of Funnels in R
 
+August 2020, NY R conference. 
+
 November 2019, Booking.com Headquarters.
 
 November 2019, DC R conference. [Slides](https://speakerdeck.com/robinsones/funneljoin-defining-a-tidy-grammar-of-funnels-in-r), [Recording](https://www.youtube.com/watch?v=-n4XaYHDlG8&feature=youtu.be).
@@ -82,6 +88,8 @@ January 2018, Data Day Texas Conference. [Slides](https://github.com/robinsones/
 
 #### Build a Career in Data Science 
 
+August 2020, Grace Hoppers Celebration Scholars meetup. 
+
 June 2020, Data Umbrella, [Recording](https://www.youtube.com/watch?v=HsFFuFYz7zE) (including 45 minutes of Q&A). 
 
 June 2020, DataScienceGO Virtual, [Recording](https://www.youtube.com/watch?v=ChCYyWl2lNY), [Slides](https://speakerdeck.com/robinsones/build-a-career-in-data-science-7ef18f3c-876d-4ece-b755-9909ad2eacda). 
@@ -104,9 +112,11 @@ June 2019, [Data Matters](https://skillsmatter.com/meetups/11783-keynote-evening
 
 ## Podcasts
 
-June 2020, Build a Career in Data Science Book Session with Women in Analytics and Women in Tech International (Jacqueline Nolis, my co-author, was also a guest), [Recording](https://www.youtube.com/watch?v=P9rfb09FWjI).
+July 2020, How to Jump into Data Science from Any Background on Develomentor (Jacqueline Nolis, my co-author, was also a guest). [Recording](https://develomentor.com/2020/07/23/emily-robinson-jacqueline-nolis-how-to-jump-into-data-science-from-any-background-76/). 
 
-April 2020, Build a Career in Data Science on Talk Python to Me (Jacqueline Nolis, my co-author, was also a guest), [Recording](https://talkpython.fm/episodes/show/262/build-a-career-in-data-science). 
+June 2020, Build a Career in Data Science Book Session with Women in Analytics and Women in Tech International (Jacqueline Nolis, my co-author, was also a guest). [Recording](https://www.youtube.com/watch?v=P9rfb09FWjI).
+
+April 2020, Build a Career in Data Science on Talk Python to Me (Jacqueline Nolis was also a guest), [Recording](https://talkpython.fm/episodes/show/262/build-a-career-in-data-science). 
 
 April 2020, Tackling Data Science Job Hunting, Interviews & Negotiations on Super Data Science Podcast. [Recording and transcript](https://www.superdatascience.com/podcast/tackling-data-science-job-hunting-interviews-and-negotiations). 
 
@@ -116,4 +126,6 @@ April 2020, Building a Career in Data Science on Towards Data Science. [Recordin
 
 March 2020, Start a Career in Data Science on Women in TECH with Ariana (Jacqueline Nolis, my co-author, was also a guest). [Recording](https://anchor.fm/womenintech/episodes/Start-a-Career-in-Data-Science-with-Emily--Jacqueline-ebcbee).
 
-March 2020, Building a Career in Data Science on Practical AI. [Recording and transcript](https://changelog.com/practicalai/81) 
+March 2020, Building a Career in Data Science on Practical AI. [Recording and transcript](https://changelog.com/practicalai/81). 
+
+[February 2018], Data Science and Online Experiments at Etsy on DataFramed. [Recording](https://soundcloud.com/dataframed/9-data-science-and-online-experiments-at-etsy). 

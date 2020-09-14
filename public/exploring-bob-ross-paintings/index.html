@@ -15,8 +15,8 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Exploring Bob Ross paintings">
 <meta name="twitter:title" content="Exploring Bob Ross paintings">
-<meta property="og:url" content="/exploring-bob-ross-paintings/">
-<meta property="twitter:url" content="/exploring-bob-ross-paintings/">
+<meta property="og:url" content="https://hookedondata.org/exploring-bob-ross-paintings/">
+<meta property="twitter:url" content="https://hookedondata.org/exploring-bob-ross-paintings/">
 <meta property="og:site_name" content="Hooked on Data">
 <meta property="og:description" content="In this post, I try something new and share an analysis I did without stopping to explain the code along the way (with a few exceptions). I analyze a dataset on Bob Ross paintings from last week’s Tidytuesday, an initiative by the R for Data Science online learning community. Each Monday, a new dataset is posted on GitHub with a short description. You can see some analyses and visualizations people have done by searching for the #tidytuesday hashtag on Twitter.">
 <meta name="twitter:description" content="In this post, I try something new and share an analysis I did without stopping to explain the code along the way (with a few exceptions). I analyze a dataset on Bob Ross paintings from last week’s Tidytuesday, an initiative by the R for Data Science online learning community. Each Monday, a new dataset is posted on GitHub with a short description. You can see some analyses and visualizations people have done by searching for the #tidytuesday hashtag on Twitter.">
@@ -63,12 +63,12 @@
 
     <title>Exploring Bob Ross paintings</title>
 
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="https://hookedondata.org/favicon.png">
     
 
     
 
-    <link rel="canonical" href="/exploring-bob-ross-paintings/">
+    <link rel="canonical" href="https://hookedondata.org/exploring-bob-ross-paintings/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -76,7 +76,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
     
     
-    <link rel="stylesheet" href="/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    <link rel="stylesheet" href="https://hookedondata.org/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
     
     
 
@@ -104,12 +104,12 @@ if (!doNotTrack) {
       <header id="header" data-behavior="5">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
-    <a class="header-title-link" href="/">Hooked on Data</a>
+    <a class="header-title-link" href="https://hookedondata.org/">Hooked on Data</a>
   </div>
   
     
       <a class="header-right-picture "
-         href="/about">
+         href="https://hookedondata.org/about">
     
     
     
@@ -125,7 +125,7 @@ if (!doNotTrack) {
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
-        <a href="/about">
+        <a href="https://hookedondata.org/about">
           <img class="sidebar-profile-picture" src="https://avatars.githubusercontent.com/robinsones" alt="Author&#39;s picture" />
         </a>
         <h4 class="sidebar-profile-name">Emily Robinson</h4>
@@ -138,7 +138,7 @@ if (!doNotTrack) {
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/">
+      <a class="sidebar-button-link " href="https://hookedondata.org/">
     
       <i class="sidebar-button-icon fa fa-lg fa-home"></i>
       
@@ -148,7 +148,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/tags">
+      <a class="sidebar-button-link " href="https://hookedondata.org/tags">
     
       <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
       
@@ -158,7 +158,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/about">
+      <a class="sidebar-button-link " href="https://hookedondata.org/about">
     
       <i class="sidebar-button-icon fa fa-lg fa-question"></i>
       
@@ -168,7 +168,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/archives">
+      <a class="sidebar-button-link " href="https://hookedondata.org/archives">
     
       <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
       
@@ -178,7 +178,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://www.linkedin.com/in/robinsones/">
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/robinsones/" target="_blank" rel="noopener">
     
       <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
       
@@ -192,7 +192,7 @@ if (!doNotTrack) {
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://github.com/robinsones">
+      <a class="sidebar-button-link " href="https://github.com/robinsones" target="_blank" rel="noopener">
     
       <i class="sidebar-button-icon fa fa-lg fa-github"></i>
       
@@ -202,7 +202,7 @@ if (!doNotTrack) {
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/speaking">
+      <a class="sidebar-button-link " href="https://hookedondata.org/speaking">
     
       <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
       
@@ -350,7 +350,7 @@ bob_ross %&gt;%
   labs(y = &quot;Number of paintings&quot;, 
        title = &quot;What were most common features in Bob Ross paintings?&quot;,
        x = &quot;&quot;)</code></pre>
-<p><img src="/post/2019-08-05-clustering-bob-ross-paintings_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="https://hookedondata.org/post/2019-08-05-clustering-bob-ross-paintings_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>If you’ve seen Bob Ross paintings, it’s probably not too surprising that “tree” is the top feature. I am a bit surprised to find that trees, deciduous, and conifer are all separate features (the latter two are types of trees).</p>
 <p>Let’s adapt this to show what percent of paintings contained the feature, rather than the total number.</p>
 <pre class="r"><code>bob_ross %&gt;%
@@ -368,7 +368,7 @@ bob_ross %&gt;%
        x = &quot;&quot;) + 
   scale_y_continuous(label = scales::percent) + 
   expand_limits(y = 1)</code></pre>
-<p><img src="/post/2019-08-05-clustering-bob-ross-paintings_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="https://hookedondata.org/post/2019-08-05-clustering-bob-ross-paintings_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>This gives some more context of just how common having a tree was - more than 80% of the paintings had one!</p>
 <p>Did the content of the paintings change over time? We can answer this question in a lot of different ways - let’s start by looking at features that appeared in more than 150 paintings and their trends over the seasons.</p>
 <pre class="r"><code>nb_features_by_season &lt;- bob_ross %&gt;%
@@ -387,7 +387,7 @@ bob_ross %&gt;%
   geom_hline(yintercept = 13, lty = 2) + 
   theme(legend.position = &quot;none&quot;) + 
   expand_limits(y = 0)</code></pre>
-<p><img src="/post/2019-08-05-clustering-bob-ross-paintings_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="https://hookedondata.org/post/2019-08-05-clustering-bob-ross-paintings_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>Trees (of all types) stay consistently popular across seasons, while clouds became less featured.</p>
 <p>What features have the great absolute difference between the first and second half of the series?</p>
 <pre class="r"><code>by_feature_half &lt;- nb_features_by_season %&gt;%
@@ -415,7 +415,7 @@ by_feature_half %&gt;%
        y = &quot;&quot;,
        title = &quot;What features became more or less frequent?&quot;,
        color = &quot;Seasons&quot;)</code></pre>
-<p><img src="/post/2019-08-05-clustering-bob-ross-paintings_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="https://hookedondata.org/post/2019-08-05-clustering-bob-ross-paintings_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>As we had seen in our graph of the top 6 features, clouds (and it’s like, cumuls and cirrus) went down, while framed got a little more popular.</p>
 <p>What’s the distribution of the number of features per painting (code for a calculating the summary of a row thanks to <a href="https://twitter.com/JennyBryan/status/1158571075388575745">this tweet</a> by Jenny Bryan)?</p>
 <pre class="r"><code>bob_ross %&gt;%
@@ -425,7 +425,7 @@ by_feature_half %&gt;%
   labs(x = &quot;Number of features in a painting&quot;,
        y = &quot;Number of paintings&quot;,
        title = &quot;Most paintings had between 5 and 11 features&quot;)</code></pre>
-<p><img src="/post/2019-08-05-clustering-bob-ross-paintings_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="https://hookedondata.org/post/2019-08-05-clustering-bob-ross-paintings_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>Most paintings have between 5 and 11 features, although one has more than 15 and a couple have none.</p>
 <div id="principal-component-analysis" class="section level3">
 <h3>Principal Component Analysis</h3>
@@ -454,7 +454,7 @@ tidied_pca %&gt;%
   labs(title = &quot;What distinguishes Bob Ross paintings?&quot;,
        subtitle = &quot;Trees vs. beach, structures vs. mountains, and water vs. winter structures&quot;, y = &quot;Relative importance in principal component&quot;,
        x = &quot;&quot;)</code></pre>
-<p><img src="/post/2019-08-05-clustering-bob-ross-paintings_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="https://hookedondata.org/post/2019-08-05-clustering-bob-ross-paintings_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>We find that the first principal component divides painting between those at the ocean (with beach and palm trees) and those in the tree covered mountains. The next component divides mountains from structures like cabin and barns, while the final one distinguishes a cabin in the snow from a grassy river.</p>
 </div>
 </div>
@@ -474,11 +474,11 @@ tidied_pca %&gt;%
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">TAGGED IN</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="/tags/r/">R</a>
+  <a class="tag tag--primary tag--small" href="https://hookedondata.org/tags/r/">R</a>
 
-  <a class="tag tag--primary tag--small" href="/tags/code/">code</a>
+  <a class="tag tag--primary tag--small" href="https://hookedondata.org/tags/code/">code</a>
 
-  <a class="tag tag--primary tag--small" href="/tags/tidyverse/">tidyverse</a>
+  <a class="tag tag--primary tag--small" href="https://hookedondata.org/tags/tidyverse/">tidyverse</a>
 
                   </div>
                 
@@ -491,7 +491,7 @@ tidied_pca %&gt;%
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="/pokemon-type-combinations/" data-tooltip="What Types Should You Have on Your Pokémon Team? Efficient Simulation with Matrices in R">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://hookedondata.org/pokemon-type-combinations/" data-tooltip="What Types Should You Have on Your Pokémon Team? Efficient Simulation with Matrices in R">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -499,7 +499,7 @@ tidied_pca %&gt;%
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="/introducing-the-funneljoin-package/" data-tooltip="Introducing the funneljoin package">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://hookedondata.org/introducing-the-funneljoin-package/" data-tooltip="Introducing the funneljoin package">
               
                   <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                   <i class="fa fa-angle-right"></i>
@@ -517,13 +517,13 @@ tidied_pca %&gt;%
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/exploring-bob-ross-paintings/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://hookedondata.org/exploring-bob-ross-paintings/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/exploring-bob-ross-paintings/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://hookedondata.org/exploring-bob-ross-paintings/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -561,7 +561,7 @@ tidied_pca %&gt;%
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="/pokemon-type-combinations/" data-tooltip="What Types Should You Have on Your Pokémon Team? Efficient Simulation with Matrices in R">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://hookedondata.org/pokemon-type-combinations/" data-tooltip="What Types Should You Have on Your Pokémon Team? Efficient Simulation with Matrices in R">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -569,7 +569,7 @@ tidied_pca %&gt;%
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="/introducing-the-funneljoin-package/" data-tooltip="Introducing the funneljoin package">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://hookedondata.org/introducing-the-funneljoin-package/" data-tooltip="Introducing the funneljoin package">
               
                   <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                   <i class="fa fa-angle-right"></i>
@@ -587,13 +587,13 @@ tidied_pca %&gt;%
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/exploring-bob-ross-paintings/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://hookedondata.org/exploring-bob-ross-paintings/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/exploring-bob-ross-paintings/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://hookedondata.org/exploring-bob-ross-paintings/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -617,13 +617,13 @@ tidied_pca %&gt;%
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2Fexploring-bob-ross-paintings%2F">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fhookedondata.org%2Fexploring-bob-ross-paintings%2F">
           <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2Fexploring-bob-ross-paintings%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fhookedondata.org%2Fexploring-bob-ross-paintings%2F">
           <i class="fa fa-twitter"></i><span>Share on Twitter</span>
         </a>
       </li>
@@ -684,7 +684,7 @@ tidied_pca %&gt;%
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="/pokemon-type-combinations/">
+              <a class="link-unstyled" href="https://hookedondata.org/pokemon-type-combinations/">
                 <h3 class="media-heading">What Types Should You Have on Your Pokémon Team? Efficient Simulation with Matrices in R</h3>
               </a>
               <span class="media-meta">
@@ -701,7 +701,7 @@ tidied_pca %&gt;%
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="/exploring-bob-ross-paintings/">
+              <a class="link-unstyled" href="https://hookedondata.org/exploring-bob-ross-paintings/">
                 <h3 class="media-heading">Exploring Bob Ross paintings</h3>
               </a>
               <span class="media-meta">
@@ -718,7 +718,7 @@ tidied_pca %&gt;%
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="/introducing-the-funneljoin-package/">
+              <a class="link-unstyled" href="https://hookedondata.org/introducing-the-funneljoin-package/">
                 <h3 class="media-heading">Introducing the funneljoin package</h3>
               </a>
               <span class="media-meta">
@@ -735,7 +735,7 @@ tidied_pca %&gt;%
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="/going-off-the-map/">
+              <a class="link-unstyled" href="https://hookedondata.org/going-off-the-map/">
                 <h3 class="media-heading">Going Off the Map: Exploring purrr&#39;s Other Functions</h3>
               </a>
               <span class="media-meta">
@@ -752,7 +752,7 @@ tidied_pca %&gt;%
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="/the-lesser-known-stars-of-the-tidyverse/">
+              <a class="link-unstyled" href="https://hookedondata.org/the-lesser-known-stars-of-the-tidyverse/">
                 <h3 class="media-heading">The Lesser Known Stars of the Tidyverse</h3>
               </a>
               <span class="media-meta">
@@ -769,7 +769,7 @@ tidied_pca %&gt;%
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="/guidelines-for-ab-testing/">
+              <a class="link-unstyled" href="https://hookedondata.org/guidelines-for-ab-testing/">
                 <h3 class="media-heading">Guidelines for A/B Testing</h3>
               </a>
               <span class="media-meta">
@@ -786,7 +786,7 @@ tidied_pca %&gt;%
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="/red-flags-in-data-science-interviews/">
+              <a class="link-unstyled" href="https://hookedondata.org/red-flags-in-data-science-interviews/">
                 <h3 class="media-heading">Red Flags in Data Science Interviews</h3>
               </a>
               <span class="media-meta">
@@ -804,7 +804,7 @@ When interviewing for any position, you should be evaluating the company just as
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="/advice-for-applying-to-data-science-jobs/">
+              <a class="link-unstyled" href="https://hookedondata.org/advice-for-applying-to-data-science-jobs/">
                 <h3 class="media-heading">Advice for Applying to Data Science Jobs</h3>
               </a>
               <span class="media-meta">
@@ -822,7 +822,7 @@ A disclaimer: I have never worked as a recruiter or career coach. This knowledge
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="/the-importance-of-sponsorship/">
+              <a class="link-unstyled" href="https://hookedondata.org/the-importance-of-sponsorship/">
                 <h3 class="media-heading">The Importance of Sponsorship</h3>
               </a>
               <span class="media-meta">
@@ -840,7 +840,7 @@ What is sponsorship? When people discuss what they’re seeking from a more seni
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="/building-your-data-science-network-finding-community/">
+              <a class="link-unstyled" href="https://hookedondata.org/building-your-data-science-network-finding-community/">
                 <h3 class="media-heading">Building Your Data Science Network: Finding Community</h3>
               </a>
               <span class="media-meta">
@@ -869,7 +869,7 @@ What is sponsorship? When people discuss what they’re seeking from a more seni
     
   
     
-    <div id="cover" style="background-image:url('/images/cover.jpg');"></div>
+    <div id="cover" style="background-image:url('https://hookedondata.org/images/cover.jpg');"></div>
   
 
 
@@ -881,7 +881,7 @@ What is sponsorship? When people discuss what they’re seeking from a more seni
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
 
 
-<script src="/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+<script src="https://hookedondata.org/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
 
 
 <script lang="javascript">
