@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Python on Hooked on Data</title>
-    <link>https://hookedondata.org/tags/python/</link>
+    <link>/tags/python/</link>
     <description>Recent content in Python on Hooked on Data</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 08 Aug 2016 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://hookedondata.org/tags/python/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Better Plotting in Python with Seaborn</title>
-      <link>https://hookedondata.org/better-plotting-in-python-with-seaborn/</link>
+      <link>/better-plotting-in-python-with-seaborn/</link>
       <pubDate>Mon, 08 Aug 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/better-plotting-in-python-with-seaborn/</guid>
+      <guid>/better-plotting-in-python-with-seaborn/</guid>
       <description>The Bright Blue Horror Coming into Metis, I knew one of the hardest parts would be switching from R to Python. Beyond simply having much more experience in R, I had come to rely on Hadley Wickham’s fantastic set of R packages for data science. One of these is ggplot2, a data visualization package. While there is a version of ggplot2 for python, I decided to learn the main plotting system in Python, matplotlib.</description>
     </item>
     

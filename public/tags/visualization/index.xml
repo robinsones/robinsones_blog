@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Visualization on Hooked on Data</title>
-    <link>https://hookedondata.org/tags/visualization/</link>
+    <link>/tags/visualization/</link>
     <description>Recent content in Visualization on Hooked on Data</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 30 Sep 2016 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://hookedondata.org/tags/visualization/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/visualization/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Topic Modeling the New York Times and Trump</title>
-      <link>https://hookedondata.org/topic-modeling-the-new-york-times-and-trump/</link>
+      <link>/topic-modeling-the-new-york-times-and-trump/</link>
       <pubDate>Fri, 30 Sep 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/topic-modeling-the-new-york-times-and-trump/</guid>
+      <guid>/topic-modeling-the-new-york-times-and-trump/</guid>
       <description>When Donald Trump first entered the Republican presidential primary on June 16, 2015, no media outlet seemed to take him seriously as a contender. He is a highly unusual candidate, and some in the media have admitted that they, and the media more generally, don’t know how to cover him, both in the primary and now in the general election. Trump himself has criticized the media’s coverage of him:</description>
     </item>
     
     <item>
       <title>Better Plotting in Python with Seaborn</title>
-      <link>https://hookedondata.org/better-plotting-in-python-with-seaborn/</link>
+      <link>/better-plotting-in-python-with-seaborn/</link>
       <pubDate>Mon, 08 Aug 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/better-plotting-in-python-with-seaborn/</guid>
+      <guid>/better-plotting-in-python-with-seaborn/</guid>
       <description>The Bright Blue Horror Coming into Metis, I knew one of the hardest parts would be switching from R to Python. Beyond simply having much more experience in R, I had come to rely on Hadley Wickham’s fantastic set of R packages for data science. One of these is ggplot2, a data visualization package. While there is a version of ggplot2 for python, I decided to learn the main plotting system in Python, matplotlib.</description>
     </item>
     

@@ -112,6 +112,10 @@ June 2019, [Data Matters](https://skillsmatter.com/meetups/11783-keynote-evening
 
 ## Podcasts
 
+November 2020, Building a Career in Data Science on Chai Data Science (Jacqueline Nolis was also a guest). [Recording](https://www.youtube.com/watch?v=-OSWCeo18vs&feature=youtu.be). 
+
+October 2020, Build a Career in Data Science on The Artists of Data Science (Jaqueline Nolis was also a guest). [Recording](https://theartistsofdatascience.fireside.fm/jacqueline-nolis-emily-robinson). 
+
 July 2020, How to Jump into Data Science from Any Background on Develomentor (Jacqueline Nolis, my co-author, was also a guest). [Recording](https://develomentor.com/2020/07/23/emily-robinson-jacqueline-nolis-how-to-jump-into-data-science-from-any-background-76/). 
 
 June 2020, Build a Career in Data Science Book Session with Women in Analytics and Women in Tech International (Jacqueline Nolis, my co-author, was also a guest). [Recording](https://www.youtube.com/watch?v=P9rfb09FWjI).
