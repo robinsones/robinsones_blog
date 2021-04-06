@@ -12,7 +12,7 @@ tags:
 
 
 
-<p>In early 2018, I gave a few conference talks on “The Lesser Known Stars of the Tidyverse.” I focused on some packages and functions that aren’t as well known as the core parts of ggplot2 and dplyr but are very helpful in exploratory analysis. I walked through an example analysis of <a href="https://www.kaggle.com/surveys/2017">Kaggle’s 2017 State of Data Science and Machine Learning Survey</a> to show how I would use these functions in an exploratory analysis.</p>
+<p>In early 2018, I gave a few conference talks on “The Lesser Known Stars of the Tidyverse.” I focused on some packages and functions that aren’t as well known as the core parts of ggplot2 and dplyr but are very helpful in exploratory analysis. I walked through an example analysis of <a href="https://www.kaggle.com/kaggle/kaggle-survey-2017">Kaggle’s 2017 State of Data Science and Machine Learning Survey</a> to show how I would use these functions in an exploratory analysis.</p>
 <p>This post shares that analysis with some extra written commentary. If you’d like to watch the talks as well, both the <a href="https://www.rstudio.com/resources/videos/the-lesser-known-stars-of-the-tidyverse/">RStudio::conf</a> and <a href="https://www.youtube.com/watch?v=ax4LXQ5t38k">New York R conference</a> ones were recorded.</p>
 <div id="reading-in-the-data" class="section level2">
 <h2>Reading in the data</h2>
@@ -342,9 +342,9 @@ multiple_choice_responses_base &lt;- multiple_choice_responses_base %&gt;%
   summarise_all(n_distinct) %&gt;%
   select(1:10)</code></pre>
 <pre><code>## # A tibble: 1 x 10
-##   GenderSelect Country   Age EmploymentStatus StudentStatus LearningDataSci…
-##          &lt;int&gt;   &lt;int&gt; &lt;int&gt;            &lt;int&gt;         &lt;int&gt;            &lt;int&gt;
-## 1            5      53    85                7             3                4
+##   GenderSelect Country   Age EmploymentStatus StudentStatus LearningDataScience
+##          &lt;int&gt;   &lt;int&gt; &lt;int&gt;            &lt;int&gt;         &lt;int&gt;               &lt;int&gt;
+## 1            5      53    85                7             3                   4
 ## # … with 4 more variables: CodeWriter &lt;int&gt;, CareerSwitcher &lt;int&gt;,
 ## #   CurrentJobTitleSelect &lt;int&gt;, TitleFit &lt;int&gt;</code></pre>
 <p>This data would be more helpful if it was tidy and had two columns, <code>question</code> and <code>num_distinct_answers</code>. We can use <code>tidyr::gather</code> to change our data from “wide” to “long” format and then <code>arrange</code> it so we can see the columns with the most distinct answers first. If you’ve used (or are still using!) reshape2, check out tidyr; reshape2 is retired and is only updated with changes necessary for it to remain on CRAN. While not exactly equivalent, <code>tidyr::spread</code> replaces <code>reshape2::dcast</code>, <code>tidyr::separate</code> <code>reshape2::colsplit</code>, and <code>tidyr::gather</code> <code>reshape2::melt</code>.</p>

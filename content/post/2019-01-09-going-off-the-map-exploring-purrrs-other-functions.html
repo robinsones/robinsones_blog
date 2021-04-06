@@ -51,7 +51,7 @@ library(gapminder)</code></pre>
   mutate(fit = map(data, ~ lm(lifeExp ~ year, data = .x))) %&gt;%
   mutate(rsq = map_dbl(fit, ~ summary(.x)[[&quot;r.squared&quot;]])) %&gt;%
   arrange(rsq)</code></pre>
-<pre><code>## Error in eval(lhs, parent, parent): object &#39;gapminder&#39; not found</code></pre>
+<pre><code>## Error in group_by(., country): object &#39;gapminder&#39; not found</code></pre>
 <p>If you’ve generally worked with plain-old table data or vectors (like I have), you might have this reaction to that code:</p>
 <p><img src="https://media.giphy.com/media/a93jwI0wkWTQs/giphy.gif" /></p>
 <p>But I am here to tell you: <code>purrr</code> can make your life easier even if you never write code like this. Certainly, knowing how to work with complicated nested lists and dataframes is very useful - it can simplify code you’ve written, and your data may arrive in that format (for example, JSON data is often represented as nested lists or dataframes in R). But even if all you ever work with is “simple” lists, dataframes, and vectors, you’ll be glad to know a bit of <code>purrr</code>.</p>

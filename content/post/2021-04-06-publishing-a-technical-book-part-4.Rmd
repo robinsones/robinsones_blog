@@ -1,0 +1,34 @@
+---
+title: 'Publishing a Technical Book (Part 4): After the Book is Published'
+author: Emily Robinson
+date: '2021-04-06'
+slug: publishing-tech-book-part-4
+categories: []
+tags: 
+  - career
+keywords:
+  - publishing
+  - data science
+  - books
+summary: "What it's like after your book is finished and available in the wild."
+---
+
+[This is my final post on publishing a technical book. If you're wondering if you should write one, how to find a publisher, or what the writing process is like, start from the beginning.]
+
+It’s really cool to have a physical copy of something you wrote! I still sometimes just flip through the pages, marveling at how professional it looks and how much content we created. The final book ended up being 350 pages, so although it's no mammoth technical reference, you can certainly spot it on your bookshelf. 
+
+Jacqueline and I had planned to do book launch parties in Seattle and New York (where we lived) in parternship with local data science meetup groups, but unfortunately our book came out right when COVID hit. We pivoted instead to doing some virtual events, where we would read and discuss a few excerpts from the book (usually for about 30 minutes total) and then do a Q&A session. This format worked pretty well for us; it involves minimal preparation on our side (just picking the excerpts) and Jacqueline and I have a good and fun rapport. 
+
+We’ve also done a lot of podcasts and conference talks in the past year to promote our book. Some of the podcasts came through Manning, but the rest was people reaching out directly to us. Sometimes they would want us to speak specifically about the book, and other times it was a general invitation where we would offer to do a career-focused talk. While the events have been fun, they’ve all had to be virtual because of Covid and I have found that to be less energizing than getting to meet people in person. Except for a few cases where we spoke on very popular podcasts like [SuperDataScience](https://www.superdatascience.com/podcast), I also don’t think it really translated into expanding our audience or selling books. I'm not sure if that would be different for physical events, where perhaps people would be encouraged to buy the books to get them signed. Book signings  at RStudio::conf book signing were very popular, although I think workshop attendees got to choose a book for free: 
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">this is not comic con, this is the <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> open source book signing at <a href="https://twitter.com/hashtag/rstudioconf?src=hash&amp;ref_src=twsrc%5Etfw">#rstudioconf</a>. So much gratitude and generosity. Democratizing data science, one bookdown repo at a time<br> <a href="https://twitter.com/rstudio?ref_src=twsrc%5Etfw">@rstudio</a>. <a href="https://t.co/BccOXZ1bHr">pic.twitter.com/BccOXZ1bHr</a></p>&mdash; Max Held (@maxheld) <a href="https://twitter.com/maxheld/status/1221985368657952769?ref_src=twsrc%5Etfw">January 28, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+For each meetup and podcast, Manning has been very generous in providing free e-book codes. When we resume in-person events again, I’m hopeful we’ll be able to get a physical copy or two for each (I know Pearson, for example, does this). 
+
+One of my favorite things Jacqueline and I have done is make our own podcast. We’ve done 14 episodes so far (plus a bonus episode), each covering one chapter of the book. The podcast is a nice way to make the book more accessible, since it’s free and some people prefer listening to reading (although we do have an [audiobook](https://livebook.manning.com/book/build-a-career-in-data-science/chapter-1?origin=product-liveaudio-upsell) with that rich barritone narration). We also get to share our personal stories and things we wish we had included in the book. We've gotten [great](https://twitter.com/nic_crane/status/1359861793787695118?s=20) [feedback](https://twitter.com/PipingHotData/status/1379005669756579843?s=20) [that](https://twitter.com/so_xinteresting/status/1370713947968581637?s=20) [people](https://www.linkedin.com/feed/update/urn:li:activity:6783060201911193600/), and I like how we've balanced making it informative and useful while also keeping people entertained.
+
+We're able to track our sales on a daily level with Manning and weekly level with Amazon US. For everywhere else, we have to wait until Manning issues us our royalty statements, which usually comes out 3.5 months after the end of the quarter (so we got our Q3 sales in mid-January and expect our Q4 numbers soon). With Manning we make exactly our royalty rate * the sale price, but that's not the case for sales through Amazon or other bookstores, as those companies buy the book at a (unknown to me) discount. A company bought the Korean rights for Build a Career in Data Science back in July and apparently they usually come out after 12 months, so I'm pretty excited for that! Another bonus is that we get 50% of the proceeds from the sale, including the advance and royalty. 
+
+I think there’s still a lot of people out there who could really benefit from our book but don’t have it - Jacqueline and I joke with each other when we do Q&A sessions that almost every question asked is addressed in our book. I’m not sure where the disconnect is in reaching people - if it’s them knowing about the book, thinking it will have new relevant information, or believing it’s worth spending money on. We were also both were hoping to have more groups like bootcamps or university classes using our book, since they're one of their target audiences. There was one short course (I think for a university's January term) that used our book for the syllabus, but unfortunately I've lost the link. 
+
+In general though, I’ve been really happy with the positive reception for the book. It always makes my day when someone messages or tweets about how the book has helped them. That feeling is what makes the labor of the book worthwhile. If this sounds lame to you and what you want from your effort is an author cutout to put in the mansion that your book royalties paid for, may I suggest “Harry Potter and Object-Oriented Programming”?

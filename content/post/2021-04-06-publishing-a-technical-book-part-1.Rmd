@@ -1,0 +1,56 @@
+---
+title: 'Publishing a Technical Book (Part 1): Why Do It?'
+author: Emily Robinson
+date: '2021-04-06'
+slug: publishing-tech-book-part-1
+categories: []
+tags: 
+  - career
+keywords:
+  - publishing
+  - data science
+  - books
+summary: "What are (and aren't) the benefits of writing a technical book?"
+---
+
+Following the sage wisdom of brother Dave to [write a blog post when you’ve given the same advice three times](https://twitter.com/drob/status/928447584712253440?s=20), after I had a few people reach out to me with questions about writing a technical book, I've put together my thoughts in this four-part series a year after publishing [Build a Career in Data Science](http://www.datascicareer.com) with Jacqueline Nolis. 
+
+In April 2018, Jacqueline reached out to me about whether I would be interested in writing a book. We had met at the DataDay Texas conference where we were both speakers that January and since then Manning, a book publisher, had reached out to her about writing a data science book. She was interested in having a co-author and thought we could write a good book together. We started writing the proposal in May 2018, signed the contract in August 2018, finished writing in December 2019, and got our hands on the physical copies in March 2020. 
+
+A disclaimer: while I put the book Jacqueline and I wrote, Build a Career in Data Science, more on the technical side than not, we had no code in our book except a few excerpts in our appendix. That means we didn’t have a technical editor, need to do any statistics or programming research, or worry about formatting code. 
+
+### Why write a book? 
+
+I once heard someone say that you write a book because you can’t not write it. I would say that was pretty true for me. I felt strongly that there was a need for a book that offered career guidance to data scientists. While there are a ton of free and paid resources for technical topics ranging from getting started programming in R to deep learning with Tensorflow to ggplot2 cookbooks, when people asked for advice about negotiating a job offer or dealing with stakeholders, I at most could gather up a few scattered blog posts. And then there were the “unknown unknowns” - things people weren’t even thinking about but were actually very important for their career, like [sponsorship](https://hookedondata.org/the-importance-of-sponsorship/).
+
+Vicki Boykis recently wrote [a post about "ghost knowledge"](http://veekaybee.github.io/2021/03/26/data-ghosts/), “knowledge that exists within expert communities but is never written down and basically doesn’t exist for you unless you have access to those communities.” Some of the career advice we include in our book, like how to write a good resume or ace a behavioral interview, has been written about extensively in general career books, but not everyone has read those and there were still some data science specific points we could add. But other topics, such as how working as a data scientist differs between companies or how to handle when a project fails, are something you often learn only after years of working in the field. 
+
+Aspiring data scientists often focus on the technical knowledge they need, but especially as you advance in your career, it's often skills like communication, managing up, and picking the right things to work on that matter. Even when you're looking for your first job, you’re usually not held back because you don’t have enough technical skills; it’s because you’re applying for the wrong jobs, or aren’t presenting your story well in your resume and cover letter, or aren’t leveraging your network. 
+
+Before starting the book, I'd already written some blog posts focused around career advice, which to see if there’d be an audience for the topic as well as practicing my writing. But writing a book instead of just more blog posts gave me the time and space to really think comprehensively about data science careers. A book also expanded our audience reach, since it’s listed on Amazon and Manning and people who never would have read my blog might find it by searching “data science career” on those sites. 
+
+Overall, I wanted to create the guidebook that I wish I had when I started my career as well as the guidebook I did have because I was lucky enough to have a brother already in data science, who among other things encouraged me to take statistics in college, where the introductory class happened to be taught by one Hadley Wickham. I've learned a ton over the past years of getting into and working in data science, and I am extremely against the gatekeeping that is too common in tech. I'd much rather live by this quote from Michelle Obama: 
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">❤️❤️❤️<a href="https://twitter.com/robinson_es?ref_src=twsrc%5Etfw">@robinson_es</a>&#39;s latest post! itreminds me of M. Obama&#39;s: <br><br>&quot;...when you’ve worked hard, and done well, and walked through that doorway of opportunity, you do not slam it shut behind you. You reach back and you give other folks the same chances that helped you succeed.&quot; <a href="https://t.co/HivEvImw5s">https://t.co/HivEvImw5s</a></p>&mdash; Jesse Mostipak (@kierisi) <a href="https://twitter.com/kierisi/status/964149025489522688?ref_src=twsrc%5Etfw">February 15, 2018</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+I'm always so happy when people reach out to say how the book has helped them, whether by making data science accessible, providing a blueprint for entering the field, and even get promoted to principal data scientist. I do recognize that the cost of the book can be prohibitive though, which is one of the reasons Jacqueline and I [made a podcast](https://podcast.bestbook.cool/) where we cover a chapter per episode, sharing the higlights and adding our own personal stories. 
+
+### Don’t write a book for the money
+
+*“Do you like ice cream? You’d likely make the same amount of money working in an ice cream shop for minimum wage as you would writing a book. And ice cream is delicious.” - Jacqueline Nolis* 
+
+Speaking of money, the first thing I always say when people ask about writing a book (and even if they don’t) is that you shouldn’t write a book for the money. If you write a book you’ll probably make on the order of \$5k-\$15k over the first 4 years for 500+ hours of work. 
+
+The standard royalty rate is 10% for physical books, with some publishers offering 25% for e-books while others keep the rate at 10%. It seems pretty rare to successfully negotiate higher royalties, except for maybe slightly higher after you’ve sold X copies, where X is how many copies a decently successful book might sell in 4 years. 
+
+Advances are usually fairly small - I believe \$5,000 is standard, half when you deliver the first third of the book and half when you deliver the final draft. I think it’s highly unlikely the publisher would give an advance they would not expect to earn back within a year or two. Generally tech book authors don’t quit their day jobs, so they don’t need the advance to pay for expenses while writing. The royalties you earn are counted against your advance. So if you get a \$5,000 advance and have a 10% royalty rate, the first \$50,000 your book sells earns you no royalties, and every \$1,000 after gets you \$100. If you have a co-author, you’ll split the advance and royalties (e.g. you each get 5%, not both getting 10%) - at least with Manning, they let the authors determine the split. 
+
+In terms of how much you can expect to sell, it obviously really depends on your topic. Martin Kleppman, author of Designing Data-Driven Applications, wrote a [great post](https://martin.kleppmann.com/2020/09/29/is-book-writing-worth-it.html) sharing how many copies his book has sold and how much he’s received in royalties. His book is one of the most successful tech books out there and has made him almost half a million dollars over 6 years, but he also spent the equivalent of 2.5 years writing it, including 1 year working full-time on it with no other income. As he even says in his post, he’d recommend valuing your royalties at close to zero. Most tech book authors don’t even make a 10th of what he’s made. 
+
+While it’s great to get some passive income from royalties, if your motivation is financial you have to weigh that against the opportunity cost of how else you could have earned money in the time you spent writing the book. It’s my bet that most people who can write a tech book could make (a lot) more money consulting. 
+
+That said, there can be financial benefits beyond the royalties. If you want to start consulting, give paid workshops, or get a higher paid job, having literally written the book on a topic is a great way to show you’re an expert. Some publishers like Manning also offer affiliate programs, where you get 8% of any purchases (not just your own book) made by someone who landed on Manning from your affiliate link, in addition to any royalties.So far, Jacqueline and I have each made about $900 (pre-tax). 
+
+Remember that writing a book isn’t your only option for creating public work. Besides writing a blog or giving talks, you could make an interactive online course with LinkedIn or O’Reilly or even by yourself with [learnr](https://education.rstudio.com/blog/2020/05/teach-interactive-course/) or [binder](https://github.com/ines/course-starter-r). 
+
+If you do want to write a book though, continue to part 2 for how to write a book proposal and find a publisher.

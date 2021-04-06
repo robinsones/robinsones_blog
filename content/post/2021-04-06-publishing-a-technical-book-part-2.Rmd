@@ -1,0 +1,49 @@
+---
+title: 'Publishing a Technical Book (Part 2): Finding a Publisher'
+author: Emily Robinson
+date: '2021-04-06'
+slug: publishing-tech-book-part-2
+categories: []
+tags: 
+  - career
+keywords:
+  - publishing
+  - data science
+  - books
+summary: "Demystifying how to find a technical book publisher, what they help with, and if you should think about self-publishing."
+---
+
+[This is my second post on publishing a technical book. If you're not sure if you should write a book, check out part 1.]
+
+You’ve probably heard of some book publishers before like Simon and Schuster or Random House. Those companies don’t usually get involved in smaller technical books. Instead there are several specialized publishers for books in the tech field, the biggest are O’Reilly, Manning, Pearson, and Chapman and Hall, along with some specialized ones like A Book Apart (which publishers short books). 
+
+Publishers have roles beyond just printing books. They will help you refine your idea, edit, and connect you with an audience. Getting a good publisher can turn your “I thought this was a cool thing to write about” into an beautifully formatted, honest-to-goodness book, available at a bookstore near you (well, maybe just the big ones). 
+
+### Finding a publisher
+
+##### Submitting a proposal
+
+The first step to getting a publisher interested in your book idea is to submit a proposal. Anyone can download a copy of [O’Reilly](https://www.oreilly.com/work-with-us.html) and [Manning’s](https://www.manning.com/write-a-book) proposal forms and submit it to the email provided. I couldn’t find Pearson’s US link, but [here’s the UK one](https://www.pearson.com/uk/information-for-authors.html), which also includes some information on why they turn down proposals. I think it’s pretty rare to have an agent if you’re looking to go with a technical book publisher. But if you’re someone who did, let me know! As mentioned above, in our case Manning reached out to Jacqueline, but we still went through the regular process proposal process. 
+
+Proposals sell a publisher on why they should publish a book and why you are the right one to write it. They include things like:
+
+  - Who the target audience is
+  - Any existing books on the topic and why yours would be better or cover important things they don’t
+  - Your qualifications to write this book
+  - How long you expect the book to be 
+  - An estimated timeline for completion
+  - An outline with the book chapters and subsections.
+  
+A good proposal shows how this book would clearly add value by covering an in-demand topic where good resources don’t exist already. So trying to publish a general book on “deep learning in Python” would be a tough sell - just look on Amazon to find dozens of books already covering the subject, some written by the authors of the main deep learning packages.You also need to convince them that you’re the best person to write about it - showing how you’ve taught a course on the subject, done it for years at your job, or even written blog posts and given talks about it all provide evidence that you would write a good book. 
+
+##### Self-publishing
+
+Self-publishing has a couple of advantages. First, you keep a lot more money from each sale. For example, if you make an e-book and sell through a platform like gumroad, you keep around 90% of the proceeds. Second, there’s no gatekeeper - you don’t need a publisher to accept your proposal. Finally, you have full control over the book. While we never had an issue with Manning asking us to include or take out something we didn’t want to, I’m sure it does sometimes happen. You can also set the price of your book, perhaps even letting people decide their own price if you want to make it more accessible. 
+
+On the other hand, going with a publisher does provide a lot of benefits. Credibility is the biggest one - people are more likely to take your work seriously. Having a publisher shows that a company was willing to take a bet on you, as they invest lots of their own resources before your book ever hits the shelves. It also ensures some level of quality thanks to the review the book undergoes in the publishing process (see paragraph below). If you’ve published books before and/or are already a well-known expert, this might not be as important, but I would question why you’re reading this series :) 
+
+The second biggest benefit is all the people who will help make your book better. You’ll have an editor who works with you on each chapter offering feedback, and at the end you’ll get an extensive review from a copyeditor. Additionally, the publisher will find people to review your book as it progresses - in our case, we got a review for the first, second, and final third of the book. They’ll figure out and pay for things like cover art design and audiobook narration , which can add up to a lot. Will Larson, who self-published Staff Engineer, [wrote about the self-publishing process](https://lethain.com/self-publishing-staff-engineer/) and how the cover art and marketing cost \$1,760 plus an additional \$3,000 for getting an audiobook narrator. The publisher will also take care of the logistics of making print versions of the book. While you can self-publish physical books with companies like Amazon, I have heard some bad reviews about the quality. Finally, a publisher will help you reach a larger audience - this is especially helpful if you don’t have an audience for your work already (e.g. through a mailing list, Twitter, or professional reputation).
+
+Overall, I’m very happy we went with a publisher. The final product was incredibly professional and polished and at least I benefited from the accountability of having signed a contract to write a book (vs. my many failed “contracts” with myself … see my blog posts from 2016 still waiting on a follow-up). 
+
+Check out part 3 for insight into the writing process and how it feels after the book is published!

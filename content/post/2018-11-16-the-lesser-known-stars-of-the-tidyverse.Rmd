@@ -10,7 +10,7 @@ tags:
   - Code
 ---
 
-In early 2018, I gave a few conference talks on "The Lesser Known Stars of the Tidyverse." I focused on some packages and functions that aren't as well known as the core parts of ggplot2 and dplyr but are very helpful in exploratory analysis. I walked through an example analysis of [Kaggle's 2017 State of Data Science and Machine Learning Survey](https://www.kaggle.com/surveys/2017) to show how I would use these functions in an exploratory analysis. 
+In early 2018, I gave a few conference talks on "The Lesser Known Stars of the Tidyverse." I focused on some packages and functions that aren't as well known as the core parts of ggplot2 and dplyr but are very helpful in exploratory analysis. I walked through an example analysis of [Kaggle's 2017 State of Data Science and Machine Learning Survey](https://www.kaggle.com/kaggle/kaggle-survey-2017) to show how I would use these functions in an exploratory analysis. 
 
 This post shares that analysis with some extra written commentary. If you'd like to watch the talks as well, both the [RStudio::conf](https://www.rstudio.com/resources/videos/the-lesser-known-stars-of-the-tidyverse/) and [New York R conference](https://www.youtube.com/watch?v=ax4LXQ5t38k) ones were recorded.
 

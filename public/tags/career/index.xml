@@ -6,10 +6,50 @@
     <description>Recent content in Career on Hooked on Data</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 03 Jul 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 06 Apr 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/career/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Publishing a Technical Book (Part 1): Why Do It?</title>
+      <link>/publishing-tech-book-part-1/</link>
+      <pubDate>Tue, 06 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/publishing-tech-book-part-1/</guid>
+      <description>Following the sage wisdom of brother Dave to write a blog post when you’ve given the same advice three times, after I had a few people reach out to me with questions about writing a technical book, I’ve put together my thoughts in this four-part series a year after publishing Build a Career in Data Science with Jacqueline Nolis.
+In April 2018, Jacqueline reached out to me about whether I would be interested in writing a book.</description>
+    </item>
+    
+    <item>
+      <title>Publishing a Technical Book (Part 2): Finding a Publisher</title>
+      <link>/publishing-tech-book-part-2/</link>
+      <pubDate>Tue, 06 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/publishing-tech-book-part-2/</guid>
+      <description>[This is my second post on publishing a technical book. If you’re not sure if you should write a book, check out part 1.]
+You’ve probably heard of some book publishers before like Simon and Schuster or Random House. Those companies don’t usually get involved in smaller technical books. Instead there are several specialized publishers for books in the tech field, the biggest are O’Reilly, Manning, Pearson, and Chapman and Hall, along with some specialized ones like A Book Apart (which publishers short books).</description>
+    </item>
+    
+    <item>
+      <title>Publishing a Technical Book (Part 3): The Writing Process</title>
+      <link>/publishing-tech-book-part-3/</link>
+      <pubDate>Tue, 06 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/publishing-tech-book-part-3/</guid>
+      <description>[This is my third post on publishing a technical book. Check out the previous posts on why you should (and shouldn’t) write a book and how to find a publisher.]
+Finding the time Overall I’d estimate writing the book, including the proposal process, took us each around 400 hours over a year and a half. This doesn’t count the work promoting the book after it was out, which I’ll talk about in part 4.</description>
+    </item>
+    
+    <item>
+      <title>Publishing a Technical Book (Part 4): After the Book is Published</title>
+      <link>/publishing-tech-book-part-4/</link>
+      <pubDate>Tue, 06 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/publishing-tech-book-part-4/</guid>
+      <description>[This is my final post on publishing a technical book. If you’re wondering if you should write one, how to find a publisher, or what the writing process is like, start from the beginning.]
+It’s really cool to have a physical copy of something you wrote! I still sometimes just flip through the pages, marveling at how professional it looks and how much content we created. The final book ended up being 350 pages, so although it’s no mammoth technical reference, you can certainly spot it on your bookshelf.</description>
+    </item>
     
     <item>
       <title>Red Flags in Data Science Interviews</title>
