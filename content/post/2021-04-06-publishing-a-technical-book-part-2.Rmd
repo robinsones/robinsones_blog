@@ -13,7 +13,7 @@ keywords:
 summary: "Demystifying how to find a technical book publisher, what they help with, and if you should think about self-publishing."
 ---
 
-[This is my second post on publishing a technical book. If you're not sure if you should write a book, check out part 1.]
+[This is my second post on publishing a technical book. If you're not sure if you should write a book, check out [part 1](https://hookedondata.org/publishing-tech-book-part-1/).]
 
 You’ve probably heard of some book publishers before like Simon and Schuster or Random House. Those companies don’t usually get involved in smaller technical books. Instead there are several specialized publishers for books in the tech field, the biggest are O’Reilly, Manning, Pearson, and Chapman and Hall, along with some specialized ones like A Book Apart (which publishers short books). 
 
@@ -46,4 +46,4 @@ The second biggest benefit is all the people who will help make your book better
 
 Overall, I’m very happy we went with a publisher. The final product was incredibly professional and polished and at least I benefited from the accountability of having signed a contract to write a book (vs. my many failed “contracts” with myself … see my blog posts from 2016 still waiting on a follow-up). 
 
-Check out part 3 for insight into the writing process and how it feels after the book is published!
+Check out [part 3](https://hookedondata.org/publishing-tech-book-part-3/) for insight into the writing process and how it feels after the book is published!

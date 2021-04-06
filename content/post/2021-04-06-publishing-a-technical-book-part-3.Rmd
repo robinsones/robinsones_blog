@@ -13,7 +13,7 @@ keywords:
 summary: "An inside look into how to find the time to write a book and what it's like to work with a co-author and publisher."
 ---
 
-[This is my third post on publishing a technical book. Check out the previous posts on why you should (and shouldn't) write a book and how to find a publisher.]
+[This is my third post on publishing a technical book. Check out the previous posts on [why you should (and shouldn't) write a book](https://hookedondata.org/publishing-tech-book-part-1/) and [how to find a publisher](https://hookedondata.org/publishing-tech-book-part-2/).]
 
 ### Finding the time
 
@@ -53,4 +53,4 @@ Our editor didn’t usually have a lot of feedback - I’m not sure if that’s 
 
 One area that their experience showed was when Manning encouraged us to write an appendix with interview questions, which we hadn’t initially considered.  We were very glad they pushed us to do this as it was fairly quick and I have heard a few people say they bought the book mainly for the appendix. Other than that, I don’t think the content and tone changed that much from feedback from Manning. 
 
-Check out part 4 if you're interested in what it was like after the book was published!
+Check out [part 4](https://hookedondata.org/publishing-tech-book-part-4/) if you're interested in what it was like after the book was published!

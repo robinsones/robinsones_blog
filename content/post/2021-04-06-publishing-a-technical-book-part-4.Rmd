@@ -13,7 +13,7 @@ keywords:
 summary: "What it's like after your book is finished and available in the wild."
 ---
 
-[This is my final post on publishing a technical book. If you're wondering if you should write one, how to find a publisher, or what the writing process is like, start from the beginning.]
+[This is my final post on publishing a technical book. If you're wondering [if you should write one](https://hookedondata.org/publishing-tech-book-part-1/), [how to find a publisher](https://hookedondata.org/publishing-tech-book-part-2/), or [what the writing process is like](https://hookedondata.org/publishing-tech-book-part-3/), start from the beginning.]
 
 It’s really cool to have a physical copy of something you wrote! I still sometimes just flip through the pages, marveling at how professional it looks and how much content we created. The final book ended up being 350 pages, so although it's no mammoth technical reference, you can certainly spot it on your bookshelf. 
 

@@ -53,4 +53,4 @@ That said, there can be financial benefits beyond the royalties. If you want to 
 
 Remember that writing a book isn’t your only option for creating public work. Besides writing a blog or giving talks, you could make an interactive online course with LinkedIn or O’Reilly or even by yourself with [learnr](https://education.rstudio.com/blog/2020/05/teach-interactive-course/) or [binder](https://github.com/ines/course-starter-r). 
 
-If you do want to write a book though, continue to part 2 for how to write a book proposal and find a publisher.
+If you do want to write a book though, continue to [part 2](https://hookedondata.org/publishing-tech-book-part-2/) for how to write a book proposal and find a publisher.
