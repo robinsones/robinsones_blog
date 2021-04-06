@@ -47,6 +47,8 @@ All that said, I could imagine working with a bad co-author would be a nightmare
 
 We just used Microsoft Word with GitHub for version control and collaboration, but that’s because we had almost no code and we already owned the software. Manning also offers templates TextMaker (part of SoftMaker offer, which is less expensive than Word), Google Docs, and AsciiDoc. If you’re writing an R book you can use [Bookdown](https://bookdown.org/), and books written in bookdown have been published by O’Reilly and CRC Press, but [according to the package author](https://bookdown.org/yihui/bookdown/publishers.html) it will be tough going if your publisher doesn’t support LaTeX. 
 
+[Added 4/6] [Catherine Nelson](https://twitter.com/DrCatNelson/status/1379494682883846146?s=20) shared that for the book she wrote for O'Reilly, she used O'Reilly's flavor of Markdown using her favorite code editor and managed it using Git. 
+
 ### Working with the publisher
 
 It’s really important to remember that the publisher wants your book to succeed. You should be open to their criticism and feedback, even if it might send you into an “I’m not good enough” spiral. Remember that they already decided you were good enough when they signed you. 
