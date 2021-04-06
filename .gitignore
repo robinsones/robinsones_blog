@@ -5,3 +5,5 @@
 *.rds
 *.csv
 *.icloud
+.DS_Store
+Thumbs.db

@@ -21,7 +21,7 @@ theme = "hugo-tranquilpeak-theme"
 googleAnalytics = "UA-80069806-1"
 paginate = 5
 canonifyurls = true
-ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown", "_files$", "_cache$"]
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown", "_files$", "_cache$", "\\.knit\\.md$", "\\.utf8\\.md$"]
 
 
 [permalinks]

@@ -2,120 +2,120 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Career on Hooked on Data</title>
-    <link>/tags/career/</link>
+    <link>https://hookedondata.org/tags/career/</link>
     <description>Recent content in Career on Hooked on Data</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 06 Apr 2021 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/career/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hookedondata.org/tags/career/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Publishing a Technical Book (Part 1): Why Do It?</title>
-      <link>/publishing-tech-book-part-1/</link>
-      <pubDate>Tue, 06 Apr 2021 00:00:00 +0000</pubDate>
-      
-      <guid>/publishing-tech-book-part-1/</guid>
-      <description>Following the sage wisdom of brother Dave to write a blog post when you’ve given the same advice three times, after I had a few people reach out to me with questions about writing a technical book, I’ve put together my thoughts in this four-part series a year after publishing Build a Career in Data Science with Jacqueline Nolis.
-In April 2018, Jacqueline reached out to me about whether I would be interested in writing a book.</description>
-    </item>
-    
-    <item>
-      <title>Publishing a Technical Book (Part 2): Finding a Publisher</title>
-      <link>/publishing-tech-book-part-2/</link>
-      <pubDate>Tue, 06 Apr 2021 00:00:00 +0000</pubDate>
-      
-      <guid>/publishing-tech-book-part-2/</guid>
-      <description>[This is my second post on publishing a technical book. If you’re not sure if you should write a book, check out part 1.]
-You’ve probably heard of some book publishers before like Simon and Schuster or Random House. Those companies don’t usually get involved in smaller technical books. Instead there are several specialized publishers for books in the tech field, the biggest are O’Reilly, Manning, Pearson, and Chapman and Hall, along with some specialized ones like A Book Apart (which publishers short books).</description>
-    </item>
-    
-    <item>
-      <title>Publishing a Technical Book (Part 3): The Writing Process</title>
-      <link>/publishing-tech-book-part-3/</link>
-      <pubDate>Tue, 06 Apr 2021 00:00:00 +0000</pubDate>
-      
-      <guid>/publishing-tech-book-part-3/</guid>
-      <description>[This is my third post on publishing a technical book. Check out the previous posts on why you should (and shouldn’t) write a book and how to find a publisher.]
-Finding the time Overall I’d estimate writing the book, including the proposal process, took us each around 400 hours over a year and a half. This doesn’t count the work promoting the book after it was out, which I’ll talk about in part 4.</description>
-    </item>
     
     <item>
       <title>Publishing a Technical Book (Part 4): After the Book is Published</title>
-      <link>/publishing-tech-book-part-4/</link>
+      <link>https://hookedondata.org/publishing-tech-book-part-4/</link>
       <pubDate>Tue, 06 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>/publishing-tech-book-part-4/</guid>
+      <guid>https://hookedondata.org/publishing-tech-book-part-4/</guid>
       <description>[This is my final post on publishing a technical book. If you’re wondering if you should write one, how to find a publisher, or what the writing process is like, start from the beginning.]
 It’s really cool to have a physical copy of something you wrote! I still sometimes just flip through the pages, marveling at how professional it looks and how much content we created. The final book ended up being 350 pages, so although it’s no mammoth technical reference, you can certainly spot it on your bookshelf.</description>
     </item>
     
     <item>
+      <title>Publishing a Technical Book (Part 3): The Writing Process</title>
+      <link>https://hookedondata.org/publishing-tech-book-part-3/</link>
+      <pubDate>Mon, 05 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://hookedondata.org/publishing-tech-book-part-3/</guid>
+      <description>[This is my third post on publishing a technical book. Check out the previous posts on why you should (and shouldn’t) write a book and how to find a publisher.]
+Finding the time Overall I’d estimate writing the book, including the proposal process, took us each around 400 hours over a year and a half. This doesn’t count the work promoting the book after it was out, which I’ll talk about in part 4.</description>
+    </item>
+    
+    <item>
+      <title>Publishing a Technical Book (Part 2): Finding a Publisher</title>
+      <link>https://hookedondata.org/publishing-tech-book-part-2/</link>
+      <pubDate>Sun, 04 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://hookedondata.org/publishing-tech-book-part-2/</guid>
+      <description>[This is my second post on publishing a technical book. If you’re not sure if you should write a book, check out part 1.]
+You’ve probably heard of some book publishers before like Simon and Schuster or Random House. Those companies don’t usually get involved in smaller technical books. Instead there are several specialized publishers for books in the tech field, the biggest are O’Reilly, Manning, Pearson, and Chapman and Hall, along with some specialized ones like A Book Apart (which publishers short books).</description>
+    </item>
+    
+    <item>
+      <title>Publishing a Technical Book (Part 1): Why Do It?</title>
+      <link>https://hookedondata.org/publishing-tech-book-part-1/</link>
+      <pubDate>Sat, 03 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://hookedondata.org/publishing-tech-book-part-1/</guid>
+      <description>Following the sage wisdom of brother Dave to write a blog post when you’ve given the same advice three times, after I had a few people reach out to me with questions about writing a technical book, I’ve put together my thoughts in this four-part series a year after publishing Build a Career in Data Science with Jacqueline Nolis.
+In April 2018, Jacqueline reached out to me about whether I would be interested in writing a book.</description>
+    </item>
+    
+    <item>
       <title>Red Flags in Data Science Interviews</title>
-      <link>/red-flags-in-data-science-interviews/</link>
+      <link>https://hookedondata.org/red-flags-in-data-science-interviews/</link>
       <pubDate>Tue, 03 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>/red-flags-in-data-science-interviews/</guid>
+      <guid>https://hookedondata.org/red-flags-in-data-science-interviews/</guid>
       <description>This post was co-written with Jacqueline Nolis, Principal at Nolis, LLC. Check out the rest of her blog posts, including ones on prioritizing data science work, hiring data scientists, and what to do when your data science project isn’t working.
 When interviewing for any position, you should be evaluating the company just as much as they are evaluating you. While you can research the company beforehand on glassdoor and similar sites, interviews are the best place to get a deeper understanding of the company and ask important questions.</description>
     </item>
     
     <item>
       <title>Advice for Applying to Data Science Jobs</title>
-      <link>/advice-for-applying-to-data-science-jobs/</link>
+      <link>https://hookedondata.org/advice-for-applying-to-data-science-jobs/</link>
       <pubDate>Tue, 29 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>/advice-for-applying-to-data-science-jobs/</guid>
+      <guid>https://hookedondata.org/advice-for-applying-to-data-science-jobs/</guid>
       <description>Following Dave Robinson’s sage tweet to write a blog post when you’ve given the same advice three times, this post is a collection of my thoughts and recommendations for people interested in applying to data science jobs in the US. Many of these principles also apply to tech jobs in general.
 A disclaimer: I have never worked as a recruiter or career coach. This knowledge comes from mainly from my study of Organizational Behavior (including negotiations and women in tech) in graduate school and my own career.</description>
     </item>
     
     <item>
       <title>The Importance of Sponsorship</title>
-      <link>/the-importance-of-sponsorship/</link>
+      <link>https://hookedondata.org/the-importance-of-sponsorship/</link>
       <pubDate>Wed, 14 Feb 2018 00:00:00 +0000</pubDate>
       
-      <guid>/the-importance-of-sponsorship/</guid>
+      <guid>https://hookedondata.org/the-importance-of-sponsorship/</guid>
       <description>In my last post, I discussed the importance of building your network and some strategies for effectively reaching out. I closed with emphasizing how helpful your peers or people one step ahead of you can be. But there’s a specific area where people with more resources, status, or experience can help you: sponsorship.
 What is sponsorship? When people discuss what they’re seeking from a more senior person in their field, they usually talk about “mentorship.</description>
     </item>
     
     <item>
       <title>Building Your Data Science Network: Finding Community</title>
-      <link>/building-your-data-science-network-finding-community/</link>
+      <link>https://hookedondata.org/building-your-data-science-network-finding-community/</link>
       <pubDate>Wed, 10 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>/building-your-data-science-network-finding-community/</guid>
+      <guid>https://hookedondata.org/building-your-data-science-network-finding-community/</guid>
       <description>So you’ve heard you’re supposed to network. That’s the key in getting a job or establishing a reputation in your broader field, right? And it’s true that the importance of having a good network is supported by a lot of social sciences research. But if the thought of networking makes you cringe, you’re not alone. Many people equate networking to sending out millions of unsolicited Linkedin requests with no message, handing out 20 business cards at a meetup once a week, or sending emails to prominent data scientists with the subject line “Can I pick your brain?</description>
     </item>
     
     <item>
       <title>Building your Data Science Network: Reaching Out</title>
-      <link>/building-your-data-science-network-reaching-out/</link>
+      <link>https://hookedondata.org/building-your-data-science-network-reaching-out/</link>
       <pubDate>Wed, 10 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>/building-your-data-science-network-reaching-out/</guid>
+      <guid>https://hookedondata.org/building-your-data-science-network-reaching-out/</guid>
       <description>In the other part of this post, I covered how to start becoming involved in the data science community and meet people in general. But what if you read a really cool post by someone and want to follow up with them? This post offers some thoughts on how you can most effectively reach out to specific people.
 Two important caveats to start, both inspired by other posts on similar topics.</description>
     </item>
     
     <item>
       <title>Managing Business Challenges in Data Science</title>
-      <link>/managing-business-challenges-in-data-science/</link>
+      <link>https://hookedondata.org/managing-business-challenges-in-data-science/</link>
       <pubDate>Thu, 28 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>/managing-business-challenges-in-data-science/</guid>
+      <guid>https://hookedondata.org/managing-business-challenges-in-data-science/</guid>
       <description>A few weeks ago, I wrote about my experience giving my first data science talk. If you’re interested, the full talk is available online, as well as the slides. In this post, I wanted to share some suggestions for managing business challenges that I didn’t have time to cover in my talk.
 Why Business Challenges? Why devote a whole post and half a talk to business challenges instead of, say, cutting edge deep learning papers or the shiny new language for handling Big DataTM?</description>
     </item>
     
     <item>
       <title>Giving Your First Data Science Talk</title>
-      <link>/giving-your-first-data-science-talk/</link>
+      <link>https://hookedondata.org/giving-your-first-data-science-talk/</link>
       <pubDate>Mon, 14 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>/giving-your-first-data-science-talk/</guid>
+      <guid>https://hookedondata.org/giving-your-first-data-science-talk/</guid>
       <description>A few weeks ago, I gave my first ever data science talk. Jared Lander, organizer of the New York Statistical Open Programming meetup, had been asking me to speak, and after about six months at Etsy I thought I could share what I’d learned about A/B Testing and its challenges. If you’d like to watch it, you can view the recording here. The talk starts around 9:00 and ends at 41:30, with the rest being Q&amp;amp;A (I tried to repeat the questions, so you should be able to follow that as well).</description>
     </item>
     

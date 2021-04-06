@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Conference on Hooked on Data</title>
-    <link>/tags/conference/</link>
+    <link>https://hookedondata.org/tags/conference/</link>
     <description>Recent content in Conference on Hooked on Data</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 19 Jan 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/conference/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hookedondata.org/tags/conference/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>RStudio Conference Recap</title>
-      <link>/rstudio-conference-recap/</link>
+      <link>https://hookedondata.org/rstudio-conference-recap/</link>
       <pubDate>Thu, 19 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>/rstudio-conference-recap/</guid>
+      <guid>https://hookedondata.org/rstudio-conference-recap/</guid>
       <description>Last week I spent four amazing days in Orlando at the first ever rstudio::conf. I learned a ton, met some really cool people, connected with several I hadn’t seen in a while, and came out feeling ready to take on the world.
 I’ve divided my summary of the conference into two parts. This first one shares my personal experience and some more general learnings, while the other one has quick, bullet-pointed lists on writing functions, packages, tools, and functions I learned, and general tips and tricks.</description>
     </item>
