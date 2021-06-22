@@ -12,7 +12,7 @@ keywords:
 summary: "My favorite resources for a variety of career dilemmas."
 ---
 
-When my co-author Jacqueline Nolis and I wrote our book, [Build a Career in Data Science](bestbook.cool), we wanted to provide a comprehensive resource of the non-technical skills and knowledge needed to get into and succeed in data science. I’ve been really pleased with the positive feedback we’ve gotten from the people it and [our free companion podcast](https://podcast.bestbook.cool) has helped. But while I think most people will find something new and helpful in it, one book can never be the only word on a topic as broad as career advice. 
+When my co-author Jacqueline Nolis and I wrote our book, [Build a Career in Data Science](https://bestbook.cool), we wanted to provide a comprehensive resource of the non-technical skills and knowledge needed to get into and succeed in data science. I’ve been really pleased with the positive feedback we’ve gotten from the people it and [our free companion podcast](https://podcast.bestbook.cool) has helped. But while I think most people will find something new and helpful in it, one book can never be the only word on a topic as broad as career advice. 
 
 So despite a [certain co-author’s bafflement](https://twitter.com/skyetetra/status/1391820068498001921?s=20), I wanted to share a list of the career resources that I’ve found most helpful. Many sparked an “aha” moment - either finally giving me the word for something I’d felt but couldn’t define or enlightening me to something I’d never thought of. I hope they will do the same for you. Some of them are specific to technical roles, but others should be helpful to anyone. I’ve structured this post by career dilemma, as I’ve often found a long list of links can overwhelm.  
 
