@@ -1,0 +1,62 @@
+---
+title: 'Finding Answers to your Career Questions'
+author: Emily Robinson
+date: '2021-06-22'
+slug: career-resources
+categories: []
+tags: 
+  - career
+keywords:
+  - data science
+  - career
+summary: "My favorite resources for a variety of career dilemmas."
+---
+
+When my co-author Jacqueline Nolis and I wrote our book, [Build a Career in Data Science](bestbook.cool), we wanted to provide a comprehensive resource of the non-technical skills and knowledge needed to get into and succeed in data science. I’ve been really pleased with the positive feedback we’ve gotten from the people it and [our free companion podcast](https://podcast.bestbook.cool) has helped. But while I think most people will find something new and helpful in it, one book can never be the only word on a topic as broad as career advice. 
+
+So despite a [certain co-author’s bafflement](https://twitter.com/skyetetra/status/1391820068498001921?s=20), I wanted to share a list of the career resources that I’ve found most helpful. Many sparked an “aha” moment - either finally giving me the word for something I’d felt but couldn’t define or enlightening me to something I’d never thought of. I hope they will do the same for you. Some of them are specific to technical roles, but others should be helpful to anyone. I’ve structured this post by career dilemma, as I’ve often found a long list of links can overwhelm.  
+
+### How do I get promoted as an Individual Contributor?
+
+**If you’re frustrated because you feel ready for a promotion but it hasn’t happened**
+
+  - *Are you doing too much technical leadership instead of quantifiable technical code/products*: Tanya O’Reilly’s [“Glue Work”](https://noidea.dog/glue)
+  - *Do you have sponsorship*: Lara Hogan’s [“What Sponsorship Looks Like”](https://larahogan.me/blog/what-sponsorship-looks-like/)
+  - *Is there opportunity at your company*: Charity Majors' [“Useful Things to Know About Engineering Levels”](https://charity.wtf/2020/09/14/useful-things-to-know-about-engineering-levels/)
+  - *Are you going for a Staff+ level (e.g. lead, principal, staff) role*: Will Larson's book "Staff Engineer: Leadership on the Technical Track" (available on [Amazon and Gumroad](https://staffeng.com/book) with most of the material free on [his website](https://staffeng.com/))
+  
+**If you don’t know where to start**
+
+  - *Keep track of and share your accomplishments*: Julia Evans' [“Brag Documents”](https://jvns.ca/blog/brag-documents/) and Will Larson's ["Promo Packets"](https://lethain.com/promo-packets/)
+  - *Talk with your manager*: Rebecca Knight’s [“How to Ask for a Promotion”](https://hbr.org/2018/01/how-to-ask-for-a-promotion)
+
+### Should I become a manager? 
+  - *If you're not sure if you'd like management*: Julie Zhuo's ["So You Think You Want to Manage"](https://medium.com/the-year-of-the-looking-glass/so-you-think-you-want-to-manage-1229723a4501) and Dan Na's ["Choosing the Management Track"](https://blog.danielna.com/choosing-the-management-track/)
+  - *If you're not sure what the long-term path looks like and the potential downsides*: Charity Major's ["Engineering Management: The Pendulum or the Ladder"](https://charity.wtf/2019/01/04/engineering-management-the-pendulum-or-the-ladder/)
+  - *If you want a comprehensive look at what it's like to be a manager*: Julie Zhuo's book ["Making of a Manager"](https://www.amazon.com/Making-Manager-What-Everyone-Looks/dp/0735219567) and Camille Fournier's book ["The Manager's Path"](https://www.amazon.com/Managers-Path-Leaders-Navigating-Growth/dp/1491973897)
+
+### How can I build my network?
+
+  - *If the idea of “networking” makes you feel icky*: Dina Smith's ["How to Cultivate a Broad Network Without Coming off as Slimy"](https://www.fastcompany.com/90612688/how-to-cultivate-a-broad-network-without-coming-off-as-slimy)
+  - *If you want to “find a mentor”*: Janet T. Phan's ["What's the Right Way to Find a Mentor?"](https://hbr.org/2021/03/whats-the-right-way-to-find-a-mentor) 
+  - *If you deal with social anxiety*: Steph Locke’s [“Overcoming Social Anxiety to Attend User Groups”](https://itsalocke.com/blog/overcoming-social-anxiety-to-attend-user-groups/)
+
+### Do I need a "personal brand"? 
+
+  - *If you don't like the idea of personal branding or aren't sure how to get started sharing your work*: Rachel Thomas' ["Making Peace with Personal Branding"](https://www.fast.ai/2017/12/18/personal-brand/)
+  - *If you don't know what your personal brand would be*: Jesse Maegan's ["It's Called Branding"](https://www.jessemaegan.com/blog/branding/)
+
+### How can I work better with my manager?
+
+  - *If you want to communicate with them better*: Julia Evan’s [“Things Your Manager Might Not Know”](https://jvns.ca/blog/things-your-manager-might-not-know/)
+  - *If you’re not sure how to “manage up” or if that’s even something you should do*: Lara Hogan’s [“Is Managing Up Bad?”](https://larahogan.me/blog/is-managing-up-bad/), its sequel [“How to Manage Up”](https://larahogan.me/blog/how-to-manage-up/), and Katie Wilde's ["The myths and traps of 'managing up'"](https://leaddev.com/communication-relationships/myths-and-traps-managing)
+
+### I’m frustrated with what my company is doing (or not doing)
+
+  - *If you want to influence a process/outcome where you don’t have formal authority*: Lara Hogan’s [“Influence Without Authority”](https://speakerdeck.com/lara/influence-without-authority)
+  - *If a leader did something you hate/think is unethical*: Brandon Rohrer’s [“Responding to Misbehavior”](https://e2eml.school/org_response.html)
+  - *If you don’t know why leadership isn’t doing the obvious thing*: Lara Hogan’s [“Why can’t they just …?”](https://larahogan.me/blog/why-cant-they-just/)
+
+One last thing: try to avoid “analysis paralysis” where you try to read as much as possible rather than taking action. Two reasons for that. First, your organization may do things totally differently! If you’re looking to be promoted to staff data scientist for example, ask the current staff data scientists and even the managers who promoted them what the process is. Second, our thoughts and ways of thinking can follow our action - see Hermania Ibarra’s book [Act Like a Leader, Think Like a Leader](https://www.amazon.com/Act-Like-Leader-Think/dp/1422184129/). Sometimes the only way to learn is to try and maybe fail. 
+
+And for career decisions, even with lots of reflection and discussions with informed colleagues/friends, you can't really know how you'll like a new company or changing from an individual contributor to a manager unless you try it. Remember those decisions aren't permanent, and you'll learn a lot from things that aren't a good fit too. 
