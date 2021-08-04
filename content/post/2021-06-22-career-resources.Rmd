@@ -1,5 +1,5 @@
 ---
-title: 'Finding Answers to your Career Questions'
+title: 'Answers to your Career Questions'
 author: Emily Robinson
 date: '2021-06-22'
 slug: career-resources
