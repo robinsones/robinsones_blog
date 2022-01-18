@@ -7,34 +7,32 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.53 with theme Tranquilpeak 0.4.3-SNAPSHOT">
 <meta name="author" content="Emily Robinson">
-<meta name="keywords" content="">
-<meta name="description" content="Have you ever had a “first this then that” question? For example, maybe you’re an e-commerce business and you want all the times people clicked on an item and then added it to their cart within 2 days, or the last page they visited before registering. Or you work with pharmaceutical data and need to know what drugs people took before drug x and which drugs they took afterward and when.">
+<meta name="keywords" content="data science, career">
+<meta name="description" content="When my co-author Jacqueline Nolis and I wrote our book, Build a Career in Data Science, we wanted to provide a comprehensive resource of the non-technical skills and knowledge needed to get into and succeed in data science. I’ve been really pleased with the positive feedback we’ve gotten from the people it and our free companion podcast has helped. But while I think most people will find something new and helpful in it, one book can never be the only word on a topic as broad as career advice.">
 
 
-<meta property="og:description" content="Have you ever had a “first this then that” question? For example, maybe you’re an e-commerce business and you want all the times people clicked on an item and then added it to their cart within 2 days, or the last page they visited before registering. Or you work with pharmaceutical data and need to know what drugs people took before drug x and which drugs they took afterward and when.">
+<meta property="og:description" content="When my co-author Jacqueline Nolis and I wrote our book, Build a Career in Data Science, we wanted to provide a comprehensive resource of the non-technical skills and knowledge needed to get into and succeed in data science. I’ve been really pleased with the positive feedback we’ve gotten from the people it and our free companion podcast has helped. But while I think most people will find something new and helpful in it, one book can never be the only word on a topic as broad as career advice.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Introducing the funneljoin package">
-<meta name="twitter:title" content="Introducing the funneljoin package">
-<meta property="og:url" content="https://hookedondata.org/introducing-the-funneljoin-package/">
-<meta property="twitter:url" content="https://hookedondata.org/introducing-the-funneljoin-package/">
+<meta property="og:title" content="Answers to your Career Questions">
+<meta name="twitter:title" content="Answers to your Career Questions">
+<meta property="og:url" content="https://hookedondata.org/career-resources/">
+<meta property="twitter:url" content="https://hookedondata.org/career-resources/">
 <meta property="og:site_name" content="Hooked on Data">
-<meta property="og:description" content="Have you ever had a “first this then that” question? For example, maybe you’re an e-commerce business and you want all the times people clicked on an item and then added it to their cart within 2 days, or the last page they visited before registering. Or you work with pharmaceutical data and need to know what drugs people took before drug x and which drugs they took afterward and when.">
-<meta name="twitter:description" content="Have you ever had a “first this then that” question? For example, maybe you’re an e-commerce business and you want all the times people clicked on an item and then added it to their cart within 2 days, or the last page they visited before registering. Or you work with pharmaceutical data and need to know what drugs people took before drug x and which drugs they took afterward and when.">
+<meta property="og:description" content="When my co-author Jacqueline Nolis and I wrote our book, Build a Career in Data Science, we wanted to provide a comprehensive resource of the non-technical skills and knowledge needed to get into and succeed in data science. I’ve been really pleased with the positive feedback we’ve gotten from the people it and our free companion podcast has helped. But while I think most people will find something new and helpful in it, one book can never be the only word on a topic as broad as career advice.">
+<meta name="twitter:description" content="When my co-author Jacqueline Nolis and I wrote our book, Build a Career in Data Science, we wanted to provide a comprehensive resource of the non-technical skills and knowledge needed to get into and succeed in data science. I’ve been really pleased with the positive feedback we’ve gotten from the people it and our free companion podcast has helped. But while I think most people will find something new and helpful in it, one book can never be the only word on a topic as broad as career advice.">
 <meta property="og:locale" content="en-us">
 
   
-    <meta property="article:published_time" content="2019-08-01T00:00:00">
+    <meta property="article:published_time" content="2021-06-22T00:00:00">
   
   
-    <meta property="article:modified_time" content="2019-08-01T00:00:00">
+    <meta property="article:modified_time" content="2021-06-22T00:00:00">
   
   
   
   
     
-      <meta property="article:tag" content="R">
-    
-      <meta property="article:tag" content="Code">
+      <meta property="article:tag" content="career">
     
   
 
@@ -59,14 +57,14 @@
   <meta property="twitter:image" content="https://avatars.githubusercontent.com/robinsones">
 
 
-    <title>Introducing the funneljoin package</title>
+    <title>Answers to your Career Questions</title>
 
     <link rel="icon" href="https://hookedondata.org/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://hookedondata.org/introducing-the-funneljoin-package/">
+    <link rel="canonical" href="https://hookedondata.org/career-resources/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -229,15 +227,15 @@ if (!doNotTrack) {
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      Introducing the funneljoin package
+      Answers to your Career Questions
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2019-08-01T00:00:00Z">
+      <time itemprop="datePublished" datetime="2021-06-22T00:00:00Z">
         
-  August 1, 2019
+  June 22, 2021
 
       </time>
     
@@ -251,203 +249,62 @@ if (!doNotTrack) {
               
 
 
-<p>Have you ever had a “first this then that” question? For example, maybe you’re an e-commerce business and you want all the times people clicked on an item and then added it to their cart within 2 days, or the last page they visited before registering. Or <a href="https://twitter.com/scottishnp/status/1154657704578695168?s=20">you work with pharmaceutical data</a> and need to know what drugs people took before drug x and which drugs they took afterward and when. Or you <a href="https://twitter.com/Voovarb/status/1154445792125394945?s=20">tag fish</a> and need to know where they went and if they eventually migrated upstream.</p>
-<p>Enter the <a href="https://github.com/robinsones/funneljoin">funneljoin package</a>. The goal of funneljoin is to make it easy to analyze behavior funnels with the <code>after_join()</code>, <code>funnel_start()</code>, and <code>funnel_step()</code> functions. If you work with data where you have events with their time and associated user, you probably have a problem funneljoin can help with. I created this package with <a href="https://twitter.com/drob">David Robinson</a> and <a href="https://www.linkedin.com/in/awbaker1/">Anthony Baker</a> in July 2018 and have continued to maintain and build on it since.</p>
-<p>In this post, I’ll use <code>funneljoin::after_join()</code> to analyze data about all Stack Overflow questions and answers with the tag R up to September 24th, 2017. The data was downloaded from Kaggle <a href="https://www.kaggle.com/stackoverflow/rquestions">here</a>. The next post in this series will look at the <code>funnel_start()</code> and <code>funnel_step()</code> functions, which we’ll use when all of the events or behavior are in one table.</p>
-<div id="set-up" class="section level2">
-<h2>Set-up</h2>
-<pre class="r"><code>library(tidyverse)
-
-answers &lt;- read_csv(&quot;Answers.csv&quot;)
-questions &lt;- read_csv(&quot;Questions.csv&quot;)</code></pre>
-<p><code>funneljoin</code> is not yet on CRAN, so you’ll need to use <code>devtools</code> to install it from GitHub.</p>
-<pre class="r"><code># devtools::install_github(&quot;robinsones/funneljoin&quot;)
-library(funneljoin)</code></pre>
-<p>Let’s take a quick look at the questions and answers data set.</p>
-<pre class="r"><code>questions</code></pre>
-<pre><code>## # A tibble: 189,930 x 6
-##        Id OwnerUserId CreationDate        Score Title           Body            
-##     &lt;dbl&gt;       &lt;dbl&gt; &lt;dttm&gt;              &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt;           
-##  1  77434       14008 2008-09-16 21:40:29   171 How to access … &quot;&lt;p&gt;Suppose I h…
-##  2  79709          NA 2008-09-17 03:39:16     3 Worse sin: sid… &quot;&lt;p&gt;I have a fu…
-##  3  95007       15842 2008-09-18 17:59:19    56 Explain the qu… &quot;&lt;p&gt;I&#39;ve been m…
-##  4 103312          NA 2008-09-19 16:09:26     4 How to test fo… &quot;&lt;p&gt;How can I t…
-##  5 255697     1941213 2008-11-01 15:48:30     4 Is there an R … &quot;&lt;p&gt;I&#39;m looking…
-##  6 359438        2173 2008-12-11 14:02:06     4 Optimization p… &quot;&lt;p&gt;Does anyone…
-##  7 439526       37751 2009-01-13 15:58:48    23 Thinking in Ve… &quot;&lt;p&gt;I know that…
-##  8 445059       37751 2009-01-14 23:09:02    12 Vectorize my t… &quot;&lt;p&gt;So earlier …
-##  9 467110       11301 2009-01-21 21:33:13     5 Is R a compile… &quot;&lt;p&gt;I can&#39;t fin…
-## 10 476726         277 2009-01-24 21:56:23    10 Filtering data… &quot;&lt;p&gt;I have a CS…
-## # … with 189,920 more rows</code></pre>
-<pre class="r"><code>answers </code></pre>
-<pre><code>## # A tibble: 250,788 x 7
-##       Id OwnerUserId CreationDate        ParentId Score IsAcceptedAnswer Body   
-##    &lt;dbl&gt;       &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt; &lt;dbl&gt; &lt;lgl&gt;            &lt;chr&gt;  
-##  1 79741        3259 2008-09-17 03:43:22    79709    -1 FALSE            &quot;&lt;p&gt;It…
-##  2 79768        6043 2008-09-17 03:48:29    79709     9 FALSE            &quot;&lt;p&gt;us…
-##  3 79779        8002 2008-09-17 03:49:36    79709     0 FALSE            &quot;&lt;p&gt;Th…
-##  4 79788          NA 2008-09-17 03:51:30    79709     4 FALSE            &quot;&lt;p&gt;It…
-##  5 79827       14257 2008-09-17 03:58:26    79709     1 FALSE            &quot;&lt;p&gt;I&#39;…
-##  6 79893       14928 2008-09-17 04:11:08    79709     6 FALSE            &quot;&lt;p&gt;Re…
-##  7 83162       15842 2008-09-17 13:27:17    77434    70 FALSE            &quot;&lt;p&gt;If…
-##  8 83222        1428 2008-09-17 13:32:45    77434   236 FALSE            &quot;&lt;p&gt;I …
-##  9 86804          NA 2008-09-17 19:39:37    79709     1 FALSE            &quot;&lt;p&gt;FY…
-## 10 95598        1179 2008-09-18 18:49:09    95007     5 FALSE            &quot;&lt;p&gt;Th…
-## # … with 250,778 more rows</code></pre>
-<p>Before I dive into the analysis, I’m going to use the janitor’s package <code>clean_names()</code> function to convert the column names to snake case. I’ll also get rid of the rows where user id is missing.</p>
-<pre class="r"><code>questions &lt;- questions %&gt;%
-  janitor::clean_names() %&gt;%
-  filter(!is.na(owner_user_id))
-
-answers &lt;- answers %&gt;%
-  janitor::clean_names() %&gt;%
-  filter(!is.na(owner_user_id))</code></pre>
-</div>
-<div id="after_join" class="section level2">
-<h2>after_join()</h2>
-<p>Let’s start with a relatively simple question - how many people who ask a question later answer one? To look at this, we’ll need to link the questions with the answers table using <code>owner_user_id</code> and <code>creation_date</code> using funneljoin’s <code>after_join</code> function.</p>
-<pre class="r"><code>first_answer_after_first_question &lt;- questions %&gt;%
-  after_left_join(answers,
-             by_time = &quot;creation_date&quot;,
-             by_user = &quot;owner_user_id&quot;,
-             type = &quot;first-firstafter&quot;, 
-             suffix = c(&quot;_question&quot;, &quot;_answer&quot;)) 
-
-first_answer_after_first_question</code></pre>
-<pre><code>## # A tibble: 60,335 x 12
-##    id_question owner_user_id creation_date_quest… score_question title          
-##          &lt;dbl&gt;         &lt;dbl&gt; &lt;dttm&gt;                        &lt;dbl&gt; &lt;chr&gt;          
-##  1       77434         14008 2008-09-16 21:40:29             171 How to access …
-##  2       95007         15842 2008-09-18 17:59:19              56 Explain the qu…
-##  3      255697       1941213 2008-11-01 15:48:30               4 Is there an R …
-##  4      359438          2173 2008-12-11 14:02:06               4 Optimization p…
-##  5      439526         37751 2009-01-13 15:58:48              23 Thinking in Ve…
-##  6      467110         11301 2009-01-21 21:33:13               5 Is R a compile…
-##  7      476726           277 2009-01-24 21:56:23              10 Filtering data…
-##  8      495744         12677 2009-01-30 14:48:19               2 Operating with…
-##  9      498932           445 2009-01-31 14:50:28               3 What&#39;s the eas…
-## 10      520810         63372 2009-02-06 15:49:48              20 Does R have qu…
-## # … with 60,325 more rows, and 7 more variables: body_question &lt;chr&gt;,
-## #   id_answer &lt;dbl&gt;, creation_date_answer &lt;dttm&gt;, parent_id &lt;dbl&gt;,
-## #   score_answer &lt;dbl&gt;, is_accepted_answer &lt;lgl&gt;, body_answer &lt;chr&gt;</code></pre>
-<p>The first two arguments are the tables we’re joining, with the first table being the events that happen first. We then specify:</p>
+<p>When my co-author Jacqueline Nolis and I wrote our book, <a href="https://bestbook.cool">Build a Career in Data Science</a>, we wanted to provide a comprehensive resource of the non-technical skills and knowledge needed to get into and succeed in data science. I’ve been really pleased with the positive feedback we’ve gotten from the people it and <a href="https://podcast.bestbook.cool">our free companion podcast</a> has helped. But while I think most people will find something new and helpful in it, one book can never be the only word on a topic as broad as career advice.</p>
+<p>So despite a <a href="https://twitter.com/skyetetra/status/1391820068498001921?s=20">certain co-author’s bafflement</a>, I wanted to share a list of the career resources that I’ve found most helpful. Many sparked an “aha” moment - either finally giving me the word for something I’d felt but couldn’t define or enlightening me to something I’d never thought of. I hope they will do the same for you. Some of them are specific to technical roles, but others should be helpful to anyone. I’ve structured this post by career dilemma, as I’ve often found a long list of links can overwhelm.</p>
+<div id="how-do-i-get-promoted-as-an-individual-contributor" class="section level3">
+<h3>How do I get promoted as an Individual Contributor?</h3>
+<p><strong>If you’re frustrated because you feel ready for a promotion but it hasn’t happened</strong></p>
 <ul>
-<li><code>by_time</code>: the time columns in each table. This would typically be a datetime or a date column. These columns are used to filter for time y being after time x.</li>
-<li><code>by_user</code>: the user or identity columns in each table. These must always be identical for a pair of rows to match.</li>
-<li><code>type</code>: the type of funnel used to distinguish between event pairs, such as “first-firstafter”, first-first“,”last-first“,”any-firstafter&quot;.</li>
-<li><code>suffix</code>: just like dplyr’s join functions, this specifies what should be appended to the names of columns that are in both tables.</li>
+<li><em>Are you doing too much technical leadership instead of quantifiable technical code/products</em>: Tanya O’Reilly’s <a href="https://noidea.dog/glue">“Glue Work”</a></li>
+<li><em>Do you have sponsorship</em>: Lara Hogan’s <a href="https://larahogan.me/blog/what-sponsorship-looks-like/">“What Sponsorship Looks Like”</a></li>
+<li><em>Is there opportunity at your company</em>: Charity Majors’ <a href="https://charity.wtf/2020/09/14/useful-things-to-know-about-engineering-levels/">“Useful Things to Know About Engineering Levels”</a></li>
+<li><em>Are you going for a Staff+ level (e.g. lead, principal, staff) role</em>: Will Larson’s book “Staff Engineer: Leadership on the Technical Track” (available on <a href="https://staffeng.com/book">Amazon and Gumroad</a> with most of the material free on <a href="https://staffeng.com/">his website</a>)</li>
 </ul>
-<p>The <code>type</code> argument is the most powerful one, as it allows you to switch between types of funnels easily. In this case, we wanted only the first question someone asked and then wanted to know the first answer they gave afterward.</p>
-<p>For <strong>any</strong> <code>type</code> of <code>after_join()</code>, the timestamps of the second table (in this case answers) will always be after the timestamp of the first table for each user - we can see there are no rows where <code>creation_date_answer</code> is before <code>creation_date_question</code>:</p>
-<pre class="r"><code>first_answer_after_first_question %&gt;%
-  filter(creation_date_answer &lt; creation_date_question)</code></pre>
-<pre><code>## # A tibble: 0 x 12
-## # … with 12 variables: id_question &lt;dbl&gt;, owner_user_id &lt;dbl&gt;,
-## #   creation_date_question &lt;dttm&gt;, score_question &lt;dbl&gt;, title &lt;chr&gt;,
-## #   body_question &lt;chr&gt;, id_answer &lt;dbl&gt;, creation_date_answer &lt;dttm&gt;,
-## #   parent_id &lt;dbl&gt;, score_answer &lt;dbl&gt;, is_accepted_answer &lt;lgl&gt;,
-## #   body_answer &lt;chr&gt;</code></pre>
-<p>To answer our original question, let’s get a count by what percent of rows don’t have an <code>id_answer</code>, meaning they never answered a question after asking one. We’ll use the funneljoin’s <code>summarize_conversions()</code> function, where you specify what column indicates whether someone “converted” (in this case answered a question) and returns the total number of users (<code>nb_users</code>), the number of conversions (<code>nb_conversions</code>), and the percent converted (<code>pct_converted</code>).</p>
-<pre class="r"><code>first_answer_after_first_question %&gt;%
-  summarize_conversions(converted = id_answer)</code></pre>
-<pre><code>## # A tibble: 1 x 3
-##   nb_users nb_conversions pct_converted
-##      &lt;int&gt;          &lt;int&gt;         &lt;dbl&gt;
-## 1    60335          13688         0.227</code></pre>
-<p>We see that of the approximately 60,000 users that asked an R question, 22.7% percent later went on to answer one.</p>
-<p>How long does it take for people to answer their first question? We can add <code>gap_col = TRUE</code> to <code>after_join()</code> to add a column, <code>.gap</code>, which is the gap between events (in seconds).</p>
-<pre class="r"><code>time_between_first_question_and_answer &lt;- questions %&gt;%
-  after_left_join(answers,
-                  by_time = &quot;creation_date&quot;,
-                  by_user = &quot;owner_user_id&quot;,
-                  type = &quot;first-firstafter&quot;,
-                  gap_col = TRUE) %&gt;%
-  mutate(gap_hours = .gap  / 3600)
-
-time_between_first_question_and_answer %&gt;%
-  ggplot(aes(x = gap_hours)) + 
-  geom_histogram() + 
-  scale_x_log10(breaks = c(1, 24, 24 * 7, 24 * 7 * 30), 
-                     labels = c(&quot;1 hour&quot;, &quot;1 day&quot;, &quot;1 week&quot;, &quot;1 month&quot;)) + 
-  labs(x = &quot;Time between asking the first question and answering one&quot;,
-       y = &quot;Number of users&quot;,
-       title = &quot;What&#39;s the gap between asking your first question and answering one?&quot;,
-       subtitle = &quot;Only for questions tagged with R on Stack Overflow&quot;) </code></pre>
-<p><img src="https://hookedondata.org/post/2019-07-25-introducing-the-funneljoin-package_files/figure-html/unnamed-chunk-11-1.png" width="921.6" /></p>
-<p>We can get an idea from this graph what percentage of people who ask a question answer one within a week, or we could filter our data to get an exact answer. To make it even easier though, we can use the <code>max_gap</code> argument in <code>after_join()</code> to specify that someone needs to have answered a question within a week from their data to be joined. <code>max_gap</code> takes either a <code>difftime</code> or an integer representing the gap in seconds and will filter so that the time between events is less than or equal to that <code>max_gap</code>.</p>
-<pre class="r"><code>questions %&gt;%
-  after_join(answers,
-             by_time = &quot;creation_date&quot;,
-             by_user = &quot;owner_user_id&quot;,
-             type = &quot;first-firstafter&quot;,
-             mode = &quot;left&quot;,
-             suffix = c(&quot;_question&quot;, &quot;_answer&quot;),
-             max_gap = as.difftime(1, units = &quot;weeks&quot;)) %&gt;%
-  summarize_conversions(converted = id_answer)</code></pre>
-<pre><code>## # A tibble: 1 x 3
-##   nb_users nb_conversions pct_converted
-##      &lt;int&gt;          &lt;int&gt;         &lt;dbl&gt;
-## 1    60335           5349        0.0887</code></pre>
-<p>Now we see that only 8.9% answer an R question within a week of asking their first one.</p>
-<p>We might be curious if the likelihood of answering a question later varies by the score of the question they asked. Before doing summarize_conversions, we can group by the score. There are some scores that only appear once (e.g. one person got a score of -18), so we’ll filter for only scores between -4 and 10.</p>
-<pre class="r"><code>first_answer_after_first_question %&gt;%
-  group_by(score_question) %&gt;%
-  summarize_conversions(converted = id_answer) %&gt;%
-  filter(between(score_question, -4, 10)) %&gt;%
-  ggplot(aes(x = score_question, y = pct_converted)) + 
-  geom_line() + 
-  geom_point(aes(size = nb_users)) + 
-  scale_y_continuous(labels = scales::percent) + 
-  labs(y = &quot;% who later answer a question&quot;,
-      x = &quot;Score on a user&#39;s first question&quot;,
-      title = &quot;If your first question is scored highly, you&#39;re more to answer a question later&quot;,
-      subtitle = &quot;Only for questions tagged with R on Stack Overflow&quot;,
-      size = &quot;Number of users&quot;) + 
-  expand_limits(y = 0)</code></pre>
-<p><img src="https://hookedondata.org/post/2019-07-25-introducing-the-funneljoin-package_files/figure-html/unnamed-chunk-13-1.png" width="921.6" /></p>
-<p>Most people’s first questions have a score between -1 and 4, but for those who manage to score higher, they’re more likely to answer a question later. As always, you have to be careful of any claims of causality: it’s likely be those who are asking higher scored questions are better at R and thus have the knowledge to later provide answers.</p>
-</div>
-<div id="other-joins-and-funnel-types" class="section level2">
-<h2>Other joins and funnel types</h2>
-<p>We’ve been looking so far at people’s answers after they’ve asked a question. But are there people who answer a question before they ever ask one?</p>
-<p>We can examine this by changing the join to:</p>
+<p><strong>If you don’t know where to start</strong></p>
 <ul>
-<li><code>first-first</code> type to filter both tables to the first instance of a user (e.g. their first answer and their first question).</li>
-<li><code>after_right_join</code> to keep everyone who asks a question, whether or not they ever answered any before.</li>
+<li><em>Keep track of and share your accomplishments</em>: Julia Evans’ <a href="https://jvns.ca/blog/brag-documents/">“Brag Documents”</a> and Will Larson’s <a href="https://lethain.com/promo-packets/">“Promo Packets”</a></li>
+<li><em>Talk with your manager</em>: Rebecca Knight’s <a href="https://hbr.org/2018/01/how-to-ask-for-a-promotion">“How to Ask for a Promotion”</a></li>
 </ul>
-<pre class="r"><code>answers %&gt;%
-  after_right_join(questions,
-           by_time = &quot;creation_date&quot;,
-           by_user = &quot;owner_user_id&quot;,
-           type = &quot;first-first&quot;,
-           suffix = c(&quot;_answer&quot;, &quot;_question&quot;)) %&gt;%
-  summarize_conversions(converted = id_answer)</code></pre>
-<pre><code>## # A tibble: 1 x 3
-##   nb_users nb_conversions pct_converted
-##      &lt;int&gt;          &lt;int&gt;         &lt;dbl&gt;
-## 1    60335           2795        0.0463</code></pre>
-<p>Yes, 4.63% of people have answered a question before they asked their first one.</p>
-<p>For people who answer questions after asking one, let’s find out how many they answer. We’ll switch our query to an <code>after_inner_join</code> with a type <code>first-any</code>. Each user will only have one question, their first, as we used a <code>first-Y</code> type. But it has one row per answer they gave afterwards as we used a <code>X-any</code> type.</p>
-<pre class="r"><code>questions %&gt;%
-  after_inner_join(answers,
-           by_time = &quot;creation_date&quot;,
-           by_user = &quot;owner_user_id&quot;,
-           type = &quot;first-any&quot;) %&gt;%
-  count(owner_user_id) %&gt;%
-  ggplot(aes(n)) + 
-  geom_histogram() + 
-  scale_x_log10() + 
-  labs(x = &quot;Number of answers&quot;,
-       y = &quot;Number of users&quot;,
-       title = &quot;How many questions do people answer after asking their first one?&quot;,
-       subtitle = &quot;Only for questions tagged with R on Stack Overflow and people who answer at least one afterwards&quot;)</code></pre>
-<p><img src="https://hookedondata.org/post/2019-07-25-introducing-the-funneljoin-package_files/figure-html/unnamed-chunk-15-1.png" width="921.6" /></p>
-<p>Not surprisingly, we see people mostly answer only 1 or 2 questions, with a long tail of power users answering 100+ questions.</p>
 </div>
-<div id="conclusion" class="section level2">
-<h2>Conclusion</h2>
-<p>Some of the power of <code>funneljoin</code> comes from making it possible to code things you didn’t know how to before. But a lot of it comes from bringing things from “possible but time-consuming and error-prone” to “easy.” When you’re doing exploratory analysis, you want to be able to iterate quickly between ideas: switching from the first thing someone added to their cart after searching for an item, to everything they added, to only items they added within a week.</p>
-<p>In the next post, I’ll be sharing <code>funneljoin</code>’s other main functions: <code>funnel_start()</code> and <code>funnel_step()</code>. In the meantime, if you find any bugs or have a feature request or question, please create an issue on <a href="https://github.com/robinsones/funneljoin">GitHub</a> or get in touch on <a href="https://twitter.com/robinson_es">Twitter</a>!</p>
+<div id="should-i-become-a-manager" class="section level3">
+<h3>Should I become a manager?</h3>
+<ul>
+<li><em>If you’re not sure if you’d like management</em>: Julie Zhuo’s <a href="https://medium.com/the-year-of-the-looking-glass/so-you-think-you-want-to-manage-1229723a4501">“So You Think You Want to Manage”</a> and Dan Na’s <a href="https://blog.danielna.com/choosing-the-management-track/">“Choosing the Management Track”</a></li>
+<li><em>If you’re not sure what the long-term path looks like and the potential downsides</em>: Charity Major’s <a href="https://charity.wtf/2019/01/04/engineering-management-the-pendulum-or-the-ladder/">“Engineering Management: The Pendulum or the Ladder”</a></li>
+<li><em>If you want a comprehensive look at what it’s like to be a manager</em>: Julie Zhuo’s book <a href="https://www.amazon.com/Making-Manager-What-Everyone-Looks/dp/0735219567">“Making of a Manager”</a> and Camille Fournier’s book <a href="https://www.amazon.com/Managers-Path-Leaders-Navigating-Growth/dp/1491973897">“The Manager’s Path”</a></li>
+</ul>
+</div>
+<div id="how-can-i-build-my-network" class="section level3">
+<h3>How can I build my network?</h3>
+<ul>
+<li><em>If the idea of “networking” makes you feel icky</em>: Dina Smith’s <a href="https://www.fastcompany.com/90612688/how-to-cultivate-a-broad-network-without-coming-off-as-slimy">“How to Cultivate a Broad Network Without Coming off as Slimy”</a></li>
+<li><em>If you want to “find a mentor”</em>: Janet T. Phan’s <a href="https://hbr.org/2021/03/whats-the-right-way-to-find-a-mentor">“What’s the Right Way to Find a Mentor?”</a></li>
+<li><em>If you deal with social anxiety</em>: Steph Locke’s <a href="https://itsalocke.com/blog/overcoming-social-anxiety-to-attend-user-groups/">“Overcoming Social Anxiety to Attend User Groups”</a></li>
+</ul>
+</div>
+<div id="do-i-need-a-personal-brand" class="section level3">
+<h3>Do I need a “personal brand”?</h3>
+<ul>
+<li><em>If you don’t like the idea of personal branding or aren’t sure how to get started sharing your work</em>: Rachel Thomas’ <a href="https://www.fast.ai/2017/12/18/personal-brand/">“Making Peace with Personal Branding”</a></li>
+<li><em>If you don’t know what your personal brand would be</em>: Jesse Mostipak’s <a href="https://www.jessemaegan.com/blog/branding/">“It’s Called Branding”</a></li>
+</ul>
+</div>
+<div id="how-can-i-work-better-with-my-manager" class="section level3">
+<h3>How can I work better with my manager?</h3>
+<ul>
+<li><em>If you want to communicate with them better</em>: Julia Evan’s <a href="https://jvns.ca/blog/things-your-manager-might-not-know/">“Things Your Manager Might Not Know”</a></li>
+<li><em>If you’re not sure how to “manage up” or if that’s even something you should do</em>: Lara Hogan’s <a href="https://larahogan.me/blog/is-managing-up-bad/">“Is Managing Up Bad?”</a>, its sequel <a href="https://larahogan.me/blog/how-to-manage-up/">“How to Manage Up”</a>, and Katie Wilde’s <a href="https://leaddev.com/communication-relationships/myths-and-traps-managing">“The myths and traps of ‘managing up’”</a></li>
+</ul>
+</div>
+<div id="im-frustrated-with-what-my-company-is-doing-or-not-doing" class="section level3">
+<h3>I’m frustrated with what my company is doing (or not doing)</h3>
+<ul>
+<li><em>If you want to influence a process/outcome where you don’t have formal authority</em>: Lara Hogan’s <a href="https://speakerdeck.com/lara/influence-without-authority">“Influence Without Authority”</a></li>
+<li><em>If a leader did something you hate/think is unethical</em>: Brandon Rohrer’s <a href="https://e2eml.school/org_response.html">“Responding to Misbehavior”</a></li>
+<li><em>If you don’t know why leadership isn’t doing the obvious thing</em>: Lara Hogan’s <a href="https://larahogan.me/blog/why-cant-they-just/">“Why can’t they just …?”</a></li>
+</ul>
+<p>One last thing: try to avoid “analysis paralysis” where you try to read as much as possible rather than taking action. Two reasons for that. First, your organization may do things totally differently! If you’re looking to be promoted to staff data scientist for example, ask the current staff data scientists and even the managers who promoted them what the process is. Second, our thoughts and ways of thinking can follow our action - see Hermania Ibarra’s book <a href="https://www.amazon.com/Act-Like-Leader-Think/dp/1422184129/">Act Like a Leader, Think Like a Leader</a>. Sometimes the only way to learn is to try and maybe fail.</p>
+<p>And for career decisions, even with lots of reflection and discussions with informed colleagues/friends, you can’t really know how you’ll like a new company or changing from an individual contributor to a manager unless you try it. Remember those decisions aren’t permanent, and you’ll learn a lot from things that aren’t a good fit too.</p>
 </div>
 
               
@@ -461,9 +318,7 @@ time_between_first_question_and_answer %&gt;%
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">TAGGED IN</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://hookedondata.org/tags/r/">R</a>
-
-  <a class="tag tag--primary tag--small" href="https://hookedondata.org/tags/code/">Code</a>
+  <a class="tag tag--primary tag--small" href="https://hookedondata.org/tags/career/">career</a>
 
                   </div>
                 
@@ -476,7 +331,7 @@ time_between_first_question_and_answer %&gt;%
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://hookedondata.org/exploring-bob-ross-paintings/" data-tooltip="Exploring Bob Ross paintings">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -484,7 +339,7 @@ time_between_first_question_and_answer %&gt;%
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://hookedondata.org/going-off-the-map/" data-tooltip="Going Off the Map: Exploring purrr&#39;s Other Functions">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://hookedondata.org/publishing-tech-book-part-4/" data-tooltip="Publishing a Technical Book (Part 4): After the Book is Published">
               
                   <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                   <i class="fa fa-angle-right"></i>
@@ -502,13 +357,13 @@ time_between_first_question_and_answer %&gt;%
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://hookedondata.org/introducing-the-funneljoin-package/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://hookedondata.org/career-resources/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://hookedondata.org/introducing-the-funneljoin-package/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://hookedondata.org/career-resources/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -546,7 +401,7 @@ time_between_first_question_and_answer %&gt;%
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://hookedondata.org/exploring-bob-ross-paintings/" data-tooltip="Exploring Bob Ross paintings">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -554,7 +409,7 @@ time_between_first_question_and_answer %&gt;%
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://hookedondata.org/going-off-the-map/" data-tooltip="Going Off the Map: Exploring purrr&#39;s Other Functions">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://hookedondata.org/publishing-tech-book-part-4/" data-tooltip="Publishing a Technical Book (Part 4): After the Book is Published">
               
                   <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                   <i class="fa fa-angle-right"></i>
@@ -572,13 +427,13 @@ time_between_first_question_and_answer %&gt;%
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://hookedondata.org/introducing-the-funneljoin-package/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://hookedondata.org/career-resources/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://hookedondata.org/introducing-the-funneljoin-package/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://hookedondata.org/career-resources/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -602,13 +457,13 @@ time_between_first_question_and_answer %&gt;%
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fhookedondata.org%2Fintroducing-the-funneljoin-package%2F">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fhookedondata.org%2Fcareer-resources%2F">
           <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fhookedondata.org%2Fintroducing-the-funneljoin-package%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fhookedondata.org%2Fcareer-resources%2F">
           <i class="fa fa-twitter"></i><span>Share on Twitter</span>
         </a>
       </li>

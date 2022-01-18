@@ -34,7 +34,7 @@ January 2019, RStudio Conference. [Slides](https://www.slideshare.net/secret/Ba5
 
 November 2018, DC R Conference. [Recording](https://www.youtube.com/watch?v=zDONDfXzKdA&feature=youtu.be).
 
-October 2018, [Nor'eastR Conference](https://noreastrconf.com/schedule/). 
+October 2018, Nor'eastR Conference. 
 
 #### 10 Guidelines for A/B Testing
 
@@ -58,9 +58,13 @@ July 2017, New York Open Statistical Programming Meetup. [Recording](https://www
 
 ## Programming in R
 
+#### A UseR's Introduction to Machine Learning in AWS
+
+October 2021, Salt Lake City R Users Group. [Slides](bit.ly/awsdogs), [Recording](https://www.youtube.com/watch?v=EZXJmFg4MIg&t=2844s). 
+
 #### funneljoin: Defining a Tidy Grammar of Funnels in R
 
-August 2020, NY R conference. 
+August 2020, NY R conference.[Recording](https://www.youtube.com/watch?v=tVbdppsEgmQ&feature=youtu.be).  
 
 November 2019, Booking.com Headquarters.
 
@@ -112,15 +116,15 @@ June 2019, [Data Matters](https://skillsmatter.com/meetups/11783-keynote-evening
 
 ## Podcasts
 
-November 2020, Building a Career in Data Science on Chai Data Science (Jacqueline Nolis was also a guest). [Recording](https://www.youtube.com/watch?v=-OSWCeo18vs&feature=youtu.be). 
+November 2020, Building a Career in Data Science on Chai Data Science. [Recording](https://www.youtube.com/watch?v=-OSWCeo18vs&feature=youtu.be). 
 
-October 2020, Build a Career in Data Science on The Artists of Data Science (Jaqueline Nolis was also a guest). [Recording](https://theartistsofdatascience.fireside.fm/jacqueline-nolis-emily-robinson). 
+October 2020, Build a Career in Data Science on The Artists of Data Science . [Recording](https://theartistsofdatascience.fireside.fm/jacqueline-nolis-emily-robinson). 
 
-July 2020, How to Jump into Data Science from Any Background on Develomentor (Jacqueline Nolis, my co-author, was also a guest). [Recording](https://develomentor.com/2020/07/23/emily-robinson-jacqueline-nolis-how-to-jump-into-data-science-from-any-background-76/). 
+July 2020, How to Jump into Data Science from Any Background on Develomentor. [Recording](https://develomentor.com/2020/07/23/emily-robinson-jacqueline-nolis-how-to-jump-into-data-science-from-any-background-76/). 
 
-June 2020, Build a Career in Data Science Book Session with Women in Analytics and Women in Tech International (Jacqueline Nolis, my co-author, was also a guest). [Recording](https://www.youtube.com/watch?v=P9rfb09FWjI).
+June 2020, Build a Career in Data Science Book Session with Women in Analytics and Women in Tech International. [Recording](https://www.youtube.com/watch?v=P9rfb09FWjI).
 
-April 2020, Build a Career in Data Science on Talk Python to Me (Jacqueline Nolis was also a guest), [Recording](https://talkpython.fm/episodes/show/262/build-a-career-in-data-science). 
+April 2020, Build a Career in Data Science on Talk Python to Me. [Recording](https://talkpython.fm/episodes/show/262/build-a-career-in-data-science). 
 
 April 2020, Tackling Data Science Job Hunting, Interviews & Negotiations on Super Data Science Podcast. [Recording and transcript](https://www.superdatascience.com/podcast/tackling-data-science-job-hunting-interviews-and-negotiations). 
 
@@ -128,7 +132,7 @@ April 2020, Data Science and Sponsorship on Greater Than Code. [Recording and ep
 
 April 2020, Building a Career in Data Science on Towards Data Science. [Recording and summary](https://towardsdatascience.com/building-a-career-in-data-science-with-emily-robinson-27cd9bdba4c4). 
 
-March 2020, Start a Career in Data Science on Women in TECH with Ariana (Jacqueline Nolis, my co-author, was also a guest). [Recording](https://anchor.fm/womenintech/episodes/Start-a-Career-in-Data-Science-with-Emily--Jacqueline-ebcbee).
+March 2020, Start a Career in Data Science on Women in TECH with Ariana. [Recording](https://anchor.fm/womenintech/episodes/Start-a-Career-in-Data-Science-with-Emily--Jacqueline-ebcbee).
 
 March 2020, Building a Career in Data Science on Practical AI. [Recording and transcript](https://changelog.com/practicalai/81). 
 

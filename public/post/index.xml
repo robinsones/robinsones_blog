@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Hooked on Data</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 06 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 22 Jun 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://hookedondata.org/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Answers to your Career Questions</title>
+      <link>https://hookedondata.org/career-resources/</link>
+      <pubDate>Tue, 22 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://hookedondata.org/career-resources/</guid>
+      <description>When my co-author Jacqueline Nolis and I wrote our book, Build a Career in Data Science, we wanted to provide a comprehensive resource of the non-technical skills and knowledge needed to get into and succeed in data science. I’ve been really pleased with the positive feedback we’ve gotten from the people it and our free companion podcast has helped. But while I think most people will find something new and helpful in it, one book can never be the only word on a topic as broad as career advice.</description>
+    </item>
     
     <item>
       <title>Publishing a Technical Book (Part 4): After the Book is Published</title>
@@ -38,7 +47,7 @@ Finding the time Overall I’d estimate writing the book, including the proposal
       
       <guid>https://hookedondata.org/publishing-tech-book-part-2/</guid>
       <description>[This is my second post on publishing a technical book. If you’re not sure if you should write a book, check out part 1.]
-You’ve probably heard of some book publishers before like Simon and Schuster or Random House. Those companies don’t usually get involved in smaller technical books. Instead there are several specialized publishers for books in the tech field, the biggest are O’Reilly, Manning, Pearson, and Chapman and Hall, along with some specialized ones like A Book Apart (which publishers short books).</description>
+You’ve probably heard of some book publishers before like Simon and Schuster or Random House. Those companies don’t usually get involved in smaller technical books. Instead there are several specialized publishers for books in the tech field; the biggest are O’Reilly, Manning, Pearson, and Chapman and Hall, along with some specialized ones like A Book Apart (which publishes short books).</description>
     </item>
     
     <item>

@@ -10,6 +10,7 @@ tags:
   - tidyverse
 ---
 
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
 <p>I recently completed <a href="https://colinfay.me/">Colin Fay’s</a> excellent DataCamp course, <a href="https://www.datacamp.com/courses/intermediate-functional-programming-with-purrr">Intermediate Functional Programming with purrr</a> (full disclosure: I work at DataCamp, but part of why I joined was that I was a big fan of the short, interactive course format). Although I’ve used the <code>purrr</code> package before, there were a lot of functions in this course that were new to me. I wrote this post to hopefully demystify <code>purrr</code> a bit for those who find it overwhelming and illustrate some of its lesser known functions. Most of these functions are covered in Colin’s course, though I added a few I found on the <a href="https://www.rstudio.com/resources/cheatsheets/#purrr"><code>purrr</code> cheatsheet</a>.</p>
@@ -42,16 +43,29 @@ tags:
 <p><code>purrr</code> is a package for functional programming in R. If you’re familiar with it, it’s probably because of the <code>map()*</code> functions. And if you’ve been a little bit intimidated by them, I’m right there with you. You’ll often see <code>purrr</code> used with nested lists or dataframes, like in this (modified) example from one of the last lessons in Jenny Bryan’s <code>purrr</code> tutorial:</p>
 <pre class="r"><code>library(dplyr)
 library(purrr)
-library(gapminder)</code></pre>
-<pre><code>## Error in library(gapminder): there is no package called &#39;gapminder&#39;</code></pre>
-<pre class="r"><code>library(tidyr)</code></pre>
+library(gapminder)
+library(tidyr)</code></pre>
 <pre class="r"><code>gapminder %&gt;%
   group_by(country) %&gt;%
   nest() %&gt;%  
   mutate(fit = map(data, ~ lm(lifeExp ~ year, data = .x))) %&gt;%
   mutate(rsq = map_dbl(fit, ~ summary(.x)[[&quot;r.squared&quot;]])) %&gt;%
   arrange(rsq)</code></pre>
-<pre><code>## Error in group_by(., country): object &#39;gapminder&#39; not found</code></pre>
+<pre><code>## # A tibble: 142 × 4
+## # Groups:   country [142]
+##    country          data              fit       rsq
+##    &lt;fct&gt;            &lt;list&gt;            &lt;list&gt;  &lt;dbl&gt;
+##  1 Rwanda           &lt;tibble [12 × 5]&gt; &lt;lm&gt;   0.0172
+##  2 Botswana         &lt;tibble [12 × 5]&gt; &lt;lm&gt;   0.0340
+##  3 Zimbabwe         &lt;tibble [12 × 5]&gt; &lt;lm&gt;   0.0562
+##  4 Zambia           &lt;tibble [12 × 5]&gt; &lt;lm&gt;   0.0598
+##  5 Swaziland        &lt;tibble [12 × 5]&gt; &lt;lm&gt;   0.0682
+##  6 Lesotho          &lt;tibble [12 × 5]&gt; &lt;lm&gt;   0.0849
+##  7 Cote d&#39;Ivoire    &lt;tibble [12 × 5]&gt; &lt;lm&gt;   0.283 
+##  8 South Africa     &lt;tibble [12 × 5]&gt; &lt;lm&gt;   0.312 
+##  9 Uganda           &lt;tibble [12 × 5]&gt; &lt;lm&gt;   0.342 
+## 10 Congo, Dem. Rep. &lt;tibble [12 × 5]&gt; &lt;lm&gt;   0.348 
+## # … with 132 more rows</code></pre>
 <p>If you’ve generally worked with plain-old table data or vectors (like I have), you might have this reaction to that code:</p>
 <p><img src="https://media.giphy.com/media/a93jwI0wkWTQs/giphy.gif" /></p>
 <p>But I am here to tell you: <code>purrr</code> can make your life easier even if you never write code like this. Certainly, knowing how to work with complicated nested lists and dataframes is very useful - it can simplify code you’ve written, and your data may arrive in that format (for example, JSON data is often represented as nested lists or dataframes in R). But even if all you ever work with is “simple” lists, dataframes, and vectors, you’ll be glad to know a bit of <code>purrr</code>.</p>
@@ -288,6 +302,6 @@ round(vec_as_list)</code></pre>
 <pre class="r"><code>map(vec_as_list, round)</code></pre>
 <pre><code>## [[1]]
 ## [1] 1 2 3 5</code></pre>
-<p>Generally, you don’t need <code>map</code> when you’re working with a simple vector and a vectorized function. <code>map</code> shines where you either a) have a non-vectorized function or b) a more complicated data structure (including a list).<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<p>Generally, you don’t need <code>map</code> when you’re working with a simple vector and a vectorized function. <code>map</code> shines where you either a) have a non-vectorized function or b) a more complicated data structure (including a list).<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
