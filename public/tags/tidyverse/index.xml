@@ -2,39 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tidyverse on Hooked on Data</title>
-    <link>https://hookedondata.org/tags/tidyverse/</link>
+    <link>/tags/tidyverse/</link>
     <description>Recent content in Tidyverse on Hooked on Data</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 14 Aug 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://hookedondata.org/tags/tidyverse/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/tidyverse/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Exploring Bob Ross paintings</title>
-      <link>https://hookedondata.org/exploring-bob-ross-paintings/</link>
+      <link>/exploring-bob-ross-paintings/</link>
       <pubDate>Wed, 14 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/exploring-bob-ross-paintings/</guid>
+      <guid>/exploring-bob-ross-paintings/</guid>
       <description>In this post, I try something new and share an analysis I did without stopping to explain the code along the way (with a few exceptions). I analyze a dataset on Bob Ross paintings from last week’s Tidytuesday, an initiative by the R for Data Science online learning community. Each Monday, a new dataset is posted on GitHub with a short description. You can see some analyses and visualizations people have done by searching for the #tidytuesday hashtag on Twitter.</description>
     </item>
     
     <item>
       <title>Going Off the Map: Exploring purrr&#39;s Other Functions</title>
-      <link>https://hookedondata.org/going-off-the-map/</link>
+      <link>/going-off-the-map/</link>
       <pubDate>Wed, 09 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/going-off-the-map/</guid>
+      <guid>/going-off-the-map/</guid>
       <description>I recently completed Colin Fay’s excellent DataCamp course, Intermediate Functional Programming with purrr (full disclosure: I work at DataCamp, but part of why I joined was that I was a big fan of the short, interactive course format). Although I’ve used the purrr package before, there were a lot of functions in this course that were new to me. I wrote this post to hopefully demystify purrr a bit for those who find it overwhelming and illustrate some of its lesser known functions.</description>
     </item>
     
     <item>
       <title>The Lesser Known Stars of the Tidyverse</title>
-      <link>https://hookedondata.org/the-lesser-known-stars-of-the-tidyverse/</link>
+      <link>/the-lesser-known-stars-of-the-tidyverse/</link>
       <pubDate>Fri, 16 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://hookedondata.org/the-lesser-known-stars-of-the-tidyverse/</guid>
+      <guid>/the-lesser-known-stars-of-the-tidyverse/</guid>
       <description>In early 2018, I gave a few conference talks on “The Lesser Known Stars of the Tidyverse.” I focused on some packages and functions that aren’t as well known as the core parts of ggplot2 and dplyr but are very helpful in exploratory analysis. I walked through an example analysis of Kaggle’s 2017 State of Data Science and Machine Learning Survey to show how I would use these functions in an exploratory analysis.</description>
     </item>
     
